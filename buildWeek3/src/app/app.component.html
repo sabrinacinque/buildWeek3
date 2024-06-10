@@ -1,22 +1,18 @@
-<div class="row flex-column">
+<div class="d-flex flex-column vh-100">
 
-  <div class="col col-3">
-    <app-navbar></app-navbar>
+  <div class="row flex-grow-1">
+
+    <div class="col-3">
+      <app-navbar></app-navbar>
+    </div>
+
+    <div class="col-9">
+      <router-outlet></router-outlet>
+    </div>
+
   </div>
 
-
-
-
-
-  <div class="col col-9">
-    <router-outlet></router-outlet>
-  </div>
-
-
-
-
+  <app-footer class="mt-auto"></app-footer>
 
 </div>
 
-
-<app-footer></app-footer>

@@ -1,457 +1,402 @@
 {
   "users": [],
-  "menu" :
-  [
+  "menu": [
     {
-        "id": 1,
-        "titolo": "Edamame",
-        "ingredienti": "Fagioli di soia, sale",
-        "img": "https://th.bing.com/th/id/OIP.4mZVaAecd_X_KYpl1l7m7gHaFW?rs=1&pid=ImgDetMain",
-        "categoria": "Antipasti",
-        "prezzo": 4.50,
-        "disponibile": true
+      "id": 1,
+      "titolo": "Edamame",
+      "ingredienti": "Fagioli di soia, sale",
+      "img": "https://sushilive.it/wp-content/uploads/2020/12/edamame.jpg",
+      "categoria": "Antipasti",
+      "prezzo": 4.5,
+      "disponibile": true
     },
     {
-        "id": 2,
-        "titolo": "Gyoza",
-        "ingredienti": "Ravioli, carne di maiale, verdure",
-        "img": "https://thejapaneseway.com/wp-content/uploads/2021/10/Is-Gyoza-Sushi.png",
-        "categoria": "Antipasti",
-        "prezzo": 5.00,
-        "disponibile": true
+      "id": 2,
+      "titolo": "Gyoza",
+      "ingredienti": "Ravioli, carne di maiale, verdure",
+      "img": "https://sushilive.it/wp-content/uploads/2020/12/Gyosa.jpg",
+      "categoria": "Antipasti",
+      "prezzo": 5.0,
+      "disponibile": true
     },
     {
-        "id": 3,
-        "titolo": "Involtini Primavera",
-        "ingredienti": "Verdure, pasta fillo",
-        "img": "https://th.bing.com/th/id/OIP.YBu8iNcKBeFSVoMCA_o_PQHaHa?rs=1&pid=ImgDetMain",
-        "categoria": "Antipasti",
-        "prezzo": 3.50,
-        "disponibile": true
+      "id": 3,
+      "titolo": "Involtini Primavera",
+      "ingredienti": "Verdure, pasta fillo",
+      "img": "https://sushilive.it/wp-content/uploads/2020/12/ebi-spring.jpg",
+      "categoria": "Antipasti",
+      "prezzo": 3.5,
+      "disponibile": true
     },
     {
-        "id": 4,
-        "titolo": "Takoyaki",
-        "ingredienti": "Polpo, farina, uova, tempura",
-        "img": "https://media.istockphoto.com/photos/japanese-food-takoyaki-picture-id479266195?k=6&m=479266195&s=612x612&w=0&h=n2uvdYFe9UA3MNUhS6ytPb5XLTOOL6OkAD9q9duiGH4=",
-        "categoria": "Antipasti",
-        "prezzo": 6.00,
-        "disponibile": true
+      "id": 4,
+      "titolo": "Takoyaki",
+      "ingredienti": "Polpo, farina, uova, tempura",
+      "img": "https://sushilive.it/wp-content/uploads/2020/12/takoyaki.jpg",
+      "categoria": "Antipasti",
+      "prezzo": 6.0,
+      "disponibile": true
     },
     {
-        "id": 5,
-        "titolo": "Tempura di Gamberi",
-        "ingredienti": "Gamberi, pastella, olio",
-        "img": "https://th.bing.com/th/id/R.84dce57fdf9f61beeaeab4f19456cd50?rik=WAXOxIx3DnQkAQ&pid=ImgRaw&r=0",
-        "categoria": "Antipasti",
-        "prezzo": 7.00,
-        "disponibile": true
+      "id": 5,
+      "titolo": "Tempura di Gamberi",
+      "ingredienti": "Gamberi, pastella, olio",
+      "img": "https://sushilive.it/wp-content/uploads/2020/12/tempura-special.jpg",
+      "categoria": "Antipasti",
+      "prezzo": 7.0,
+      "disponibile": true
     },
     {
-        "id": 6,
-        "titolo": "Miso Soup",
-        "ingredienti": "Brodo di miso, tofu, alghe",
-        "img": "https://th.bing.com/th/id/R.bb03f9dc57122c82d24cb6d2545a6602?rik=bVHJWzw3RutX3w&pid=ImgRaw&r=0",
-        "categoria": "Zuppe",
-        "prezzo": 3.00,
-        "disponibile": true
+      "id": 6,
+      "titolo": "Miso Soup",
+      "ingredienti": "Brodo di miso, tofu, alghe",
+      "img": "https://sushilive.it/wp-content/uploads/2020/12/misoshiru.jpg",
+      "categoria": "Zuppe",
+      "prezzo": 3.0,
+      "disponibile": true
     },
     {
-        "id": 7,
-        "titolo": "Zuppa di Wonton",
-        "ingredienti": "Brodo, wonton, verdure",
-        "img": "https://i0.wp.com/magazine.tognana.com/wp-content/uploads/2022/09/Wonton-soup-ok-0D6A5756_cover.jpg?resize=1024%2C683&ssl=1",
-        "categoria": "Zuppe",
-        "prezzo": 4.50,
-        "disponibile": true
+      "id": 7,
+      "titolo": "Zuppa di Shoio Ramen",
+      "ingredienti": "Brodo, wonton, verdure",
+      "img": "https://sushilive.it/wp-content/uploads/2020/12/ramen.jpg",
+      "categoria": "Zuppe",
+      "prezzo": 4.5,
+      "disponibile": true
     },
     {
-        "id": 8,
-        "titolo": "Zuppa di Pollo",
-        "ingredienti": "Brodo di pollo, pollo, verdure",
-        "img": "https://th.bing.com/th/id/R.22786f0d5035762d02f0f42b69e6dab1?rik=MwynCTd2oWyfrg&pid=ImgRaw&r=0",
-        "categoria": "Zuppe",
-        "prezzo": 5.00,
-        "disponibile": true
+      "id": 11,
+      "titolo": "Riso di pollo",
+      "ingredienti": "Riso, piselli, prosciutto, uova",
+      "img": "https://sushilive.it/wp-content/uploads/2020/12/rise-chicken.jpg",
+      "categoria": "Primi",
+      "prezzo": 5.5,
+      "disponibile": true
     },
     {
-        "id": 9,
-        "titolo": "Ramen",
-        "ingredienti": "Noodles,brodo,uova,carne di manzo,verdure,funghi",
-        "img": "https://th.bing.com/th/id/OIP.8iMsAfDUYE3-JaZA2kihxQHaE6?rs=1&pid=ImgDetMain",
-        "categoria": "Zuppe",
-        "prezzo": 8.50,
-        "disponibile": true
+      "id": 12,
+      "titolo": "Riso di pesce",
+      "ingredienti": "Noodles, verdure, pollo, salsa di soia",
+      "img": "https://sushilive.it/wp-content/uploads/2020/12/rice-fish.jpg",
+      "categoria": "Primi",
+      "prezzo": 7.5,
+      "disponibile": true
     },
     {
-        "id": 10,
-        "titolo": "Zuppa di Funghi",
-        "ingredienti": "Brodo, funghi, tofu",
-        "img": "https://1.bp.blogspot.com/-LhyK77cSSAo/W4Po36rl81I/AAAAAAAABps/GWfIr50Z1YEtPfjaJjMYtFY97L9-z5vMQCPcBGAYYCw/s1600/zuppa-miso-funghi-tempe-or-792x450.jpg",
-        "categoria": "Zuppe",
-        "prezzo": 4.00,
-        "disponibile": true
+      "id": 13,
+      "titolo": "Yakisoba",
+      "ingredienti": "Noodles, verdure, carne",
+      "img": "https://sushilive.it/wp-content/uploads/2020/12/soba-pesce-e-verdura-1.jpg",
+      "categoria": "Primi",
+      "prezzo": 7.0,
+      "disponibile": true
     },
     {
-        "id": 11,
-        "titolo": "Riso alla Cantonese",
-        "ingredienti": "Riso, piselli, prosciutto, uova",
-        "img": "https://png.pngtree.com/thumb_back/fw800/background/20210912/pngtree-chinese-cuisine-fried-rice-with-fresh-vegetables-image_863631.jpg",
-        "categoria": "Primi",
-        "prezzo": 5.50,
-        "disponibile": true
+      "id": 14,
+      "titolo": "Udon pollo e verdure",
+      "ingredienti": "Noodles di riso, gamberi, uova, arachidi",
+      "img": "https://sushilive.it/wp-content/uploads/2020/12/udon-pollo-e-verdure-1.jpg",
+      "categoria": "Primi",
+      "prezzo": 7.5,
+      "disponibile": true
     },
     {
-        "id": 12,
-        "titolo": "Chow Mein",
-        "ingredienti": "Noodles, verdure, pollo, salsa di soia",
-        "img": "https://secureservercdn.net/166.62.109.7/ebd.a38.myftpupload.com/wp-content/uploads/2017/01/easy_beef_lo_mein_love_and_food_foreva_1-768x512.jpg",
-        "categoria": "Primi",
-        "prezzo": 7.50,
-        "disponibile": true
+      "id": 15,
+      "titolo": "Udon pesce e verdure",
+      "ingredienti": "Udon, brodo, verdure",
+      "img": "https://sushilive.it/wp-content/uploads/2020/12/udon-pesce-e-verdure-1.jpg",
+      "categoria": "Primi",
+      "prezzo": 6.5,
+      "disponibile": true
     },
     {
-        "id": 13,
-        "titolo": "Yakisoba",
-        "ingredienti": "Noodles, verdure, carne",
-        "img": "https://th.bing.com/th/id/OIP.uVIZLNPagaJB8fWxwlUCAgHaE7?rs=1&pid=ImgDetMain",
-        "categoria": "Primi",
-        "prezzo": 7.00,
-        "disponibile": true
+      "id": 16,
+      "titolo": "Hosomaki Salmone",
+      "ingredienti": "Riso, salmone, alga nori",
+      "img": "https://sushilive.it/wp-content/uploads/2020/12/salmon-tagorashi.jpg",
+      "categoria": "Hosomaki",
+      "prezzo": 6.0,
+      "disponibile": true
     },
     {
-        "id": 14,
-        "titolo": "Pad Thai",
-        "ingredienti": "Noodles di riso, gamberi, uova, arachidi",
-        "img": "https://whatson.ae/wp-content/uploads/2018/03/benjarong.jpg",
-        "categoria": "Primi",
-        "prezzo": 7.50,
-        "disponibile": true
+      "id": 17,
+      "titolo": "Hosomaki Tonno",
+      "ingredienti": "Riso, tonno, alga nori",
+      "img": "https://sushilive.it/wp-content/uploads/2020/12/hosomaki-tonno.jpg",
+      "categoria": "Hosomaki",
+      "prezzo": 6.5,
+      "disponibile": true
     },
     {
-        "id": 15,
-        "titolo": "Udon",
-        "ingredienti": "Udon, brodo, verdure",
-        "img": "https://i2.wp.com/eatwhattonight.com/wp-content/uploads/2017/07/Fried-Hokkien-Mee_2.jpg?resize=380%2C380&ssl=1",
-        "categoria": "Primi",
-        "prezzo": 6.50,
-        "disponibile": true
+      "id": 18,
+      "titolo": "Hosomaki Avocado",
+      "ingredienti": "Riso, avocado, alga nori",
+      "img": "https://sushilive.it/wp-content/uploads/2020/12/avoc-hosomaki.jpg",
+      "categoria": "Hosomaki",
+      "prezzo": 5.5,
+      "disponibile": true
     },
     {
-        "id": 16,
-        "titolo": "Hosomaki Salmone",
-        "ingredienti": "Riso, salmone, alga nori",
-        "img": "https://www.sushi-origami.it/wp-content/uploads/2019/04/hosomaki-salmone-768x514.jpg",
-        "categoria": "Hosomaki",
-        "prezzo": 6.00,
-        "disponibile": true
+      "id": 19,
+      "titolo": "Hosomaki tamago",
+      "ingredienti": "Riso, cetriolo, alga nori",
+      "img": "https://sushilive.it/wp-content/uploads/2020/12/hosomaki-tamago.jpg",
+      "categoria": "Hosomaki",
+      "prezzo": 5.0,
+      "disponibile": true
     },
     {
-        "id": 17,
-        "titolo": "Hosomaki Tonno",
-        "ingredienti": "Riso, tonno, alga nori",
-        "img": "https://i.pinimg.com/originals/c2/ea/e3/c2eae35c22a15a904b4db46956c8b2c9.jpg",
-        "categoria": "Hosomaki",
-        "prezzo": 6.50,
-        "disponibile": true
+      "id": 20,
+      "titolo": "Hosomaki takuan",
+      "ingredienti": "Riso, polpa di granchio, alga nori",
+      "img": "https://sushilive.it/wp-content/uploads/2020/12/takuan-hosomaki.jpg",
+      "categoria": "Hosomaki",
+      "prezzo": 6.0,
+      "disponibile": true
     },
     {
-        "id": 18,
-        "titolo": "Hosomaki Avocado",
-        "ingredienti": "Riso, avocado, alga nori",
-        "img": "https://termini-imerese.gohan-sushi.it/upload/immagini/prodotti/hosomaki/159_hoso_avocado.jpg",
-        "categoria": "Hosomaki",
-        "prezzo": 5.50,
-        "disponibile": true
+      "id": 21,
+      "titolo": "Uramaki California",
+      "ingredienti": "Riso, granchio, avocado, cetriolo",
+      "img": "https://sushilive.it/wp-content/uploads/2020/12/california.jpg",
+      "categoria": "Uramaki",
+      "prezzo": 8.0,
+      "disponibile": true
     },
     {
-        "id": 19,
-        "titolo": "Hosomaki Cetriolo",
-        "ingredienti": "Riso, cetriolo, alga nori",
-        "img": "https://www.sushi-origami.it/wp-content/uploads/2019/04/hosomaki-cetriolo-768x514.jpg",
-        "categoria": "Hosomaki",
-        "prezzo": 5.00,
-        "disponibile": true
+      "id": 22,
+      "titolo": "Uramaki Philadelphia",
+      "ingredienti": "Riso, salmone, avocado, formaggio cremoso",
+      "img": "https://sushilive.it/wp-content/uploads/2020/12/philadelphia-maki.jpg",
+      "categoria": "Uramaki",
+      "prezzo": 8.5,
+      "disponibile": true
     },
     {
-        "id": 20,
-        "titolo": "Hosomaki Granchio",
-        "ingredienti": "Riso, polpa di granchio, alga nori",
-        "img": "https://www.sushideluxe.eu/media/catalog/product/cache/1/image/650x/040ec09b1e35df139433887a97daa66f/e/b/ebi.jpg",
-        "categoria": "Hosomaki",
-        "prezzo": 6.00,
-        "disponibile": true
+      "id": 23,
+      "titolo": "Uramaki Dragon",
+      "ingredienti": "Riso, gamberi tempura, avocado, salsa unagi",
+      "img": "https://sushilive.it/wp-content/uploads/2020/12/spicy-tuna.png",
+      "categoria": "Uramaki",
+      "prezzo": 9.0,
+      "disponibile": true
     },
     {
-        "id": 21,
-        "titolo": "Uramaki California",
-        "ingredienti": "Riso, granchio, avocado, cetriolo",
-        "img": "https://th.bing.com/th/id/OIP.BEIHrQroDoCuGFAp2O9B2AHaE8?rs=1&pid=ImgDetMain",
-        "categoria": "Uramaki",
-        "prezzo": 8.00,
-        "disponibile": true
+      "id": 24,
+      "titolo": "Uramaki Spicy Tuna",
+      "ingredienti": "Riso, tonno piccante, avocado",
+      "img": "https://sushilive.it/wp-content/uploads/2020/12/tuna-avocado.jpg",
+      "categoria": "Uramaki",
+      "prezzo": 8.5,
+      "disponibile": true
     },
     {
-        "id": 22,
-        "titolo": "Uramaki Philadelphia",
-        "ingredienti": "Riso, salmone, avocado, formaggio cremoso",
-        "img": "https://www.ricettasprint.it/wp-content/uploads/2020/07/Uramaki-FOTO-ricettasprint-3.jpg",
-        "categoria": "Uramaki",
-        "prezzo": 8.50,
-        "disponibile": true
+      "id": 25,
+      "titolo": "Uramaki Ebi",
+      "ingredienti": "Riso, gamberi, avocado, cetriolo",
+      "img": "https://sushilive.it/wp-content/uploads/2020/12/manhattan.jpg",
+      "categoria": "Uramaki",
+      "prezzo": 8.0,
+      "disponibile": true
     },
     {
-        "id": 23,
-        "titolo": "Uramaki Dragon",
-        "ingredienti": "Riso, gamberi tempura, avocado, salsa unagi",
-        "img": "https://th.bing.com/th/id/R.cd3bb8b21f6487da9bc85598a7e91042?rik=6gkW2S%2ffhbUz3g&riu=http%3a%2f%2fwww.yoxiyoxi.it%2fcdn%2fshop%2fproducts%2fIMG_9125.jpg%3fv%3d1653582691&ehk=RWX8K%2f6BWl%2fXJxuMKqKHs6XTIiOGe%2f%2bEnnZnsIZlDTI%3d&risl=&pid=ImgRaw&r=0",
-        "categoria": "Uramaki",
-        "prezzo": 9.00,
-        "disponibile": true
+      "id": 26,
+      "titolo": "Temaki Salmone",
+      "ingredienti": "Riso, salmone, avocado, alga nori",
+      "img": "https://sushilive.it/wp-content/uploads/2020/12/spicy-salmon-temaki.jpg",
+      "categoria": "Temaki",
+      "prezzo": 7.0,
+      "disponibile": true
     },
     {
-        "id": 24,
-        "titolo": "Uramaki Spicy Tuna",
-        "ingredienti": "Riso, tonno piccante, avocado",
-        "img": "https://shop.driveeat.it/wp-content/uploads/2020/11/7-SpicyTonno-1024x1024.jpg",
-        "categoria": "Uramaki",
-        "prezzo": 8.50,
-        "disponibile": true
+      "id": 27,
+      "titolo": "Temaki Tonno",
+      "ingredienti": "Riso, tonno, avocado, alga nori",
+      "img": "https://sushilive.it/wp-content/uploads/2020/12/surimi-and-tamago-temaki.jpg",
+      "categoria": "Temaki",
+      "prezzo": 7.5,
+      "disponibile": true
     },
     {
-        "id": 25,
-        "titolo": "Uramaki Ebi",
-        "ingredienti": "Riso, gamberi, avocado, cetriolo",
-        "img": "https://www.finedininglovers.it/sites/g/files/xknfdk1106/files/styles/recipes_1200_800_fallback/public/fdl_content_import_it/ricetta-ebi-uramaki.jpg?itok=bwmLlxJR",
-        "categoria": "Uramaki",
-        "prezzo": 8.00,
-        "disponibile": true
+      "id": 28,
+      "titolo": "Temaki California",
+      "ingredienti": "Riso, granchio, avocado, cetriolo, alga nori",
+      "img": "https://sushilive.it/wp-content/uploads/2020/12/california-temaki.jpg",
+      "categoria": "Temaki",
+      "prezzo": 8.0,
+      "disponibile": true
     },
     {
-        "id": 26,
-        "titolo": "Temaki Salmone",
-        "ingredienti": "Riso, salmone, avocado, alga nori",
-        "img": "https://thumbs.dreamstime.com/b/picture-restaurant-table-salmon-sushi-slate-board-temaki-109823800.jpg",
-        "categoria": "Temaki",
-        "prezzo": 7.00,
-        "disponibile": true
+      "id": 29,
+      "titolo": "Temaki Ebi",
+      "ingredienti": "Riso, gamberi, avocado, alga nori",
+      "img": "https://sushilive.it/wp-content/uploads/2020/12/red-and-green-temaki.jpg",
+      "categoria": "Temaki",
+      "prezzo": 7.0,
+      "disponibile": true
     },
     {
-        "id": 27,
-        "titolo": "Temaki Tonno",
-        "ingredienti": "Riso, tonno, avocado, alga nori",
-        "img": "https://www.kokoromodena.it/wp-content/uploads/2019/02/182_kokoro_temaki-930x620.jpg",
-        "categoria": "Temaki",
-        "prezzo": 7.50,
-        "disponibile": true
+      "id": 31,
+      "titolo": "Sushi Nigiri Salmone",
+      "ingredienti": "Riso, salmone",
+      "img": "https://sushilive.it/wp-content/uploads/2020/12/nigiri-salmone-1.jpg",
+      "categoria": "Sushi",
+      "prezzo": 6.0,
+      "disponibile": true
     },
     {
-        "id": 28,
-        "titolo": "Temaki California",
-        "ingredienti": "Riso, granchio, avocado, cetriolo, alga nori",
-        "img": "https://jinqiu129.it/wp-content/uploads/2021/12/res-KABBW-dish-5efb2f8f3c29da261ddecbc7-index-0.jpg",
-        "categoria": "Temaki",
-        "prezzo": 8.00,
-        "disponibile": true
+      "id": 32,
+      "titolo": "Sushi Nigiri Tonno",
+      "ingredienti": "Riso, tonno",
+      "img": "https://sushilive.it/wp-content/uploads/2020/12/nigiri-tonno.jpg",
+      "categoria": "Sushi",
+      "prezzo": 6.5,
+      "disponibile": true
     },
     {
-        "id": 29,
-        "titolo": "Temaki Ebi",
-        "ingredienti": "Riso, gamberi, avocado, alga nori",
-        "img": "https://vokerejapa.com/wp-content/uploads/2021/10/124-temaki-ebi-cheese.png",
-        "categoria": "Temaki",
-        "prezzo": 7.00,
-        "disponibile": true
+      "id": 33,
+      "titolo": "Sushi Sashimi Misto",
+      "ingredienti": "Salmone, tonno, branzino",
+      "img": "https://sushilive.it/wp-content/uploads/2020/12/sashimi-mix.jpg",
+      "categoria": "Sushi",
+      "prezzo": 10.0,
+      "disponibile": true
     },
     {
-        "id": 30,
-        "titolo": "Temaki Spicy Tuna",
-        "ingredienti": "Riso, tonno piccante, avocado, alga nori",
-        "img": "https://media.indebuurt.nl/haarlem/2018/09/09165617/sushipoint-haarlem.jpg",
-        "categoria": "Temaki",
-        "prezzo": 7.50,
-        "disponibile": true
+      "id": 34,
+      "titolo": "Sushi Gunkan",
+      "ingredienti": "Riso, salmone, uova di pesce",
+      "img": "https://sushilive.it/wp-content/uploads/2020/12/sashimi-pesce-spada.jpg",
+      "categoria": "Sushi",
+      "prezzo": 7.0,
+      "disponibile": true
     },
     {
-        "id": 31,
-        "titolo": "Sushi Nigiri Salmone",
-        "ingredienti": "Riso, salmone",
-        "img": "https://www.japonalternativo.com/wp-content/uploads/2020/04/receta-nigiri-de-salm%C3%B3n-768x512.jpg",
-        "categoria": "Sushi",
-        "prezzo": 6.00,
-        "disponibile": true
+      "id": 35,
+      "titolo": "Sushi Futomaki",
+      "ingredienti": "Riso, tonno, salmone, avocado, cetriolo",
+      "img": "https://sushilive.it/wp-content/uploads/2020/12/sashimi-salmone.jpg",
+      "categoria": "Sushi",
+      "prezzo": 8.5,
+      "disponibile": true
     },
     {
-        "id": 32,
-        "titolo": "Sushi Nigiri Tonno",
-        "ingredienti": "Riso, tonno",
-        "img": "https://sushismaki.pl/wp-content/uploads/2018/03/sushi_0003_IMG_8508-600x450.jpg",
-        "categoria": "Sushi",
-        "prezzo": 6.50,
-        "disponibile": true
+      "id": 36,
+      "titolo": "Carpaccio pesce spada",
+      "ingredienti": "Pollo, salsa teriyaki, sesamo",
+      "img": "https://sushilive.it/wp-content/uploads/2020/12/carpaccio-pesce-spada.jpg",
+      "categoria": "Secondi",
+      "prezzo": 9.0,
+      "disponibile": true
     },
     {
-        "id": 33,
-        "titolo": "Sushi Sashimi Misto",
-        "ingredienti": "Salmone, tonno, branzino",
-        "img": "https://media-cdn.tripadvisor.com/media/photo-s/04/ad/c3/64/ghinza-ristorante-giapponese.jpg",
-        "categoria": "Sushi",
-        "prezzo": 10.00,
-        "disponibile": true
+      "id": 37,
+      "titolo": "Carpaccio salmone  ",
+      "ingredienti": "Manzo, verdure, salsa di soia",
+      "img": "https://sushilive.it/wp-content/uploads/2020/12/carpaccio-salmone.jpg",
+      "categoria": "Secondi",
+      "prezzo": 10.0,
+      "disponibile": true
     },
     {
-        "id": 34,
-        "titolo": "Sushi Gunkan",
-        "ingredienti": "Riso, salmone, uova di pesce",
-        "img": "https://www.tamaki.it/wp-content/uploads/2020/09/Gunkan-maki-scaled-1.jpg",
-        "categoria": "Sushi",
-        "prezzo": 7.00,
-        "disponibile": true
+      "id": 38,
+      "titolo": "Carpaccio tonno",
+      "ingredienti": "Gamberi, salsa al curry, riso",
+      "img": "https://sushilive.it/wp-content/uploads/2020/12/carpaccio-tonno.jpg",
+      "categoria": "Secondi",
+      "prezzo": 11.0,
+      "disponibile": true
     },
-    {
-        "id": 35,
-        "titolo": "Sushi Futomaki",
-        "ingredienti": "Riso, tonno, salmone, avocado, cetriolo",
-        "img": "https://amysushi.it/wp-content/uploads/2016/06/29-Futomaki-fritto.jpg",
-        "categoria": "Sushi",
-        "prezzo": 8.50,
-        "disponibile": true
-    },
-    {
-        "id": 36,
-        "titolo": "Pollo Teriyaki",
-        "ingredienti": "Pollo, salsa teriyaki, sesamo",
-        "img": "https://tblg.k-img.com/resize/660x370c/restaurant/images/Rvw/114818/114818557.jpg?token=9d79821&api=v2",
-        "categoria": "Secondi",
-        "prezzo": 9.00,
-        "disponibile": true
-    },
-    {
-        "id": 37,
-        "titolo": "Manzo con Verdure",
-        "ingredienti": "Manzo, verdure, salsa di soia",
-        "img": "https://www.milanoweekend.it/wp-content/uploads/2015/12/me-geisha-roma_Tataki-di-Manzo-con-burro-wasabi-e-funghi-2.jpg",
-        "categoria": "Secondi",
-        "prezzo": 10.00,
-        "disponibile": true
-    },
-    {
-        "id": 38,
-        "titolo": "Gamberi al Curry",
-        "ingredienti": "Gamberi, salsa al curry, riso",
-        "img": "https://th.bing.com/th/id/OIP.g6pMRUH44mAnL91DivgUpwHaHa?w=1000&h=1000&rs=1&pid=ImgDetMain",
-        "categoria": "Secondi",
-        "prezzo": 11.00,
-        "disponibile": true
-    },
-    {
-        "id": 39,
-        "titolo": "Tofu Saltato",
-        "ingredienti": "Tofu, verdure, salsa di soia",
-        "img": "https://www.shop1688.com.tw/aom20200622012/img/A06.jpg",
-        "categoria": "Secondi",
-        "prezzo": 8.50,
-        "disponibile": true
-    },
-    {
-        "id": 40,
-        "titolo": "Anatra Laccata",
-        "ingredienti": "Anatra, salsa hoisin, verdure",
-        "img": "https://th.bing.com/th/id/OIP.pyr4aB7JmivZ03jLsopt0AHaEa?rs=1&pid=ImgDetMain",
-        "categoria": "Secondi",
-        "prezzo": 12.00,
-        "disponibile": true
-    },
-    {
-        "id": 41,
-        "titolo": "Tè Verde",
-        "ingredienti": "Tè verde",
-        "img": "https://www.areada.it/wp-content/uploads/2014/08/t%C3%A8-verde-giapponese.jpg",
-        "categoria": "Bibite",
-        "prezzo": 2.50,
-        "disponibile": true
-    },
-    {
-        "id": 42,
-        "titolo": "Sake",
-        "ingredienti": "Riso fermentato",
-        "img": "sake.jpg",
-        "categoria": "Bibite",
-        "prezzo": 5.00,
-        "disponibile": true
-    },
-    {
-        "id": 43,
-        "titolo": "Acqua naturale",
-        "ingredienti": "Bottiglia 75ml",
-        "img": "https://bevingrosso.it/wp-content/uploads/2020/07/13051.jpg",
-        "categoria": "Bibite",
-        "prezzo": 3.00,
-        "disponibile": true
-    },
-    {
-        "id": 44,
-        "titolo": "Acqua frizzante",
-        "ingredienti": "Bottiglia 75ml",
-        "img": "https://th.bing.com/th/id/OIP.QI0b7GvTsY4zTO1MC4ZiGgHaJT?rs=1&pid=ImgDetMain",
-        "categoria": "Bibite",
-        "prezzo": 3.00,
-        "disponibile": true
-    },
-    {
-        "id": 45,
-        "titolo": "Coca Cola",
-        "ingredienti": "Bottiglia 1 lt",
-        "img": "https://www.montebellobevande.it/137-medium_default/coca-cola-1-litro-in-bottiglia-di-vetro-a-rendere-cassa-da-12-bottiglie-bevanda-gassata.jpg",
-        "categoria": "Bibite",
-        "prezzo": 4.00,
-        "disponibile": true
-    },
-    {
-        "id": 46,
-        "titolo": "Mochi al Tè Verde",
-        "ingredienti": "Riso glutinoso, tè verde, zucchero",
-        "img": "https://magazine.giallozafferano.it/wp-content/uploads/2016/07/Fotolia_102445025_Subscription_Monthly_M-590x400.jpg",
-        "categoria": "Dolci",
-        "prezzo": 4.00,
-        "disponibile": true
-    },
-    {
-        "id": 47,
-        "titolo": "Dorayaki",
-        "ingredienti": "Pancake, anko (marmellata di fagioli rossi)",
-        "img": "https://www.mindcucinaegusto.com/wp-content/uploads/2019/11/Dorayaki-giapponesi.jpg",
-        "categoria": "Dolci",
-        "prezzo": 3.50,
-        "disponibile": true
-    },
-    {
-        "id": 48,
-        "titolo": "Taiyaki",
-        "ingredienti": "Pasta dolce, anko (marmellata di fagioli rossi)",
-        "img": "https://www.vegolosi.it/wp-content/uploads/2022/07/Taiyaki-vegan-ricetta.jpg",
-        "categoria": "Dolci",
-        "prezzo": 3.50,
-        "disponibile": true
-    },
-    {
-        "id": 49,
-        "titolo": "Gelato al Tè Verde",
-        "ingredienti": "Latte, tè verde, zucchero",
-        "img": "https://www.antica-drogheria.it/wp-content/uploads/2020/12/Antica-Drogheria-preparare-in-casa-gelato-al-te-verde-03.jpg",
-        "categoria": "Dolci",
-        "prezzo": 4.50,
-        "disponibile": true
-    },
-    {
-        "id": 50,
-        "titolo": "Mochi alla Fragola",
-        "ingredienti": "Riso glutinoso, fragole, zucchero",
-        "img": "https://www.giallozafferano.it/images/256-25664/Mochi_650x433_wm.jpg",
-        "categoria": "Dolci",
-        "prezzo": 4.00,
-        "disponibile": true
-    }
-]
 
+    {
+      "id": 41,
+      "titolo": "Tè Verde",
+      "ingredienti": "Tè verde",
+      "img": "https://www.areada.it/wp-content/uploads/2014/08/t%C3%A8-verde-giapponese.jpg",
+      "categoria": "Bibite",
+      "prezzo": 2.5,
+      "disponibile": true
+    },
+    {
+      "id": 42,
+      "titolo": "Sake",
+      "ingredienti": "Riso fermentato",
+      "img": "sake.jpg",
+      "categoria": "Bibite",
+      "prezzo": 5.0,
+      "disponibile": true
+    },
+    {
+      "id": 43,
+      "titolo": "Acqua naturale",
+      "ingredienti": "Bottiglia 75ml",
+      "img": "https://bevingrosso.it/wp-content/uploads/2020/07/13051.jpg",
+      "categoria": "Bibite",
+      "prezzo": 3.0,
+      "disponibile": true
+    },
+    {
+      "id": 44,
+      "titolo": "Acqua frizzante",
+      "ingredienti": "Bottiglia 75ml",
+      "img": "https://th.bing.com/th/id/OIP.QI0b7GvTsY4zTO1MC4ZiGgHaJT?rs=1&pid=ImgDetMain",
+      "categoria": "Bibite",
+      "prezzo": 3.0,
+      "disponibile": true
+    },
+    {
+      "id": 45,
+      "titolo": "Coca Cola",
+      "ingredienti": "Bottiglia 1 lt",
+      "img": "https://www.montebellobevande.it/137-medium_default/coca-cola-1-litro-in-bottiglia-di-vetro-a-rendere-cassa-da-12-bottiglie-bevanda-gassata.jpg",
+      "categoria": "Bibite",
+      "prezzo": 4.0,
+      "disponibile": true
+    },
+    {
+      "id": 46,
+      "titolo": "Mochi al Tè Verde",
+      "ingredienti": "Riso glutinoso, tè verde, zucchero",
+      "img": "https://magazine.giallozafferano.it/wp-content/uploads/2016/07/Fotolia_102445025_Subscription_Monthly_M-590x400.jpg",
+      "categoria": "Dolci",
+      "prezzo": 4.0,
+      "disponibile": true
+    },
+    {
+      "id": 47,
+      "titolo": "Dorayaki",
+      "ingredienti": "Pancake, anko (marmellata di fagioli rossi)",
+      "img": "https://www.mindcucinaegusto.com/wp-content/uploads/2019/11/Dorayaki-giapponesi.jpg",
+      "categoria": "Dolci",
+      "prezzo": 3.5,
+      "disponibile": true
+    },
+    {
+      "id": 48,
+      "titolo": "Taiyaki",
+      "ingredienti": "Pasta dolce, anko (marmellata di fagioli rossi)",
+      "img": "https://www.vegolosi.it/wp-content/uploads/2022/07/Taiyaki-vegan-ricetta.jpg",
+      "categoria": "Dolci",
+      "prezzo": 3.5,
+      "disponibile": true
+    },
+    {
+      "id": 49,
+      "titolo": "Gelato al Tè Verde",
+      "ingredienti": "Latte, tè verde, zucchero",
+      "img": "https://www.antica-drogheria.it/wp-content/uploads/2020/12/Antica-Drogheria-preparare-in-casa-gelato-al-te-verde-03.jpg",
+      "categoria": "Dolci",
+      "prezzo": 4.5,
+      "disponibile": true
+    },
+    {
+      "id": 50,
+      "titolo": "Mochi alla Fragola",
+      "ingredienti": "Riso glutinoso, fragole, zucchero",
+      "img": "https://www.giallozafferano.it/images/256-25664/Mochi_650x433_wm.jpg",
+      "categoria": "Dolci",
+      "prezzo": 4.0,
+      "disponibile": true
+    }
+  ]
 }

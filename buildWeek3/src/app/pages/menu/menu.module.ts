@@ -12,6 +12,7 @@ import { TemakiComponent } from './temaki/temaki.component';
 import { SushiComponent } from './sushi/sushi.component';
 import { SecondiComponent } from './secondi/secondi.component';
 import { BibiteComponent } from './bibite/bibite.component';
+import { DolciComponent } from './dolci/dolci.component';
 
 
 @NgModule({
@@ -25,7 +26,8 @@ import { BibiteComponent } from './bibite/bibite.component';
     TemakiComponent,
     SushiComponent,
     SecondiComponent,
-    BibiteComponent
+    BibiteComponent,
+    DolciComponent
   ],
   imports: [
     CommonModule,

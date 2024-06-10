@@ -44,7 +44,7 @@
 }
 
 .bg-color {
-  background-color: #3a3436;
+  background-color: #99735e;
 }
 
 .img-Home {
@@ -79,4 +79,24 @@
 
 .fade-in-right {
   animation: fadeInRight 1s ease-out forwards;
+}
+
+.img-sushilight {
+  width: 250px;
+}
+
+.img-gradient {
+  background: linear-gradient(to bottom, #99735e, #000000);
+}
+
+.font-PermanentMarker {
+  font-family: "Permanent Marker", cursive;
+  font-weight: 400;
+  font-style: normal;
+}
+
+.font-PermanentGotham {
+  font-family: GothamPro;
+  font-weight: 400;
+  font-style: normal;
 }

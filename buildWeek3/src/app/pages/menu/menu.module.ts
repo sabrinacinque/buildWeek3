@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-
 import { MenuRoutingModule } from './menu-routing.module';
 import { MenuComponent } from './menu.component';
 import { AntipastiComponent } from './antipasti/antipasti.component';
@@ -13,6 +12,7 @@ import { SushiComponent } from './sushi/sushi.component';
 import { SecondiComponent } from './secondi/secondi.component';
 import { BibiteComponent } from './bibite/bibite.component';
 import { DolciComponent } from './dolci/dolci.component';
+import { SharedModule } from '../../shared/shared.module';
 
 
 @NgModule({
@@ -31,7 +31,8 @@ import { DolciComponent } from './dolci/dolci.component';
   ],
   imports: [
     CommonModule,
-    MenuRoutingModule
+    MenuRoutingModule,
+    SharedModule
   ]
 })
 export class MenuModule { }

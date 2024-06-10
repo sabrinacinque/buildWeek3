@@ -1,4 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { iMenu } from '../../../Models/i-menu';
+import { MenuService } from '../../../menu.service';
 
 @Component({
   selector: 'app-hosomaki',
@@ -6,5 +8,4 @@ import { Component } from '@angular/core';
   styleUrl: './hosomaki.component.scss'
 })
 export class HosomakiComponent {
-
 }

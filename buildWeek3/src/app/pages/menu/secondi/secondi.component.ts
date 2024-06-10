@@ -1,4 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { MenuService } from '../../../menu.service';
+import { iMenu } from '../../../Models/i-menu';
 
 @Component({
   selector: 'app-secondi',

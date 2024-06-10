@@ -375,7 +375,7 @@
         "id": 42,
         "titolo": "Sake",
         "ingredienti": "Riso fermentato",
-        "img": "sake.jpg",
+        "img": "https://th.bing.com/th/id/R.5676d4de14c78358603e1aaf9e72bebe?rik=tnin0o1u9n7JEw&pid=ImgRaw&r=0",
         "categoria": "Bibite",
         "prezzo": 5.00,
         "disponibile": true

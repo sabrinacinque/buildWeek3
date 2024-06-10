@@ -6,3 +6,28 @@ img {
   width: 18em;
     padding-top: 1em;
 }
+.star-rating {
+  display: flex;
+  justify-content: center; /* Centra le stelle orizzontalmente */
+  align-items: center; /* Centra le stelle verticalmente */
+}
+
+.star {
+  cursor: pointer;
+  width: 40px; /* Regola la dimensione dell'immagine */
+  height: 40px;
+  opacity: 0.5; /* Immagine trasparente inizialmente */
+  transition: opacity 0.3s ease; /* Transizione per un effetto di cambiamento graduale */
+  margin: 0 5px; /* Aggiungi spaziatura tra le immagini */
+}
+
+.star.selected {
+  opacity: 1; /* Immagine completamente opaca quando selezionata */
+}
+
+.star:hover,
+.star.selected:hover {
+  opacity: 1; /* Immagine completamente opaca al passaggio del mouse */
+}
+
+

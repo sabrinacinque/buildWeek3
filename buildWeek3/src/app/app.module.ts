@@ -6,6 +6,7 @@ import { AppComponent } from './app.component';
 import { NavbarComponent } from './mainComponent/navbar/navbar.component';
 import { FooterComponent } from './mainComponent/footer/footer.component';
 import { HomepageComponent } from './pages/homepage/homepage.component';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [

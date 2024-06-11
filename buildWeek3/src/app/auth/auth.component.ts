@@ -1,7 +1,5 @@
 import { Component } from '@angular/core';
 import { AuthService } from './auth-service.service';
-import { JwtHelperService } from '@auth0/angular-jwt';
-import { BehaviorSubject } from 'rxjs';
 import { User } from '../Models/user';
 import { Router } from '@angular/router';
 import { iLogin } from '../Models/ilogin';
@@ -19,8 +17,13 @@ export class AuthComponent {
     password: 'Pa$$w0rd!',
   };
 
+  isLogged:boolean = this.authService.isLogged
+
+  
   register() {
-    return this.authService.register(this.newUser).subscribe();
+    return this.authService.register(this.newUser).subscribe(()=> {
+      this.router.navigate(['/auth'])
+    });
   }
 
   login() {

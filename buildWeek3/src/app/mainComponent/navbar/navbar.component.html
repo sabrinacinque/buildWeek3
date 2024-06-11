@@ -76,18 +76,20 @@
       >Bibite</a
     >
     <a
-      *ngIf="isLogged"
       routerLink="/reviews"
       routerLinkActive="active"
       class="list-group-item list-group-item-action bg-dark text-light"
       >Recensioni</a
     >
     <a
-      *ngIf="!isLogged"
       routerLink="/auth"
       routerLinkActive="active"
+      [ngClass]="{'d-none': isLogged}"
       class="list-group-item list-group-item-action bg-dark text-light"
-      >Area Riservata</a
+      >Area Riservata
+      <i *ngIf="!isLogged" class="bi bi-lock"></i>
+      <i *ngIf="isLogged" class="bi bi-unlock"></i>
+      </a
     >
   </div>
 </div>

@@ -1,6 +1,6 @@
+import { User } from './../Models/user';
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { User } from '../Models/user';
 import { BehaviorSubject, Observable, of } from 'rxjs';
 import { map, tap } from 'rxjs/operators';
 import { JwtHelperService } from '@auth0/angular-jwt';
@@ -24,6 +24,7 @@ export class AuthService {
   loginUrl = 'http://localhost:3000/login';
   registerUrl = 'http://localhost:3000/register'; // URL del tuo server JSON
 
+
   constructor(private http: HttpClient, private router: Router) {}
 
   register(newUser: Partial<User>) {
@@ -42,7 +43,6 @@ export class AuthService {
   logout () {
     this.authSubject.next(null);
     localStorage.removeItem('token');
-
   }
 
   getAccessToken() {
@@ -52,5 +52,9 @@ export class AuthService {
     const tokenParsed = JSON.parse(token);
 
     return tokenParsed;
+  }
+
+  getAllUsers():Observable<User>{
+    return this.http.get<User>(this.loginUrl)
   }
 }

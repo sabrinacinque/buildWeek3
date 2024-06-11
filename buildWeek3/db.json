@@ -1,5 +1,12 @@
 {
-  "users": [],
+  "users": [
+    {
+      "email": "davide.lombroni98@gmail.com",
+      "password": "$2a$10$Pb6KLRrAZAvXFVnio.HLmun6/zhXo5KLaOIVqb0C7OqQCJSjiSDJq",
+      "id": 1718101474906,
+      "name": "Davide"
+    }
+  ],
   "menu": [
     {
       "id": 1,

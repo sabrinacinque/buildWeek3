@@ -1,9 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild, TemplateRef } from '@angular/core';
 import { iMenu } from '../../Models/i-menu';
 import { MenuService } from '../../menu.service';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import Swal from 'sweetalert2';
-
-declare var bootstrap: any;
 
 @Component({
   selector: 'app-dashboard',
@@ -19,7 +18,9 @@ export class DashboardComponent implements OnInit {
   newProduct: Partial<iMenu> = {};
   categories: string[] = ['Antipasti', 'Zuppe', 'Primi', 'Hosomaki', 'Uramaki', 'Temaki', 'Sushi', 'Secondi', 'Dolci', 'Bibite'];
 
-  constructor(private menuSvc: MenuService) {}
+  @ViewChild('createProductModal') createProductModal!: TemplateRef<any>;
+
+  constructor(private menuSvc: MenuService, private modalService: NgbModal) {}
 
   ngOnInit() {
     this.getAll();
@@ -38,7 +39,7 @@ export class DashboardComponent implements OnInit {
     });
   }
 
-  createProduct() {
+  createProduct(modal: any) {
     this.menuSvc.create(this.newProduct).subscribe((data: iMenu) => {
       this.menu.push(data);
       this.filteredMenu = this.menu;
@@ -47,11 +48,7 @@ export class DashboardComponent implements OnInit {
         title: 'Successo',
         text: 'Prodotto creato con successo!',
       });
-      // Chiudi il modale
-      const modal = document.getElementById('createProductModal') as HTMLElement;
-      const modalInstance = bootstrap.Modal.getInstance(modal);
-      modalInstance.hide();
-      // Reset the newProduct object
+      modal.close();
       this.newProduct = {};
     });
   }
@@ -114,8 +111,7 @@ export class DashboardComponent implements OnInit {
     }
   }
 
-  openCreateModal() {
-    const modal = new bootstrap.Modal(document.getElementById('createProductModal') as HTMLElement);
-    modal.show();
+  openCreateModal(content: TemplateRef<any>) {
+    this.modalService.open(content, { ariaLabelledBy: 'modal-basic-title' });
   }
 }

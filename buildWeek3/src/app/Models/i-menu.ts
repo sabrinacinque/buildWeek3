@@ -6,5 +6,5 @@ export interface iMenu {
   categoria: string
   prezzo: number
   disponibile: boolean
-  quantita:number
+  quantity: number;
 }

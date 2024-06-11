@@ -1,0 +1,33 @@
+.bg-color {
+  background: white;
+  color: white;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  text-align: center;
+  margin-top: 13vh;
+}
+
+img{
+  width: 80%;
+}
+
+.display-1 {
+  font-size: 2.3rem;
+}
+
+.lead {
+  font-size: 1.8rem;
+}
+
+.btn{
+  border-radius: 1px solid;
+  border-color: black;
+}
+
+.btn-light:hover {
+  background-color: #99735e;
+  border-color: #99735e;
+  color: white;
+}

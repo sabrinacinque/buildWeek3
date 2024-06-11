@@ -46,6 +46,7 @@
 
 .list-group-item-action:hover::before, .list-group-item-action:focus::before {
   width: 100%;
+  border-radius: 0 15px 15px 0;
 }
 
 .list-group-item-action:hover,

@@ -26,9 +26,7 @@ const routes: Routes = [
         (m) => m.DashboardModule
       ),
   },
-  { path: 'page404', loadChildren: () => import('./pages/page404/page404.module').then(m => m.Page404Module) },
-
-  { path: '**', redirectTo: '/homepage' },
+  { path: '**', loadChildren: () => import('./pages/page404/page404.module').then(m => m.Page404Module) },
 ];
 
 @NgModule({

@@ -1,1 +1,48 @@
-<p>auth works!</p>
+<div class="container mt-5" class="bg-color">
+  <div class="row">
+    <div class="col-md-6">
+      <div class="card">
+        <div class="card-body">
+          <h2 class="card-title">Login</h2>
+          <form (ngSubmit)="onLogin()">
+            <div class="form-group">
+              <label for="loginEmail">Email:</label>
+              <input type="email" class="form-control" id="loginEmail" name="loginEmail" required
+                [(ngModel)]="loginEmail">
+            </div>
+            <div class="form-group">
+              <label for="loginPassword">Password:</label>
+              <input type="password" class="form-control" id="loginPassword" name="loginPassword" required
+                [(ngModel)]="loginPassword">
+            </div>
+            <button type="submit" class="btn btn-primary">Login</button>
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-6">
+      <div class="card">
+        <div class="card-body">
+          <h2 class="card-title">Registrazione</h2>
+          <form (ngSubmit)="onRegister()">
+            <div class="form-group">
+              <label for="regName">Nome:</label>
+              <input type="text" class="form-control" id="regName" name="regName" required [(ngModel)]="regName">
+            </div>
+            <div class="form-group">
+              <label for="regEmail">Email:</label>
+              <input type="email" class="form-control" id="regEmail" name="regEmail" required [(ngModel)]="regEmail">
+            </div>
+            <div class="form-group">
+              <label for="regPassword">Password:</label>
+              <input type="password" class="form-control" id="regPassword" name="regPassword" required
+                [(ngModel)]="regPassword">
+            </div>
+            <button type="submit" class="btn btn-primary">Registrati</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

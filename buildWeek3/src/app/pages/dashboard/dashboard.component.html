@@ -24,7 +24,7 @@
     <tr *ngFor="let item of filteredMenu">
       <td>{{item.id}}</td>
       <td>
-        <img *ngIf="!editMode[item.id]" [src]="item.img" alt="{{item.titolo}}" width="50" height="50">
+        <img *ngIf="!editMode[item.id]" [src]="'../../../assets/image/png/' + item.img" alt="{{item.titolo}}" width="50" height="50">
         <input *ngIf="editMode[item.id]" [(ngModel)]="item.img" placeholder="URL Immagine" />
       </td>
       <td>

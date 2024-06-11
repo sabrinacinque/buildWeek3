@@ -3,16 +3,16 @@
 
   <div class="card border-0 text-center" >
     <div class="card-body">
-      <form>
+      <form [formGroup]="userForm">
         <div class="form-group mb-3">
           <label for="loginEmail">EMAIL:</label>
-          <input type="email" class="form-control text-center" id="loginEmail" name="loginEmail" required
-            [(ngModel)]="userLogged.email" />
+          <input formControlName="email" type="email" class="form-control text-center" name="email"
+            />
         </div>
         <div class="form-group mb-3">
           <label for="loginPassword">PASSWORD:</label>
-          <input type="password" class="form-control text-center" id="loginPassword" name="loginPassword" required
-            [(ngModel)]="userLogged.password" />
+          <input formControlName="password" type="password" class="form-control text-center"name="password"
+             />
         </div>
         <button (click)="login()" type="submit" class="btn btn-primary">
           Login

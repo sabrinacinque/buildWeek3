@@ -782,6 +782,23 @@
       ],
       "totalCost": 7,
       "id": 7
+    },
+    {
+      "items": [
+        {
+          "id": 41,
+          "titolo": "Tè Verde",
+          "ingredienti": "Tè verde",
+          "img": "The-verde-giapponese.png",
+          "categoria": "Bibite",
+          "prezzo": 2.5,
+          "disponibile": true,
+          "quantita": 1,
+          "quantity": 2
+        }
+      ],
+      "totalCost": 5,
+      "id": 8
     }
   ]
 }

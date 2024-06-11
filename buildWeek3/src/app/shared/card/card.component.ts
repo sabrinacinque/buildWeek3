@@ -3,6 +3,10 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { MenuService } from '../../menu.service';
 import { iMenu } from '../../Models/i-menu';
 import { HttpClient } from '@angular/common/http';
+import { CartService } from '../../cart.service';
+import Swal from 'sweetalert2';
+import { Router } from '@angular/router';
+
 
 @Component({
   selector: 'app-card',
@@ -12,31 +16,51 @@ import { HttpClient } from '@angular/common/http';
 export class CardComponent implements OnInit {
   @Input() category!: string;
   menu: iMenu[] = [];
-  cartItems: iMenu[] = [];
   showToast: boolean = false;
   apiUrl: string = 'http://localhost:3000/orders';
 
-  @ViewChild('cartModal') cartModal!: TemplateRef<any>; // Referenza al template del modal
+  cartItems: iMenu[] = []; // Aggiungi questa linea
 
-  constructor(private menuSvc: MenuService, private modalService: NgbModal , private http: HttpClient) {}
+  @ViewChild('cartModal') cartModal!: TemplateRef<any>;
+
+  constructor(
+    private menuSvc: MenuService,
+    private modalService: NgbModal,
+    private cartSvc: CartService,
+    private http: HttpClient,
+    private router: Router
+  ) {}
 
   ngOnInit() {
     if (this.category) {
       this.menuSvc.getByCategory(this.category).subscribe((items) => {
-        this.menu = items.map(item => ({ ...item, quantity: 1 })); // Aggiungiamo la proprietà quantity
+        this.menu = items.map(item => ({ ...item, quantity: 1 }));
       });
     }
+    this.cartSvc.cartItems$.subscribe(items => {
+      this.cartItems = items;
+    });
   }
 
   sendOrder() {
-    const order = { items: this.cartItems, totalCost: this.getTotalCost() };
+    const order = { items: this.cartItems, totalCost: this.cartSvc.getTotalCost() };
     this.http.post(this.apiUrl, order).subscribe(() => {
-      // Rimuovi gli articoli dal carrello dopo l'invio dell'ordine
-      this.clearCart();
-      // Chiudi il modal
+      this.cartSvc.clearCart();
       this.modalService.dismissAll();
+
+      // Mostra l'alert con SweetAlert
+      Swal.fire({
+        title: 'Ordine Inviato',
+        text: 'Il tuo ordine è stato inviato con successo!',
+        icon: 'success',
+        confirmButtonText: 'OK'
+      }).then(() => {
+        // Reindirizza alla homepage dopo aver chiuso l'alert
+        this.router.navigate(['/homepage']);
+      });
     });
   }
+
 
   incrementQuantity(item: iMenu) {
     item.quantity++;
@@ -50,13 +74,8 @@ export class CardComponent implements OnInit {
 
   addToCart(item: iMenu) {
     if (item.quantity > 0) {
-      const cartItem = this.cartItems.find(ci => ci.id === item.id);
-      if (cartItem) {
-        cartItem.quantity += item.quantity;
-      } else {
-        this.cartItems.push({ ...item });
-      }
-      item.quantity = 1; // Reset della quantità dopo aver aggiunto al carrello
+      this.cartSvc.addToCart(item);
+      item.quantity = 1;
       this.showToastMessage();
     }
   }
@@ -66,24 +85,22 @@ export class CardComponent implements OnInit {
   }
 
   getTotalCost(): number {
-    return this.cartItems.reduce((total, item) => total + item.prezzo * item.quantity, 0);
+    return this.cartSvc.getTotalCost();
   }
 
   clearCart() {
-    this.cartItems = [];
+    this.cartSvc.clearCart();
   }
 
   removeFromCart(item: iMenu) {
-    const index = this.cartItems.findIndex(ci => ci.id === item.id);
-    if (index !== -1) {
-      this.cartItems.splice(index, 1);
-    }
+    this.cartSvc.removeFromCart(item);
   }
+
   showToastMessage() {
     this.showToast = true;
     setTimeout(() => {
       this.showToast = false;
-    }, 3000); // Il toast scompare dopo 3 secondi
+    }, 3000);
   }
 
   hideToast() {

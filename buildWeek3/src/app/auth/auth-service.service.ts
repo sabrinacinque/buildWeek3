@@ -15,6 +15,12 @@ export class AuthService {
   authSubject = new BehaviorSubject<null | User>(null);
   user$ = this.authSubject.asObservable();
 
+  isLogged: boolean = false;
+  logged$ = this.user$.pipe(
+    map((user) => !!user),
+    tap((user) => (this.isLogged = user))
+  );
+
   loginUrl = 'http://localhost:3000/login';
   registerUrl = 'http://localhost:3000/register'; // URL del tuo server JSON
 
@@ -31,5 +37,14 @@ export class AuthService {
         localStorage.setItem('token', JSON.stringify(res));
       })
     );
+  }
+
+  getAccessToken() {
+    const token = localStorage.getItem('token');
+    if (!token) return null;
+
+    const tokenParsed = JSON.parse(token);
+
+    return tokenParsed;
   }
 }

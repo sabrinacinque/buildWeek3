@@ -1,6 +1,8 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { HomepageComponent } from './pages/homepage/homepage.component';
+import { GuestGuard } from './auth/guest.guard';
+import { AuthGuard } from './auth/auth.guard';
 
 const routes: Routes = [
   { path: 'homepage', pathMatch: 'full', component: HomepageComponent },
@@ -12,6 +14,8 @@ const routes: Routes = [
   {
     path: 'auth',
     loadChildren: () => import('./auth/auth.module').then((m) => m.AuthModule),
+    canActivate: [GuestGuard],
+    canActivateChild: [GuestGuard],
   },
 
   {
@@ -25,8 +29,14 @@ const routes: Routes = [
       import('./pages/dashboard/dashboard.module').then(
         (m) => m.DashboardModule
       ),
+    canActivate: [AuthGuard],
+    canActivateChild: [AuthGuard],
   },
-  { path: '**', loadChildren: () => import('./pages/page404/page404.module').then(m => m.Page404Module) },
+  {
+    path: '**',
+    loadChildren: () =>
+      import('./pages/page404/page404.module').then((m) => m.Page404Module),
+  },
 ];
 
 @NgModule({

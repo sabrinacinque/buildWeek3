@@ -7,7 +7,7 @@
   background-color: #ae9b8d;
 }
 
-.btn:not(#cancella) {
+.btn:not(#cancella, .close) {
   font-size: 15px;
   background-color: #99735e;
 }
@@ -33,4 +33,9 @@
 #prezzo {
   position: relative;
   left: -12em;
+}
+
+.card-img-top{
+  height: 20em;
+  object-fit: contain;
 }

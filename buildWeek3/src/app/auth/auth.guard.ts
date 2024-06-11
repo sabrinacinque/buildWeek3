@@ -19,15 +19,8 @@ export class AuthGuard {
   canActivate(
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot
-  ): Observable<boolean | UrlTree> {
-    return this.authSvc.logged$.pipe(
-      switchMap((isLogged) => {
-        if (!isLogged) {
-          return of(this.router.createUrlTree(['/auth']));
-        }
-        return of(true);
-      })
-    );
+  ): MaybeAsync<GuardResult> {
+    return this.authSvc.isLogged;
   }
   canActivateChild(
     childRoute: ActivatedRouteSnapshot,

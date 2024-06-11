@@ -28,4 +28,8 @@ export class AuthComponent {
       this.router.navigate(['/dashboard']);
     });
   }
+
+  logout() {
+    this.authService.logout();
+  }
 }

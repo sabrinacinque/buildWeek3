@@ -1,10 +1,10 @@
 import { Component } from '@angular/core';
-import { User } from '../Models/user';
+import { AuthService } from './auth-service.service';
 
 @Component({
   selector: 'app-auth',
   templateUrl: './auth.component.html',
-  styleUrl: './auth.component.scss'
+  styleUrls: ['./auth.component.scss']
 })
 export class AuthComponent {
   regName: string = '';
@@ -13,27 +13,33 @@ export class AuthComponent {
   loginEmail: string = '';
   loginPassword: string = '';
 
-  onRegister() {
-    const newUser: User = {
-      id: Date.now(),
-      name: this.regName,
-      email: this.regEmail,
-      password: this.regPassword
-    };
+  constructor(private authService: AuthService) {}
 
-    // Qui puoi aggiungere il codice per inviare il nuovo utente al server o salvarlo localmente
-    console.log('Nuovo utente registrato:', newUser);
+  onRegister() {
+    this.authService.register(this.regName, this.regEmail, this.regPassword).subscribe({
+      next: (user) => {
+        console.log('Nuovo utente registrato:', user);
+      },
+      error: (error) => {
+        console.error('Errore durante la registrazione:', error);
+      }
+    });
   }
 
   onLogin() {
-    const loginUser: User = {
-      id: 0, // L'id non è necessario per il login, quindi può essere impostato a 0 o lasciato vuoto
-      name: '', // Il nome non è necessario per il login, quindi può essere lasciato vuoto
-      email: this.loginEmail,
-      password: this.loginPassword
-    };
-
-    // Qui puoi aggiungere il codice per autenticare l'utente con il server
-    console.log('Utente loggato:', loginUser);
+    console.log('Email inserita:', this.loginEmail); // Log dell'email inserita
+    console.log('Password inserita:', this.loginPassword); // Log della password inserita
+    this.authService.login(this.loginEmail, this.loginPassword).subscribe({
+      next: (user) => {
+        if (user) {
+          console.log(`Benvenuto, ${user.name}`);
+        } else {
+          console.log('Credenziali non valide');
+        }
+      },
+      error: (error) => {
+        console.error('Errore durante il login:', error);
+      }
+    });
   }
 }

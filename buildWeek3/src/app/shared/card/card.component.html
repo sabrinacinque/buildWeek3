@@ -1,3 +1,15 @@
+
+<div class="row py-5 px-5">
+  <div class="col-12 d-flex justify-content-end mt-4" *ngIf="cartItems.length > 0">
+    <button class="btn btn-primary" (click)="openCart(cartModal)">
+      Visualizza Ordine
+      <span class="badge bg-danger">{{ cartItems.length }}</span>
+    </button>
+  </div>
+</div>
+
+
+
 <div class="row row-cols-1 row-cols-md-4">
   <div
     *ngFor="let item of menu"
@@ -44,12 +56,7 @@
     </div>
   </div>
 </div>
-<div class="d-flex justify-content-center mt-4" *ngIf="cartItems.length > 0">
-  <button class="btn btn-primary" (click)="openCart(cartModal)">
-    Visualizza Ordine
-    <span class="badge bg-danger">{{ cartItems.length }}</span>
-  </button>
-</div>
+
 
 <!-- Toast -->
 <div class="toast-container position-fixed bottom-0 end-0 p-3">

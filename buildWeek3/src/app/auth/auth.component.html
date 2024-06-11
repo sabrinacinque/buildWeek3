@@ -4,18 +4,32 @@
       <div class="card">
         <div class="card-body">
           <h2 class="card-title">Login</h2>
-          <form (ngSubmit)="onLogin()">
+          <form>
             <div class="form-group">
               <label for="loginEmail">Email:</label>
-              <input type="email" class="form-control" id="loginEmail" name="loginEmail" required
-                [(ngModel)]="loginEmail">
+              <input
+                type="email"
+                class="form-control"
+                id="loginEmail"
+                name="loginEmail"
+                required
+                [(ngModel)]="userLogged.email"
+              />
             </div>
             <div class="form-group">
               <label for="loginPassword">Password:</label>
-              <input type="password" class="form-control" id="loginPassword" name="loginPassword" required
-                [(ngModel)]="loginPassword">
+              <input
+                type="password"
+                class="form-control"
+                id="loginPassword"
+                name="loginPassword"
+                required
+                [(ngModel)]="userLogged.password"
+              />
             </div>
-            <button type="submit" class="btn btn-primary">Login</button>
+            <button (click)="login()" type="submit" class="btn btn-primary">
+              Login
+            </button>
           </form>
         </div>
       </div>
@@ -25,21 +39,43 @@
       <div class="card">
         <div class="card-body">
           <h2 class="card-title">Registrazione</h2>
-          <form (ngSubmit)="onRegister()">
+          <form>
             <div class="form-group">
               <label for="regName">Nome:</label>
-              <input type="text" class="form-control" id="regName" name="regName" required [(ngModel)]="regName">
+              <input
+                type="text"
+                class="form-control"
+                id="regName"
+                name="regName"
+                required
+                [(ngModel)]="newUser.name"
+              />
             </div>
             <div class="form-group">
               <label for="regEmail">Email:</label>
-              <input type="email" class="form-control" id="regEmail" name="regEmail" required [(ngModel)]="regEmail">
+              <input
+                type="email"
+                class="form-control"
+                id="regEmail"
+                name="regEmail"
+                required
+                [(ngModel)]="newUser.email"
+              />
             </div>
             <div class="form-group">
               <label for="regPassword">Password:</label>
-              <input type="password" class="form-control" id="regPassword" name="regPassword" required
-                [(ngModel)]="regPassword">
+              <input
+                type="password"
+                class="form-control"
+                id="regPassword"
+                name="regPassword"
+                required
+                [(ngModel)]="newUser.password"
+              />
             </div>
-            <button type="submit" class="btn btn-primary">Registrati</button>
+            <button (click)="register()" type="submit" class="btn btn-primary">
+              Registrati
+            </button>
           </form>
         </div>
       </div>

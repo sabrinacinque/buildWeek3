@@ -1,39 +1,31 @@
 import { Component } from '@angular/core';
+import { AuthService } from './auth-service.service';
+import { JwtHelperService } from '@auth0/angular-jwt';
+import { BehaviorSubject } from 'rxjs';
 import { User } from '../Models/user';
+import { Router } from '@angular/router';
+import { iLogin } from '../Models/ilogin';
 
 @Component({
   selector: 'app-auth',
   templateUrl: './auth.component.html',
-  styleUrl: './auth.component.scss'
+  styleUrls: ['./auth.component.scss'],
 })
 export class AuthComponent {
-  regName: string = '';
-  regEmail: string = '';
-  regPassword: string = '';
-  loginEmail: string = '';
-  loginPassword: string = '';
+  constructor(private authService: AuthService, private router: Router) {}
+  newUser: Partial<User> = {};
+  userLogged: iLogin = {
+    email: 'hita@mailinator.com',
+    password: 'Pa$$w0rd!',
+  };
 
-  onRegister() {
-    const newUser: User = {
-      id: Date.now(),
-      name: this.regName,
-      email: this.regEmail,
-      password: this.regPassword
-    };
-
-    // Qui puoi aggiungere il codice per inviare il nuovo utente al server o salvarlo localmente
-    console.log('Nuovo utente registrato:', newUser);
+  register() {
+    return this.authService.register(this.newUser).subscribe();
   }
 
-  onLogin() {
-    const loginUser: User = {
-      id: 0, // L'id non è necessario per il login, quindi può essere impostato a 0 o lasciato vuoto
-      name: '', // Il nome non è necessario per il login, quindi può essere lasciato vuoto
-      email: this.loginEmail,
-      password: this.loginPassword
-    };
-
-    // Qui puoi aggiungere il codice per autenticare l'utente con il server
-    console.log('Utente loggato:', loginUser);
+  login() {
+    this.authService.login(this.userLogged).subscribe(() => {
+      this.router.navigate(['/dashboard']);
+    });
   }
 }

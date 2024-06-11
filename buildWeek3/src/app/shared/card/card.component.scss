@@ -4,9 +4,33 @@
   font-family: GothamPro;
   font-weight: 400;
   font-style: normal;
+  background-color: #ae9b8d;
 }
 
-.btn {
+.btn:not(#cancella) {
   font-size: 15px;
   background-color: #99735e;
+}
+
+#quantita{
+  width: 33px;
+}
+
+#piumeno {
+  width: 37px;
+}
+
+#sistemo {
+  align-items: center
+}
+
+#elimina {
+  position: relative;
+    left: 24em;
+    bottom: 34px;
+}
+
+#prezzo {
+  position: relative;
+  left: -12em;
 }

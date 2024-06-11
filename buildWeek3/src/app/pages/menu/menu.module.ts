@@ -32,7 +32,8 @@ import { SharedModule } from '../../shared/shared.module';
   imports: [
     CommonModule,
     MenuRoutingModule,
-    SharedModule
+    SharedModule,
+
   ]
 })
 export class MenuModule { }

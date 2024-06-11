@@ -7,6 +7,7 @@ const routes: Routes = [
   { path: 'homepage', component: HomepageComponent },
   { path: 'menu', loadChildren: () => import('./pages/menu/menu.module').then(m => m.MenuModule) },
   { path: '', redirectTo: '/homepage', pathMatch: 'full' },
+  { path: 'reviews', loadChildren: () => import('./pages/reviews/reviews.module').then(m => m.ReviewsModule) },
   { path: '**', redirectTo: '/homepage' }
 ];
 

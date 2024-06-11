@@ -8,7 +8,8 @@
       "img": "https://sushilive.it/wp-content/uploads/2020/12/edamame.jpg",
       "categoria": "Antipasti",
       "prezzo": 4.5,
-      "disponibile": true
+      "disponibile": true,
+      "quantita": 1
     },
     {
       "id": 2,
@@ -17,7 +18,8 @@
       "img": "https://sushilive.it/wp-content/uploads/2020/12/Gyosa.jpg",
       "categoria": "Antipasti",
       "prezzo": 5.0,
-      "disponibile": true
+      "disponibile": true,
+      "quantita": 1
     },
     {
       "id": 3,
@@ -26,7 +28,8 @@
       "img": "https://sushilive.it/wp-content/uploads/2020/12/ebi-spring.jpg",
       "categoria": "Antipasti",
       "prezzo": 3.5,
-      "disponibile": true
+      "disponibile": true,
+      "quantita": 1
     },
     {
       "id": 4,
@@ -35,7 +38,8 @@
       "img": "https://sushilive.it/wp-content/uploads/2020/12/takoyaki.jpg",
       "categoria": "Antipasti",
       "prezzo": 6.0,
-      "disponibile": true
+      "disponibile": true,
+      "quantita": 1
     },
     {
       "id": 5,
@@ -44,7 +48,8 @@
       "img": "https://sushilive.it/wp-content/uploads/2020/12/tempura-special.jpg",
       "categoria": "Antipasti",
       "prezzo": 7.0,
-      "disponibile": true
+      "disponibile": true,
+      "quantita": 1
     },
     {
       "id": 6,
@@ -53,7 +58,8 @@
       "img": "https://sushilive.it/wp-content/uploads/2020/12/misoshiru.jpg",
       "categoria": "Zuppe",
       "prezzo": 3.0,
-      "disponibile": true
+      "disponibile": true,
+      "quantita": 1
     },
     {
       "id": 7,
@@ -62,7 +68,8 @@
       "img": "https://sushilive.it/wp-content/uploads/2020/12/ramen.jpg",
       "categoria": "Zuppe",
       "prezzo": 4.5,
-      "disponibile": true
+      "disponibile": true,
+      "quantita": 1
     },
     {
       "id": 11,
@@ -71,7 +78,8 @@
       "img": "https://sushilive.it/wp-content/uploads/2020/12/rise-chicken.jpg",
       "categoria": "Primi",
       "prezzo": 5.5,
-      "disponibile": true
+      "disponibile": true,
+      "quantita": 1
     },
     {
       "id": 12,
@@ -80,7 +88,8 @@
       "img": "https://sushilive.it/wp-content/uploads/2020/12/rice-fish.jpg",
       "categoria": "Primi",
       "prezzo": 7.5,
-      "disponibile": true
+      "disponibile": true,
+      "quantita": 1
     },
     {
       "id": 13,
@@ -89,7 +98,8 @@
       "img": "https://sushilive.it/wp-content/uploads/2020/12/soba-pesce-e-verdura-1.jpg",
       "categoria": "Primi",
       "prezzo": 7.0,
-      "disponibile": true
+      "disponibile": true,
+      "quantita": 1
     },
     {
       "id": 14,
@@ -98,7 +108,8 @@
       "img": "https://sushilive.it/wp-content/uploads/2020/12/udon-pollo-e-verdure-1.jpg",
       "categoria": "Primi",
       "prezzo": 7.5,
-      "disponibile": true
+      "disponibile": true,
+      "quantita": 1
     },
     {
       "id": 15,
@@ -107,7 +118,8 @@
       "img": "https://sushilive.it/wp-content/uploads/2020/12/udon-pesce-e-verdure-1.jpg",
       "categoria": "Primi",
       "prezzo": 6.5,
-      "disponibile": true
+      "disponibile": true,
+      "quantita": 1
     },
     {
       "id": 16,
@@ -116,7 +128,8 @@
       "img": "https://sushilive.it/wp-content/uploads/2020/12/salmon-tagorashi.jpg",
       "categoria": "Hosomaki",
       "prezzo": 6.0,
-      "disponibile": true
+      "disponibile": true,
+      "quantita": 1
     },
     {
       "id": 17,
@@ -125,7 +138,8 @@
       "img": "https://sushilive.it/wp-content/uploads/2020/12/hosomaki-tonno.jpg",
       "categoria": "Hosomaki",
       "prezzo": 6.5,
-      "disponibile": true
+      "disponibile": true,
+      "quantita": 1
     },
     {
       "id": 18,
@@ -134,7 +148,8 @@
       "img": "https://sushilive.it/wp-content/uploads/2020/12/avoc-hosomaki.jpg",
       "categoria": "Hosomaki",
       "prezzo": 5.5,
-      "disponibile": true
+      "disponibile": true,
+      "quantita": 1
     },
     {
       "id": 19,
@@ -143,7 +158,8 @@
       "img": "https://sushilive.it/wp-content/uploads/2020/12/hosomaki-tamago.jpg",
       "categoria": "Hosomaki",
       "prezzo": 5.0,
-      "disponibile": true
+      "disponibile": true,
+      "quantita": 1
     },
     {
       "id": 20,
@@ -152,7 +168,8 @@
       "img": "https://sushilive.it/wp-content/uploads/2020/12/takuan-hosomaki.jpg",
       "categoria": "Hosomaki",
       "prezzo": 6.0,
-      "disponibile": true
+      "disponibile": true,
+      "quantita": 1
     },
     {
       "id": 21,
@@ -161,7 +178,8 @@
       "img": "https://sushilive.it/wp-content/uploads/2020/12/california.jpg",
       "categoria": "Uramaki",
       "prezzo": 8.0,
-      "disponibile": true
+      "disponibile": true,
+      "quantita": 1
     },
     {
       "id": 22,
@@ -170,7 +188,8 @@
       "img": "https://sushilive.it/wp-content/uploads/2020/12/philadelphia-maki.jpg",
       "categoria": "Uramaki",
       "prezzo": 8.5,
-      "disponibile": true
+      "disponibile": true,
+      "quantita": 1
     },
     {
       "id": 23,
@@ -179,7 +198,8 @@
       "img": "https://sushilive.it/wp-content/uploads/2020/12/spicy-tuna.png",
       "categoria": "Uramaki",
       "prezzo": 9.0,
-      "disponibile": true
+      "disponibile": true,
+      "quantita": 1
     },
     {
       "id": 24,
@@ -188,7 +208,8 @@
       "img": "https://sushilive.it/wp-content/uploads/2020/12/tuna-avocado.jpg",
       "categoria": "Uramaki",
       "prezzo": 8.5,
-      "disponibile": true
+      "disponibile": true,
+      "quantita": 1
     },
     {
       "id": 25,
@@ -197,7 +218,8 @@
       "img": "https://sushilive.it/wp-content/uploads/2020/12/manhattan.jpg",
       "categoria": "Uramaki",
       "prezzo": 8.0,
-      "disponibile": true
+      "disponibile": true,
+      "quantita": 1
     },
     {
       "id": 26,
@@ -206,7 +228,8 @@
       "img": "https://sushilive.it/wp-content/uploads/2020/12/spicy-salmon-temaki.jpg",
       "categoria": "Temaki",
       "prezzo": 7.0,
-      "disponibile": true
+      "disponibile": true,
+      "quantita": 1
     },
     {
       "id": 27,
@@ -215,7 +238,8 @@
       "img": "https://sushilive.it/wp-content/uploads/2020/12/surimi-and-tamago-temaki.jpg",
       "categoria": "Temaki",
       "prezzo": 7.5,
-      "disponibile": true
+      "disponibile": true,
+      "quantita": 1
     },
     {
       "id": 28,
@@ -224,7 +248,8 @@
       "img": "https://sushilive.it/wp-content/uploads/2020/12/california-temaki.jpg",
       "categoria": "Temaki",
       "prezzo": 8.0,
-      "disponibile": true
+      "disponibile": true,
+      "quantita": 1
     },
     {
       "id": 29,
@@ -233,7 +258,8 @@
       "img": "https://sushilive.it/wp-content/uploads/2020/12/red-and-green-temaki.jpg",
       "categoria": "Temaki",
       "prezzo": 7.0,
-      "disponibile": true
+      "disponibile": true,
+      "quantita": 1
     },
     {
       "id": 31,
@@ -242,7 +268,8 @@
       "img": "https://sushilive.it/wp-content/uploads/2020/12/nigiri-salmone-1.jpg",
       "categoria": "Sushi",
       "prezzo": 6.0,
-      "disponibile": true
+      "disponibile": true,
+      "quantita": 1
     },
     {
       "id": 32,
@@ -251,7 +278,8 @@
       "img": "https://sushilive.it/wp-content/uploads/2020/12/nigiri-tonno.jpg",
       "categoria": "Sushi",
       "prezzo": 6.5,
-      "disponibile": true
+      "disponibile": true,
+      "quantita": 1
     },
     {
       "id": 33,
@@ -260,7 +288,8 @@
       "img": "https://sushilive.it/wp-content/uploads/2020/12/sashimi-mix.jpg",
       "categoria": "Sushi",
       "prezzo": 10.0,
-      "disponibile": true
+      "disponibile": true,
+      "quantita": 1
     },
     {
       "id": 34,
@@ -269,7 +298,8 @@
       "img": "https://sushilive.it/wp-content/uploads/2020/12/sashimi-pesce-spada.jpg",
       "categoria": "Sushi",
       "prezzo": 7.0,
-      "disponibile": true
+      "disponibile": true,
+      "quantita": 1
     },
     {
       "id": 35,
@@ -278,7 +308,8 @@
       "img": "https://sushilive.it/wp-content/uploads/2020/12/sashimi-salmone.jpg",
       "categoria": "Sushi",
       "prezzo": 8.5,
-      "disponibile": true
+      "disponibile": true,
+      "quantita": 1
     },
     {
       "id": 36,
@@ -287,7 +318,8 @@
       "img": "https://sushilive.it/wp-content/uploads/2020/12/carpaccio-pesce-spada.jpg",
       "categoria": "Secondi",
       "prezzo": 9.0,
-      "disponibile": true
+      "disponibile": true,
+      "quantita": 1
     },
     {
       "id": 37,
@@ -296,7 +328,8 @@
       "img": "https://sushilive.it/wp-content/uploads/2020/12/carpaccio-salmone.jpg",
       "categoria": "Secondi",
       "prezzo": 10.0,
-      "disponibile": true
+      "disponibile": true,
+      "quantita": 1
     },
     {
       "id": 38,
@@ -305,7 +338,8 @@
       "img": "https://sushilive.it/wp-content/uploads/2020/12/carpaccio-tonno.jpg",
       "categoria": "Secondi",
       "prezzo": 11.0,
-      "disponibile": true
+      "disponibile": true,
+      "quantita": 1
     },
 
     {
@@ -315,7 +349,8 @@
       "img": "https://www.areada.it/wp-content/uploads/2014/08/t%C3%A8-verde-giapponese.jpg",
       "categoria": "Bibite",
       "prezzo": 2.5,
-      "disponibile": true
+      "disponibile": true,
+      "quantita": 1
     },
     {
       "id": 42,
@@ -324,7 +359,8 @@
       "img": "sake.jpg",
       "categoria": "Bibite",
       "prezzo": 5.0,
-      "disponibile": true
+      "disponibile": true,
+      "quantita": 1
     },
     {
       "id": 43,
@@ -333,7 +369,8 @@
       "img": "https://bevingrosso.it/wp-content/uploads/2020/07/13051.jpg",
       "categoria": "Bibite",
       "prezzo": 3.0,
-      "disponibile": true
+      "disponibile": true,
+      "quantita": 1
     },
     {
       "id": 44,
@@ -342,7 +379,8 @@
       "img": "https://th.bing.com/th/id/OIP.QI0b7GvTsY4zTO1MC4ZiGgHaJT?rs=1&pid=ImgDetMain",
       "categoria": "Bibite",
       "prezzo": 3.0,
-      "disponibile": true
+      "disponibile": true,
+      "quantita": 1
     },
     {
       "id": 45,
@@ -351,7 +389,8 @@
       "img": "https://www.montebellobevande.it/137-medium_default/coca-cola-1-litro-in-bottiglia-di-vetro-a-rendere-cassa-da-12-bottiglie-bevanda-gassata.jpg",
       "categoria": "Bibite",
       "prezzo": 4.0,
-      "disponibile": true
+      "disponibile": true,
+      "quantita": 1
     },
     {
       "id": 46,
@@ -360,7 +399,8 @@
       "img": "https://magazine.giallozafferano.it/wp-content/uploads/2016/07/Fotolia_102445025_Subscription_Monthly_M-590x400.jpg",
       "categoria": "Dolci",
       "prezzo": 4.0,
-      "disponibile": true
+      "disponibile": true,
+      "quantita": 1
     },
     {
       "id": 47,
@@ -369,7 +409,8 @@
       "img": "https://www.mindcucinaegusto.com/wp-content/uploads/2019/11/Dorayaki-giapponesi.jpg",
       "categoria": "Dolci",
       "prezzo": 3.5,
-      "disponibile": true
+      "disponibile": true,
+      "quantita": 1
     },
     {
       "id": 48,
@@ -378,7 +419,8 @@
       "img": "https://www.vegolosi.it/wp-content/uploads/2022/07/Taiyaki-vegan-ricetta.jpg",
       "categoria": "Dolci",
       "prezzo": 3.5,
-      "disponibile": true
+      "disponibile": true,
+      "quantita": 1
     },
     {
       "id": 49,
@@ -387,7 +429,8 @@
       "img": "https://www.antica-drogheria.it/wp-content/uploads/2020/12/Antica-Drogheria-preparare-in-casa-gelato-al-te-verde-03.jpg",
       "categoria": "Dolci",
       "prezzo": 4.5,
-      "disponibile": true
+      "disponibile": true,
+      "quantita": 1
     },
     {
       "id": 50,
@@ -396,7 +439,8 @@
       "img": "https://www.giallozafferano.it/images/256-25664/Mochi_650x433_wm.jpg",
       "categoria": "Dolci",
       "prezzo": 4.0,
-      "disponibile": true
+      "disponibile": true,
+      "quantita": 1
     }
   ]
 }

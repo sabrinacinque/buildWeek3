@@ -13,6 +13,10 @@ const routes: Routes = [
     path: 'auth',
     loadChildren: () => import('./auth/auth.module').then((m) => m.AuthModule),
   },
+  {
+    path: 'review',
+    loadChildren: () => import('./pages/reviews/reviews.module').then((m) => m.ReviewsModule),
+  },
   { path: '**', redirectTo: '/homepage' },
 ];
 

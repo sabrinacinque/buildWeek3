@@ -9,6 +9,7 @@ import { HomepageComponent } from './pages/homepage/homepage.component';
 import { HttpClientModule } from '@angular/common/http';
 import { RegistrationComponent } from './auth/registration/registration.component';
 
+
 @NgModule({
   declarations: [
     AppComponent,

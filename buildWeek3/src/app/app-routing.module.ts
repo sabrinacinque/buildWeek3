@@ -13,7 +13,20 @@ const routes: Routes = [
     path: 'auth',
     loadChildren: () => import('./auth/auth.module').then((m) => m.AuthModule),
   },
-  { path: '**', redirectTo: '/homepage' },
+
+  {
+    path: 'reviews',
+    loadChildren: () =>
+      import('./pages/reviews/reviews.module').then((m) => m.ReviewsModule),
+  },
+  {
+    path: 'dashboard',
+    loadChildren: () =>
+      import('./pages/dashboard/dashboard.module').then(
+        (m) => m.DashboardModule
+      ),
+  },
+  { path: '**', loadChildren: () => import('./pages/page404/page404.module').then(m => m.Page404Module) },
 ];
 
 @NgModule({

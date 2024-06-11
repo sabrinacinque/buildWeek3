@@ -37,7 +37,6 @@ export class HomepageComponent implements AfterViewInit {
     const observer = new IntersectionObserver((entries) => {
       entries.forEach((entry) => {
         if (entry.isIntersecting) {
-          console.log('Element is intersecting:', entry.target);
           entry.target.classList.add(animationClass);
           observer.unobserve(entry.target);
         }

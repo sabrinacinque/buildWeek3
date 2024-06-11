@@ -1,3 +1,5 @@
+import { Router } from '@angular/router';
+import { AuthService } from './../../auth/auth-service.service';
 import { Component } from '@angular/core';
 import { AuthService } from '../../auth/auth-service.service';
 
@@ -7,11 +9,12 @@ import { AuthService } from '../../auth/auth-service.service';
   styleUrl: './navbar.component.scss',
 })
 export class NavbarComponent {
-  isLogged: boolean = false;
 
-  constructor(private authSvc: AuthService) {}
+constructor (private AuthService: AuthService, private Router: Router) {}
 
-  ngOnInit() {
-    this.authSvc.logged$.subscribe((isLogged) => (this.isLogged = isLogged));
-  }
+logout() {
+  this.AuthService.logout()
+  this.Router.navigate(['/homepage'])
+}
+
 }

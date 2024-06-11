@@ -1,5 +1,10 @@
 <div class="sidebar bg-dark vh-100" id="sidebar-wrapper">
-  <div class="sidebar-heading text-light fs-3"><p>Sushi Order</p></div>
+  <div class="d-flex justify-content-between align-items-center">
+  <div class=" sidebar-heading text-light fs-3">Sushi Order</div>
+  <div class="container_logout me-3" (click)="logout()">
+    <img id="logout_img" src="../../../assets/image/switch.png" alt="Logout">
+  </div>
+</div>
   <div class="list-group list-group-flush">
     <a
       routerLink="/homepage"

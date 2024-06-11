@@ -8,6 +8,7 @@ const routes: Routes = [
   { path: 'homepage', component: HomepageComponent },
   { path: 'menu', loadChildren: () => import('./pages/menu/menu.module').then(m => m.MenuModule) },
   { path: 'auth', loadChildren: () => import('./auth/auth.module').then(m => m.AuthModule) },
+  { path: 'page404', loadChildren: () => import('./pages/page404/page404.module').then(m => m.Page404Module) },
   { path: '**', redirectTo: '/homepage' },
 
 ];

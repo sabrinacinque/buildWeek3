@@ -16,7 +16,7 @@
       "ingredienti": "Ravioli, carne di maiale, verdure",
       "img": "https://sushilive.it/wp-content/uploads/2020/12/Gyosa.jpg",
       "categoria": "Antipasti",
-      "prezzo": 5.0,
+      "prezzo": 5,
       "disponibile": true
     },
     {
@@ -34,7 +34,7 @@
       "ingredienti": "Polpo, farina, uova, tempura",
       "img": "https://sushilive.it/wp-content/uploads/2020/12/takoyaki.jpg",
       "categoria": "Antipasti",
-      "prezzo": 6.0,
+      "prezzo": 6,
       "disponibile": true
     },
     {
@@ -43,7 +43,7 @@
       "ingredienti": "Gamberi, pastella, olio",
       "img": "https://sushilive.it/wp-content/uploads/2020/12/tempura-special.jpg",
       "categoria": "Antipasti",
-      "prezzo": 7.0,
+      "prezzo": 7,
       "disponibile": true
     },
     {
@@ -52,7 +52,7 @@
       "ingredienti": "Brodo di miso, tofu, alghe",
       "img": "https://sushilive.it/wp-content/uploads/2020/12/misoshiru.jpg",
       "categoria": "Zuppe",
-      "prezzo": 3.0,
+      "prezzo": 3,
       "disponibile": true
     },
     {
@@ -88,7 +88,7 @@
       "ingredienti": "Noodles, verdure, carne",
       "img": "https://sushilive.it/wp-content/uploads/2020/12/soba-pesce-e-verdura-1.jpg",
       "categoria": "Primi",
-      "prezzo": 7.0,
+      "prezzo": 7,
       "disponibile": true
     },
     {
@@ -115,7 +115,7 @@
       "ingredienti": "Riso, salmone, alga nori",
       "img": "https://sushilive.it/wp-content/uploads/2020/12/salmon-tagorashi.jpg",
       "categoria": "Hosomaki",
-      "prezzo": 6.0,
+      "prezzo": 6,
       "disponibile": true
     },
     {
@@ -142,7 +142,7 @@
       "ingredienti": "Riso, cetriolo, alga nori",
       "img": "https://sushilive.it/wp-content/uploads/2020/12/hosomaki-tamago.jpg",
       "categoria": "Hosomaki",
-      "prezzo": 5.0,
+      "prezzo": 5,
       "disponibile": true
     },
     {
@@ -151,7 +151,7 @@
       "ingredienti": "Riso, polpa di granchio, alga nori",
       "img": "https://sushilive.it/wp-content/uploads/2020/12/takuan-hosomaki.jpg",
       "categoria": "Hosomaki",
-      "prezzo": 6.0,
+      "prezzo": 6,
       "disponibile": true
     },
     {
@@ -160,7 +160,7 @@
       "ingredienti": "Riso, granchio, avocado, cetriolo",
       "img": "https://sushilive.it/wp-content/uploads/2020/12/california.jpg",
       "categoria": "Uramaki",
-      "prezzo": 8.0,
+      "prezzo": 8,
       "disponibile": true
     },
     {
@@ -178,7 +178,7 @@
       "ingredienti": "Riso, gamberi tempura, avocado, salsa unagi",
       "img": "https://sushilive.it/wp-content/uploads/2020/12/spicy-tuna.png",
       "categoria": "Uramaki",
-      "prezzo": 9.0,
+      "prezzo": 9,
       "disponibile": true
     },
     {
@@ -196,7 +196,7 @@
       "ingredienti": "Riso, gamberi, avocado, cetriolo",
       "img": "https://sushilive.it/wp-content/uploads/2020/12/manhattan.jpg",
       "categoria": "Uramaki",
-      "prezzo": 8.0,
+      "prezzo": 8,
       "disponibile": true
     },
     {
@@ -205,7 +205,7 @@
       "ingredienti": "Riso, salmone, avocado, alga nori",
       "img": "https://sushilive.it/wp-content/uploads/2020/12/spicy-salmon-temaki.jpg",
       "categoria": "Temaki",
-      "prezzo": 7.0,
+      "prezzo": 7,
       "disponibile": true
     },
     {
@@ -223,7 +223,7 @@
       "ingredienti": "Riso, granchio, avocado, cetriolo, alga nori",
       "img": "https://sushilive.it/wp-content/uploads/2020/12/california-temaki.jpg",
       "categoria": "Temaki",
-      "prezzo": 8.0,
+      "prezzo": 8,
       "disponibile": true
     },
     {
@@ -232,7 +232,7 @@
       "ingredienti": "Riso, gamberi, avocado, alga nori",
       "img": "https://sushilive.it/wp-content/uploads/2020/12/red-and-green-temaki.jpg",
       "categoria": "Temaki",
-      "prezzo": 7.0,
+      "prezzo": 7,
       "disponibile": true
     },
     {
@@ -241,7 +241,7 @@
       "ingredienti": "Riso, salmone",
       "img": "https://sushilive.it/wp-content/uploads/2020/12/nigiri-salmone-1.jpg",
       "categoria": "Sushi",
-      "prezzo": 6.0,
+      "prezzo": 6,
       "disponibile": true
     },
     {
@@ -259,7 +259,7 @@
       "ingredienti": "Salmone, tonno, branzino",
       "img": "https://sushilive.it/wp-content/uploads/2020/12/sashimi-mix.jpg",
       "categoria": "Sushi",
-      "prezzo": 10.0,
+      "prezzo": 10,
       "disponibile": true
     },
     {
@@ -268,7 +268,7 @@
       "ingredienti": "Riso, salmone, uova di pesce",
       "img": "https://sushilive.it/wp-content/uploads/2020/12/sashimi-pesce-spada.jpg",
       "categoria": "Sushi",
-      "prezzo": 7.0,
+      "prezzo": 7,
       "disponibile": true
     },
     {
@@ -286,7 +286,7 @@
       "ingredienti": "Pollo, salsa teriyaki, sesamo",
       "img": "https://sushilive.it/wp-content/uploads/2020/12/carpaccio-pesce-spada.jpg",
       "categoria": "Secondi",
-      "prezzo": 9.0,
+      "prezzo": 9,
       "disponibile": true
     },
     {
@@ -295,7 +295,7 @@
       "ingredienti": "Manzo, verdure, salsa di soia",
       "img": "https://sushilive.it/wp-content/uploads/2020/12/carpaccio-salmone.jpg",
       "categoria": "Secondi",
-      "prezzo": 10.0,
+      "prezzo": 10,
       "disponibile": true
     },
     {
@@ -304,10 +304,9 @@
       "ingredienti": "Gamberi, salsa al curry, riso",
       "img": "https://sushilive.it/wp-content/uploads/2020/12/carpaccio-tonno.jpg",
       "categoria": "Secondi",
-      "prezzo": 11.0,
+      "prezzo": 11,
       "disponibile": true
     },
-
     {
       "id": 41,
       "titolo": "Tè Verde",
@@ -323,7 +322,7 @@
       "ingredienti": "Riso fermentato",
       "img": "sake.jpg",
       "categoria": "Bibite",
-      "prezzo": 5.0,
+      "prezzo": 5,
       "disponibile": true
     },
     {
@@ -332,7 +331,7 @@
       "ingredienti": "Bottiglia 75ml",
       "img": "https://bevingrosso.it/wp-content/uploads/2020/07/13051.jpg",
       "categoria": "Bibite",
-      "prezzo": 3.0,
+      "prezzo": 3,
       "disponibile": true
     },
     {
@@ -341,7 +340,7 @@
       "ingredienti": "Bottiglia 75ml",
       "img": "https://th.bing.com/th/id/OIP.QI0b7GvTsY4zTO1MC4ZiGgHaJT?rs=1&pid=ImgDetMain",
       "categoria": "Bibite",
-      "prezzo": 3.0,
+      "prezzo": 3,
       "disponibile": true
     },
     {
@@ -350,7 +349,7 @@
       "ingredienti": "Bottiglia 1 lt",
       "img": "https://www.montebellobevande.it/137-medium_default/coca-cola-1-litro-in-bottiglia-di-vetro-a-rendere-cassa-da-12-bottiglie-bevanda-gassata.jpg",
       "categoria": "Bibite",
-      "prezzo": 4.0,
+      "prezzo": 4,
       "disponibile": true
     },
     {
@@ -359,7 +358,7 @@
       "ingredienti": "Riso glutinoso, tè verde, zucchero",
       "img": "https://magazine.giallozafferano.it/wp-content/uploads/2016/07/Fotolia_102445025_Subscription_Monthly_M-590x400.jpg",
       "categoria": "Dolci",
-      "prezzo": 4.0,
+      "prezzo": 4,
       "disponibile": true
     },
     {
@@ -395,7 +394,7 @@
       "ingredienti": "Riso glutinoso, fragole, zucchero",
       "img": "https://www.giallozafferano.it/images/256-25664/Mochi_650x433_wm.jpg",
       "categoria": "Dolci",
-      "prezzo": 4.0,
+      "prezzo": 4,
       "disponibile": true
     }
   ]

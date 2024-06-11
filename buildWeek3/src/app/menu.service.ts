@@ -20,4 +20,21 @@ export class MenuService {
     const url = `${this.apiUrl}?categoria=${category}`;
     return this.http.get<iMenu[]>(url);
   }
+
+  getById(id:number){
+    return this.http.get<iMenu>(`${this.apiUrl}/${id}`)
+  }
+
+  create(newPizza:Partial<iMenu>){
+    return this.http.post<iMenu>(this.apiUrl, newPizza)
+  }
+
+  update(item:iMenu){
+    return this.http.put(`${this.apiUrl}/${item.id}`,item)
+  }
+
+  delete(id:number){
+    return this.http.delete(`${this.apiUrl}/${id}`)
+  }
+
 }

@@ -1,5 +1,5 @@
 export interface iMenu {
-  id?: number
+  id: number
   titolo: string
   ingredienti: string
   img: string

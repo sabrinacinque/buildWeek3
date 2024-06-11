@@ -1,18 +1,84 @@
 <div class="sidebar bg-dark vh-100" id="sidebar-wrapper">
-  <div class="sidebar-heading text-light fs-3">Sushi Order</div>
+  <div class="sidebar-heading text-light fs-3"><p>Sushi Order</p></div>
   <div class="list-group list-group-flush">
-    <a routerLink="/homepage" routerLinkActive="active"  class="list-group-item list-group-item-action bg-dark text-light">Homepage</a>
-    <a routerLink="/menu/antipasti" routerLinkActive="active" class="list-group-item list-group-item-action bg-dark text-light">Antipasti</a>
-    <a routerLink="/menu/zuppe" routerLinkActive="active" class="list-group-item list-group-item-action bg-dark text-light">Zuppe</a>
-    <a routerLink="/menu/primi" routerLinkActive="active" class="list-group-item list-group-item-action bg-dark text-light">Primi</a>
-    <a routerLink="/menu/hosomaki" routerLinkActive="active" class="list-group-item list-group-item-action bg-dark text-light">Hosomaki</a>
-    <a routerLink="/menu/uramaki" routerLinkActive="active" class="list-group-item list-group-item-action bg-dark text-light">Uramaki</a>
-    <a routerLink="/menu/temaki" routerLinkActive="active" class="list-group-item list-group-item-action bg-dark text-light">Temaki</a>
-    <a routerLink="/menu/sushi" routerLinkActive="active" class="list-group-item list-group-item-action bg-dark text-light">Sushi</a>
-    <a routerLink="/menu/secondi" routerLinkActive="active" class="list-group-item list-group-item-action bg-dark text-light">Secondi</a>
-    <a routerLink="/menu/dolci" routerLinkActive="active" class="list-group-item list-group-item-action bg-dark text-light">Dolci</a>
-    <a routerLink="/menu/bibite" routerLinkActive="active" class="list-group-item list-group-item-action bg-dark text-light">Bibite</a>
-    <a routerLink="/reviews" routerLinkActive="active" class="list-group-item list-group-item-action bg-dark text-light">Recensioni</a>
-    <a routerLink="/auth" routerLinkActive="active" class="list-group-item list-group-item-action bg-dark text-light">Pagina Amministrazione</a>
+    <a
+      routerLink="/homepage"
+      routerLinkActive="active"
+      class="list-group-item list-group-item-action bg-dark text-light"
+      >Homepage</a
+    >
+    <a
+      routerLink="/menu/antipasti"
+      routerLinkActive="active"
+      class="list-group-item list-group-item-action bg-dark text-light"
+      >Antipasti</a
+    >
+    <a
+      routerLink="/menu/zuppe"
+      routerLinkActive="active"
+      class="list-group-item list-group-item-action bg-dark text-light"
+      >Zuppe</a
+    >
+    <a
+      routerLink="/menu/primi"
+      routerLinkActive="active"
+      class="list-group-item list-group-item-action bg-dark text-light"
+      >Primi</a
+    >
+    <a
+      routerLink="/menu/hosomaki"
+      routerLinkActive="active"
+      class="list-group-item list-group-item-action bg-dark text-light"
+      >Hosomaki</a
+    >
+    <a
+      routerLink="/menu/uramaki"
+      routerLinkActive="active"
+      class="list-group-item list-group-item-action bg-dark text-light"
+      >Uramaki</a
+    >
+    <a
+      routerLink="/menu/temaki"
+      routerLinkActive="active"
+      class="list-group-item list-group-item-action bg-dark text-light"
+      >Temaki</a
+    >
+    <a
+      routerLink="/menu/sushi"
+      routerLinkActive="active"
+      class="list-group-item list-group-item-action bg-dark text-light"
+      >Sushi</a
+    >
+    <a
+      routerLink="/menu/secondi"
+      routerLinkActive="active"
+      class="list-group-item list-group-item-action bg-dark text-light"
+      >Secondi</a
+    >
+    <a
+      routerLink="/menu/dolci"
+      routerLinkActive="active"
+      class="list-group-item list-group-item-action bg-dark text-light"
+      >Dolci</a
+    >
+    <a
+      routerLink="/menu/bibite"
+      routerLinkActive="active"
+      class="list-group-item list-group-item-action bg-dark text-light"
+      >Bibite</a
+    >
+    <a
+      routerLink="/reviews"
+      routerLinkActive="active"
+      class="list-group-item list-group-item-action bg-dark text-light"
+      >Recensioni</a
+    >
+    <a
+      *ngIf="!isLogged"
+      routerLink="/auth"
+      routerLinkActive="active"
+      class="list-group-item list-group-item-action bg-dark text-light"
+      >Pagina Amministrazione</a
+    >
   </div>
 </div>

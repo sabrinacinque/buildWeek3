@@ -19,6 +19,13 @@ const routes: Routes = [
     loadChildren: () =>
       import('./pages/reviews/reviews.module').then((m) => m.ReviewsModule),
   },
+  {
+    path: 'dashboard',
+    loadChildren: () =>
+      import('./pages/dashboard/dashboard.module').then(
+        (m) => m.DashboardModule
+      ),
+  },
   { path: '**', redirectTo: '/homepage' },
 ];
 

@@ -20,7 +20,7 @@ export class GuestGuard {
   ): Observable<boolean> | Promise<boolean> | boolean {
     const isLogged = this.authSvc.isLogged;
     if (isLogged) {
-      this.router.navigate(['/login']);
+      this.router.navigate(['']);
       return false;
     }
     return true;

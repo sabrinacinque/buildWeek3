@@ -29,54 +29,31 @@
       <p class="card-text fs-4">{{ item.ingredienti }}</p>
       <div class="card-body d-flex flex-column justify-content-end">
         <div class="btn-group" role="group" aria-label="Basic example">
-          <button
-            type="button"
-            class="btn text-light"
-            (click)="decrementQuantity(item)"
-          >
-            -
+          <button (click)="decrementQuantity(item)" type="button" class="btn text-light"><i class="bi bi-dash-circle-fill" ></i>
           </button>
-          <div class="d-flex text-center align-items-center px-4 m-0">
-            <p class="m-0 p-0">{{ item.quantity }}</p>
+          <div class="d-flex text-center justify-content-center align-items-center px-4 m-0 w-75">
+            <p class="m-0 p-0">Quantità: {{ item.quantity }}</p>
           </div>
-          <button
-            type="button"
-            class="btn text-light"
-            (click)="incrementQuantity(item)"
-          >
-            +
+          <button (click)="incrementQuantity(item)" type="button" class="btn text-light"><i class="bi bi-plus-circle-fill"></i>
           </button>
         </div>
-        <div class="d-flex justify-content-center mt-2">
-          <button class="w-25 btn text-light" (click)="addToCart(item)">
-            <i class="bi bi-cart-plus"> </i>
-          </button>
-        </div>
+
+        <button class="btn mt-2 text-light" (click)="addToCart(item)">
+          <i class="bi bi-cart-plus"> Aggiungi al carrello</i>
+        </button>
       </div>
     </div>
   </div>
 </div>
 
-
 <!-- Toast -->
 <div class="toast-container position-fixed bottom-0 end-0 p-3">
-  <div
-    class="toast"
-    role="alert"
-    aria-live="assertive"
-    aria-atomic="true"
-    [ngClass]="{ show: showToast }"
-  >
+  <div class="toast" role="alert" aria-live="assertive" aria-atomic="true" [ngClass]="{ show: showToast }">
     <div class="toast-header">
       <img src="..." class="rounded me-2" alt="..." />
       <strong class="me-auto">Notifica</strong>
       <small>Ora</small>
-      <button
-        type="button"
-        class="btn-close"
-        (click)="hideToast()"
-        aria-label="Close"
-      ></button>
+      <button type="button" class="btn-close" (click)="hideToast()" aria-label="Close"></button>
     </div>
     <div class="toast-body">Articolo aggiunto al carrello!</div>
   </div>
@@ -86,12 +63,7 @@
 <ng-template #cartModal let-modal>
   <div class="modal-header">
     <h4 class="modal-title">Il tuo carrello</h4>
-    <button
-      type="button"
-      class="close"
-      aria-label="Close"
-      (click)="modal.dismiss('Cross click')"
-    >
+    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
       <span aria-hidden="true">&times;</span>
     </button>
   </div>
@@ -102,33 +74,18 @@
     <div *ngIf="cartItems.length > 0">
       <div id="sistemo" class="row" *ngFor="let item of cartItems">
         <div class="col-md-6">{{ item.titolo }}</div>
-        <button
-          id="piumeno"
-          type="button"
-          class="btn text-light"
-          (click)="decrementQuantity(item)"
-        >
+        <button id="piumeno" type="button" class="btn text-white" (click)="decrementQuantity(item)">
           -
         </button>
         <div class="col-md-2" id="quantita">{{ item.quantity }}</div>
-        <button
-          id="piumeno"
-          type="button"
-          class="btn text-light"
-          (click)="incrementQuantity(item)"
-        >
+        <button id="piumeno" type="button" class="btn text-white" (click)="incrementQuantity(item)">
           +
         </button>
         <div id="prezzo" class="col-md-2">
           {{ item.prezzo | currency : "EUR" }}
         </div>
         <div class="col-md-2">
-          <button
-            id="elimina"
-            type="button"
-            class="btn btn-danger btn-sm"
-            (click)="removeFromCart(item)"
-          >
+          <button id="elimina" type="button" class="btn  btn-sm text-white" (click)="removeFromCart(item)">
             <i class="bi bi-trash"></i>
           </button>
         </div>
@@ -142,15 +99,10 @@
     </div>
   </div>
   <div class="modal-footer">
-    <button
-      id="cancella"
-      type="button"
-      class="btn btn-danger"
-      (click)="clearCart(); modal.close()"
-    >
+    <button id="cancella" type="button" class="btn btn-danger" (click)="clearCart(); modal.close()">
       Svuota carrello
     </button>
-    <button type="button" class="btn btn-secondary" (click)="sendOrder()">
+    <button type="button" class="btn text-white" (click)="sendOrder()"><i class="bi bi-send"></i>
       Invia
     </button>
   </div>

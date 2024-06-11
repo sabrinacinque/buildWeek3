@@ -19,9 +19,15 @@ export class AuthGuard {
   canActivate(
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot
-  ): MaybeAsync<GuardResult> {
-    return this.authSvc.isLogged;
+  ): Observable<boolean> | Promise<boolean> | boolean {
+    const isLogged = this.authSvc.isLogged;
+    if (!isLogged) {
+      this.router.navigate(['']);
+      return false;
+    }
+    return true;
   }
+
   canActivateChild(
     childRoute: ActivatedRouteSnapshot,
     state: RouterStateSnapshot

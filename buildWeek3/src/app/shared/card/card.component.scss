@@ -7,7 +7,7 @@
   background-color: #ae9b8d;
 }
 
-.btn {
+.btn:not(#cancella) {
   font-size: 15px;
   background-color: #99735e;
 }

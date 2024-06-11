@@ -9,6 +9,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { RegistrationComponent } from './auth/registration/registration.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
+
 @NgModule({
   declarations: [
     AppComponent,

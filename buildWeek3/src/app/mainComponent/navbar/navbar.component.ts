@@ -1,7 +1,6 @@
 import { Router } from '@angular/router';
 import { AuthService } from './../../auth/auth-service.service';
 import { Component } from '@angular/core';
-import { AuthService } from '../../auth/auth-service.service';
 
 @Component({
   selector: 'app-navbar',
@@ -9,6 +8,7 @@ import { AuthService } from '../../auth/auth-service.service';
   styleUrl: './navbar.component.scss',
 })
 export class NavbarComponent {
+  isLogged: boolean = false;
 
 constructor (private AuthService: AuthService, private Router: Router) {}
 
@@ -17,4 +17,7 @@ logout() {
   this.Router.navigate(['/homepage'])
 }
 
+ngOnInit() {
+  this.AuthService.logged$.subscribe((isLogged) => (this.isLogged = isLogged));
+}
 }

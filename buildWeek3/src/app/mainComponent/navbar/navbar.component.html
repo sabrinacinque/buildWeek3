@@ -4,11 +4,9 @@
   <div *ngIf="isLogged" class="container_logout me-3" (click)="logout()">
     <img id="logout_img" src="../../../assets/image/switch.svg" alt="Logout">
   </div>
-</div>
   <div class="list-group list-group-flush">
     <a
-      routerLink="/homepage"
-      routerLinkActive="active"
+      routerLink=""
       class="list-group-item list-group-item-action bg-dark text-light"
       >Homepage</a
     >
@@ -73,6 +71,7 @@
       >Bibite</a
     >
     <a
+      *ngIf="isLogged"
       routerLink="/reviews"
       routerLinkActive="active"
       class="list-group-item list-group-item-action bg-dark text-light"

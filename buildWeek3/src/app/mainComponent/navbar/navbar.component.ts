@@ -10,14 +10,16 @@ import { Component } from '@angular/core';
 export class NavbarComponent {
   isLogged: boolean = false;
 
-constructor (private AuthService: AuthService, private Router: Router) {}
+  constructor(private AuthService: AuthService, private Router: Router) {}
 
-logout() {
-  this.AuthService.logout()
-  this.Router.navigate(['/homepage'])
-}
+  logout() {
+    this.AuthService.logout();
+    this.Router.navigate(['']);
+  }
 
-ngOnInit() {
-  this.AuthService.logged$.subscribe((isLogged) => (this.isLogged = isLogged));
-}
+  ngOnInit() {
+    this.AuthService.logged$.subscribe(
+      (isLogged) => (this.isLogged = isLogged)
+    );
+  }
 }

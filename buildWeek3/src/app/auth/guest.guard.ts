@@ -3,20 +3,27 @@ import {
   ActivatedRouteSnapshot,
   GuardResult,
   MaybeAsync,
+  Router,
   RouterStateSnapshot,
 } from '@angular/router';
 import { AuthService } from './auth-service.service';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
 })
 export class GuestGuard {
-  constructor(private authSvc: AuthService) {}
+  constructor(private authSvc: AuthService, private router: Router) {}
   canActivate(
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot
-  ): MaybeAsync<GuardResult> {
-    return !this.authSvc.isLogged;
+  ): Observable<boolean> | Promise<boolean> | boolean {
+    const isLogged = this.authSvc.isLogged;
+    if (isLogged) {
+      this.router.navigate(['/login']);
+      return false;
+    }
+    return true;
   }
   canActivateChild(
     childRoute: ActivatedRouteSnapshot,

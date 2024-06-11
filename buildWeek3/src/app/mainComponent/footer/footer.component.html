@@ -6,7 +6,7 @@
 <footer class="bg-dark text-center">
   <!-- Grid container -->
   <div>
-    <img src="../../../assets/image/Prova logo episushi.svg" alt="" />
+    <img src="../../../assets/image/logo episushi bianco.svg" alt="" />
   </div>
 
   <div class="container p-4 pb-0">
@@ -75,31 +75,35 @@
       </section>
       <!-- Section: Social media -->
     </div>
-    <section class="mt-4">
-      <form action="">
-        <!--Grid row-->
-        <div class="row d-flex justify-content-center">
-          <!--Grid column-->
-          <div class="col-auto">
+    <section>
+      <form (ngSubmit)="onSubmit()">
+        <!-- Flex row -->
+        <div
+          class="d-flex justify-content-center align-items-center flex-wrap flex-column-reverse"
+        >
+          <!-- Feedback column -->
+          <div class="col-auto text-center">
             <p class="pt-2">
-              <strong>Iscriviti alla nostra newsletter</strong>
+              <strong>Lascia il tuo feedback</strong>
             </p>
-          </div>
-          <!--Grid column-->
-          <!--Grid column-->
-          <div class="col-md-5 col-12">
-            <!-- Email input -->
-            <div data-mdb-input-init class="form-outline mb-4">
-              <input type="email" id="form5Example26" class="form-control" />
+            <div class="star-rating">
+              <img
+                *ngFor="let star of [1, 2, 3, 4, 5]"
+                [src]="starIcon"
+                [alt]="star"
+                class="star"
+                [class.selected]="star <= rating || star <= hoverRating"
+                (click)="setRating(star)"
+                (mouseover)="setTemporaryRating(star)"
+                (mouseleave)="clearTemporaryRating()"
+              />
             </div>
           </div>
-          <!--Grid column-->
 
-          <!--Grid column-->
+          <!-- Submit button column -->
           <div class="col-auto">
             <!-- Submit button -->
             <button
-              data-mdb-ripple-init
               type="submit"
               class="btn mb-4"
               style="background-color: #99735e; color: white"
@@ -107,11 +111,10 @@
               Subscribe
             </button>
           </div>
-          <!--Grid column-->
         </div>
-        <!--Grid row-->
       </form>
     </section>
+
     <!-- Section: Form -->
   </div>
   <!-- Grid container -->

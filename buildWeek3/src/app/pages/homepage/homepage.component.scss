@@ -74,7 +74,7 @@
 }
 
 .fade-in-left {
-  animation: fadeInLeft 1s ease-out forwards;
+  animation: fadeInLeft 2s ease-out forwards;
 }
 
 .fade-in-right {
@@ -113,4 +113,17 @@
 
 p {
   font-size: 18px;
+}
+
+.logo-episushi {
+  width: 500px;
+}
+
+.filter-episushi {
+  filter: drop-shadow(3px 5px 2px rgb(0 0 0 / 0.4));
+}
+
+p {
+  letter-spacing: 0.1em;
+  text-align: justify;
 }

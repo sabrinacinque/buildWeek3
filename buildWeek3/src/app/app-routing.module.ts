@@ -13,9 +13,18 @@ const routes: Routes = [
     path: 'auth',
     loadChildren: () => import('./auth/auth.module').then((m) => m.AuthModule),
   },
+
   {
-    path: 'review',
-    loadChildren: () => import('./pages/reviews/reviews.module').then((m) => m.ReviewsModule),
+    path: 'reviews',
+    loadChildren: () =>
+      import('./pages/reviews/reviews.module').then((m) => m.ReviewsModule),
+  },
+  {
+    path: 'dashboard',
+    loadChildren: () =>
+      import('./pages/dashboard/dashboard.module').then(
+        (m) => m.DashboardModule
+      ),
   },
   { path: '**', redirectTo: '/homepage' },
 ];

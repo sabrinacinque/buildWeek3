@@ -24,7 +24,7 @@
       "ingredienti": "Ravioli, carne di maiale, verdure",
       "img": "Gyosa.png",
       "categoria": "Antipasti",
-      "prezzo": 5.0,
+      "prezzo": 5,
       "disponibile": true,
       "quantita": 1
     },
@@ -44,7 +44,7 @@
       "ingredienti": "Polpo, farina, uova, tempura",
       "img": "takoyaki.png",
       "categoria": "Antipasti",
-      "prezzo": 6.0,
+      "prezzo": 6,
       "disponibile": true,
       "quantita": 1
     },
@@ -54,7 +54,7 @@
       "ingredienti": "Gamberi, pastella, olio",
       "img": "tempura-special.png",
       "categoria": "Antipasti",
-      "prezzo": 7.0,
+      "prezzo": 7,
       "disponibile": true,
       "quantita": 1
     },
@@ -64,7 +64,7 @@
       "ingredienti": "Brodo di miso, tofu, alghe",
       "img": "misoshiru.png",
       "categoria": "Zuppe",
-      "prezzo": 3.0,
+      "prezzo": 3,
       "disponibile": true,
       "quantita": 1
     },
@@ -104,7 +104,7 @@
       "ingredienti": "Noodles, verdure, carne",
       "img": "soba-pesce-e-verdura-1.png",
       "categoria": "Primi",
-      "prezzo": 7.0,
+      "prezzo": 7,
       "disponibile": true,
       "quantita": 1
     },
@@ -134,7 +134,7 @@
       "ingredienti": "Riso, salmone, alga nori",
       "img": "salmon-tagorashi.png",
       "categoria": "Hosomaki",
-      "prezzo": 6.0,
+      "prezzo": 6,
       "disponibile": true,
       "quantita": 1
     },
@@ -164,7 +164,7 @@
       "ingredienti": "Riso, cetriolo, alga nori",
       "img": "hosomaki-tamago.png",
       "categoria": "Hosomaki",
-      "prezzo": 5.0,
+      "prezzo": 5,
       "disponibile": true,
       "quantita": 1
     },
@@ -174,7 +174,7 @@
       "ingredienti": "Riso, polpa di granchio, alga nori",
       "img": "takuan-hosomaki.png",
       "categoria": "Hosomaki",
-      "prezzo": 6.0,
+      "prezzo": 6,
       "disponibile": true,
       "quantita": 1
     },
@@ -184,7 +184,7 @@
       "ingredienti": "Riso, granchio, avocado, cetriolo",
       "img": "california.png",
       "categoria": "Uramaki",
-      "prezzo": 8.0,
+      "prezzo": 8,
       "disponibile": true,
       "quantita": 1
     },
@@ -204,7 +204,7 @@
       "ingredienti": "Riso, gamberi tempura, avocado, salsa unagi",
       "img": "spicy-tuna.png",
       "categoria": "Uramaki",
-      "prezzo": 9.0,
+      "prezzo": 9,
       "disponibile": true,
       "quantita": 1
     },
@@ -224,7 +224,7 @@
       "ingredienti": "Riso, gamberi, avocado, cetriolo",
       "img": "manhattan.png",
       "categoria": "Uramaki",
-      "prezzo": 8.0,
+      "prezzo": 8,
       "disponibile": true,
       "quantita": 1
     },
@@ -234,7 +234,7 @@
       "ingredienti": "Riso, salmone, avocado, alga nori",
       "img": "spicy-salmon-temaki.png",
       "categoria": "Temaki",
-      "prezzo": 7.0,
+      "prezzo": 7,
       "disponibile": true,
       "quantita": 1
     },
@@ -254,7 +254,7 @@
       "ingredienti": "Riso, granchio, avocado, cetriolo, alga nori",
       "img": "california-temaki.png",
       "categoria": "Temaki",
-      "prezzo": 8.0,
+      "prezzo": 8,
       "disponibile": true,
       "quantita": 1
     },
@@ -264,7 +264,7 @@
       "ingredienti": "Riso, gamberi, avocado, alga nori",
       "img": "red-and-green-temaki.png",
       "categoria": "Temaki",
-      "prezzo": 7.0,
+      "prezzo": 7,
       "disponibile": true,
       "quantita": 1
     },
@@ -274,7 +274,7 @@
       "ingredienti": "Riso, salmone",
       "img": "nigiri-salmone-1.png",
       "categoria": "Sushi",
-      "prezzo": 6.0,
+      "prezzo": 6,
       "disponibile": true,
       "quantita": 1
     },
@@ -294,7 +294,7 @@
       "ingredienti": "Salmone, tonno, branzino",
       "img": "sashimi-mix.png",
       "categoria": "Sushi",
-      "prezzo": 10.0,
+      "prezzo": 10,
       "disponibile": true,
       "quantita": 1
     },
@@ -304,7 +304,7 @@
       "ingredienti": "Riso, salmone, uova di pesce",
       "img": "sashimi-pesce-spada.png",
       "categoria": "Sushi",
-      "prezzo": 7.0,
+      "prezzo": 7,
       "disponibile": true,
       "quantita": 1
     },
@@ -324,7 +324,7 @@
       "ingredienti": "Pollo, salsa teriyaki, sesamo",
       "img": "carpaccio-pesce-spada.png",
       "categoria": "Secondi",
-      "prezzo": 9.0,
+      "prezzo": 9,
       "disponibile": true,
       "quantita": 1
     },
@@ -334,7 +334,7 @@
       "ingredienti": "Manzo, verdure, salsa di soia",
       "img": "carpaccio-salmone.png",
       "categoria": "Secondi",
-      "prezzo": 10.0,
+      "prezzo": 10,
       "disponibile": true,
       "quantita": 1
     },
@@ -344,7 +344,7 @@
       "ingredienti": "Gamberi, salsa al curry, riso",
       "img": "carpaccio-tonno.png",
       "categoria": "Secondi",
-      "prezzo": 11.0,
+      "prezzo": 11,
       "disponibile": true,
       "quantita": 1
     },
@@ -364,7 +364,7 @@
       "ingredienti": "Riso fermentato",
       "img": "sake.png",
       "categoria": "Bibite",
-      "prezzo": 5.0,
+      "prezzo": 5,
       "disponibile": true,
       "quantita": 1
     },
@@ -374,7 +374,7 @@
       "ingredienti": "Bottiglia 75ml",
       "img": "13051.png",
       "categoria": "Bibite",
-      "prezzo": 3.0,
+      "prezzo": 3,
       "disponibile": true,
       "quantita": 1
     },
@@ -384,7 +384,7 @@
       "ingredienti": "Bottiglia 75ml",
       "img": "OIP.png",
       "categoria": "Bibite",
-      "prezzo": 3.0,
+      "prezzo": 3,
       "disponibile": true,
       "quantita": 1
     },
@@ -394,7 +394,7 @@
       "ingredienti": "Bottiglia 1 lt",
       "img": "coca-cola-1-litro.png",
       "categoria": "Bibite",
-      "prezzo": 4.0,
+      "prezzo": 4,
       "disponibile": true,
       "quantita": 1
     },
@@ -404,7 +404,7 @@
       "ingredienti": "Riso glutinoso, tè verde, zucchero",
       "img": "mochi-te-verde.png",
       "categoria": "Dolci",
-      "prezzo": 4.0,
+      "prezzo": 4,
       "disponibile": true,
       "quantita": 1
     },
@@ -444,7 +444,7 @@
       "ingredienti": "Riso glutinoso, fragole, zucchero",
       "img": "mochi-fragola.webp",
       "categoria": "Dolci",
-      "prezzo": 4.0,
+      "prezzo": 4,
       "disponibile": true,
       "quantita": 1
     }
@@ -765,6 +765,23 @@
       ],
       "totalCost": 40,
       "id": 6
+    },
+    {
+      "items": [
+        {
+          "id": 5,
+          "titolo": "Tempura di Gamberi",
+          "ingredienti": "Gamberi, pastella, olio",
+          "img": "tempura-special.png",
+          "categoria": "Antipasti",
+          "prezzo": 7,
+          "disponibile": true,
+          "quantita": 1,
+          "quantity": 1
+        }
+      ],
+      "totalCost": 7,
+      "id": 7
     }
   ]
 }

@@ -1,0 +1,104 @@
+<p>dashboard works!</p>
+
+<div class="input-group mb-3 ms-5">
+  <input type="text" class="form-control" placeholder="Cerca per categoria" [(ngModel)]="searchCategory">
+  <button class="btn btn-outline-secondary" (click)="filterByCategory()">Cerca</button>
+  <button class="btn btn-outline-secondary" (click)="getAll()">Reset</button>
+</div>
+
+<table class="table ms-5">
+  <thead>
+    <tr>
+      <th>#</th>
+      <th>Immagine</th>
+      <th>Titolo</th>
+      <th>Ingredienti</th>
+      <th>Prezzo</th>
+      <th>Categoria</th>
+      <th>Disponibile</th>
+      <th>Azioni</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let item of filteredMenu">
+      <td>{{item.id}}</td>
+      <td>
+        <img *ngIf="!editMode[item.id]" [src]="item.img" alt="{{item.titolo}}" width="50" height="50">
+        <input *ngIf="editMode[item.id]" [(ngModel)]="item.img" placeholder="URL Immagine" />
+      </td>
+      <td>
+        <input *ngIf="editMode[item.id]" [(ngModel)]="item.titolo" />
+        <span *ngIf="!editMode[item.id]">{{item.titolo}}</span>
+      </td>
+      <td>
+        <input *ngIf="editMode[item.id]" [(ngModel)]="item.ingredienti" />
+        <span *ngIf="!editMode[item.id]">{{item.ingredienti}}</span>
+      </td>
+      <td>
+        <input *ngIf="editMode[item.id]" [(ngModel)]="item.prezzo" type="number" />
+        <span *ngIf="!editMode[item.id]">{{ item.prezzo | currency : "EUR" }}</span>
+      </td>
+      <td>
+        <select *ngIf="editMode[item.id]" [(ngModel)]="item.categoria" class="form-select">
+          <option *ngFor="let category of categories" [value]="category">{{category}}</option>
+        </select>
+        <span *ngIf="!editMode[item.id]">{{item.categoria}}</span>
+      </td>
+      <td>
+        <input *ngIf="editMode[item.id]" [(ngModel)]="item.disponibile" type="checkbox" />
+        <span *ngIf="!editMode[item.id]">{{item.disponibile}}</span>
+      </td>
+      <td>
+        <button class="btn btn-danger" (click)="delete(item.id)">Elimina</button>
+        <button class="btn btn-warning" (click)="toggleEditMode(item.id)">
+          {{ editMode[item.id] ? 'Conferma Modifica' : 'Modifica' }}
+        </button>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<button class="btn btn-primary ms-5" (click)="openCreateModal()">Aggiungi Nuovo Prodotto</button>
+
+<!-- Modale per la creazione di un nuovo prodotto -->
+<div class="modal fade" id="createProductModal" tabindex="-1" aria-labelledby="createProductModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="createProductModalLabel">Aggiungi Nuovo Prodotto</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form (ngSubmit)="createProduct()">
+          <div class="mb-3">
+            <label for="productName" class="form-label">Titolo</label>
+            <input type="text" class="form-control" id="productName" [(ngModel)]="newProduct.titolo" name="titolo" required>
+          </div>
+          <div class="mb-3">
+            <label for="productIngredients" class="form-label">Ingredienti</label>
+            <input type="text" class="form-control" id="productIngredients" [(ngModel)]="newProduct.ingredienti" name="ingredienti" required>
+          </div>
+          <div class="mb-3">
+            <label for="productImage" class="form-label">URL Immagine</label>
+            <input type="text" class="form-control" id="productImage" [(ngModel)]="newProduct.img" name="img" required>
+          </div>
+          <div class="mb-3">
+            <label for="productCategory" class="form-label">Categoria</label>
+            <select class="form-select" id="productCategory" [(ngModel)]="newProduct.categoria" name="categoria" required>
+              <option *ngFor="let category of categories" [value]="category">{{category}}</option>
+            </select>
+          </div>
+          <div class="mb-3">
+            <label for="productPrice" class="form-label">Prezzo</label>
+            <input type="number" class="form-control" id="productPrice" [(ngModel)]="newProduct.prezzo" name="prezzo" required>
+          </div>
+          <div class="mb-3 form-check">
+            <input type="checkbox" class="form-check-input" id="productAvailable" [(ngModel)]="newProduct.disponibile" name="disponibile">
+            <label class="form-check-label" for="productAvailable">Disponibile</label>
+          </div>
+          <button type="submit" class="btn btn-primary">Crea Prodotto</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,75 +1,56 @@
-<div class="container-fluid text-center color px-4 ">
-
+<div class="container text-center color mx-auto">
     <div class="row">
-        <div class="col">
-
-            <h1 class="mt-3">Reviews</h1>
-            <p class="text-white p-3 mx-3">La tua opinione conta molto per noi! Dopo aver gustato la nostra cucina
-                giapponese, ti invitiamo a condividere la tua esperienza lasciando una recensione. Le tue recensioni non
-                solo ci aiutano a migliorare continuamente i nostri servizi, ma guidano anche altri amanti del sushi
-                nella loro scelta. Che tu abbia apprezzato un particolare piatto, il nostro servizio attento o
-                l'atmosfera del ristorante, le tue parole possono fare la differenza. Raccontaci cosa ti è piaciuto di
-                più e suggerisci eventuali miglioramenti: il tuo feedback è prezioso per noi e per tutta la nostra
-                comunità di clienti!</p>
-
-        </div>
-
+      <div class="col">
+        <h1 class="mt-3">Reviews</h1>
+        <p class="text-start text-white p-3">
+          La tua opinione conta molto per noi! Dopo aver gustato la nostra cucina giapponese, ti invitiamo a condividere la tua esperienza lasciando una recensione. Le tue recensioni non solo ci aiutano a migliorare continuamente i nostri servizi, ma guidano anche altri amanti del sushi nella loro scelta. Che tu abbia apprezzato un particolare piatto, il nostro servizio attento o l'atmosfera del ristorante, le tue parole possono fare la differenza. Raccontaci cosa ti è piaciuto di più e suggerisci eventuali miglioramenti: il tuo feedback è prezioso per noi e per tutta la nostra comunità di clienti!
+        </p>
+      </div>
     </div>
-
+  
     <div class="row text-start mx-5">
-        <div class="col-6">
-
-
-
-            <div class="y-3 p-2">
-                <h3>Qualità del cibo</h3>
-                <app-sushi-icon (ratingSelected)="onRatingSelected($event)"  ></app-sushi-icon>
-
-            </div>
-
-            <div class="my-3  p-2">
-                <h3>Servizio</h3>
-                <app-sushi-icon (ratingSelected)="onRatingSelected($event)"></app-sushi-icon>
-
-            </div>
-
-            <div class="my-3  p-2">
-                <h3>Atmosfera</h3>
-                <app-sushi-icon (ratingSelected)="onRatingSelected($event)"></app-sushi-icon>
-
-            </div>
-
-            <div class="my-3  p-2">
-                <h3>Tempi di attesa</h3>
-                <app-sushi-icon (ratingSelected)="onRatingSelected($event)"></app-sushi-icon>
-
-
-            </div>
-
-            <div class="my-3  p-2">
-                <h3>Pulizia</h3>
-                <app-sushi-icon (ratingSelected)="onRatingSelected($event)"></app-sushi-icon>
-
-            </div>
+      <div class="col-6">
+        <div class="y-3 p-2">
+          <h3>Qualità del cibo</h3>
+          <app-sushi-icon categoryId="food" (ratingSelected)="onRatingSelected($event)"></app-sushi-icon>
         </div>
-
-        <div class="col-6 text-start ">
-            <form class="d-flex flex-column">
-                <div>
-                    <h3 class="text-center">Condividi la tua esperienza con noi!</h3>
-                    <textarea placeholder="Scrivi qui la tua recensione..."></textarea>
-
-                </div>
-                <div class="mt-3 mx-auto">
-                    <div *ngIf="showError" class="text-danger">Per favore, dai una valutazione prima di inviare la recensione.</div>
-
-                    <button (click)="submitReview()" ><img src="./../../../assets/image/sushi icon.svg" alt="sushi-icon"></button>
-                </div>
-            </form>
+  
+        <div class="my-3 p-2">
+          <h3>Servizio</h3>
+          <app-sushi-icon categoryId="service" (ratingSelected)="onRatingSelected($event)"></app-sushi-icon>
         </div>
+  
+        <div class="my-3 p-2">
+          <h3>Atmosfera</h3>
+          <app-sushi-icon categoryId="atmosphere" (ratingSelected)="onRatingSelected($event)"></app-sushi-icon>
+        </div>
+  
+        <div class="my-3 p-2">
+          <h3>Tempi di attesa</h3>
+          <app-sushi-icon categoryId="waitTime" (ratingSelected)="onRatingSelected($event)"></app-sushi-icon>
+        </div>
+  
+        <div class="my-3 p-2">
+          <h3>Pulizia</h3>
+          <app-sushi-icon categoryId="cleanliness" (ratingSelected)="onRatingSelected($event)"></app-sushi-icon>
+        </div>
+      </div>
+  
+      <div class="col-6 text-start">
+        <form class="d-flex flex-column">
+          <div>
+            <h3 class="text-center">Condividi la tua esperienza con noi!</h3>
+            <textarea placeholder="Scrivi qui la tua recensione..."></textarea>
+          </div>
+          <div class="mt-3 mx-auto position-relative">
+            <button type="button" (click)="submitReview()">
+              <img src="./../../../assets/image/sushi icon.svg" alt="sushi-icon">
+            </button>
+          </div>
+        </form>
+      </div>
     </div>
-</div>
-
+  </div>
 
 
 

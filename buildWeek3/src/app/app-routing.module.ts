@@ -18,7 +18,6 @@ const routes: Routes = [
     /*canActivate: [GuestGuard],
     canActivateChild: [GuestGuard],*/
   },
-
   {
     path: 'reviews',
     loadChildren: () =>

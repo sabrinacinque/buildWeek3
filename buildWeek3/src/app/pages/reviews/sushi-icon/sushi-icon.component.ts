@@ -1,25 +1,23 @@
-
-import { Component, EventEmitter, Output } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 
 @Component({
   selector: 'app-sushi-icon',
   templateUrl: './sushi-icon.component.html',
-  styleUrl: './sushi-icon.component.scss'
+  styleUrls: ['./sushi-icon.component.scss']
 })
 export class SushiIconComponent {
-
-  rating:number = 0 ; 
+  rating = 0;
   emoji: string = '';
-  @Output() ratingSelected = new EventEmitter<number>();
+  @Input() categoryId!: 'food' | 'service' | 'atmosphere' | 'waitTime' | 'cleanliness'; 
+  @Output() ratingSelected = new EventEmitter<{ category: 'food' | 'service' | 'atmosphere' | 'waitTime' | 'cleanliness', rating: number }>();
 
-
-  setRating(value:number){
-    this.rating = value; 
+  setRating(value: number): void {
+    this.rating = value;
     this.updateEmoji();
-    this.ratingSelected.emit(this.rating);
+    this.ratingSelected.emit({ category: this.categoryId, rating: this.rating });
   }
 
-  updateEmoji() {
+  updateEmoji(): void {
     switch (this.rating) {
       case 1:
         this.emoji = '😞'; 
@@ -38,6 +36,6 @@ export class SushiIconComponent {
         break;
       default:
         this.emoji = '';
-    }}
-
+    }
   }
+}

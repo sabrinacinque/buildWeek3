@@ -11,20 +11,8 @@
       type="text"
       class="form-control"
       placeholder="Cerca per categoria"
-      [(ngModel)]="searchCategory"
+      (input)="filterPosts($event)"
     />
-    <button
-      class="btn btn-outline-secondary btn-color2 border-1 border-dark"
-      (click)="filterByCategory()"
-    >
-      Cerca
-    </button>
-    <button
-      class="btn btn-outline-secondary btn-color2 border-1 border-dark"
-      (click)="getAll()"
-    >
-      Reset
-    </button>
   </div>
 
   <table class="table">

@@ -16,8 +16,9 @@ export class MenuService {
   }
 
 
-  getByCategory(category: string): Observable<iMenu[]> {
-    const url = `${this.apiUrl}?categoria=${category}`;
+
+  getByCategoryAndAvailability(category: string, availability: boolean): Observable<iMenu[]> {
+    const url = `${this.apiUrl}?categoria=${category}&disponibile=${availability}`;
     return this.http.get<iMenu[]>(url);
   }
 

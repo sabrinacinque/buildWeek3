@@ -6,7 +6,7 @@ import { AuthGuard } from './auth/auth.guard';
 
 const routes: Routes = [
   { path: '', pathMatch: 'full', redirectTo: 'homepage' },
-  { path: 'homepage',  component: HomepageComponent },
+  { path: 'homepage', component: HomepageComponent },
   {
     path: 'menu',
     loadChildren: () =>
@@ -15,8 +15,8 @@ const routes: Routes = [
   {
     path: 'auth',
     loadChildren: () => import('./auth/auth.module').then((m) => m.AuthModule),
-    canActivate: [GuestGuard],
-    canActivateChild: [GuestGuard],
+    /*canActivate: [GuestGuard],
+    canActivateChild: [GuestGuard],*/
   },
 
   {
@@ -30,8 +30,8 @@ const routes: Routes = [
       import('./pages/dashboard/dashboard.module').then(
         (m) => m.DashboardModule
       ),
-    canActivate: [AuthGuard],
-    canActivateChild: [AuthGuard],
+    /* canActivate: [AuthGuard],
+    canActivateChild: [AuthGuard],*/
   },
   {
     path: '**',

@@ -5,7 +5,8 @@ import { GuestGuard } from './auth/guest.guard';
 import { AuthGuard } from './auth/auth.guard';
 
 const routes: Routes = [
-  { path: '', pathMatch: 'full', component: HomepageComponent },
+  { path: '', pathMatch: 'full', redirectTo: 'homepage' },
+  { path: 'homepage',  component: HomepageComponent },
   {
     path: 'menu',
     loadChildren: () =>

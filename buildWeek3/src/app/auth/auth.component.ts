@@ -1,10 +1,10 @@
 import { Component } from '@angular/core';
 import { AuthService } from './auth-service.service';
-import { JwtHelperService } from '@auth0/angular-jwt';
-import { BehaviorSubject } from 'rxjs';
 import { User } from '../Models/user';
 import { Router } from '@angular/router';
 import { iLogin } from '../Models/ilogin';
+import Swal from 'sweetalert2';
+import { FormBuilder, FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'app-auth',
@@ -12,22 +12,50 @@ import { iLogin } from '../Models/ilogin';
   styleUrls: ['./auth.component.scss'],
 })
 export class AuthComponent {
-  constructor(private authService: AuthService, private router: Router) {}
+  constructor(
+    private authService: AuthService,
+    private router: Router,
+    private fb: FormBuilder
+  ) {}
   newUser: Partial<User> = {};
   userLogged: iLogin = {
     email: 'hita@mailinator.com',
     password: 'Pa$$w0rd!',
   };
 
-  register() {
-    return this.authService.register(this.newUser).subscribe();
+
+  isLogged:boolean = this.authService.isLogged
+
+  userForm!:FormGroup
+
+  ngOnInit(){
+    this.userForm = this.authService.getUserLogin()
   }
 
-  login() {
-    this.authService.login(this.userLogged).subscribe(() => {
-      this.router.navigate(['/dashboard']);
+  register() {
+    return this.authService.register(this.newUser).subscribe(()=> {
+      this.router.navigate(['/auth'])
     });
   }
+
+
+
+  login() {
+    if(this.userForm.invalid || this.userForm.untouched){
+      Swal.fire({
+        title: 'Attenzione! Email o Password Errati o non inseriti',
+        text: 'Controlla i dati o registrati se non sei registrato',
+        icon: 'warning',
+      });
+    } else {
+      this.authService.createNew(this.userLogged, this.userForm)
+    this.authService.login(this.userLogged).subscribe(() => {
+      Swal.fire({
+        text:"Login effettuato con successo!",
+        icon: "success"});
+      this.router.navigate(['/dashboard']);
+    });
+  }}
 
   logout() {
     this.authService.logout();

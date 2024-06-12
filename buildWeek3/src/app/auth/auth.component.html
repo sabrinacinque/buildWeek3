@@ -1,86 +1,54 @@
-<div class="container mt-5" class="bg-color">
-  <div class="row">
-    <div class="col-md-6">
-      <div class="card">
-        <div class="card-body">
-          <h2 class="card-title">Login</h2>
-          <form>
-            <div class="form-group">
-              <label for="loginEmail">Email:</label>
-              <input
-                type="email"
-                class="form-control"
-                id="loginEmail"
-                name="loginEmail"
-                required
-                [(ngModel)]="userLogged.email"
-              />
-            </div>
-            <div class="form-group">
-              <label for="loginPassword">Password:</label>
-              <input
-                type="password"
-                class="form-control"
-                id="loginPassword"
-                name="loginPassword"
-                required
-                [(ngModel)]="userLogged.password"
-              />
-            </div>
-            <button (click)="login()" type="submit" class="btn btn-primary">
-              Login
-            </button>
-          </form>
+<div id="container" class="d-flex">
+  <div class="card border-0 text-center">
+    <div class="card-body">
+      <form [formGroup]="userForm">
+        <div class="form-group mb-3">
+          <label for="loginEmail">EMAIL:</label>
+          <input
+            formControlName="email"
+            type="email"
+            class="form-control text-center"
+            name="email"
+            [(ngModel)]="userLogged.email"
+          />
         </div>
-      </div>
-    </div>
-
-    <!--
-    <div class="col-md-6">
-      <div class="card">
-        <div class="card-body">
-          <h2 class="card-title">Registrazione</h2>
-          <form>
-            <div class="form-group">
-              <label for="regName">Nome:</label>
-              <input
-                type="text"
-                class="form-control"
-                id="regName"
-                name="regName"
-                required
-                [(ngModel)]="newUser.name"
-              />
-            </div>
-            <div class="form-group">
-              <label for="regEmail">Email:</label>
-              <input
-                type="email"
-                class="form-control"
-                id="regEmail"
-                name="regEmail"
-                required
-                [(ngModel)]="newUser.email"
-              />
-            </div>
-            <div class="form-group">
-              <label for="regPassword">Password:</label>
-              <input
-                type="password"
-                class="form-control"
-                id="regPassword"
-                name="regPassword"
-                required
-                [(ngModel)]="newUser.password"
-              />
-            </div>
-            <button (click)="register()" type="submit" class="btn btn-primary">
-              Registrati
-            </button>
-          </form>
+        <div class="form-group mb-3">
+          <label for="loginPassword">PASSWORD:</label>
+          <input
+            formControlName="password"
+            type="password"
+            class="form-control text-center"
+            name="password"
+            [(ngModel)]="userLogged.password"
+          />
         </div>
-      </div>
+        <button (click)="login()" type="submit" class="btn btn-primary">
+          Login
+        </button>
+      </form>
     </div>
-    -->
   </div>
+
+  <!-- <div class="card border-0 text-center">
+    <h2 class="card-title">Registrazione</h2>
+    <form>
+      <div class="form-group">
+        <label for="regName">Nome:</label>
+        <input type="text" class="form-control text-center" id="regName" name="regName" required [(ngModel)]="newUser.name" />
+      </div>
+      <div class="form-group">
+        <label for="regEmail">Email:</label>
+        <input type="email" class="form-control text-center" id="regEmail" name="regEmail" required [(ngModel)]="newUser.email" />
+      </div>
+      <div class="form-group">
+        <label for="regPassword">Password:</label>
+        <input type="password" class="form-control text-center" id="regPassword" name="regPassword" required
+          [(ngModel)]="newUser.password" />
+      </div>
+      <button (click)="register()" type="submit" class="btn btn-primary">
+        Registrati
+      </button>
+    </form>
+  </div>
+</div> -->
 </div>

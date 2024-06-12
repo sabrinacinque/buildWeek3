@@ -5,9 +5,10 @@ import { AppComponent } from './app.component';
 import { NavbarComponent } from './mainComponent/navbar/navbar.component';
 import { FooterComponent } from './mainComponent/footer/footer.component';
 import { HomepageComponent } from './pages/homepage/homepage.component';
-import { HttpClientModule } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { InterceptorInterceptor } from './auth/interceptor.interceptor';
 
 @NgModule({
   declarations: [

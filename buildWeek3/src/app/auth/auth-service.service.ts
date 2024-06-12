@@ -1,11 +1,13 @@
+import { User } from './../Models/user';
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { User } from '../Models/user';
 import { BehaviorSubject, Observable, of } from 'rxjs';
 import { map, tap } from 'rxjs/operators';
 import { JwtHelperService } from '@auth0/angular-jwt';
 import { Router } from '@angular/router';
 import { iAuth } from '../Models/iauth';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { iLogin } from '../Models/ilogin';
 
 @Injectable({
   providedIn: 'root',
@@ -24,7 +26,23 @@ export class AuthService {
   loginUrl = 'http://localhost:3000/login';
   registerUrl = 'http://localhost:3000/register'; // URL del tuo server JSON
 
-  constructor(private http: HttpClient, private router: Router) {}
+
+  constructor(
+    private http: HttpClient,
+    private router: Router,
+    private fb: FormBuilder
+  ) {}
+
+  userForm!:FormGroup
+
+  getUserLogin():FormGroup{
+    this.userForm = this.fb.group({
+      email: this.fb.control(null, [Validators.required, Validators.email]),
+      password: this.fb.control(null, Validators.required),
+    })
+    return this.userForm
+  }
+
 
   register(newUser: Partial<User>) {
     return this.http.post<iAuth>(this.registerUrl, newUser);
@@ -42,7 +60,6 @@ export class AuthService {
   logout () {
     this.authSubject.next(null);
     localStorage.removeItem('token');
-
   }
 
   getAccessToken() {
@@ -52,5 +69,14 @@ export class AuthService {
     const tokenParsed = JSON.parse(token);
 
     return tokenParsed;
+  }
+
+  getAllUsers():Observable<User>{
+    return this.http.get<User>(this.loginUrl)
+  }
+
+  createNew(user:Partial<iLogin>, formData:FormGroup){
+    user.email=formData.value.email
+    user.password=formData.value.password
   }
 }

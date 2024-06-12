@@ -20,9 +20,9 @@ export class AuthGuard {
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot
   ): Observable<boolean> | Promise<boolean> | boolean {
-    const isLogged = this.authSvc.isLogged;
-    if (!isLogged) {
-      this.router.navigate(['']);
+    const isLogged = !this.authSvc.isLogged;
+    if (isLogged) {
+      this.router.navigate(['**']);
       return false;
     }
     return true;

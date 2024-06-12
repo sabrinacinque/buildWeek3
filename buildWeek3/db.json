@@ -2,7 +2,7 @@
   "users": [
     {
       "email": "hita@mailinator.com",
-      "password": "$2a$10$mmn8g98t1qO6w2PaaflgVe.qkGOwGRV/ZY8cjW5AsuaiAvGHdHKuS",
+      "password": "$2a$10$uOSCccbBf83zWfOFd4C9/OSE6bhuORmTvzNGJerKg1gFQdmHPupP.",
       "name": "Reed Mcmillan",
       "id": 1
     }
@@ -782,6 +782,62 @@
       ],
       "totalCost": 7,
       "id": 7
+    },
+    {
+      "items": [
+        {
+          "id": 41,
+          "titolo": "Tè Verde",
+          "ingredienti": "Tè verde",
+          "img": "The-verde-giapponese.png",
+          "categoria": "Bibite",
+          "prezzo": 2.5,
+          "disponibile": true,
+          "quantita": 1,
+          "quantity": 2
+        }
+      ],
+      "totalCost": 5,
+      "id": 8
+    },
+    {
+      "items": [
+        {
+          "id": 11,
+          "titolo": "Riso di pollo",
+          "ingredienti": "Riso, piselli, prosciutto, uova",
+          "img": "rise-chicken.png",
+          "categoria": "Primi",
+          "prezzo": 5.5,
+          "disponibile": true,
+          "quantita": 1,
+          "quantity": 1
+        },
+        {
+          "id": 12,
+          "titolo": "Riso di pesce",
+          "ingredienti": "Noodles, verdure, pollo, salsa di soia",
+          "img": "rice-fish.png",
+          "categoria": "Primi",
+          "prezzo": 7.5,
+          "disponibile": true,
+          "quantita": 1,
+          "quantity": 1
+        },
+        {
+          "id": 13,
+          "titolo": "Yakisoba",
+          "ingredienti": "Noodles, verdure, carne",
+          "img": "soba-pesce-e-verdura-1.png",
+          "categoria": "Primi",
+          "prezzo": 7,
+          "disponibile": true,
+          "quantita": 1,
+          "quantity": 1
+        }
+      ],
+      "totalCost": 20,
+      "id": 9
     }
   ]
 }

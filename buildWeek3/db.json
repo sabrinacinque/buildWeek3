@@ -242,7 +242,7 @@
       "id": 27,
       "titolo": "Temaki Tonno",
       "ingredienti": "Riso, tonno, avocado, alga nori",
-      "img": "surimi-and-tamago-temaki.png",
+      "img": "red-and-green-temaki.png",
       "categoria": "Temaki",
       "prezzo": 7.5,
       "disponibile": true,
@@ -262,7 +262,7 @@
       "id": 29,
       "titolo": "Temaki Ebi",
       "ingredienti": "Riso, gamberi, avocado, alga nori",
-      "img": "red-and-green-temaki.png",
+      "img": "surimi-and-tamago-temaki.png",
       "categoria": "Temaki",
       "prezzo": 7,
       "disponibile": true,
@@ -445,6 +445,366 @@
       "img": "mochi-fragola.webp",
       "categoria": "Dolci",
       "prezzo": 4,
+      "disponibile": true,
+      "quantita": 1
+    },
+    {
+      "id": 51,
+      "titolo": "Moyashi",
+      "ingredienti": "Germogli di soia",
+      "img": "moyashi.webp",
+      "categoria": "Antipasti",
+      "prezzo": 4,
+      "disponibile": true,
+      "quantita": 1
+    },
+    {
+      "id": 52,
+      "titolo": "Wakame",
+      "ingredienti": "Alghe giapponesi",
+      "img": "wakame.webp",
+      "categoria": "Antipasti",
+      "prezzo": 4,
+      "disponibile": true,
+      "quantita": 1
+    },
+    {
+      "id": 53,
+      "titolo": "Wakame spicy",
+      "ingredienti": "Alghe giapponesi agro-piccanti",
+      "img": "wakame_spicy.webp",
+      "categoria": "Antipasti",
+      "prezzo": 4,
+      "disponibile": true,
+      "quantita": 1
+    },
+        {
+      "id": 54,
+      "titolo": "Zuppa di udon",
+      "ingredienti": "Zuppa di miso, shiitake, cipollotto, pasta udon, scaloppine di manzo e uovo sodo",
+      "img": "zuppa_udon.webp",
+      "categoria": "Zuppe",
+      "prezzo": 5,
+      "disponibile": true,
+      "quantita": 1
+    },
+    {
+      "id": 55,
+      "titolo": "Tantanmen con ramen",
+      "ingredienti": "zuppa giapponese, tahina, carne macinata di manzo, pak choi e pasta",
+      "img": "Tantanmen.webp",
+      "categoria": "Zuppe",
+      "prezzo": 5,
+      "disponibile": true,
+      "quantita": 1
+    },
+    {
+      "id": 56,
+      "titolo": "Zuppa di miso ai funghi",
+      "ingredienti": "Zuppa di miso, carote, cipollotti, funghi shiitake, alghe nori e fondo di pollame",
+      "img": "Zuppadimisoconfunghishiitake.webp",
+      "categoria": "Zuppe",
+      "prezzo": 5,
+      "disponibile": true,
+      "quantita": 1
+    },
+    {
+      "id": 57,
+      "titolo": "Zuppa di miso con wakame e tofu",
+      "ingredienti": "Zuppa di miso, con tofu e due tipi di alghe, wakame e kombu",
+      "img": "zuppa-di-miso-e-wakame.webp",
+      "categoria": "Zuppe",
+      "prezzo": 5,
+      "disponibile": true,
+      "quantita": 1
+    },
+    {
+      "id": 58,
+      "titolo": "Zuppa di miso e vermicelli cinesi",
+      "ingredienti": "Zuppa di miso, vermicelli cinesi, germogli, carote e uova sode",
+      "img": "Zuppa di miso e vermicelli cinesi.webp",
+      "categoria": "Zuppe",
+      "prezzo": 5,
+      "disponibile": true,
+      "quantita": 1
+    },
+    {
+      "id": 59,
+      "titolo": "Ramen in zuppa di miso con germogli di soia",
+      "ingredienti": "Pasta di miso bianco, soba giapponesi, soba giapponesi, uova, cipollotto, brodo, funghi shitake, cipolla, alga nori, tofu, pak choi, sesamo bianco",
+      "img": "ramen_germogli.webp",
+      "categoria": "Zuppe",
+      "prezzo": 6,
+      "disponibile": true,
+      "quantita": 1
+    },
+    {
+      "id": 60,
+      "titolo": "Soba freddi",
+      "ingredienti": "Spaghetti soba freddi, alghe kombu, funghi shiitake, bonito, mirin e salsa di soia. ",
+      "img": "soba-freddi-0-4-3.webp",
+      "categoria": "Primi",
+      "prezzo": 5,
+      "disponibile": true,
+      "quantita": 1
+    },
+    {
+      "id": 61,
+      "titolo": "Soba noodles alle verdure",
+      "ingredienti": "Spaghetti soba, con piselli, rafano, pomodori, cipollotti, salsa di soia e wasabi ",
+      "img": "soba-noodles-con-verdure.webp",
+      "categoria": "Primi",
+      "prezzo": 5,
+      "disponibile": true,
+      "quantita": 1
+    },
+    {
+      "id": 62,
+      "titolo": "Soba noodles con melanzana al miso",
+      "ingredienti": "Spaghetti soba, con miso, dadi di melanzana, succo di limetta, miele e salsa di soia ",
+      "img": "soba-noodles-con-melanzana-al-miso.webp",
+      "categoria": "Primi",
+      "prezzo": 5,
+      "disponibile": true,
+      "quantita": 1
+    },
+    {
+      "id": 63,
+      "titolo": "Hosomaki fritto",
+      "ingredienti": "Riso fritto, salmone grigliato e philadelphia",
+      "img": "Hosso-salmone-fritto.webp",
+      "categoria": "Hosomaki",
+      "prezzo": 5,
+      "disponibile": true,
+      "quantita": 1
+    },
+    {
+      "id": 64,
+      "titolo": "Hosomaki mango",
+      "ingredienti": "Mango, philadelphia, riso, alga nori",
+      "img": "hosomaki-mango.webp",
+      "categoria": "Hosomaki",
+      "prezzo": 5,
+      "disponibile": true,
+      "quantita": 1
+    },
+    {
+      "id": 65,
+      "titolo": "Hosomaki ebi",
+      "ingredienti": "Gamberi cotti, riso, alga nori ",
+      "img": "hosomaki_ebi.webp",
+      "categoria": "Hosomaki",
+      "prezzo": 5,
+      "disponibile": true,
+      "quantita": 1
+    },
+    {
+      "id": 66,
+      "titolo": "Uramaki black salmon",
+      "ingredienti": "Riso venere con salmone",
+      "img": "Uramaki black salmon.webp",
+      "categoria": "Uramaki",
+      "prezzo": 9,
+      "disponibile": true,
+      "quantita": 1
+    },
+    {
+      "id": 67,
+      "titolo": "Mango roll",
+      "ingredienti": "Riso con salmone, philadelphia, mango ",
+      "img": "1mango.webp",
+      "categoria": "Uramaki",
+      "prezzo": 8,
+      "disponibile": true,
+      "quantita": 1
+    },
+    {
+      "id": 68,
+      "titolo": "Uramaki spicy tuna",
+      "ingredienti": "Riso con tonno piccante, alghe piccanti",
+      "img": "Uramaki spicy tuna.webp",
+      "categoria": "Uramaki",
+      "prezzo": 9,
+      "disponibile": true,
+      "quantita": 1
+    },
+    {
+      "id": 69,
+      "titolo": "Temaki vegetariano",
+      "ingredienti": "Riso, alga nori, avocado, insalata e cetriolo",
+      "img": "Temaki vegetariano.png",
+      "categoria": "Temaki",
+      "prezzo": 47,
+      "disponibile": true,
+      "quantita": 1
+    },
+    {
+      "id": 70,
+      "titolo": "Temaki ebiten",
+      "ingredienti": "Riso, alga nori, gambero fritto e maionese",
+      "img": "Temaki ebiten.webp",
+      "categoria": "Temaki",
+      "prezzo": 8,
+      "disponibile": true,
+      "quantita": 1
+    },
+    {
+      "id": 71,
+      "titolo": "Temaki Miura",
+      "ingredienti": "Riso, alga nori, salmone cotto, philadelphia, insalata e salsa kabayaki",
+      "img": "Temaki miura.webp",
+      "categoria": "Temaki",
+      "prezzo": 7,
+      "disponibile": true,
+      "quantita": 1
+    },
+    {
+      "id": 72,
+      "titolo": "Temaki Unagi",
+      "ingredienti": "Riso, alga nori, anguilla, teriyaki e cetriolo",
+      "img": "Temaki-Unaji.webp",
+      "categoria": "Temaki",
+      "prezzo": 9,
+      "disponibile": true,
+      "quantita": 1
+    },
+    {
+      "id": 73,
+      "titolo": "Nighiri salmone scottato",
+      "ingredienti": "Riso, salmone scottato",
+      "img": "nigiri-salmone-scottato.webp",
+      "categoria": "Sushi",
+      "prezzo": 9,
+      "disponibile": true,
+      "quantita": 1
+    },
+    {
+      "id": 74,
+      "titolo": "Nighiri branzino",
+      "ingredienti": "Riso, branzino",
+      "img": "nigiri-branzino-taiki.webp",
+      "categoria": "Sushi",
+      "prezzo": 9,
+      "disponibile": true,
+      "quantita": 1
+    },
+    {
+      "id": 75,
+      "titolo": "Nighiri ebi",
+      "ingredienti": "Riso, gambero cotto",
+      "img": "nigiri-ebi.webp",
+      "categoria": "Sushi",
+      "prezzo": 9,
+      "disponibile": true,
+      "quantita": 1
+    },
+    {
+      "id": 76,
+      "titolo": "Ooebi no shioyaki",
+      "ingredienti": "Gamberoni alla griglia",
+      "img": "Ooebi no shioyaki.webp",
+      "categoria": "Secondi",
+      "prezzo": 9,
+      "disponibile": true,
+      "quantita": 1
+    },
+    {
+      "id": 77,
+      "titolo": "Salmone wok",
+      "ingredienti": "Salmone cotto con zenzero e lime",
+      "img": "Wok-al-salmone.webp",
+      "categoria": "Secondi",
+      "prezzo": 9,
+      "disponibile": true,
+      "quantita": 1
+    },
+    {
+      "id": 78,
+      "titolo": "Yaki ebi",
+      "ingredienti": "Spiedini di gamberi",
+      "img": "Yaki ebi.webp",
+      "categoria": "Secondi",
+      "prezzo": 9,
+      "disponibile": true,
+      "quantita": 1
+    },
+    {
+      "id": 79,
+      "titolo": " Yaki tori",
+      "ingredienti": "Spiedini di pollo in salsa satè e piccante",
+      "img": "Yaki tori.webp",
+      "categoria": "Secondi",
+      "prezzo": 9,
+      "disponibile": true,
+      "quantita": 1
+    },
+    {
+      "id": 80,
+      "titolo": "Salmone scottato con crosta di sesamo",
+      "ingredienti": "Salmone scottato con crosta di sesamo",
+      "img": "Salmone scottato con crosta di sesamo.webp",
+      "categoria": "Secondi",
+      "prezzo": 9,
+      "disponibile": true,
+      "quantita": 1
+    },
+    {
+      "id": 81,
+      "titolo": "Wagashi",
+      "ingredienti": "Riso glutinoso, pasta di azuki rossi, zucchero",
+      "img": "Wagashi.webp",
+      "categoria": "Dolci",
+      "prezzo": 9,
+      "disponibile": true,
+      "quantita": 1
+    },
+    {
+      "id": 82,
+      "titolo": "Dango",
+      "ingredienti": "Riso glutinoso, silken tofu, amido di mais, salsa di soia, zucchero",
+      "img": "Dango.webp",
+      "categoria": "Dolci",
+      "prezzo": 9,
+      "disponibile": true,
+      "quantita": 1
+    },
+    {
+      "id": 83,
+      "titolo": "Manju",
+      "ingredienti": "Farina, pasta dolce di fagioli azuki rossi, kansui, zucchero",
+      "img": "Manju.webp",
+      "categoria": "Dolci",
+      "prezzo": 9,
+      "disponibile": true,
+      "quantita": 1
+    },
+    {
+      "id": 84,
+      "titolo": "Birra Asahi",
+      "ingredienti": "Bottiglia 33 cl",
+      "img": "Asahi.webp",
+      "categoria": "Bibite",
+      "prezzo": 9,
+      "disponibile": true,
+      "quantita": 1
+    },
+    {
+      "id": 85,
+      "titolo": "Birra Sapporo",
+      "ingredienti": "Bottiglia 33 cl",
+      "img": "sapporo-330ml-5.webp",
+      "categoria": "Bibite",
+      "prezzo": 9,
+      "disponibile": true,
+      "quantita": 1
+    },
+    {
+      "id": 86,
+      "titolo": "Fanta",
+      "ingredienti": "Bottiglia 1 lt",
+      "img": "fanta.webp",
+      "categoria": "Bibite",
+      "prezzo": 9,
       "disponibile": true,
       "quantita": 1
     }

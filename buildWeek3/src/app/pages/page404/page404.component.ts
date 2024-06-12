@@ -12,6 +12,6 @@ export class Page404Component {
   ngOnInit(): void {
     setTimeout(() => {
       this.router.navigate(['']);
-    }, 3000);
+    }, 2000);
   }
 }

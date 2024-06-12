@@ -7,6 +7,7 @@ import { JwtHelperService } from '@auth0/angular-jwt';
 import { Router } from '@angular/router';
 import { iAuth } from '../Models/iauth';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { iLogin } from '../Models/ilogin';
 
 @Injectable({
   providedIn: 'root',
@@ -72,5 +73,10 @@ export class AuthService {
 
   getAllUsers():Observable<User>{
     return this.http.get<User>(this.loginUrl)
+  }
+
+  createNew(user:Partial<iLogin>, formData:FormGroup){
+    user.email=formData.value.email
+    user.password=formData.value.password
   }
 }

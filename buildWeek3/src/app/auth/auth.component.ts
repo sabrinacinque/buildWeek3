@@ -38,6 +38,8 @@ export class AuthComponent {
     });
   }
 
+
+
   login() {
     if(this.userForm.invalid || this.userForm.untouched){
       Swal.fire({
@@ -46,6 +48,7 @@ export class AuthComponent {
         icon: 'warning',
       });
     } else {
+      this.authService.createNew(this.userLogged, this.userForm)
     this.authService.login(this.userLogged).subscribe(() => {
       Swal.fire({
         text:"Login effettuato con successo!",

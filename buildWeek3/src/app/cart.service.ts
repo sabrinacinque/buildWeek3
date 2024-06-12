@@ -1,10 +1,11 @@
 import { Injectable } from '@angular/core';
-import { BehaviorSubject } from 'rxjs';
+import { BehaviorSubject, Observable, map } from 'rxjs';
 import { iMenu } from './Models/i-menu';
-
+import { HttpClient } from '@angular/common/http';
+import { iOrder } from './Models/iorder';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class CartService {
   private cartItemsSubject = new BehaviorSubject<iMenu[]>([]);
@@ -16,7 +17,7 @@ export class CartService {
 
   addToCart(item: iMenu) {
     const currentItems = this.cartItems;
-    const cartItem = currentItems.find(ci => ci.id === item.id);
+    const cartItem = currentItems.find((ci) => ci.id === item.id);
     if (cartItem) {
       cartItem.quantity += item.quantity;
     } else {
@@ -27,7 +28,7 @@ export class CartService {
 
   removeFromCart(item: iMenu) {
     const currentItems = this.cartItems;
-    const index = currentItems.findIndex(ci => ci.id === item.id);
+    const index = currentItems.findIndex((ci) => ci.id === item.id);
     if (index !== -1) {
       currentItems.splice(index, 1);
     }
@@ -39,6 +40,22 @@ export class CartService {
   }
 
   getTotalCost(): number {
-    return this.cartItems.reduce((total, item) => total + item.prezzo * item.quantity, 0);
+    return this.cartItems.reduce(
+      (total, item) => total + item.prezzo * item.quantity,
+      0
+    );
+  }
+
+  orderUrl: string = 'http://localhost:3000/orders';
+
+  constructor(private http: HttpClient) {}
+
+  orderSubject = new BehaviorSubject<null | iOrder[]>(null);
+  order$ = this.orderSubject.asObservable();
+
+  getAll(): Observable<any[]> {
+    return this.http
+      .get<iOrder[]>(this.orderUrl)
+      .pipe(map((orders: iOrder[]) => orders.flatMap((order) => order.items)));
   }
 }

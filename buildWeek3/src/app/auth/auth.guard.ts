@@ -22,7 +22,7 @@ export class AuthGuard {
   ): Observable<boolean> | Promise<boolean> | boolean {
     const isLogged = this.authSvc.isLogged;
     if (!isLogged) {
-      this.router.navigate(['']);
+      this.router.navigate(['**']);
       return false;
     }
     return true;

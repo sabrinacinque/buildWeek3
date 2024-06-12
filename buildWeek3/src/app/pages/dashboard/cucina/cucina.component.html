@@ -1,5 +1,5 @@
 <div>
-  <h1 class="text-start ms-3 text-light">Ordini</h1>
+  <h1 class="text-start ms-4 text-light">Ordini</h1>
   <div ngbAccordion>
     <div
       ngbAccordionItem
@@ -7,19 +7,23 @@
       [ngStyle]="dynamicStyles"
     >
       <h2 ngbAccordionHeader>
-        <div class="d-flex justify-content-beetween flex-row-reverse">
+        <div class="d-flex justify-content-beetween flex-row-reverse ms-4">
           <button ngbAccordionButton class="text-bg-dark">
+            <span
+              *ngIf="verificatoProperty[order.id]"
+              class="me-3 text-success fs-3"
+              ><i class="bi bi-patch-check-fill"></i
+            ></span>
             Order: {{ order.id }} (Total Cost: {{ order.totalCost }} €)
           </button>
-          <p></p>
-          <div
-            class="form-check form-switch ms-3 fs-4 d-flex align-items-center"
-          >
+
+          <div class="form-check form-switch fs-5 d-flex align-items-center">
             <input
               class="form-check-input"
               type="checkbox"
               role="switch"
               id="flexSwitchCheckDefault"
+              (click)="verificatoMethod(order.id)"
             />
           </div>
         </div>

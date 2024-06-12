@@ -12,6 +12,7 @@ import { CartService } from '../../../cart.service';
 export class CucinaComponent {
   show: boolean = false;
   orders: iOrder[] = [];
+  verificatoProperty: boolean[] = [];
 
   dynamicStyles = {
     'background-color': '#99735e',
@@ -24,5 +25,13 @@ export class CucinaComponent {
       this.orders = data;
       console.log(this.orders);
     });
+  }
+
+  verificatoMethod(id: number) {
+    if (this.verificatoProperty[id]) {
+      this.verificatoProperty[id] = !this.verificatoProperty[id];
+    } else {
+      this.verificatoProperty[id] = true;
+    }
   }
 }

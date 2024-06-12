@@ -81,8 +81,33 @@
   background-color: #99735e !important;
   border-color: #99735e !important;
 }
+.container_logout, .container_profile {
+  display: inline-block;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 
 #logout_img {
   width: 30px;
+  height: 30px;
   cursor: pointer;
+}
+
+.profile-icon-container {
+  width: 30px;
+  height: 30px;
+  background: linear-gradient(to top, #99735e, #000000);
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-left: 20px;
+}
+
+.profile-icon-container i {
+  font-size: 1.5rem;
 }

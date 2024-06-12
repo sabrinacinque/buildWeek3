@@ -9,6 +9,7 @@ import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { InterceptorInterceptor } from './auth/interceptor.interceptor';
+import { CucinaComponent } from './pages/dashboard/cucina/cucina.component';
 
 @NgModule({
   declarations: [
@@ -16,6 +17,7 @@ import { InterceptorInterceptor } from './auth/interceptor.interceptor';
     NavbarComponent,
     FooterComponent,
     HomepageComponent,
+    CucinaComponent,
   ],
   imports: [BrowserModule, AppRoutingModule, HttpClientModule, NgbModule],
   providers: [],

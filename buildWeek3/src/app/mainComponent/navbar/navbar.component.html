@@ -8,6 +8,11 @@
         alt="Logout"
       />
     </div>
+    <div *ngIf="isLogged" class="container_profile me-3">
+      <a routerLink="/profile" class="profile-icon-container text-white">
+        <i class="bi bi-person-circle" style="font-size: 1.5rem;"></i>
+      </a>
+    </div>
   </div>
   <div class="list-group list-group-flush">
     <a

@@ -1,0 +1,17 @@
+<div ngbAccordion>
+  <div ngbAccordionItem *ngFor="let order of orders">
+    <h2 ngbAccordionHeader>
+      <button ngbAccordionButton>
+        Order: {{ order.id }} (Total Cost: {{ order.totalCost }} €)
+      </button>
+    </h2>
+    <div ngbAccordionCollapse>
+      <div ngbAccordionBody *ngFor="let item of order.items">
+        <ng-template>
+          <h3>{{ item.titolo }}</h3>
+          <p>Quantity: {{ item.quantity }}</p></ng-template
+        >
+      </div>
+    </div>
+  </div>
+</div>

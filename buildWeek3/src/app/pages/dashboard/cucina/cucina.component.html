@@ -1,16 +1,40 @@
-<div ngbAccordion>
-  <div ngbAccordionItem *ngFor="let order of orders">
-    <h2 ngbAccordionHeader>
-      <button ngbAccordionButton>
-        Order: {{ order.id }} (Total Cost: {{ order.totalCost }} €)
-      </button>
-    </h2>
-    <div ngbAccordionCollapse>
-      <div ngbAccordionBody *ngFor="let item of order.items">
-        <ng-template>
-          <h3>{{ item.titolo }}</h3>
-          <p>Quantity: {{ item.quantity }}</p></ng-template
-        >
+<div>
+  <h1 class="text-start ms-4 text-light">Ordini</h1>
+  <div ngbAccordion>
+    <div
+      ngbAccordionItem
+      *ngFor="let order of orders"
+      [ngStyle]="dynamicStyles"
+    >
+      <h2 ngbAccordionHeader>
+        <div class="d-flex justify-content-beetween flex-row-reverse ms-4">
+          <button ngbAccordionButton class="text-bg-dark">
+            <span
+              *ngIf="verificatoProperty[order.id]"
+              class="me-3 text-success fs-3"
+              ><i class="bi bi-patch-check-fill"></i
+            ></span>
+            Order: {{ order.id }} (Total Cost: {{ order.totalCost }} €)
+          </button>
+
+          <div class="form-check form-switch fs-5 d-flex align-items-center">
+            <input
+              class="form-check-input"
+              type="checkbox"
+              role="switch"
+              id="flexSwitchCheckDefault"
+              (click)="verificatoMethod(order.id)"
+            />
+          </div>
+        </div>
+      </h2>
+      <div ngbAccordionCollapse>
+        <div ngbAccordionBody *ngFor="let item of order.items">
+          <ng-template>
+            <h3 class="fs-5 text-light">{{ item.titolo }}</h3>
+            <p class="m-0 fsBro text-light">Quantity: {{ item.quantity }}</p>
+          </ng-template>
+        </div>
       </div>
     </div>
   </div>

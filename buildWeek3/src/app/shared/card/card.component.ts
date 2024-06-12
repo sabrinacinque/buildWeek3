@@ -15,6 +15,8 @@ import { Router } from '@angular/router';
 })
 export class CardComponent implements OnInit {
   @Input() category!: string;
+  @Input() availability!: boolean;
+
   menu: iMenu[] = [];
   showToast: boolean = false;
   apiUrl: string = 'http://localhost:3000/orders';
@@ -22,6 +24,7 @@ export class CardComponent implements OnInit {
   cartItems: iMenu[] = []; // Aggiungi questa linea
 
   @ViewChild('cartModal') cartModal!: TemplateRef<any>;
+
 
   constructor(
     private menuSvc: MenuService,
@@ -33,7 +36,7 @@ export class CardComponent implements OnInit {
 
   ngOnInit() {
     if (this.category) {
-      this.menuSvc.getByCategory(this.category).subscribe((items) => {
+      this.menuSvc.getByCategoryAndAvailability(this.category, this.availability).subscribe((items) => {
         this.menu = items.map(item => ({ ...item, quantity: 1 }));
       });
     }

@@ -1,16 +1,15 @@
-<div *ngIf="items.length > 0">
-  <h2>Items</h2>
-  <ul>
-    <li *ngFor="let item of items">
-      <img [src]="item.img" alt="{{ item.titolo }}" width="50" />
+<div class="order-container text-light" *ngFor="let item of items">
+  <div class="order-card">
+    <h2>Order ID: {{ item.id }}</h2>
+    <div class="item-card">
+      <img [src]="item.img" alt="{{ item.titolo }}" />
       <h3>{{ item.titolo }}</h3>
       <p>{{ item.ingredienti }}</p>
-      <p>Categoria: {{ item.categoria }}</p>
-      <p>Prezzo: {{ item.prezzo }} €</p>
-      <p>Quantità: {{ item.quantity }}</p>
-    </li>
-  </ul>
+      <p>Category: {{ item.categoria }}</p>
+      <p>Price: {{ item.prezzo }} €</p>
+      <p>Quantity: {{ item.quantity }}</p>
+    </div>
+    <h3>Total Cost: {{ item.totalCost }} €</h3>
+  </div>
 </div>
-<div *ngIf="items.length === 0">
-  <p>No items available.</p>
-</div>
+q

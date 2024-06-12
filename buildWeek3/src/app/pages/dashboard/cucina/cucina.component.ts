@@ -16,6 +16,7 @@ export class CucinaComponent {
   ngOnInit() {
     this.MenuSvc.getAll().subscribe((data: any[]) => {
       this.items = data;
+      console.log(this.items);
     });
   }
 }

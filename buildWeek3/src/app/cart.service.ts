@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, Observable, map } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
 import { iMenu } from './Models/i-menu';
 import { HttpClient } from '@angular/common/http';
 import { iOrder } from './Models/iorder';
@@ -53,9 +53,7 @@ export class CartService {
   orderSubject = new BehaviorSubject<null | iOrder[]>(null);
   order$ = this.orderSubject.asObservable();
 
-  getAll(): Observable<any[]> {
-    return this.http
-      .get<iOrder[]>(this.orderUrl)
-      .pipe(map((orders: iOrder[]) => orders.flatMap((order) => order.items)));
+  getAll(): Observable<iOrder[]> {
+    return this.http.get<iOrder[]>(this.orderUrl);
   }
 }

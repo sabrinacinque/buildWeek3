@@ -7,7 +7,7 @@ import { FooterComponent } from './mainComponent/footer/footer.component';
 import { HomepageComponent } from './pages/homepage/homepage.component';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 
-import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { NgbCarouselConfig, NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { InterceptorInterceptor } from './auth/interceptor.interceptor';
 import { CucinaComponent } from './pages/dashboard/cucina/cucina.component';
 
@@ -23,4 +23,12 @@ import { CucinaComponent } from './pages/dashboard/cucina/cucina.component';
   providers: [],
   bootstrap: [AppComponent],
 })
-export class AppModule {}
+export class AppModule {
+  constructor(config: NgbCarouselConfig) {
+    // customize default values of carousels used by this module here,
+    // if required (see https://ng-bootstrap.github.io/#/components/carousel/api)
+    config.interval = 1000;
+    config.wrap = false;
+    config.keyboard = false;
+  }
+}

@@ -1,18 +1,26 @@
 <div id="container" class="d-flex">
-
-
-  <div class="card border-0 text-center" >
+  <div class="card border-0 text-center">
     <div class="card-body">
       <form [formGroup]="userForm">
         <div class="form-group mb-3">
           <label for="loginEmail">EMAIL:</label>
-          <input formControlName="email" type="email" class="form-control text-center" name="email"
-            />
+          <input
+            formControlName="email"
+            type="email"
+            class="form-control text-center"
+            name="email"
+            [(ngModel)]="userLogged.email"
+          />
         </div>
         <div class="form-group mb-3">
           <label for="loginPassword">PASSWORD:</label>
-          <input formControlName="password" type="password" class="form-control text-center"name="password"
-             />
+          <input
+            formControlName="password"
+            type="password"
+            class="form-control text-center"
+            name="password"
+            [(ngModel)]="userLogged.password"
+          />
         </div>
         <button (click)="login()" type="submit" class="btn btn-primary">
           Login
@@ -20,9 +28,6 @@
       </form>
     </div>
   </div>
-
-
-
 
   <!-- <div class="card border-0 text-center">
     <h2 class="card-title">Registrazione</h2>
@@ -46,3 +51,4 @@
     </form>
   </div>
 </div> -->
+</div>

@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 
 import { MenuService } from '../../../menu.service';
 import { iOrder } from '../../../Models/iorder';
+import { CartService } from '../../../cart.service';
 
 @Component({
   selector: 'app-cucina',
@@ -9,14 +10,15 @@ import { iOrder } from '../../../Models/iorder';
   styleUrl: './cucina.component.scss',
 })
 export class CucinaComponent {
-  items: iOrder[] = [];
+  show: boolean = false;
+  orders: iOrder[] = [];
 
-  constructor(private MenuSvc: MenuService) {}
+  constructor(private CartSvc: CartService) {}
 
   ngOnInit() {
-    this.MenuSvc.getAll().subscribe((data: any[]) => {
-      this.items = data;
-      console.log(this.items);
+    this.CartSvc.getAll().subscribe((data: any[]) => {
+      this.orders = data;
+      console.log(this.orders);
     });
   }
 }

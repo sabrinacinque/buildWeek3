@@ -1,15 +1,17 @@
-<div class="order-container text-light" *ngFor="let item of items">
-  <div class="order-card">
-    <h2>Order ID: {{ item.id }}</h2>
-    <div class="item-card">
-      <img [src]="item.img" alt="{{ item.titolo }}" />
-      <h3>{{ item.titolo }}</h3>
-      <p>{{ item.ingredienti }}</p>
-      <p>Category: {{ item.categoria }}</p>
-      <p>Price: {{ item.prezzo }} €</p>
-      <p>Quantity: {{ item.quantity }}</p>
+<div ngbAccordion>
+  <div ngbAccordionItem *ngFor="let order of orders">
+    <h2 ngbAccordionHeader>
+      <button ngbAccordionButton>
+        Order: {{ order.id }} (Total Cost: {{ order.totalCost }} €)
+      </button>
+    </h2>
+    <div ngbAccordionCollapse>
+      <div ngbAccordionBody *ngFor="let item of order.items">
+        <ng-template>
+          <h3>{{ item.titolo }}</h3>
+          <p>Quantity: {{ item.quantity }}</p></ng-template
+        >
+      </div>
     </div>
-    <h3>Total Cost: {{ item.totalCost }} €</h3>
   </div>
 </div>
-q

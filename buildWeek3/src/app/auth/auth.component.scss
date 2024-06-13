@@ -1,11 +1,5 @@
 #container{
   background-color: white;
-  height: 100%;
- background-image: url("../../assets/image/sfondo_per_area_riservata.webp");
- background-size: 100%;
- object-fit: contain;
- background-repeat: no-repeat;
- padding-top: 24em;
  }
 
  .card {
@@ -13,5 +7,8 @@
   width: 50%;
  }
 
+ .btn-color1 {
+  background-color: #99735e;
+  color: white;
+}
 
- 

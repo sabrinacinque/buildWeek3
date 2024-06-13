@@ -1,27 +1,13 @@
-<nav
-  class="navbar navbar-expand-sm navbar-dark bg-dark"
-  aria-label="Third navbar example"
->
+<nav class="navbar navbar-expand-sm navbar-dark bg-dark d-md-none" aria-label="Third navbar example">
   <div class="container-fluid">
-    <a class="navbar-brand" href="#">Expand at sm</a>
-    <button
-      (click)="show = !show"
-      class="navbar-toggler"
-      type="button"
-      data-bs-toggle="collapse"
-      data-bs-target="#navbarsExample03"
-      aria-controls="navbarsExample03"
-      aria-expanded="false"
-      aria-label="Toggle navigation"
-    >
+    <a class="navbar-brand ms-2" href="#">Sushi Order</a>
+    <button (click)="show = !show" class="navbar-toggler" type="button" data-bs-toggle="collapse"
+      data-bs-target="#navbarsExample03" aria-controls="navbarsExample03" aria-expanded="false"
+      aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
 
-    <div
-      class="collapse navbar-collapse"
-      [ngClass]="{ show: show }"
-      id="navbarsExample03"
-    >
+    <div class="collapse navbar-collapse" [ngClass]="{ show: show }" id="navbarsExample03">
       <ul class="navbar-nav me-auto mb-2 mb-sm-0">
         <li class="nav-item">
           <a class="nav-link active" aria-current="page" routerLink="">Home</a>
@@ -34,11 +20,7 @@
           <a class="btn text-light" id="dropdownBasic1" ngbDropdownToggle>
             Toggle dropdown
           </a>
-          <ul
-            ngbDropdownMenu
-            aria-labelledby="dropdownBasic1"
-            class="dropdown-menu"
-          >
+          <ul ngbDropdownMenu aria-labelledby="dropdownBasic1" class="dropdown-menu">
             <li><a ngbDropdownItem class="dropdown-item">Action</a></li>
             <li><a ngbDropdownItem class="dropdown-item">Another action</a></li>
             <li>

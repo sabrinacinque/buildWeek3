@@ -1,6 +1,7 @@
-<nav class="navbar navbar-expand-sm navbar-dark bg-dark d-md-none" aria-label="Third navbar example">
+<nav class="navbar navbar-expand-sm navbar-dark bg-dark d-md-none p-2" aria-label="Third navbar example">
   <div class="container-fluid">
-    <a class="navbar-brand ms-2" href="#">Sushi Order</a>
+    <img routerLink="" src="../../../assets/image/logo episushi bianco.svg" alt="Episushi Logo"
+      class="p-2 logo-episushi" />
     <button (click)="show = !show" class="navbar-toggler" type="button" data-bs-toggle="collapse"
       data-bs-target="#navbarsExample03" aria-controls="navbarsExample03" aria-expanded="false"
       aria-label="Toggle navigation">
@@ -8,9 +9,9 @@
     </button>
 
     <div class="collapse navbar-collapse" [ngClass]="{ show: show }" id="navbarsExample03">
-      <ul class="navbar-nav me-auto mb-2 mb-sm-0">
+      <ul class="navbar-nav me-auto mb-2 mb-sm-0 ms-3">
         <li class="nav-item" routerLinkActive="active">
-          <a class="nav-link" aria-current="page" routerLink="">Home</a>
+          <a class="nav-link" aria-current="page" routerLink="">Homepage</a>
         </li>
 
         <li class="nav-item" *ngIf="!isLogged">
@@ -30,41 +31,60 @@
           </a>
           <ul ngbDropdownMenu aria-labelledby="dropdownBasic1" class="dropdown-menu p-0 bg-dark">
             <li>
-              <a routerLink="/menu/antipasti" routerLinkActive="active" class="list-group-item list-group-item-action bg-dark text-light">Antipasti</a>
+              <a routerLink="/menu/antipasti" routerLinkActive="active"
+                class="list-group-item list-group-item-action bg-dark text-light">Antipasti</a>
             </li>
             <li>
-              <a routerLink="/menu/zuppe" routerLinkActive="active" class="list-group-item list-group-item-action bg-dark text-light">Zuppe</a>
+              <a routerLink="/menu/zuppe" routerLinkActive="active"
+                class="list-group-item list-group-item-action bg-dark text-light">Zuppe</a>
             </li>
             <li>
-              <a routerLink="/menu/primi" routerLinkActive="active" class="list-group-item list-group-item-action bg-dark text-light">Primi</a>
+              <a routerLink="/menu/primi" routerLinkActive="active"
+                class="list-group-item list-group-item-action bg-dark text-light">Primi</a>
             </li>
             <li>
-              <a routerLink="/menu/hosomaki" routerLinkActive="active" class="list-group-item list-group-item-action bg-dark text-light">Hosomaki</a>
+              <a routerLink="/menu/hosomaki" routerLinkActive="active"
+                class="list-group-item list-group-item-action bg-dark text-light">Hosomaki</a>
             </li>
             <li>
-              <a routerLink="/menu/uramaki" routerLinkActive="active" class="list-group-item list-group-item-action bg-dark text-light">Uramaki</a>
+              <a routerLink="/menu/uramaki" routerLinkActive="active"
+                class="list-group-item list-group-item-action bg-dark text-light">Uramaki</a>
             </li>
             <li>
-              <a routerLink="/menu/temaki" routerLinkActive="active" class="list-group-item list-group-item-action bg-dark text-light">Temaki</a>
+              <a routerLink="/menu/temaki" routerLinkActive="active"
+                class="list-group-item list-group-item-action bg-dark text-light">Temaki</a>
             </li>
             <li>
-              <a routerLink="/menu/sushi" routerLinkActive="active" class="list-group-item list-group-item-action bg-dark text-light">Sushi</a>
+              <a routerLink="/menu/sushi" routerLinkActive="active"
+                class="list-group-item list-group-item-action bg-dark text-light">Sushi</a>
             </li>
             <li>
-              <a routerLink="/menu/secondi" routerLinkActive="active" class="list-group-item list-group-item-action bg-dark text-light">Secondi</a>
+              <a routerLink="/menu/secondi" routerLinkActive="active"
+                class="list-group-item list-group-item-action bg-dark text-light">Secondi</a>
             </li>
             <li>
-              <a routerLink="/menu/dolci" routerLinkActive="active" class="list-group-item list-group-item-action bg-dark text-light">Dolci</a>
+              <a routerLink="/menu/dolci" routerLinkActive="active"
+                class="list-group-item list-group-item-action bg-dark text-light">Dolci</a>
             </li>
             <li>
-              <a routerLink="/menu/bibite" routerLinkActive="active" class="list-group-item list-group-item-action bg-dark text-light">Bibite</a>
+              <a routerLink="/menu/bibite" routerLinkActive="active"
+                class="list-group-item list-group-item-action bg-dark text-light">Bibite</a>
             </li>
             <li>
-              <a routerLink="/reviews" routerLinkActive="active" class="list-group-item list-group-item-action bg-dark text-light">Recensioni</a>
+              <a routerLink="/reviews" routerLinkActive="active"
+                class="list-group-item list-group-item-action bg-dark text-light">Recensioni</a>
             </li>
           </ul>
         </li>
       </ul>
+    </div>
+    <div *ngIf="isLogged" class="container_logout me-3" (click)="logout()">
+      <img id="logout_img" src="../../../assets/image/switch.svg" alt="Logout" />
+    </div>
+    <div *ngIf="isLogged" class="container_profile me-3">
+      <a routerLink="/profile" class="profile-icon-container text-white">
+        <i class="bi bi-person-circle" style="font-size: 1.5rem;"></i>
+      </a>
     </div>
   </div>
 </nav>

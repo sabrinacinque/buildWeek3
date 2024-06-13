@@ -48,7 +48,7 @@ export class AuthService {
     return this.http.post<iAuth>(this.registerUrl, newUser);
   }
 
-  login(user: Partial<User>) {
+  login(user: Partial<User>):Observable<iAuth> {
     return this.http.post<iAuth>(this.loginUrl, user).pipe(
       tap((res) => {
         this.authSubject.next(res.user);

@@ -40,7 +40,7 @@ export class AuthComponent {
 
 
 
-  login() {
+  login():void {
     if(this.userForm.invalid || this.userForm.untouched){
       Swal.fire({
         title: 'Attenzione! Email o Password Errati o non inseriti',
@@ -54,6 +54,12 @@ export class AuthComponent {
         text:"Login effettuato con successo!",
         icon: "success"});
       this.router.navigate(['/dashboard']);
+    }, (error) => {
+      Swal.fire({
+        title: 'Attenzione! Email o Password Errati o non inseriti',
+        text: 'Controlla i dati o registrati se non sei registrato',
+        icon: 'warning',
+      });
     });
   }}
 

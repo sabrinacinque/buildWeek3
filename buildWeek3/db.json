@@ -478,7 +478,7 @@
       "disponibile": true,
       "quantita": 1
     },
-        {
+    {
       "id": 54,
       "titolo": "Zuppa di udon",
       "ingredienti": "Zuppa di miso, shiitake, cipollotto, pasta udon, scaloppine di manzo e uovo sodo",
@@ -531,7 +531,7 @@
     {
       "id": 59,
       "titolo": "Ramen in zuppa di miso con germogli di soia",
-      "ingredienti": "Pasta di miso bianco, soba giapponesi, soba giapponesi, uova, cipollotto, brodo, funghi shitake, cipolla, alga nori, tofu, pak choi, sesamo bianco",
+      "ingredienti": "Pasta di miso bianco, soba giapponesi, soba giapponesi",
       "img": "ramen_germogli.webp",
       "categoria": "Zuppe",
       "prezzo": 6,

@@ -10,6 +10,7 @@ import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { NgbCarouselConfig, NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { InterceptorInterceptor } from './auth/interceptor.interceptor';
 import { CucinaComponent } from './pages/dashboard/cucina/cucina.component';
+import { NavbarSmallComponent } from './mainComponent/navbar-small/navbar-small.component';
 
 @NgModule({
   declarations: [
@@ -18,6 +19,7 @@ import { CucinaComponent } from './pages/dashboard/cucina/cucina.component';
     FooterComponent,
     HomepageComponent,
     CucinaComponent,
+    NavbarSmallComponent,
   ],
   imports: [BrowserModule, AppRoutingModule, HttpClientModule, NgbModule],
   providers: [],

@@ -26,3 +26,14 @@
   background-color: #99735e;
   color: white;
 }
+
+.table-responsive {
+  overflow-x: auto;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+  height: 500px;
+}
+
+.table-responsive::-webkit-scrollbar {
+  display: none;
+}

@@ -1,4 +1,10 @@
-.dropdown-menu ul{
-  border-radius: 30px !important;
+.dropdown-menu {
+  border-radius: 15px;
+  overflow: hidden;
+  border: 1px solid;
 }
 
+.dropdown-menu li {
+  border-bottom: 1PX solid gray;
+  padding: 5px 10px;
+}

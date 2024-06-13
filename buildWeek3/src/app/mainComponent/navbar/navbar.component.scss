@@ -81,6 +81,7 @@
   background-color: #99735e !important;
   border-color: #99735e !important;
 }
+
 .container_logout, .container_profile {
   display: inline-block;
   width: 40px;
@@ -89,7 +90,6 @@
   justify-content: center;
   align-items: center;
 }
-
 
 #logout_img {
   width: 30px;
@@ -110,4 +110,22 @@
 
 .profile-icon-container i {
   font-size: 1.5rem;
+}
+
+/* Media query per schermi medi e più piccoli */
+@media (max-width: 568px) {
+  .d-flex.justify-content-between.align-items-center {
+    flex-direction: row;
+  }
+  .container_logout, .container_profile {
+    order: 2;
+  }
+  .sidebar-heading {
+    order: 1;
+    flex: 1 0 100%;
+    text-align: center;
+  }
+  .profile-icon-container {
+    margin-left: 0;
+  }
 }

@@ -27,6 +27,14 @@
   color: white;
 }
 
+img {
+  object-fit: contain;
+}
+
+tr {
+  vertical-align: middle;
+}
+
 .table-responsive {
   overflow-x: auto;
   overflow-y: auto;

@@ -12,10 +12,15 @@
         <li class="nav-item">
           <a class="nav-link active" aria-current="page" routerLink="">Home</a>
         </li>
-        <li class="nav-item">
+
+        <li class="nav-item" *ngIf="!isLogged">
           <a class="nav-link" routerLink="auth">Area Riservata
-            <i *ngIf="!isLogged" class="bi bi-lock"></i>
-          <i *ngIf="isLogged" class="bi bi-unlock"></i>
+            <i class="bi bi-lock"></i>
+          </a>
+        </li>
+
+        <li class="nav-item" *ngIf="isLogged">
+          <a class="nav-link" routerLink="dashboard">Dashboard
           </a>
         </li>
 
@@ -56,9 +61,6 @@
             </li>
             <li>
               <a routerLink="/reviews" routerLinkActive="active" class="list-group-item list-group-item-action bg-dark text-light">Recensioni</a>
-            </li>
-            <li *ngIf="isLogged">
-              <a routerLink="/dashboard" routerLinkActive="active" class="list-group-item list-group-item-action bg-dark text-light">Dashboard</a>
             </li>
           </ul>
         </li>

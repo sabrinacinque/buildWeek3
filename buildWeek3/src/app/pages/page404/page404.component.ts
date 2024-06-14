@@ -13,6 +13,6 @@ export class Page404Component {
     // Dopo un ritardo di 5 secondi, reindirizza l'utente alla homepage
     setTimeout(() => {
       this.router.navigate(['']);
-    }, 5000);
+    }, 8000);
   }
 }

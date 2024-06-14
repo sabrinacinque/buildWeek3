@@ -20,11 +20,15 @@ export class AuthGuard {
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot
   ): Observable<boolean> | Promise<boolean> | boolean {
+    // Se l'utente è loggato, ritorna true
     const isLogged = !this.authSvc.isLogged;
     if (isLogged) {
+      // Se l'utente non è loggato, reindirizza alla pagina di login
       this.router.navigate(['**']);
+      // impedisci la navigazione
       return false;
     }
+    //permette la navigazione
     return true;
   }
 
@@ -32,6 +36,7 @@ export class AuthGuard {
     childRoute: ActivatedRouteSnapshot,
     state: RouterStateSnapshot
   ): MaybeAsync<GuardResult> {
+    // Riutilizza il metodo canActivate per controllare la navigazione dei figli
     return this.canActivate(childRoute, state);
   }
 }

@@ -26,38 +26,39 @@ export class AuthService {
   loginUrl = 'http://localhost:3000/login';
   registerUrl = 'http://localhost:3000/register'; // URL del tuo server JSON
 
-
   constructor(
     private http: HttpClient,
     private router: Router,
     private fb: FormBuilder
-  ) {}
+  ) {
+    this.restoreUser();
+  }
 
-  userForm!:FormGroup
+  userForm!: FormGroup;
 
-  getUserLogin():FormGroup{
+  getUserLogin(): FormGroup {
     this.userForm = this.fb.group({
       email: this.fb.control(null, [Validators.required, Validators.email]),
       password: this.fb.control(null, Validators.required),
-    })
-    return this.userForm
+    });
+    return this.userForm;
   }
-
 
   register(newUser: Partial<User>) {
     return this.http.post<iAuth>(this.registerUrl, newUser);
   }
 
-  login(user: Partial<User>):Observable<iAuth> {
+  login(user: Partial<User>): Observable<iAuth> {
     return this.http.post<iAuth>(this.loginUrl, user).pipe(
       tap((res) => {
         this.authSubject.next(res.user);
         localStorage.setItem('token', JSON.stringify(res));
+        this.autoLogout();
       })
     );
   }
 
-  logout () {
+  logout() {
     this.authSubject.next(null);
     localStorage.removeItem('token');
   }
@@ -71,12 +72,31 @@ export class AuthService {
     return tokenParsed;
   }
 
-  getAllUsers():Observable<User>{
-    return this.http.get<User>(this.loginUrl)
+  getAllUsers(): Observable<User> {
+    return this.http.get<User>(this.loginUrl);
   }
 
-  createNew(user:Partial<iLogin>, formData:FormGroup){
-    user.email=formData.value.email
-    user.password=formData.value.password
+  createNew(user: Partial<iLogin>, formData: FormGroup) {
+    user.email = formData.value.email;
+    user.password = formData.value.password;
+  }
+
+  restoreUser() {
+    const token = this.getAccessToken();
+    if (!token) return;
+    if (this.jwtToken.isTokenExpired(token.accessToken)) return;
+
+    this.authSubject.next(token.user);
+    this.autoLogout();
+  }
+
+  autoLogout() {
+    const token = this.getAccessToken();
+    if (!token) return;
+    const expDate = this.jwtToken.getTokenExpirationDate(
+      token.accessToken
+    ) as Date;
+    const expMs = expDate.getTime() - new Date().getTime();
+    setTimeout(this.logout, expMs);
   }
 }

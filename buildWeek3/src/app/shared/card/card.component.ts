@@ -1,4 +1,10 @@
-import { Component, OnInit, Input, ViewChild, TemplateRef } from '@angular/core';
+import {
+  Component,
+  OnInit,
+  Input,
+  ViewChild,
+  TemplateRef,
+} from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { MenuService } from '../../menu.service';
 import { iMenu } from '../../Models/i-menu';
@@ -6,7 +12,6 @@ import { HttpClient } from '@angular/common/http';
 import { CartService } from '../../cart.service';
 import Swal from 'sweetalert2';
 import { Router } from '@angular/router';
-
 
 @Component({
   selector: 'app-card',
@@ -25,7 +30,6 @@ export class CardComponent implements OnInit {
 
   @ViewChild('cartModal') cartModal!: TemplateRef<any>;
 
-
   constructor(
     private menuSvc: MenuService,
     private modalService: NgbModal,
@@ -36,34 +40,39 @@ export class CardComponent implements OnInit {
 
   ngOnInit() {
     if (this.category) {
-      this.menuSvc.getByCategoryAndAvailability(this.category, this.availability).subscribe((items) => {
-        this.menu = items.map(item => ({ ...item, quantity: 1 }));
-      });
+      this.menuSvc
+        .getByCategoryAndAvailability(this.category, this.availability)
+        .subscribe((items) => {
+          this.menu = items.map((item) => ({ ...item, quantity: 1 }));
+        });
     }
-    this.cartSvc.cartItems$.subscribe(items => {
+    this.cartSvc.cartItems$.subscribe((items) => {
       this.cartItems = items;
     });
   }
 
   sendOrder() {
-    const order = { items: this.cartItems, totalCost: this.cartSvc.getTotalCost() };
+    // Prepara l'ordine con gli elementi nel carrello e il costo totale
+    const order = {
+      items: this.cartItems,
+      totalCost: this.cartSvc.getTotalCost(),
+    };
     this.http.post(this.apiUrl, order).subscribe(() => {
-      this.cartSvc.clearCart();
-      this.modalService.dismissAll();
+      this.cartSvc.clearCart(); // Svuota il carrello
+      this.modalService.dismissAll(); // Chiude tutti i modali aperti
 
       // Mostra l'alert con SweetAlert
       Swal.fire({
         title: 'Ordine Inviato',
         text: 'Il tuo ordine è stato inviato con successo!',
         icon: 'success',
-        confirmButtonText: 'OK'
+        confirmButtonText: 'OK',
       }).then(() => {
         // Reindirizza alla homepage dopo aver chiuso l'alert
         this.router.navigate(['/homepage']);
       });
     });
   }
-
 
   incrementQuantity(item: iMenu) {
     item.quantity++;
@@ -84,6 +93,7 @@ export class CardComponent implements OnInit {
   }
 
   openCart(content: TemplateRef<any>) {
+    // Apre il modal del carrello
     this.modalService.open(content, { ariaLabelledBy: 'modal-basic-title' });
   }
 
@@ -100,6 +110,7 @@ export class CardComponent implements OnInit {
   }
 
   showToastMessage() {
+    // Mostra un messaggio toast per 3 secondi
     this.showToast = true;
     setTimeout(() => {
       this.showToast = false;
@@ -107,6 +118,7 @@ export class CardComponent implements OnInit {
   }
 
   hideToast() {
+    // Nasconde il messaggio toast
     this.showToast = false;
   }
 }

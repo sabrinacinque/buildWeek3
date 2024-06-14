@@ -10,6 +10,7 @@ export class Page404Component {
   constructor(private router: Router) {}
 
   ngOnInit(): void {
+    // Dopo un ritardo di 5 secondi, reindirizza l'utente alla homepage
     setTimeout(() => {
       this.router.navigate(['']);
     }, 5000);

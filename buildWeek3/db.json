@@ -1198,6 +1198,23 @@
       ],
       "totalCost": 20,
       "id": 9
+    },
+    {
+      "items": [
+        {
+          "id": 25,
+          "titolo": "Uramaki Ebi",
+          "ingredienti": "Riso, gamberi, avocado, cetriolo",
+          "img": "manhattan.png",
+          "categoria": "Uramaki",
+          "prezzo": 8,
+          "disponibile": true,
+          "quantita": 1,
+          "quantity": 1
+        }
+      ],
+      "totalCost": 8,
+      "id": 10
     }
   ]
 }

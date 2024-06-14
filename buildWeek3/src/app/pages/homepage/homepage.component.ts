@@ -13,6 +13,7 @@ import {
   styleUrls: ['./homepage.component.scss'],
 })
 export class HomepageComponent implements AfterViewInit {
+  //Utilizzo di ViewChildren per ottenere una QueryList di elementi
   @ViewChildren('animatedElementRight')
   animatedElementsRight!: QueryList<ElementRef>;
   @ViewChildren('animatedElementLeft')
@@ -21,6 +22,7 @@ export class HomepageComponent implements AfterViewInit {
   animatedElementsRotate!: QueryList<ElementRef>;
 
   ngAfterViewInit() {
+    // Per ogni elemento nella QueryList, osservare l'elemento e aggiungere la classe di animazione
     this.animatedElementsRight.forEach((elementRef) => {
       this.observeElement(elementRef.nativeElement, 'fade-in-right');
     });
@@ -32,9 +34,10 @@ export class HomepageComponent implements AfterViewInit {
       this.observeElement(elementRef.nativeElement, 'img-sushilight');
     });
   }
-
+  // Funzione per osservare un elemento e aggiungere una classe di animazione
   observeElement(element: Element, animationClass: string) {
     const observer = new IntersectionObserver((entries) => {
+      // Per ogni entry, se l'elemento è visibile, aggiungere la classe di animazione e smettere di osservare l'elemento
       entries.forEach((entry) => {
         if (entry.isIntersecting) {
           entry.target.classList.add(animationClass);

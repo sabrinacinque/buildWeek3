@@ -6,12 +6,11 @@ import { NgbCarouselConfig } from '@ng-bootstrap/ng-bootstrap';
   selector: 'app-profile',
   templateUrl: './profile.component.html',
   styleUrls: ['./profile.component.scss'],
-  providers: [NgbCarouselConfig]
+  providers: [NgbCarouselConfig],
 })
 export class ProfileComponent {
   constructor(config: NgbCarouselConfig) {
-    // customize default values of carousels used by this component here,
-    // if not specified, values from defaults would be used.
+    // Personalizza i valori predefiniti dei carousel
     config.interval = 2000;
     config.wrap = true;
     config.keyboard = false;

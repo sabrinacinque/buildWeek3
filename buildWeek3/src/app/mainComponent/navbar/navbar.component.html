@@ -1,6 +1,8 @@
 <div class="sidebar bg-dark vh-100" id="sidebar-wrapper">
   <div class="d-flex justify-content-between align-items-center flex-wrap">
-    <div class="sidebar-heading text-light fs-3">Sushi Order</div>
+
+    <img routerLink="" src="../../../assets/image/logo episushi bianco.svg" alt="Episushi Logo" class="p-2" />
+
     <div class="d-flex align-items-center ms-3 mb-3">
       <div *ngIf="isLogged" class="container_logout me-3" (click)="logout()">
         <img id="logout_img" src="../../../assets/image/switch.svg" alt="Logout" />
@@ -13,90 +15,33 @@
     </div>
   </div>
   <div class="list-group list-group-flush">
-    <a
-      routerLink=""
-      class="list-group-item list-group-item-action bg-dark text-light"
-      >Homepage</a
-    >
-    <a
-      routerLink="/menu/antipasti"
-      routerLinkActive="active"
-      class="list-group-item list-group-item-action bg-dark text-light"
-      >Antipasti</a
-    >
-    <a
-      routerLink="/menu/zuppe"
-      routerLinkActive="active"
-      class="list-group-item list-group-item-action bg-dark text-light"
-      >Zuppe</a
-    >
-    <a
-      routerLink="/menu/primi"
-      routerLinkActive="active"
-      class="list-group-item list-group-item-action bg-dark text-light"
-      >Primi</a
-    >
-    <a
-      routerLink="/menu/hosomaki"
-      routerLinkActive="active"
-      class="list-group-item list-group-item-action bg-dark text-light"
-      >Hosomaki</a
-    >
-    <a
-      routerLink="/menu/uramaki"
-      routerLinkActive="active"
-      class="list-group-item list-group-item-action bg-dark text-light"
-      >Uramaki</a
-    >
-    <a
-      routerLink="/menu/temaki"
-      routerLinkActive="active"
-      class="list-group-item list-group-item-action bg-dark text-light"
-      >Temaki</a
-    >
-    <a
-      routerLink="/menu/sushi"
-      routerLinkActive="active"
-      class="list-group-item list-group-item-action bg-dark text-light"
-      >Sushi</a
-    >
-    <a
-      routerLink="/menu/secondi"
-      routerLinkActive="active"
-      class="list-group-item list-group-item-action bg-dark text-light"
-      >Secondi</a
-    >
-    <a
-      routerLink="/menu/dolci"
-      routerLinkActive="active"
-      class="list-group-item list-group-item-action bg-dark text-light"
-      >Dolci</a
-    >
-    <a
-      routerLink="/menu/bibite"
-      routerLinkActive="active"
-      class="list-group-item list-group-item-action bg-dark text-light"
-      >Bibite</a
-    >
-    <a
-      routerLink="/reviews"
-      routerLinkActive="active"
-      class="list-group-item list-group-item-action bg-dark text-light"
-      >Recensioni</a
-    >
-    <a
-      *ngIf="isLogged"
-      routerLink="/dashboard"
-      routerLinkActive="active"
-      class="list-group-item list-group-item-action bg-dark text-light"
-      >Dashboard</a
-    >
-    <a
-      routerLink="/auth"
-      routerLinkActive="active"
-      [ngClass]="{ 'd-none': isLogged }"
-      class="list-group-item list-group-item-action bg-dark text-light"
-      >Area Riservata
+    <a routerLink="" class="list-group-item list-group-item-action bg-dark text-light">Homepage</a>
+    <a routerLink="/menu/antipasti" routerLinkActive="active"
+      class="list-group-item list-group-item-action bg-dark text-light">Antipasti</a>
+    <a routerLink="/menu/zuppe" routerLinkActive="active"
+      class="list-group-item list-group-item-action bg-dark text-light">Zuppe</a>
+    <a routerLink="/menu/primi" routerLinkActive="active"
+      class="list-group-item list-group-item-action bg-dark text-light">Primi</a>
+    <a routerLink="/menu/hosomaki" routerLinkActive="active"
+      class="list-group-item list-group-item-action bg-dark text-light">Hosomaki</a>
+    <a routerLink="/menu/uramaki" routerLinkActive="active"
+      class="list-group-item list-group-item-action bg-dark text-light">Uramaki</a>
+    <a routerLink="/menu/temaki" routerLinkActive="active"
+      class="list-group-item list-group-item-action bg-dark text-light">Temaki</a>
+    <a routerLink="/menu/sushi" routerLinkActive="active"
+      class="list-group-item list-group-item-action bg-dark text-light">Sushi</a>
+    <a routerLink="/menu/secondi" routerLinkActive="active"
+      class="list-group-item list-group-item-action bg-dark text-light">Secondi</a>
+    <a routerLink="/menu/dolci" routerLinkActive="active"
+      class="list-group-item list-group-item-action bg-dark text-light">Dolci</a>
+    <a routerLink="/menu/bibite" routerLinkActive="active"
+      class="list-group-item list-group-item-action bg-dark text-light">Bibite</a>
+    <a routerLink="/reviews" routerLinkActive="active"
+      class="list-group-item list-group-item-action bg-dark text-light">Recensioni</a>
+    <a *ngIf="isLogged" routerLink="/dashboard" routerLinkActive="active"
+      class="list-group-item list-group-item-action bg-dark text-light">Dashboard</a>
+    <a routerLink="/auth" routerLinkActive="active" [ngClass]="{ 'd-none': isLogged }"
+      class="list-group-item list-group-item-action bg-dark text-light">Area Riservata
       <i *ngIf="!isLogged" class="bi bi-lock"></i>
       <i *ngIf="isLogged" class="bi bi-unlock"></i>
     </a>

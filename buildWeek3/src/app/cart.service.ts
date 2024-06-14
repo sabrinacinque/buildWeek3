@@ -15,7 +15,8 @@ export class CartService {
     return this.cartItemsSubject.value;
   }
 
-  addToCart(item: iMenu) {
+  addToCart(item: iMenu) {  //Questo metodo aggiunge un elemento al carrello. Se l'elemento è già presente nel carrello, incrementa la quantità. Altrimenti, aggiunge un nuovo elemento.
+                                                //Aggiorna il cartItemsSubject con il nuovo stato del carrello.
     const currentItems = this.cartItems;
     const cartItem = currentItems.find((ci) => ci.id === item.id);
     if (cartItem) {

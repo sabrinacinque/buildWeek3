@@ -11,13 +11,13 @@ export class MenuService {
 
   constructor(private http: HttpClient) {}
 
-  getAll() {
+  getAll() {  //Questo metodo effettua una richiesta GET all'URL di base per ottenere tutti gli elementi del menu. Restituisce un Observable di un array di iMenu.
     return this.http.get<iMenu[]>(this.apiUrl);
   }
 
 
 
-  getByCategoryAndAvailability(category: string, availability: boolean): Observable<iMenu[]> {
+  getByCategoryAndAvailability(category: string, availability: boolean): Observable<iMenu[]> {  //richiesta GET con parametri di query per filtrare gli elementi del menu in base alla categoria e alla disponibilità.
     const url = `${this.apiUrl}?categoria=${category}&disponibile=${availability}`;
     return this.http.get<iMenu[]>(url);
   }
@@ -27,7 +27,7 @@ export class MenuService {
   }
 
   create(newPizza:Partial<iMenu>){
-    return this.http.post<iMenu>(this.apiUrl, newPizza)
+    return this.http.post<iMenu>(this.apiUrl, newPizza) //metodo effettua una richiesta POST per creare un nuovo elemento del menu.
   }
 
   update(item:iMenu){

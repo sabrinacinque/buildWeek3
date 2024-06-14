@@ -46,8 +46,8 @@ export class CardComponent implements OnInit {
   }
 
   sendOrder() {
-    const order = { items: this.cartItems, totalCost: this.cartSvc.getTotalCost() };
-    this.http.post(this.apiUrl, order).subscribe(() => {
+    const order = { items: this.cartItems, totalCost: this.cartSvc.getTotalCost() }; // Metodo per inviare l'ordine. Invia i piatti del carrello tramite una richiesta POST,
+    this.http.post(this.apiUrl, order).subscribe(() => {  //quindi svuota il carrello e mostra una notifica di successo con SweetAlert. Dopo la conferma dell'alert, reindirizza l'utente alla homepage.
       this.cartSvc.clearCart();
       this.modalService.dismissAll();
 
@@ -65,17 +65,17 @@ export class CardComponent implements OnInit {
   }
 
 
-  incrementQuantity(item: iMenu) {
+  incrementQuantity(item: iMenu) {  // Metodo per incrementare la quantità di un piatto.
     item.quantity++;
   }
 
-  decrementQuantity(item: iMenu) {
+  decrementQuantity(item: iMenu) {  // Metodo per decrementare la quantità di un piatto.
     if (item.quantity > 0) {
       item.quantity--;
     }
   }
 
-  addToCart(item: iMenu) {
+  addToCart(item: iMenu) {  //Metodo per aggiungere un piatto al carrello. Se la quantità è maggiore di 0, aggiunge il piatto al carrello, reimposta la quantità a 1 e mostra una notifica.
     if (item.quantity > 0) {
       this.cartSvc.addToCart(item);
       item.quantity = 1;
@@ -83,30 +83,30 @@ export class CardComponent implements OnInit {
     }
   }
 
-  openCart(content: TemplateRef<any>) {
+  openCart(content: TemplateRef<any>) {  //Metodo per aprire il modal del carrello.
     this.modalService.open(content, { ariaLabelledBy: 'modal-basic-title' });
   }
 
-  getTotalCost(): number {
+  getTotalCost(): number {  //Metodo per ottenere il costo totale degli articoli nel carrello.
     return this.cartSvc.getTotalCost();
   }
 
-  clearCart() {
+  clearCart() { // Metodo per svuotare il carrello.
     this.cartSvc.clearCart();
   }
 
-  removeFromCart(item: iMenu) {
+  removeFromCart(item: iMenu) {  //Metodo per rimuovere un piatto dal carrello.
     this.cartSvc.removeFromCart(item);
   }
 
-  showToastMessage() {
+  showToastMessage() { //Metodo per mostrare una notifica toast.
     this.showToast = true;
     setTimeout(() => {
       this.showToast = false;
     }, 3000);
   }
 
-  hideToast() {
+  hideToast() {  // Metodo per nascondere la notifica toast.
     this.showToast = false;
   }
 }

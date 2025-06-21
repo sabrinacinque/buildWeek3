@@ -1,336 +1,370 @@
+<!-- Badge carrello fisso - sempre uguale su tutti i dispositivi -->
 <div class="row me-3 position-fixed position-absolute top-0 end-0 z-1">
   <div
     class="col-12 d-flex justify-content-end mt-4"
     *ngIf="cartItems.length > 0"
   >
+    <!-- Sempre solo icona dorata -->
     <button
-      class="btn btn-primary border border-none border-0 fs-5"
+      class="mobile-cart-floating"
       (click)="openCart(cartModal)"
     >
       <i class="bi bi-cart"></i>
-      Visualizza Ordine
-      <span class="badge bg-danger">{{ cartItems.length }}</span>
+      <span class="cart-floating-badge">{{ cartItems.length }}</span>
     </button>
   </div>
 </div>
 
+<!-- Grid delle card con design luxury uniforme -->
 <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 row-cols-xl-4 p-5">
   <div
     *ngFor="let item of menu"
     class="col mb-4 d-flex justify-content-center text-center mt-4"
   >
-    <div class="card h-100 d-flex flex-column p-2">
-      <img
-        [src]="'../../../assets/image/png/' + item.img"
-        class="card-img-top"
-        alt="..."
-      />
+    <!-- Card luxury glass con altezza uniforme -->
+    <div class="luxury-card h-100 d-flex flex-column" [class.unavailable]="!item.disponibile">
 
-      <h5 class="card-title fs-3">{{ item.titolo }}</h5>
-      <p class="card-text fs-4 fw-bold">
-        {{ item.prezzo | currency : "EUR" }}
-      </p>
-      <p class="card-text fs-4">{{ item.ingredienti }}</p>
-      <div class="card-body d-flex flex-column justify-content-end">
-        <div class="btn-group" role="group" aria-label="Basic example">
-          <button
-            (click)="decrementQuantity(item)"
-            type="button"
-            class="btn text-light"
-          >
-            <i class="bi bi-dash-circle-fill"></i>
-          </button>
-          <div
-            class="d-flex text-center justify-content-center align-items-center px-2 m-0 w-75"
-          >
-            <!-- 🔧 CAMBIATO: Usa getTempQuantity invece di item.quantity -->
-            <p class="m-0 p-0">Quantità: {{ getTempQuantity(item) }}</p>
-          </div>
-          <button
-            (click)="incrementQuantity(item)"
-            type="button"
-            class="btn text-light"
-          >
-            <i class="bi bi-plus-circle-fill"></i>
-          </button>
+      <!-- Container immagine con overlay -->
+      <div class="card-image-container">
+        <img
+          [src]="'../../../assets/image/png/' + item.img"
+          class="card-img-luxury"
+          alt="{{ item.titolo }}"
+        />
+
+        <!-- Badge prezzo dorato -->
+        <div class="price-badge-luxury">
+          {{ item.prezzo | currency : "EUR" }}
         </div>
 
-        <button class="btn mt-2 text-light" (click)="addToCart(item)">
-          <i class="bi bi-cart-plus"> Aggiungi al carrello</i>
-        </button>
+        <!-- Badge disponibilità -->
+        <div class="availability-badge" *ngIf="!item.disponibile">
+          <i class="bi bi-x-circle-fill"></i>
+          <span>Non disponibile</span>
+        </div>
+      </div>
+
+      <!-- Contenuto card che si espande -->
+      <div class="card-content-luxury flex-grow-1 d-flex flex-column">
+        <h5 class="card-title-luxury">{{ item.titolo }}</h5>
+        <p class="card-description-luxury flex-grow-1">{{ item.ingredienti }}</p>
+
+        <!-- Controlli sempre allineati al bottom -->
+        <div class="card-actions-luxury mt-auto">
+
+          <!-- Controlli quantità -->
+          <div class="quantity-controls-luxury">
+            <button
+              (click)="decrementQuantity(item)"
+              type="button"
+              class="qty-btn-luxury"
+              [disabled]="getTempQuantity(item) <= 1"
+            >
+              <i class="bi bi-dash"></i>
+            </button>
+
+            <div class="quantity-display-luxury">
+              <span class="qty-number">{{ getTempQuantity(item) }}</span>
+            </div>
+
+            <button
+              (click)="incrementQuantity(item)"
+              type="button"
+              class="qty-btn-luxury"
+            >
+              <i class="bi bi-plus"></i>
+            </button>
+          </div>
+
+          <!-- Solo icona carrello - sempre uguale -->
+          <button
+            class="add-to-cart-mobile"
+            (click)="addToCart(item)"
+            [disabled]="!item.disponibile">
+            <i class="bi bi-cart-plus"></i>
+          </button>
+        </div>
       </div>
     </div>
   </div>
 </div>
 
-
-<!-- Toast professionale per aggiunta al carrello -->
+<!-- Toast luxury per aggiunta al carrello -->
 <div class="toast-container position-fixed bottom-0 end-0 p-3">
   <div
-    class="toast"
+    class="toast-luxury"
     role="alert"
     aria-live="assertive"
     aria-atomic="true"
     [ngClass]="{ show: showToast }"
   >
-    <div class="toast-header bg-success text-white">
-      <i class="bi bi-cart-plus-fill me-2"></i>
-      <strong class="me-auto">Sushi Restaurant</strong>
-      <small>Ora</small>
+    <!-- Header dorato elegante -->
+    <div class="toast-header-luxury">
+      <div class="toast-icon-luxury">
+        <i class="bi bi-bag-check-fill"></i>
+      </div>
+      <div class="toast-content-text">
+        <strong class="toast-title-luxury">EpiSushi</strong>
+        <small class="toast-time-luxury">Ora</small>
+      </div>
       <button
         type="button"
-        class="btn-close btn-close-white"
+        class="toast-close-luxury"
         (click)="hideToast()"
         aria-label="Close"
-      ></button>
+      >
+        <i class="bi bi-x"></i>
+      </button>
     </div>
-    <div class="toast-body bg-success text-white">
-      <i class="bi bi-check-circle me-2"></i>
-      Piatto aggiunto al carrello con successo!
+
+    <!-- Body elegante -->
+    <div class="toast-body-luxury">
+      <div class="success-content">
+        <div class="success-icon">
+          <i class="bi bi-check-circle-fill"></i>
+        </div>
+        <div class="success-text">
+          <span>Piatto aggiunto al carrello!</span>
+        </div>
+      </div>
     </div>
   </div>
 </div>
 
-<!-- 🆕 NUOVO: Toast di successo ordine - CARINO -->
+<!-- Toast luxury di successo ordine -->
 <div class="toast-container position-fixed top-50 start-50 translate-middle p-3" style="z-index: 9999;">
   <div
-    class="toast shadow-lg border-0"
+    class="success-toast-luxury"
     role="alert"
     aria-live="assertive"
     aria-atomic="true"
     [ngClass]="{ show: showSuccessToast }"
-    style="min-width: 400px;"
   >
-    <!-- Header semplice -->
-    <div class="toast-header bg-gradient text-white justify-content-between p-2" style="background: linear-gradient(135deg, #28a745, #20c997);">
-      <strong class="fs-5 text-dark">Ordine Inviato!</strong>
+    <!-- Header success luxury -->
+    <div class="success-header-luxury">
+      <div class="success-icon-header">
+        <i class="bi bi-check-circle-fill"></i>
+      </div>
+      <strong class="success-title">Ordine Inviato!</strong>
       <button
         type="button"
-        class="btn-close btn-close-white"
+        class="success-close-btn"
         (click)="hideSuccessToast()"
         aria-label="Close"
-      ></button>
+      >
+        <i class="bi bi-x"></i>
+      </button>
     </div>
 
-    <!-- Body con fila di sushi -->
-    <div class="toast-body bg-white p-4 text-center">
-      <!-- FILA DI PICCOLI SUSHI -->
-      <div class="mb-4 d-flex justify-content-center align-items-center flex-wrap gap-2">
+    <!-- Body success luxury con sushi animati -->
+    <div class="success-body-luxury">
+      <!-- Fila di sushi dorati -->
+      <div class="sushi-parade">
         <img
           src="../../../assets/image/sushi icon.svg"
           alt="Sushi"
-          style="width: 40px; height: 40px;"
-          class="sushi-float-1"
+          class="sushi-icon sushi-float-1"
         />
         <img
           src="../../../assets/image/sushi icon.svg"
           alt="Sushi"
-          style="width: 40px; height: 40px;"
-          class="sushi-float-2"
+          class="sushi-icon sushi-float-2"
         />
         <img
           src="../../../assets/image/sushi icon.svg"
           alt="Sushi"
-          style="width: 40px; height: 40px;"
-          class="sushi-float-3"
+          class="sushi-icon sushi-float-3"
         />
         <img
           src="../../../assets/image/sushi icon.svg"
           alt="Sushi"
-          style="width: 40px; height: 40px;"
-          class="sushi-float-4"
-        />
-        <img
-          src="../../../assets/image/sushi icon.svg"
-          alt="Sushi"
-          style="width: 40px; height: 40px;"
-          class="sushi-float-5"
-        />
-        <img
-          src="../../../assets/image/sushi icon.svg"
-          alt="Sushi"
-          style="width: 40px; height: 40px;"
-          class="sushi-float-6"
+          class="sushi-icon sushi-float-4"
         />
       </div>
 
-      <div class="mb-3">
-        <i class="bi bi-check-circle-fill text-success fs-1"></i>
+      <div class="success-check-icon">
+        <i class="bi bi-check-circle-fill"></i>
       </div>
 
-      <h5 class="mb-2 text-dark">Il tuo ordine è stato inviato alla cucina!</h5>
-      <p class="text-muted mb-3">
+      <h5 class="success-message">Il tuo ordine è in cucina!</h5>
+      <p class="success-description">
         <i class="bi bi-clock me-1"></i>
-        Sarà pronto tra pochi minuti.
+        Sarà pronto tra pochi minuti
       </p>
 
-      <div class="d-flex justify-content-center align-items-center">
-        <span class="badge bg-success-subtle text-success px-4 py-2 fs-6">
-          <i class="bi bi-chef-hat me-2"></i>
-          In preparazione...
-        </span>
+      <div class="success-badge">
+        <i class="bi bi-chef-hat me-2"></i>
+        In preparazione...
       </div>
     </div>
   </div>
 </div>
 
-<!-- 🆕 NUOVO: Toast di errore ordine - CARINO -->
+<!-- Toast luxury di errore -->
 <div class="toast-container position-fixed top-50 start-50 translate-middle p-3" style="z-index: 9999;">
   <div
-    class="toast shadow-lg border-0"
+    class="error-toast-luxury"
     role="alert"
     aria-live="assertive"
     aria-atomic="true"
     [ngClass]="{ show: showErrorToast }"
-    style="min-width: 350px;"
   >
-    <!-- Header errore -->
-    <div class="toast-header bg-gradient text-white p-3" style="background: linear-gradient(135deg, #dc3545, #e74c3c);">
-      <i class="bi bi-exclamation-triangle-fill me-3 fs-4"></i>
-      <strong class="me-auto fs-5">Errore Ordine</strong>
+    <!-- Header error luxury -->
+    <div class="error-header-luxury">
+      <div class="error-icon-header">
+        <i class="bi bi-exclamation-triangle-fill"></i>
+      </div>
+      <strong class="error-title">Errore Ordine</strong>
       <button
         type="button"
-        class="btn-close btn-close-white"
+        class="error-close-btn"
         (click)="hideErrorToast()"
         aria-label="Close"
-      ></button>
+      >
+        <i class="bi bi-x"></i>
+      </button>
     </div>
 
-    <!-- Body errore -->
-    <div class="toast-body bg-white p-4 text-center">
-      <div class="mb-3">
-        <i class="bi bi-x-circle-fill text-danger display-4"></i>
+    <!-- Body error luxury -->
+    <div class="error-body-luxury">
+      <div class="error-icon-main">
+        <i class="bi bi-x-circle-fill"></i>
       </div>
-      <h6 class="mb-2 text-dark">Ops! Qualcosa è andato storto</h6>
-      <p class="text-muted small mb-3">
+      <h6 class="error-message">Ops! Qualcosa è andato storto</h6>
+      <p class="error-description">
         Non siamo riusciti a inviare il tuo ordine alla cucina.
       </p>
-      <div class="d-flex justify-content-center align-items-center">
-        <span class="badge bg-danger-subtle text-danger px-3 py-2">
-          <i class="bi bi-arrow-repeat me-1"></i>
-          Riprova tra poco
-        </span>
+      <div class="error-badge">
+        <i class="bi bi-arrow-repeat me-1"></i>
+        Riprova tra poco
       </div>
     </div>
   </div>
 </div>
 
-<!-- Modal del Carrello -->
+<!-- Modal carrello luxury -->
 <ng-template #cartModal let-modal>
-  <div class="modal-header d-flex justify-content-between">
-    <h4 class="modal-title">Il tuo carrello</h4>
-    <button
-      type="button"
-      class="close btn"
-      aria-label="Close"
-      (click)="modal.dismiss('Cross click')"
-    >
-      <span aria-hidden="true">&times;</span>
-    </button>
-  </div>
-
-  <div class="modal-body">
-    <!-- Carrello vuoto -->
-    <div *ngIf="cartItems.length === 0" class="text-center py-4">
-      <i class="bi bi-cart-x display-1 text-muted"></i>
-      <p class="mt-3 text-muted">Il carrello è vuoto.</p>
+  <div class="modal-content-luxury">
+    <!-- Header dorato -->
+    <div class="modal-header-luxury">
+      <div class="modal-title-container">
+        <div class="cart-icon-luxury">
+          <i class="bi bi-bag-fill"></i>
+        </div>
+        <h4 class="modal-title-luxury">Il tuo carrello</h4>
+      </div>
+      <button
+        type="button"
+        class="modal-close-luxury"
+        aria-label="Close"
+        (click)="modal.dismiss('Cross click')"
+      >
+        <i class="bi bi-x"></i>
+      </button>
     </div>
 
-    <!-- Carrello con items -->
-    <div *ngIf="cartItems.length > 0">
-      <!-- Header tabella -->
-      <div class="row fw-bold border-bottom pb-2 mb-3">
-        <div class="col-5">Piatto</div>
-        <div class="col-3 text-center">Quantità</div>
-        <div class="col-2 text-center">Prezzo</div>
-        <div class="col-2 text-center">Azioni</div>
+    <div class="modal-body-luxury">
+      <!-- Carrello vuoto -->
+      <div *ngIf="cartItems.length === 0" class="empty-cart-luxury">
+        <div class="empty-cart-icon">
+          <i class="bi bi-cart-x"></i>
+        </div>
+        <h5 class="empty-cart-title">Il carrello è vuoto</h5>
+        <p class="empty-cart-text">Aggiungi qualche delizioso piatto sushi!</p>
       </div>
 
-      <!-- Items del carrello -->
-      <div class="row align-items-center py-2 border-bottom" *ngFor="let item of cartItems">
-        <!-- Nome piatto -->
-        <div class="col-5">
-          <strong>{{ item.titolo }}</strong>
-          <br>
-          <small class="text-muted">{{ item.prezzo | currency : "EUR" }} cad.</small>
+      <!-- Carrello con items -->
+      <div *ngIf="cartItems.length > 0" class="cart-items-container">
+        <!-- Header tabella elegante -->
+        <div class="cart-header-luxury">
+          <div class="header-item">Piatto</div>
+          <div class="header-qty">Quantità</div>
+          <div class="header-price">Prezzo</div>
+          <div class="header-actions">Azioni</div>
         </div>
 
-        <!-- Controlli quantità -->
-        <div class="col-3">
-          <div class="d-flex align-items-center justify-content-center">
+        <!-- Items del carrello con design luxury -->
+        <div class="cart-item-luxury" *ngFor="let item of cartItems">
+          <!-- Info piatto -->
+          <div class="item-info">
+            <div class="item-name">{{ item.titolo }}</div>
+            <div class="item-unit-price">{{ item.prezzo | currency : "EUR" }} cad.</div>
+          </div>
+
+          <!-- Controlli quantità luxury -->
+          <div class="item-quantity">
+            <div class="qty-controls-luxury">
+              <button
+                type="button"
+                class="qty-btn-cart"
+                (click)="decrementCartQuantity(item)"
+                [disabled]="item.quantity <= 1"
+              >
+                <i class="bi bi-dash"></i>
+              </button>
+
+              <span class="qty-display-cart">{{ item.quantity }}</span>
+
+              <button
+                type="button"
+                class="qty-btn-cart"
+                (click)="incrementCartQuantity(item)"
+              >
+                <i class="bi bi-plus"></i>
+              </button>
+            </div>
+          </div>
+
+          <!-- Prezzo totale item -->
+          <div class="item-total-price">
+            {{ (item.prezzo * item.quantity) | currency : "EUR" }}
+          </div>
+
+          <!-- Pulsante elimina luxury -->
+          <div class="item-actions">
             <button
               type="button"
-              class="btn btn-secondary btn-sm me-2"
-              (click)="decrementCartQuantity(item)"
-              [disabled]="item.quantity <= 1"
+              class="remove-btn-luxury"
+              (click)="removeFromCart(item)"
+              title="Rimuovi dal carrello"
             >
-              <i class="bi bi-dash"></i>
-            </button>
-
-            <span class="mx-2 fw-bold">{{ item.quantity }}</span>
-
-            <button
-              type="button"
-              class="btn btn-secondary btn-sm ms-2"
-              (click)="incrementCartQuantity(item)"
-            >
-              <i class="bi bi-plus"></i>
+              <i class="bi bi-trash3"></i>
             </button>
           </div>
         </div>
 
-        <!-- Prezzo totale item -->
-        <div class="col-2 text-center">
-          <strong>{{ (item.prezzo * item.quantity) | currency : "EUR" }}</strong>
-        </div>
+        <!-- Divisore elegante -->
+        <div class="cart-divider-luxury"></div>
 
-        <!-- Pulsante elimina -->
-        <div class="col-2 text-center">
-          <button
-            type="button"
-            class="btn btn-secondary btn-sm"
-            (click)="removeFromCart(item)"
-            title="Rimuovi dal carrello"
-          >
-            <i class="bi bi-trash"></i>
-          </button>
-        </div>
-      </div>
-
-      <!-- Totale finale -->
-      <div class="row mt-4 pt-3 border-top">
-        <div class="col-8 text-end">
-          <h5 class="mb-0">Totale:</h5>
-        </div>
-        <div class="col-4 text-center">
-          <h5 class="mb-0 text-primary">
-            <strong>{{ getTotalCost() | currency : "EUR" }}</strong>
-          </h5>
+        <!-- Totale finale luxury -->
+        <div class="cart-total-luxury">
+          <div class="total-label">Totale:</div>
+          <div class="total-amount">{{ getTotalCost() | currency : "EUR" }}</div>
         </div>
       </div>
     </div>
-  </div>
 
-  <!-- Footer con pulsanti azione -->
-  <div class="modal-footer d-flex justify-content-between">
-    <button
-      type="button"
-      class="btn btn-secondary"
-      (click)="clearCart(); modal.close()"
-      [disabled]="cartItems.length === 0"
-    >
-      <i class="bi bi-trash3"></i>
-      Svuota carrello
-    </button>
+    <!-- Footer con pulsanti luxury -->
+    <div class="modal-footer-luxury">
+      <button
+        type="button"
+        class="btn-luxury btn-secondary-luxury"
+        (click)="clearCart(); modal.close()"
+        [disabled]="cartItems.length === 0"
+      >
+        <i class="bi bi-trash3 me-2"></i>
+        Svuota carrello
+      </button>
 
-    <button
-      type="button"
-      class="btn btn-secondary"
-      (click)="sendOrder(); modal.close()"
-      [disabled]="cartItems.length === 0"
-    >
-      <i class="bi bi-send"></i>
-      Invia Ordine
-    </button>
+      <button
+        type="button"
+        class="btn-luxury btn-primary-luxury"
+        (click)="sendOrder(); modal.close()"
+        [disabled]="cartItems.length === 0"
+      >
+        <i class="bi bi-send me-2"></i>
+        Invia Ordine
+      </button>
+    </div>
   </div>
 </ng-template>

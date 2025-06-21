@@ -1,4 +1,4 @@
-/* bottom-nav.component.scss */
+/* bottom-nav.component.scss - LUXURY GOLD UPDATE */
 
 .bottom-nav {
   position: fixed;
@@ -6,11 +6,12 @@
   left: 0;
   right: 0;
   background: rgba(0, 0, 0, 0.95);
-  backdrop-filter: blur(10px);
-  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(15px);
+  border-top: 1px solid rgba(212, 175, 55, 0.3); // Bordo dorato sottile
   z-index: 1000;
   padding: 8px 0;
   transition: transform 0.3s ease;
+  box-shadow: 0 -4px 20px rgba(212, 175, 55, 0.1); // Ombra dorata sottile
 
   .nav-container {
     display: flex;
@@ -25,38 +26,44 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding: 8px 12px;
-    border-radius: 12px;
+    padding: 10px 12px;
+    border-radius: 16px; // Più arrotondato
     cursor: pointer;
-    transition: all 0.3s ease;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1); // Transizione più fluida
     position: relative;
     min-width: 60px;
     text-decoration: none;
 
     &:hover {
-      background: rgba(153, 115, 94, 0.2);
-      transform: translateY(-2px);
+      background: linear-gradient(135deg, rgba(212, 175, 55, 0.15), rgba(153, 115, 94, 0.15));
+      transform: translateY(-3px);
+      box-shadow: 0 8px 25px rgba(212, 175, 55, 0.2);
     }
 
     &.active {
-      background: rgba(153, 115, 94, 0.3);
+      background: linear-gradient(135deg, rgba(212, 175, 55, 0.25), rgba(153, 115, 94, 0.25));
+      box-shadow: 0 6px 20px rgba(212, 175, 55, 0.3);
+      border: 1px solid rgba(212, 175, 55, 0.4);
 
       .nav-icon {
-        color: #99735e;
-        transform: scale(1.1);
+        color: #d4af37; // Oro principale
+        transform: scale(1.15);
+        text-shadow: 0 0 8px rgba(212, 175, 55, 0.6);
       }
 
       .nav-label {
-        color: #99735e;
+        color: #d4af37;
         font-weight: 600;
+        text-shadow: 0 0 4px rgba(212, 175, 55, 0.4);
       }
     }
 
     .nav-icon {
-      font-size: 1.4rem;
-      color: #ffffff;
+      font-size: 1.5rem; // Leggermente più grandi
+      color: #d4af37; // ORO di default invece di bianco!
       margin-bottom: 4px;
-      transition: all 0.3s ease;
+      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+      filter: drop-shadow(0 0 4px rgba(212, 175, 55, 0.3));
     }
 
     .nav-label {
@@ -64,7 +71,7 @@
       color: #ffffff;
       text-align: center;
       font-weight: 500;
-      transition: all 0.3s ease;
+      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
       line-height: 1;
     }
   }
@@ -78,19 +85,21 @@
 
     .cart-badge {
       position: absolute;
-      top: -8px;
-      right: -8px;
-      background: #ff4757;
-      color: white;
+      top: -10px;
+      right: -10px;
+      background: linear-gradient(135deg, #d4af37, #b8941f); // Gradient dorato
+      color: #000;
       border-radius: 50%;
-      width: 18px;
-      height: 18px;
+      width: 20px;
+      height: 20px;
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 0.6rem;
-      font-weight: bold;
+      font-size: 0.65rem;
+      font-weight: 700;
       border: 2px solid rgba(0, 0, 0, 0.95);
+      box-shadow: 0 2px 8px rgba(212, 175, 55, 0.5);
+      animation: pulse-gold 2s infinite; // Animazione pulsante
     }
   }
 
@@ -102,60 +111,146 @@
       left: 50%;
       transform: translateX(-50%);
       background: rgba(0, 0, 0, 0.95);
-      backdrop-filter: blur(15px);
-      border: 1px solid rgba(255, 255, 255, 0.1);
-      border-radius: 16px;
-      padding: 16px;
-      margin-bottom: 8px;
+      backdrop-filter: blur(20px);
+      border: 1px solid rgba(212, 175, 55, 0.3);
+      border-radius: 20px;
+      padding: 20px;
+      margin-bottom: 12px;
       opacity: 0;
       visibility: hidden;
-      transition: all 0.3s ease;
-      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
-      width: 280px;
+      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+      box-shadow: 0 15px 40px rgba(0, 0, 0, 0.6), 0 0 20px rgba(212, 175, 55, 0.2);
+      width: 300px;
       max-height: 70vh;
       overflow-y: auto;
+
+      // CORREZIONE: Impedisci che vada fuori dai bordi dello schermo
+      left: 50%;
+      right: auto;
+
+      // Se va troppo a sinistra, allinealo al bordo sinistro con margine
+      @media (max-width: 400px) {
+        left: 10px;
+        right: 10px;
+        width: calc(100vw - 20px);
+        max-width: 320px;
+        transform: translateX(0);
+
+        &.show {
+          transform: translateX(0) translateY(-15px);
+        }
+      }
+
+      // Per schermi più grandi ma dropdown ancora problematico
+      @media (min-width: 401px) and (max-width: 500px) {
+        // Calcola la posizione dinamicamente per evitare overflow
+        left: 50%;
+        transform: translateX(-50%);
+
+        // Se il dropdown va fuori a sinistra, spostalo
+        &.overflow-left {
+          left: 10px;
+          transform: translateX(0);
+        }
+
+        // Se va fuori a destra, spostalo
+        &.overflow-right {
+          left: auto;
+          right: 10px;
+          transform: translateX(0);
+        }
+
+        &.show {
+          &.overflow-left {
+            transform: translateX(0) translateY(-15px);
+          }
+
+          &.overflow-right {
+            transform: translateX(0) translateY(-15px);
+          }
+        }
+      }
 
       &.show {
         opacity: 1;
         visibility: visible;
-        transform: translateX(-50%) translateY(-10px);
+        transform: translateX(-50%) translateY(-15px);
       }
 
       .dropdown-grid {
         display: grid;
         grid-template-columns: 1fr 1fr;
-        gap: 8px;
+        gap: 12px; // Più spazio
 
         .dropdown-item {
           display: flex;
           align-items: center;
-          padding: 12px;
-          border-radius: 12px;
+          padding: 14px 12px;
+          border-radius: 16px;
           color: #ffffff;
           text-decoration: none;
-          transition: all 0.3s ease;
+          transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
           font-size: 0.85rem;
-          border: 1px solid rgba(255, 255, 255, 0.1);
+          border: 1px solid rgba(212, 175, 55, 0.2);
+          background: rgba(212, 175, 55, 0.05);
 
           &:hover {
-            background: rgba(153, 115, 94, 0.3);
-            color: #99735e;
-            transform: scale(1.02);
+            background: linear-gradient(135deg, rgba(212, 175, 55, 0.25), rgba(153, 115, 94, 0.25));
+            color: #d4af37;
+            transform: scale(1.05) translateY(-2px);
+            box-shadow: 0 8px 20px rgba(212, 175, 55, 0.3);
+            border-color: rgba(212, 175, 55, 0.5);
           }
 
           .category-emoji {
-            margin-right: 8px;
-            font-size: 1.2rem;
-            filter: drop-shadow(0 0 3px rgba(153, 115, 94, 0.5));
-            transition: all 0.3s ease;
+            margin-right: 10px;
+            font-size: 1.3rem;
+            filter: drop-shadow(0 0 6px rgba(212, 175, 55, 0.4));
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
           }
 
           &:hover .category-emoji {
-            transform: scale(1.1);
-            filter: drop-shadow(0 0 5px rgba(153, 115, 94, 0.8));
+            transform: scale(1.2) rotate(5deg);
+            filter: drop-shadow(0 0 10px rgba(212, 175, 55, 0.8));
           }
         }
       }
+
+      // Scrollbar personalizzata per dropdown
+      &::-webkit-scrollbar {
+        width: 6px;
+      }
+
+      &::-webkit-scrollbar-track {
+        background: rgba(0, 0, 0, 0.3);
+        border-radius: 10px;
+      }
+
+      &::-webkit-scrollbar-thumb {
+        background: linear-gradient(180deg, #d4af37, #b8941f);
+        border-radius: 10px;
+      }
+    }
+  }
+
+  // Stili specifici per logout button
+  .logout-item {
+    &:hover {
+      background: linear-gradient(135deg, rgba(255, 71, 87, 0.15), rgba(212, 175, 55, 0.15));
+
+      .nav-icon {
+        color: #ff4757; // Rosso per logout
+        transform: scale(1.15) rotate(-5deg);
+        text-shadow: 0 0 8px rgba(255, 71, 87, 0.6);
+      }
+
+      .nav-label {
+        color: #ff4757;
+      }
+    }
+
+    .nav-icon {
+      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
     }
   }
 
@@ -175,14 +270,16 @@
 @keyframes slideUp {
   from {
     transform: translateY(100%);
+    opacity: 0;
   }
   to {
     transform: translateY(0);
+    opacity: 1;
   }
 }
 
 .bottom-nav {
-  animation: slideUp 0.4s ease-out;
+  animation: slideUp 0.5s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 // Media queries per dispositivi più grandi
@@ -208,11 +305,11 @@
 @media (max-width: 360px) {
   .bottom-nav {
     .nav-item {
-      padding: 6px 8px;
-      min-width: 50px;
+      padding: 8px 10px;
+      min-width: 55px;
 
       .nav-icon {
-        font-size: 1.2rem;
+        font-size: 1.3rem;
       }
 
       .nav-label {
@@ -221,16 +318,36 @@
     }
 
     .nav-dropdown .menu-dropdown {
-      width: 250px;
+      width: 280px;
+      padding: 16px;
+      
 
       .dropdown-grid {
-        gap: 6px;
+        gap: 10px;
 
         .dropdown-item {
-          padding: 10px;
+          padding: 12px 10px;
           font-size: 0.8rem;
+
+          .category-emoji {
+            font-size: 1.2rem;
+          }
         }
       }
     }
+  }
+}
+
+// Effetto glow per stato attivo più pronunciato
+.nav-item.active .nav-icon {
+  animation: glow-pulse 3s ease-in-out infinite alternate;
+}
+
+@keyframes glow-pulse {
+  from {
+    text-shadow: 0 0 8px rgba(212, 175, 55, 0.6);
+  }
+  to {
+    text-shadow: 0 0 15px rgba(212, 175, 55, 0.9), 0 0 25px rgba(212, 175, 55, 0.4);
   }
 }

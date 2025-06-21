@@ -335,10 +335,12 @@
   max-width: 400px;
   overflow: hidden;
   transform: translateX(100%);
+  opacity: 0;
   transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 
   &.show {
     transform: translateX(0);
+    opacity: 1;
   }
 }
 
@@ -408,14 +410,15 @@
   align-items: center;
 }
 
-.success-icon {
+.success-icon-gold {
   width: 30px;
   height: 30px;
   margin-right: 12px;
 
   i {
     font-size: 1.5rem;
-    color: #28a745;
+    color: #d4af37;
+    text-shadow: 0 0 10px rgba(212, 175, 55, 0.6);
   }
 }
 
@@ -493,14 +496,14 @@
 
 .modal-body-luxury {
   padding: 25px;
-  max-height: 60vh;
+  max-height: 50vh; /* Ridotto da 60vh a 50vh per mobile */
   overflow-y: auto;
 }
 
 /* ===== CARRELLO VUOTO ===== */
 .empty-cart-luxury {
   text-align: center;
-  padding: 40px 20px;
+  padding: 30px 20px; /* Ridotto padding su mobile */
   color: #ffffff;
 }
 
@@ -737,18 +740,19 @@
   }
 }
 
-/* ===== SUCCESS TOAST LUXURY ===== */
-.success-toast-luxury {
+/* ===== SUCCESS TOAST LUXURY - FULL GOLD ===== */
+.success-toast-luxury-gold {
   background: linear-gradient(135deg,
     rgba(26, 26, 26, 0.95) 0%,
-    rgba(40, 167, 69, 0.9) 30%,
+    rgba(212, 175, 55, 0.9) 30%,
     rgba(26, 26, 26, 0.95) 100%);
   backdrop-filter: blur(20px);
-  border: 1px solid rgba(40, 167, 69, 0.4);
+  border: 1px solid rgba(212, 175, 55, 0.4);
   border-radius: 20px;
   box-shadow:
     0 20px 60px rgba(0, 0, 0, 0.6),
-    0 0 0 1px rgba(40, 167, 69, 0.2) inset;
+    0 0 0 1px rgba(212, 175, 55, 0.2) inset,
+    0 0 30px rgba(212, 175, 55, 0.3);
   min-width: 400px;
   max-width: 500px;
   overflow: hidden;
@@ -762,13 +766,14 @@
   }
 }
 
-.success-header-luxury {
+.success-header-luxury-gold {
   display: flex;
   align-items: center;
   justify-content: space-between;
   padding: 20px 25px;
-  background: linear-gradient(135deg, #28a745, #20c997);
-  color: white;
+  background: linear-gradient(135deg, #d4af37, #f4d03f);
+  color: #1a1a1a;
+  box-shadow: 0 0 20px rgba(212, 175, 55, 0.4);
 }
 
 .success-icon-header {
@@ -778,6 +783,7 @@
 
   i {
     font-size: 1.5rem;
+    color: #1a1a1a;
   }
 }
 
@@ -785,12 +791,13 @@
   flex: 1;
   font-size: 1.3rem;
   font-weight: 700;
+  color: #1a1a1a;
 }
 
 .success-close-btn {
   background: none;
   border: none;
-  color: white;
+  color: #1a1a1a;
   font-size: 1.3rem;
   cursor: pointer;
   padding: 5px;
@@ -798,7 +805,7 @@
   transition: all 0.3s ease;
 
   &:hover {
-    background: rgba(255, 255, 255, 0.2);
+    background: rgba(26, 26, 26, 0.2);
   }
 }
 
@@ -818,15 +825,16 @@
 .sushi-icon {
   width: 35px;
   height: 35px;
-  filter: drop-shadow(0 0 5px rgba(212, 175, 55, 0.5));
+  filter: drop-shadow(0 0 8px rgba(212, 175, 55, 0.8));
 }
 
-.success-check-icon {
+.success-check-icon-gold {
   margin-bottom: 15px;
 
   i {
     font-size: 3rem;
-    color: #28a745;
+    color: #d4af37;
+    text-shadow: 0 0 20px rgba(212, 175, 55, 0.8);
   }
 }
 
@@ -842,15 +850,17 @@
   margin-bottom: 20px;
 }
 
-.success-badge {
-  background: rgba(40, 167, 69, 0.2);
-  color: #28a745;
+.success-badge-gold {
+  background: rgba(212, 175, 55, 0.2);
+  color: #d4af37;
   padding: 10px 20px;
   border-radius: 20px;
-  border: 1px solid rgba(40, 167, 69, 0.3);
+  border: 1px solid rgba(212, 175, 55, 0.4);
   display: inline-flex;
   align-items: center;
   backdrop-filter: blur(5px);
+  box-shadow: 0 0 15px rgba(212, 175, 55, 0.3);
+  font-weight: 600;
 }
 
 /* ===== ERROR TOAST LUXURY ===== */
@@ -1021,10 +1031,32 @@
     }
   }
 
-  /* Modal responsive */
+  /* Modal responsive MIGLIORATO */
   .modal-content-luxury {
     margin: 10px;
     border-radius: 15px;
+    max-height: 90vh; /* Altezza massima per non uscire dallo schermo */
+    display: flex;
+    flex-direction: column;
+  }
+
+  .modal-body-luxury {
+    max-height: 45vh; /* Ancora più piccolo su mobile */
+    padding: 20px;
+    overflow-y: auto;
+    flex-shrink: 1; /* Può comprimersi se necessario */
+  }
+
+  .modal-footer-luxury {
+    padding: 15px;
+    gap: 10px;
+    flex-shrink: 0; /* Non si comprime mai */
+  }
+
+  .btn-luxury {
+    padding: 10px 18px;
+    font-size: 0.9rem;
+    min-width: 120px;
   }
 
   .cart-header-luxury {
@@ -1041,17 +1073,23 @@
     font-size: 1rem;
   }
 
-  /* Toast responsive */
+  /* Toast responsive MIGLIORATO */
   .toast-luxury {
     min-width: 280px;
     max-width: 320px;
+    margin-bottom: 80px; /* Spazio per bottom nav */
   }
 
-  .success-toast-luxury,
+  .success-toast-luxury-gold,
   .error-toast-luxury {
     min-width: 320px;
     max-width: 350px;
     margin: 0 15px;
+  }
+
+  /* Fix per viewport mobile */
+  .modal-content-luxury {
+    max-height: calc(100vh - 20px);
   }
 }
 

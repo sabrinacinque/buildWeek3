@@ -11,6 +11,7 @@ import { NgbCarouselConfig, NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { InterceptorInterceptor } from './auth/interceptor.interceptor';
 import { CucinaComponent } from './pages/dashboard/cucina/cucina.component';
 import { NavbarSmallComponent } from './mainComponent/navbar-small/navbar-small.component';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -21,7 +22,7 @@ import { NavbarSmallComponent } from './mainComponent/navbar-small/navbar-small.
     CucinaComponent,
     NavbarSmallComponent,
   ],
-  imports: [BrowserModule, AppRoutingModule, HttpClientModule, NgbModule],
+  imports: [BrowserModule, AppRoutingModule, HttpClientModule, NgbModule, FormsModule],
   providers: [],
   bootstrap: [AppComponent],
 })

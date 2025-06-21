@@ -1,38 +1,198 @@
-<div>
-  <h1 class="text-start ms-4 text-light">Ordini</h1>
-  <div ngbAccordion>
+<div class="container-fluid">
+  <!-- Header con controlli -->
+  <div class="d-flex justify-content-between align-items-center mb-4">
+    <h1 class="text-start ms-4 text-light">
+      <i class="bi bi-house-gear me-2"></i>{{ getPageTitle() }}
+    </h1>
+
+    <div class="d-flex align-items-center me-4 gap-3">
+      <!-- Filtro ordini -->
+      <div class="form-group">
+        <select
+          id="filtroOrdini"
+          class="form-select form-select-sm"
+          [(ngModel)]="filtroOrdini"
+          (change)="onFiltroChange()"
+          style="min-width: 150px;">
+          <option value="da_evadere">Da Evadere</option>
+          <option value="completati">Completati</option>
+          <option value="tutti">Tutti</option>
+        </select>
+      </div>
+
+      <!-- Indicatore di caricamento -->
+      <div *ngIf="loading" class="spinner-border text-light" role="status">
+        <span class="visually-hidden">Caricamento...</span>
+      </div>
+
+      <!-- Contatore ordini -->
+      <span class="badge fs-6" [ngClass]="getBadgeClass()">
+        <i class="bi bi-list-ul me-1"></i>{{ orders.length }} ordini
+      </span>
+
+      <!-- Pulsante refresh manuale -->
+      <button
+        class="btn btn-outline-light"
+        (click)="refreshOrders()"
+        [disabled]="loading"
+        title="Aggiorna ordini">
+        <i class="bi bi-arrow-clockwise"></i>
+      </button>
+    </div>
+  </div>
+
+  <!-- Messaggio di errore -->
+  <div *ngIf="error" class="alert alert-danger mx-4" role="alert">
+    <i class="bi bi-exclamation-triangle-fill me-2"></i>{{ error }}
+    <button type="button" class="btn-close float-end" (click)="error = ''"></button>
+  </div>
+
+  <!-- Messaggio quando non ci sono ordini -->
+  <div *ngIf="!loading && orders.length === 0 && !error" class="text-center py-5">
+    <div [ngSwitch]="filtroOrdini">
+      <div *ngSwitchCase="'da_evadere'">
+        <i class="bi bi-check-circle-fill text-success" style="font-size: 4rem;"></i>
+        <h3 class="text-light mt-3">Nessun ordine da evadere!</h3>
+        <p class="text-light-50">Tutti gli ordini sono stati completati. Ottimo lavoro! 🍣</p>
+      </div>
+      <div *ngSwitchCase="'completati'">
+        <i class="bi bi-inbox text-info" style="font-size: 4rem;"></i>
+        <h3 class="text-light mt-3">Nessun ordine completato</h3>
+        <p class="text-light-50">Non ci sono ancora ordini completati oggi.</p>
+      </div>
+      <div *ngSwitchDefault>
+        <i class="bi bi-inbox text-info" style="font-size: 4rem;"></i>
+        <h3 class="text-light mt-3">Nessun ordine presente</h3>
+        <p class="text-light-50">Non ci sono ordini nel sistema.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Lista ordini -->
+  <div ngbAccordion *ngIf="orders.length > 0">
     <div
       ngbAccordionItem
-      *ngFor="let order of orders"
+      *ngFor="let order of orders; trackBy: trackByOrderId"
       [ngStyle]="dynamicStyles"
-    >
+      [ngClass]="getOrderUrgencyClass(order.orderDate)"
+      class="mb-3 border rounded">
+
       <h2 ngbAccordionHeader>
-        <div class="d-flex justify-content-beetween flex-row-reverse ms-4">
-          <button ngbAccordionButton class="text-bg-dark">
+        <div class="d-flex justify-content-between align-items-center w-100 pe-3">
+          <!-- Contenuto principale header -->
+          <div class="d-flex align-items-center flex-grow-1">
+            <button ngbAccordionButton class="text-bg-dark border-0 flex-grow-1 text-start">
+              <div class="d-flex justify-content-between align-items-center">
+                <div>
+                  <span class="fw-bold">Ordine #{{ order.id }}</span>
+                  <span class="ms-2 text-light-50">{{ formatPrice(order.totalCost) }}</span>
+                  <span class="ms-2 badge bg-secondary">{{ order.items.length }} piatti</span>
+                </div>
+                <div class="text-end">
+                  <small class="text-light-50 d-block">{{ formatDate(order.orderDate) }}</small>
+                  <small class="text-warning">⏱️ {{ getTimeElapsed(order.orderDate) }}</small>
+                </div>
+              </div>
+            </button>
+          </div>
+
+          <!-- Toggle switch e icona di completamento -->
+          <div class="d-flex align-items-center ms-3">
+            <!-- Icona di verifica -->
             <span
               *ngIf="verificatoProperty[order.id]"
-              class="me-3 text-success fs-3"
-              ><i class="bi bi-patch-check-fill"></i
-            ></span>
-            Order: {{ order.id }} (Total Cost: {{ order.totalCost }} €)
-          </button>
+              class="me-3 text-success fs-3 animate__animated animate__bounceIn">
+              <i class="bi bi-patch-check-fill"></i>
+            </span>
 
-          <div class="form-check form-switch fs-5 d-flex align-items-center">
-            <input
-              class="form-check-input"
-              type="checkbox"
-              role="switch"
-              id="flexSwitchCheckDefault"
-              (click)="verificatoMethod(order.id)"
-            />
+            <!-- Switch per completare l'ordine -->
+            <div class="form-check form-switch fs-5" *ngIf="shouldShowToggle(order)">
+              <input
+                class="form-check-input"
+                type="checkbox"
+                role="switch"
+                [id]="'switch-' + order.id"
+                [checked]="verificatoProperty[order.id]"
+                [disabled]="verificatoProperty[order.id]"
+                (change)="verificatoMethod(order.id)"
+                title="Marca come completato" />
+              <label
+                class="form-check-label text-light ms-2"
+                [for]="'switch-' + order.id">
+                {{ verificatoProperty[order.id] ? 'Completato' : 'Completa' }}
+              </label>
+            </div>
+
+            <!-- Badge per ordini già completati -->
+            <div *ngIf="order.evaso && !shouldShowToggle(order)" class="badge bg-success fs-6">
+              <i class="bi bi-check-circle-fill me-1"></i>Completato
+            </div>
           </div>
         </div>
       </h2>
+
+      <!-- Dettagli ordine -->
       <div ngbAccordionCollapse>
-        <div ngbAccordionBody *ngFor="let item of order.items">
+        <div ngbAccordionBody>
           <ng-template>
-            <h3 class="fs-5 text-light">{{ item.titolo }}</h3>
-            <p class="m-0 fsBro text-light">Quantity: {{ item.quantity }}</p>
+            <div class="row">
+              <div class="col-12">
+                <h4 class="text-light mb-3">
+                  <i class="bi bi-receipt me-2"></i>Dettagli Ordine
+                </h4>
+
+                <!-- Lista piatti -->
+                <div class="list-group">
+                  <div
+                    *ngFor="let item of order.items"
+                    class="list-group-item d-flex justify-content-between align-items-center"
+                    style="background-color: rgba(255,255,255,0.1); border-color: rgba(255,255,255,0.2);">
+
+                    <div class="d-flex align-items-center">
+                      <span class="badge bg-primary rounded-pill me-3">{{ item.quantity }}</span>
+                      <div>
+                        <h6 class="mb-1 text-light">{{ item.titolo }}</h6>
+                        <small class="text-light-50">{{ formatPrice(item.prezzo) }} cad.</small>
+                      </div>
+                    </div>
+
+                    <div class="text-end">
+                      <span class="fw-bold text-light">
+                        {{ formatPrice(item.prezzo * item.quantity) }}
+                      </span>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Totale ordine -->
+                <div class="mt-3 p-3 bg-dark rounded">
+                  <div class="d-flex justify-content-between align-items-center">
+                    <span class="text-light fs-5">
+                      <i class="bi bi-calculator me-2"></i>Totale Ordine:
+                    </span>
+                    <span class="text-warning fs-3 fw-bold">
+                      {{ formatPrice(order.totalCost) }}
+                    </span>
+                  </div>
+                </div>
+
+                <!-- Informazioni aggiuntive -->
+                <div class="mt-3 row">
+                  <div class="col-md-6">
+                    <small class="text-light-50">
+                      <i class="bi bi-clock me-1"></i>
+                      Ricevuto: {{ formatDate(order.orderDate) }}
+                    </small>
+                  </div>
+                  <div class="col-md-6 text-end">
+                    <small class="text-light-50">
+                      <i class="bi bi-hourglass-split me-1"></i>
+                      Tempo di attesa: {{ getTimeElapsed(order.orderDate) }}
+                    </small>
+                  </div>
+                </div>
+              </div>
+            </div>
           </ng-template>
         </div>
       </div>

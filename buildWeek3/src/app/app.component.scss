@@ -1,1 +1,19 @@
+/* Aggiungi nel tuo styles.css o app.component.scss */
 
+.content-wrapper {
+  padding-bottom: 80px; /* Spazio per bottom nav su mobile */
+}
+
+/* Su desktop non serve padding */
+@media (min-width: 768px) {
+  .content-wrapper {
+    padding-bottom: 0;
+  }
+}
+
+/* Assicurati che il contenuto non vada sotto la bottom nav */
+@media (max-width: 767px) {
+  .min-vh-100 {
+    padding-bottom: 0;
+  }
+}

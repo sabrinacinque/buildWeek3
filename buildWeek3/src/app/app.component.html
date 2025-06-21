@@ -1,20 +1,26 @@
 <div class="d-flex flex-column min-vh-100">
-  <!-- Navbar orizzontale su mobile -->
-  <app-navbar-small class="d-md-none"></app-navbar-small>
-
   <!-- Contenuto principale -->
   <div class="row flex-grow-1 g-0">
-    <!-- Sidebar -->
+    <!-- Sidebar Desktop -->
     <div class="col-md-2 d-none d-md-block">
       <app-navbar class="h-100"></app-navbar>
     </div>
 
     <!-- Area contenuto -->
     <div class="col-12 col-md-10 bg-color">
-      <router-outlet></router-outlet>
+      <!-- Navbar mobile classica (manteniamo per ora come fallback) -->
+      <app-navbar-small class="d-md-none d-none"></app-navbar-small>
+
+      <!-- Contenuto principale con padding bottom per bottom nav -->
+      <div class="content-wrapper">
+        <router-outlet></router-outlet>
+      </div>
     </div>
   </div>
 
-  <!-- Footer sempre in basso -->
-  <app-footer></app-footer>
+  <!-- Footer (nascosto su mobile) -->
+  <app-footer class="d-none d-md-block"></app-footer>
+
+  <!-- Bottom Navigation (solo mobile) -->
+  <app-bottom-nav></app-bottom-nav>
 </div>

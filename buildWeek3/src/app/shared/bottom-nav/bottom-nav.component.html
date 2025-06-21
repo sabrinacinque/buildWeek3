@@ -1,0 +1,95 @@
+<!-- bottom-nav.component.html -->
+<nav class="bottom-nav d-md-none">
+  <div class="nav-container">
+
+    <!-- Home -->
+    <div class="nav-item"
+         [class.active]="isActiveRoute('') && getCurrentRoute() === '/'"
+         (click)="navigateTo('')">
+      <i class="bi bi-house-fill nav-icon"></i>
+      <span class="nav-label">Home</span>
+    </div>
+
+    <!-- Menu con Dropdown -->
+    <div class="nav-item nav-dropdown"
+         [class.active]="isActiveRoute('/menu')"
+         (click)="toggleMenuDropdown()">
+      <i class="bi bi-book-fill nav-icon"></i>
+      <span class="nav-label">Menu</span>
+
+      <!-- Dropdown Menu Categories -->
+      <div class="menu-dropdown" [class.show]="showMenuDropdown">
+        <div class="dropdown-grid">
+          <a (click)="navigateTo('/menu/antipasti')" class="dropdown-item">
+            <span class="category-emoji">🥟</span> Antipasti
+          </a>
+          <a (click)="navigateTo('/menu/zuppe')" class="dropdown-item">
+            <span class="category-emoji">🍜</span> Zuppe
+          </a>
+          <a (click)="navigateTo('/menu/primi')" class="dropdown-item">
+            <span class="category-emoji">🍝</span> Primi
+          </a>
+          <a (click)="navigateTo('/menu/hosomaki')" class="dropdown-item">
+            <span class="category-emoji">🍣</span> Hosomaki
+          </a>
+          <a (click)="navigateTo('/menu/uramaki')" class="dropdown-item">
+            <span class="category-emoji">🍱</span> Uramaki
+          </a>
+          <a (click)="navigateTo('/menu/temaki')" class="dropdown-item">
+            <span class="category-emoji">🍙</span> Temaki
+          </a>
+          <a (click)="navigateTo('/menu/sushi')" class="dropdown-item">
+            <span class="category-emoji">🍚</span> Sushi
+          </a>
+          <a (click)="navigateTo('/menu/secondi')" class="dropdown-item">
+            <span class="category-emoji">🐟</span> Secondi
+          </a>
+          <a (click)="navigateTo('/menu/dolci')" class="dropdown-item">
+            <span class="category-emoji">🍡</span> Dolci
+          </a>
+          <a (click)="navigateTo('/menu/bibite')" class="dropdown-item">
+            <span class="category-emoji">🍵</span> Bibite
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Carrello -->
+    <div class="nav-item"
+         [class.active]="isActiveRoute('/cart')"
+         (click)="navigateTo('/cart')">
+      <div class="cart-icon-container">
+        <i class="bi bi-bag-fill nav-icon"></i>
+        <span class="cart-badge" *ngIf="showCartBadge()">
+          {{ getCartItemsCount() }}
+        </span>
+      </div>
+      <span class="nav-label">Carrello</span>
+    </div>
+
+    <!-- Cucina (solo se loggato) -->
+    <div class="nav-item"
+         *ngIf="isLogged"
+         [class.active]="isActiveRoute('/dashboard/cucina')"
+         (click)="navigateTo('/dashboard/cucina')">
+      <i class="bi bi-house-gear-fill nav-icon"></i>
+      <span class="nav-label">Cucina</span>
+    </div>
+
+    <!-- Account/Dashboard -->
+    <div class="nav-item"
+         [class.active]="isActiveRoute('/dashboard') || isActiveRoute('/auth')"
+         (click)="navigateTo(isLogged ? '/dashboard' : '/auth')">
+      <i class="bi nav-icon"
+         [class.bi-person-gear]="isLogged"
+         [class.bi-person-fill]="!isLogged"></i>
+      <span class="nav-label">{{ isLogged ? 'Dashboard' : 'Accedi' }}</span>
+    </div>
+
+  </div>
+
+  <!-- Overlay per chiudere dropdown -->
+  <div class="dropdown-overlay"
+       *ngIf="showMenuDropdown"
+       (click)="onBackdropClick()"></div>
+</nav>

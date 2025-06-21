@@ -1,0 +1,236 @@
+/* bottom-nav.component.scss */
+
+.bottom-nav {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: rgba(0, 0, 0, 0.95);
+  backdrop-filter: blur(10px);
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  z-index: 1000;
+  padding: 8px 0;
+  transition: transform 0.3s ease;
+
+  .nav-container {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    max-width: 500px;
+    margin: 0 auto;
+    padding: 0 10px;
+  }
+
+  .nav-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 8px 12px;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    position: relative;
+    min-width: 60px;
+    text-decoration: none;
+
+    &:hover {
+      background: rgba(153, 115, 94, 0.2);
+      transform: translateY(-2px);
+    }
+
+    &.active {
+      background: rgba(153, 115, 94, 0.3);
+
+      .nav-icon {
+        color: #99735e;
+        transform: scale(1.1);
+      }
+
+      .nav-label {
+        color: #99735e;
+        font-weight: 600;
+      }
+    }
+
+    .nav-icon {
+      font-size: 1.4rem;
+      color: #ffffff;
+      margin-bottom: 4px;
+      transition: all 0.3s ease;
+    }
+
+    .nav-label {
+      font-size: 0.7rem;
+      color: #ffffff;
+      text-align: center;
+      font-weight: 500;
+      transition: all 0.3s ease;
+      line-height: 1;
+    }
+  }
+
+  // Stili per il carrello con badge
+  .cart-icon-container {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    margin-bottom: 4px;
+
+    .cart-badge {
+      position: absolute;
+      top: -8px;
+      right: -8px;
+      background: #ff4757;
+      color: white;
+      border-radius: 50%;
+      width: 18px;
+      height: 18px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.6rem;
+      font-weight: bold;
+      border: 2px solid rgba(0, 0, 0, 0.95);
+    }
+  }
+
+  // Stili per dropdown menu
+  .nav-dropdown {
+    .menu-dropdown {
+      position: absolute;
+      bottom: 100%;
+      left: 50%;
+      transform: translateX(-50%);
+      background: rgba(0, 0, 0, 0.95);
+      backdrop-filter: blur(15px);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 16px;
+      padding: 16px;
+      margin-bottom: 8px;
+      opacity: 0;
+      visibility: hidden;
+      transition: all 0.3s ease;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+      width: 280px;
+      max-height: 70vh;
+      overflow-y: auto;
+
+      &.show {
+        opacity: 1;
+        visibility: visible;
+        transform: translateX(-50%) translateY(-10px);
+      }
+
+      .dropdown-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 8px;
+
+        .dropdown-item {
+          display: flex;
+          align-items: center;
+          padding: 12px;
+          border-radius: 12px;
+          color: #ffffff;
+          text-decoration: none;
+          transition: all 0.3s ease;
+          font-size: 0.85rem;
+          border: 1px solid rgba(255, 255, 255, 0.1);
+
+          &:hover {
+            background: rgba(153, 115, 94, 0.3);
+            color: #99735e;
+            transform: scale(1.02);
+          }
+
+          .category-emoji {
+            margin-right: 8px;
+            font-size: 1.2rem;
+            filter: drop-shadow(0 0 3px rgba(153, 115, 94, 0.5));
+            transition: all 0.3s ease;
+          }
+
+          &:hover .category-emoji {
+            transform: scale(1.1);
+            filter: drop-shadow(0 0 5px rgba(153, 115, 94, 0.8));
+          }
+        }
+      }
+    }
+  }
+
+  // Overlay per chiudere dropdown
+  .dropdown-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: transparent;
+    z-index: -1;
+  }
+}
+
+// Animazioni per apparizione
+@keyframes slideUp {
+  from {
+    transform: translateY(100%);
+  }
+  to {
+    transform: translateY(0);
+  }
+}
+
+.bottom-nav {
+  animation: slideUp 0.4s ease-out;
+}
+
+// Media queries per dispositivi più grandi
+@media (min-width: 768px) {
+  .bottom-nav {
+    display: none !important;
+  }
+}
+
+// Aggiustamenti per iPhone con notch
+@supports (padding-bottom: env(safe-area-inset-bottom)) {
+  .bottom-nav {
+    padding-bottom: calc(8px + env(safe-area-inset-bottom));
+  }
+}
+
+// Scroll nascosto
+.bottom-nav.hidden {
+  transform: translateY(100%);
+}
+
+// Stili per schermi molto piccoli
+@media (max-width: 360px) {
+  .bottom-nav {
+    .nav-item {
+      padding: 6px 8px;
+      min-width: 50px;
+
+      .nav-icon {
+        font-size: 1.2rem;
+      }
+
+      .nav-label {
+        font-size: 0.65rem;
+      }
+    }
+
+    .nav-dropdown .menu-dropdown {
+      width: 250px;
+
+      .dropdown-grid {
+        gap: 6px;
+
+        .dropdown-item {
+          padding: 10px;
+          font-size: 0.8rem;
+        }
+      }
+    }
+  }
+}

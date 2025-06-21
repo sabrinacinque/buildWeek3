@@ -12,12 +12,15 @@ import { InterceptorInterceptor } from './auth/interceptor.interceptor';
 import { CucinaComponent } from './pages/dashboard/cucina/cucina.component';
 import { NavbarSmallComponent } from './mainComponent/navbar-small/navbar-small.component';
 import { FormsModule } from '@angular/forms';
+import { BottomNavComponent } from './shared/bottom-nav/bottom-nav.component';
+
 
 @NgModule({
   declarations: [
     AppComponent,
     NavbarComponent,
     FooterComponent,
+    BottomNavComponent,
     HomepageComponent,
     CucinaComponent,
     NavbarSmallComponent,

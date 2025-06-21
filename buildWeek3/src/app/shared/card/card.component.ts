@@ -1,124 +1,193 @@
-import {
-  Component,
-  OnInit,
-  Input,
-  ViewChild,
-  TemplateRef,
-} from '@angular/core';
-import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { Component, OnInit, Input } from '@angular/core';
 import { MenuService } from '../../menu.service';
-import { iMenu } from '../../Models/i-menu';
-import { HttpClient } from '@angular/common/http';
 import { CartService } from '../../cart.service';
-import Swal from 'sweetalert2';
-import { Router } from '@angular/router';
+import { iMenu } from '../../Models/i-menu';
+import { iCartItem } from '../../Models/i-cart-item';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-card',
   templateUrl: './card.component.html',
-  styleUrls: ['./card.component.scss'],
+  styleUrls: ['./card.component.scss']
 })
 export class CardComponent implements OnInit {
-  @Input() category!: string;
-  @Input() availability!: boolean;
+
+  // 🆕 NUOVO: Input per filtrare per categoria e disponibilità
+  @Input() category?: string;
+  @Input() availability?: boolean;
 
   menu: iMenu[] = [];
-  showToast: boolean = false;
-  apiUrl: string = 'http://localhost:3000/orders';
+  cartItems: iCartItem[] = [];
 
-  cartItems: iMenu[] = []; // Aggiungi questa linea
+  // 🆕 NUOVO: Map per gestire quantità temporanee nell'UI
+  tempQuantities: { [menuId: number]: number } = {};
 
-  @ViewChild('cartModal') cartModal!: TemplateRef<any>;
+  showToast = false;
+  showSuccessToast = false;
+  showErrorToast = false;
 
   constructor(
     private menuSvc: MenuService,
-    private modalService: NgbModal,
     private cartSvc: CartService,
-    private http: HttpClient,
-    private router: Router
+    private modalService: NgbModal
   ) {}
 
-  ngOnInit() {
-    if (this.category) {
-      this.menuSvc
-        .getByCategoryAndAvailability(this.category, this.availability)
-        .subscribe((items) => {
-          this.menu = items.map((item) => ({ ...item, quantity: 1 }));
+  ngOnInit(): void {
+    // Carica il menu dal backend Spring Boot
+    this.menuSvc.getAll().subscribe({
+      next: (data) => {
+        // 🔧 FILTRO: Applica filtri per categoria e disponibilità se presenti
+        this.menu = data.filter(item => {
+          let match = true;
+
+          if (this.category) {
+            match = match && item.categoria === this.category;
+          }
+
+          if (this.availability !== undefined) {
+            match = match && item.disponibile === this.availability;
+          }
+
+          return match;
         });
-    }
-    this.cartSvc.cartItems$.subscribe((items) => {
+
+        // Inizializza quantità temporanee a 1 per ogni item
+        this.menu.forEach(item => {
+          this.tempQuantities[item.id] = 1;
+        });
+      },
+      error: (error) => {
+        console.error('Errore nel caricamento del menu:', error);
+      }
+    });
+
+    // Sottoscrivi al carrello per aggiornamenti in tempo reale
+    this.cartSvc.cartItems$.subscribe(items => {
       this.cartItems = items;
     });
   }
 
-  sendOrder() {
-    // Prepara l'ordine con gli elementi nel carrello e il costo totale
-    const order = {
-      items: this.cartItems,
-      totalCost: this.cartSvc.getTotalCost(),
-    };
-    this.http.post(this.apiUrl, order).subscribe(() => {
-      this.cartSvc.clearCart(); // Svuota il carrello
-      this.modalService.dismissAll(); // Chiude tutti i modali aperti
-
-      // Mostra l'alert con SweetAlert
-      Swal.fire({
-        title: 'Ordine Inviato',
-        text: 'Il tuo ordine è stato inviato con successo!',
-        icon: 'success',
-        confirmButtonText: 'OK',
-      }).then(() => {
-        // Reindirizza alla homepage dopo aver chiuso l'alert
-        this.router.navigate(['/homepage']);
-      });
-    });
+  // 🔧 AGGIORNATO: Usa tempQuantities per l'UI
+  incrementQuantity(item: iMenu): void {
+    this.tempQuantities[item.id]++;
   }
 
-  incrementQuantity(item: iMenu) {
-    item.quantity++;
-  }
-
-  decrementQuantity(item: iMenu) {  // Metodo per decrementare la quantità di un piatto.
-    if (item.quantity > 0) {
-      item.quantity--;
+  // 🔧 AGGIORNATO: Usa tempQuantities per l'UI
+  decrementQuantity(item: iMenu): void {
+    if (this.tempQuantities[item.id] > 1) {
+      this.tempQuantities[item.id]--;
     }
   }
 
-  addToCart(item: iMenu) {  //Metodo per aggiungere un piatto al carrello. Se la quantità è maggiore di 0, aggiunge il piatto al carrello, reimposta la quantità a 1 e mostra una notifica.
-    if (item.quantity > 0) {
-      this.cartSvc.addToCart(item);
-      item.quantity = 1;
-      this.showToastMessage();
+  // 🔧 AGGIORNATO: Aggiungi al carrello con quantità temporanea
+  addToCart(item: iMenu): void {
+    const quantity = this.tempQuantities[item.id];
+    this.cartSvc.addToCart(item, quantity);
+
+    // Reset quantità temporanea a 1 dopo l'aggiunta
+    this.tempQuantities[item.id] = 1;
+
+    // Mostra toast di conferma
+    this.showToastMessage();
+  }
+
+  // 🆕 NUOVO: Gestione quantità nel carrello (per il modal)
+  incrementCartQuantity(cartItem: iCartItem): void {
+    console.log('🔼 Incremento:', cartItem.titolo, 'da', cartItem.quantity, 'a', cartItem.quantity + 1);
+    this.cartSvc.updateQuantity(cartItem.id, cartItem.quantity + 1);
+  }
+
+  // 🆕 NUOVO: Gestione quantità nel carrello (per il modal) - CON DEBUG
+  decrementCartQuantity(cartItem: iCartItem): void {
+    console.log('🔽 Decremento chiamato per:', cartItem.titolo);
+    console.log('📊 Quantità attuale:', cartItem.quantity);
+    console.log('🆔 ID item:', cartItem.id);
+
+    if (cartItem.quantity > 1) {
+      console.log('✅ Condizione OK, decremento da', cartItem.quantity, 'a', cartItem.quantity - 1);
+      this.cartSvc.updateQuantity(cartItem.id, cartItem.quantity - 1);
+    } else {
+      console.log('❌ Quantità già al minimo (1), non posso decrementare');
     }
   }
 
-  openCart(content: TemplateRef<any>) {
-    // Apre il modal del carrello
-    this.modalService.open(content, { ariaLabelledBy: 'modal-basic-title' });
-  }
-
-  getTotalCost(): number {  //Metodo per ottenere il costo totale degli articoli nel carrello.
-    return this.cartSvc.getTotalCost();
-  }
-
-  clearCart() { // Metodo per svuotare il carrello.
-    this.cartSvc.clearCart();
-  }
-
-  removeFromCart(item: iMenu) {  //Metodo per rimuovere un piatto dal carrello.
+  // ✅ RIMANE UGUALE: Rimuovi dal carrello
+  removeFromCart(item: iCartItem): void {
     this.cartSvc.removeFromCart(item);
   }
 
-  showToastMessage() {
-    // Mostra un messaggio toast per 3 secondi
+  // ✅ RIMANE UGUALE: Svuota carrello
+  clearCart(): void {
+    this.cartSvc.clearCart();
+  }
+
+  // ✅ RIMANE UGUALE: Calcola totale
+  getTotalCost(): number {
+    return this.cartSvc.getTotalCost();
+  }
+
+  // 🆕 NUOVO: Invia ordine al backend
+  sendOrder(): void {
+    if (this.cartItems.length > 0) {
+      this.cartSvc.createOrder(this.cartItems).subscribe({
+        next: (order) => {
+          console.log('Ordine inviato con successo:', order);
+          this.clearCart();
+          // 🎉 AGGIUNTO: Mostra conferma di successo
+          this.showSuccessToastMessage();
+        },
+        error: (error) => {
+          console.error('Errore nell\'invio dell\'ordine:', error);
+          // 🚨 AGGIUNTO: Mostra errore
+          this.showErrorToastMessage();
+        }
+      });
+    }
+  }
+
+  // ✅ RIMANE UGUALE: Gestione toast
+  showToastMessage(): void {
     this.showToast = true;
     setTimeout(() => {
       this.showToast = false;
     }, 3000);
   }
 
-  hideToast() {
-    // Nasconde il messaggio toast
+  hideToast(): void {
     this.showToast = false;
+  }
+
+  // 🆕 NUOVO: Toast di successo ordine
+  showSuccessToastMessage(): void {
+    this.showSuccessToast = true;
+    setTimeout(() => {
+      this.showSuccessToast = false;
+    }, 5000); // 5 secondi per il successo
+  }
+
+  hideSuccessToast(): void {
+    this.showSuccessToast = false;
+  }
+
+  // 🆕 NUOVO: Toast di errore ordine
+  showErrorToastMessage(): void {
+    this.showErrorToast = true;
+    setTimeout(() => {
+      this.showErrorToast = false;
+    }, 5000);
+  }
+
+  hideErrorToast(): void {
+    this.showErrorToast = false;
+  }
+
+  // ✅ RIMANE UGUALE: Apri modal carrello
+  openCart(content: any): void {
+    this.modalService.open(content, { size: 'lg' });
+  }
+
+  // 🆕 HELPER: Ottieni quantità temporanea per l'UI
+  getTempQuantity(item: iMenu): number {
+    return this.tempQuantities[item.id] || 1;
   }
 }

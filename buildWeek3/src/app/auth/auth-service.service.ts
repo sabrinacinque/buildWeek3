@@ -23,8 +23,8 @@ export class AuthService {
     tap((user) => (this.isLogged = user))
   );
 
-  loginUrl = 'http://localhost:3000/login';
-  registerUrl = 'http://localhost:3000/register'; // URL del tuo server JSON
+  loginUrl = 'http://localhost:8080/api/auth/login';
+  registerUrl = 'http://localhost:8080/api/auth/register';
 
   constructor(
     private http: HttpClient,
@@ -48,28 +48,46 @@ export class AuthService {
     return this.http.post<iAuth>(this.registerUrl, newUser);
   }
 
-  login(user: Partial<User>): Observable<iAuth> {
-    return this.http.post<iAuth>(this.loginUrl, user).pipe(
-      tap((res) => {
-        this.authSubject.next(res.user);
-        localStorage.setItem('token', JSON.stringify(res));
-        this.autoLogout();
+  // 🔧 SISTEMATO: Tipizzazione corretta per Spring Boot
+  login(user: { email: string; password: string }): Observable<any> {
+    return this.http.post<any>(this.loginUrl, user).pipe(
+      tap((response) => {
+        console.log('Risposta Spring Boot:', response);
+
+        // 🔧 ADATTATO: Spring Boot restituisce direttamente l'oggetto user
+        const userData: User = {
+          id: response.id,
+          name: response.name,
+          email: response.email,
+          password: '' // Non salviamo la password per sicurezza
+        };
+
+        this.authSubject.next(userData);
+
+        // 🔧 SALVIAMO DATI SENZA JWT per ora
+        localStorage.setItem('user', JSON.stringify(userData));
+        localStorage.setItem('isLoggedIn', 'true');
       })
     );
   }
 
   logout() {
     this.authSubject.next(null);
-    localStorage.removeItem('token');
+    localStorage.removeItem('user');
+    localStorage.removeItem('isLoggedIn');
   }
 
+  // 🔧 SISTEMATO: Senza JWT per ora
   getAccessToken() {
-    const token = localStorage.getItem('token');
-    if (!token) return null;
+    const user = localStorage.getItem('user');
+    const isLoggedIn = localStorage.getItem('isLoggedIn');
 
-    const tokenParsed = JSON.parse(token);
+    if (!user || !isLoggedIn || isLoggedIn !== 'true') return null;
 
-    return tokenParsed;
+    return {
+      user: JSON.parse(user),
+      isLoggedIn: true
+    };
   }
 
   getAllUsers(): Observable<User> {
@@ -81,22 +99,17 @@ export class AuthService {
     user.password = formData.value.password;
   }
 
+  // 🔧 SISTEMATO: Senza JWT per ora
   restoreUser() {
-    const token = this.getAccessToken();
-    if (!token) return;
-    if (this.jwtToken.isTokenExpired(token.accessToken)) return;
+    const userData = this.getAccessToken();
+    if (!userData) return;
 
-    this.authSubject.next(token.user);
-    this.autoLogout();
+    this.authSubject.next(userData.user);
   }
 
+  // 🔧 COMMENTATO: Non serve per ora senza JWT
   autoLogout() {
-    const token = this.getAccessToken();
-    if (!token) return;
-    const expDate = this.jwtToken.getTokenExpirationDate(
-      token.accessToken
-    ) as Date;
-    const expMs = expDate.getTime() - new Date().getTime();
-    setTimeout(this.logout, expMs);
+    // Implementeremo quando aggiungeremo JWT
+    console.log('AutoLogout non implementato - per ora login persistente');
   }
 }

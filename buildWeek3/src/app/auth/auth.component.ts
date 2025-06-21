@@ -19,8 +19,8 @@ export class AuthComponent {
   ) {}
   newUser: Partial<User> = {};
   userLogged: iLogin = {
-    email: 'hita@mailinator.com',
-    password: 'Pa$$w0rd!',
+    email: 'admin@admin.com',
+    password: 'admin',
   };
 
 

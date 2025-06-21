@@ -7,14 +7,60 @@
 <button class="btn ms-5 my-5 btn-color1" routerLink="cucina">Ordini</button>
 
 <div class="container-fluid p-5 pt-1 font-PermanentGotham">
-  <div class="input-group mb-3">
-    <input
-      type="text"
-      class="form-control"
-      placeholder="Cerca"
-      (input)="filterPosts($event)"
-    />
+  <!-- 🆕 FILTRI AVANZATI -->
+  <div class="row mb-3">
+    <!-- Filtro per testo -->
+    <div class="col-md-8">
+      <div class="input-group">
+        <span class="input-group-text">
+          <i class="bi bi-search"></i>
+        </span>
+        <input
+          type="text"
+          class="form-control"
+          placeholder="Cerca per titolo o ingredienti..."
+          [(ngModel)]="searchText"
+          (input)="filterByText($event)"
+        />
+      </div>
+    </div>
+
+    <!-- Filtro per categoria -->
+    <div class="col-md-3">
+      <select
+        class="form-select"
+        [(ngModel)]="searchCategory"
+        (change)="filterByCategory($event)"
+      >
+        <option value="">Tutte le categorie</option>
+        <option *ngFor="let category of categories" [value]="category">
+          {{ category }}
+        </option>
+      </select>
+    </div>
+
+    <!-- Pulsante reset -->
+    <div class="col-md-1">
+      <button
+        class="btn btn-outline-secondary w-100"
+        (click)="resetFilters()"
+        title="Reset filtri"
+      >
+        <i class="bi bi-arrow-clockwise"></i>
+      </button>
+    </div>
   </div>
+
+  <!-- Indicatore risultati -->
+  <div class="mb-3" *ngIf="searchText || searchCategory">
+    <small class="text-muted">
+      <i class="bi bi-funnel"></i>
+      Mostrando {{ filteredMenu.length }} di {{ menu.length }} prodotti
+      <span *ngIf="searchText"> • Testo: "{{ searchText }}"</span>
+      <span *ngIf="searchCategory"> • Categoria: "{{ searchCategory }}"</span>
+    </small>
+  </div>
+
   <div class="table-responsive">
     <table class="table table-bordered">
       <thead>
@@ -46,14 +92,23 @@
               *ngIf="editMode[item.id]"
               [(ngModel)]="item.img"
               placeholder="URL Immagine"
+              class="form-control"
             />
           </td>
           <td class="table-bg border-right">
-            <input *ngIf="editMode[item.id]" [(ngModel)]="item.titolo" />
+            <input
+              *ngIf="editMode[item.id]"
+              [(ngModel)]="item.titolo"
+              class="form-control"
+            />
             <span *ngIf="!editMode[item.id]">{{ item.titolo }}</span>
           </td>
           <td class="table-bg border-right">
-            <input *ngIf="editMode[item.id]" [(ngModel)]="item.ingredienti" />
+            <input
+              *ngIf="editMode[item.id]"
+              [(ngModel)]="item.ingredienti"
+              class="form-control"
+            />
             <span *ngIf="!editMode[item.id]">{{ item.ingredienti }}</span>
           </td>
           <td class="text-center table-bg border-right">
@@ -61,6 +116,8 @@
               *ngIf="editMode[item.id]"
               [(ngModel)]="item.prezzo"
               type="number"
+              step="0.01"
+              class="form-control"
             />
             <span *ngIf="!editMode[item.id]">{{
               item.prezzo | currency : "EUR"
@@ -83,17 +140,20 @@
               *ngIf="editMode[item.id]"
               [(ngModel)]="item.disponibile"
               type="checkbox"
+              class="form-check-input"
             />
-            <span *ngIf="!editMode[item.id]">{{
-              item.disponibile ? "si" : "no"
-            }}</span>
+            <span *ngIf="!editMode[item.id]">
+              <i class="bi {{ item.disponibile ? 'bi-check-circle-fill text-success' : 'bi-x-circle-fill text-danger' }}"></i>
+              {{ item.disponibile ? "Sì" : "No" }}
+            </span>
           </td>
           <td class="text-center table-bg border-right">
             <button class="btn btn-danger me-2 mb-2" (click)="delete(item.id)">
               <i class="bi bi-trash3"></i>
             </button>
             <button class="btn btn-warning" (click)="toggleEditMode(item.id)">
-              {{ editMode[item.id] ? "Conferma Modifica" : "Modifica" }}
+              <i class="bi {{ editMode[item.id] ? 'bi-check-lg' : 'bi-pencil' }}"></i>
+              {{ editMode[item.id] ? "Conferma" : "Modifica" }}
             </button>
           </td>
         </tr>
@@ -101,6 +161,7 @@
     </table>
   </div>
 
+  <!-- Modal per creare prodotto -->
   <ng-template #createProductModal let-modal>
     <div class="modal-header">
       <h4 class="modal-title">Aggiungi Nuovo Prodotto</h4>
@@ -168,6 +229,7 @@
             id="productPrice"
             [(ngModel)]="newProduct.prezzo"
             name="prezzo"
+            step="0.01"
             required
           />
         </div>

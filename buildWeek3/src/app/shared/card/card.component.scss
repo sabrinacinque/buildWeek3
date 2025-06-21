@@ -63,3 +63,19 @@
   }
 }
 */
+
+.sushi-float-1 { animation: float 2s ease-in-out infinite; animation-delay: 0s; }
+.sushi-float-2 { animation: float 2s ease-in-out infinite; animation-delay: 0.2s; }
+.sushi-float-3 { animation: float 2s ease-in-out infinite; animation-delay: 0.4s; }
+.sushi-float-4 { animation: float 2s ease-in-out infinite; animation-delay: 0.6s; }
+.sushi-float-5 { animation: float 2s ease-in-out infinite; animation-delay: 0.8s; }
+.sushi-float-6 { animation: float 2s ease-in-out infinite; animation-delay: 1s; }
+
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}

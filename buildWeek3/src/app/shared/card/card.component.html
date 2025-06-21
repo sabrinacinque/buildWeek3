@@ -43,7 +43,8 @@
           <div
             class="d-flex text-center justify-content-center align-items-center px-2 m-0 w-75"
           >
-            <p class="m-0 p-0">Quantità: {{ item.quantity }}</p>
+            <!-- 🔧 CAMBIATO: Usa getTempQuantity invece di item.quantity -->
+            <p class="m-0 p-0">Quantità: {{ getTempQuantity(item) }}</p>
           </div>
           <button
             (click)="incrementQuantity(item)"
@@ -62,7 +63,8 @@
   </div>
 </div>
 
-<!-- Toast -->
+
+<!-- Toast professionale per aggiunta al carrello -->
 <div class="toast-container position-fixed bottom-0 end-0 p-3">
   <div
     class="toast"
@@ -71,23 +73,145 @@
     aria-atomic="true"
     [ngClass]="{ show: showToast }"
   >
-    <div class="toast-header">
-      <img
-        id="miche"
-        src="../../../assets/image/michele toast.png"
-        class="rounded me-2"
-        alt="..."
-      />
-      <strong class="me-auto">Uè Michè!</strong>
+    <div class="toast-header bg-success text-white">
+      <i class="bi bi-cart-plus-fill me-2"></i>
+      <strong class="me-auto">Sushi Restaurant</strong>
       <small>Ora</small>
       <button
         type="button"
-        class="btn-close"
+        class="btn-close btn-close-white"
         (click)="hideToast()"
         aria-label="Close"
       ></button>
     </div>
-    <div class="toast-body">Articolo aggiunto al carrello!</div>
+    <div class="toast-body bg-success text-white">
+      <i class="bi bi-check-circle me-2"></i>
+      Piatto aggiunto al carrello con successo!
+    </div>
+  </div>
+</div>
+
+<!-- 🆕 NUOVO: Toast di successo ordine - CARINO -->
+<div class="toast-container position-fixed top-50 start-50 translate-middle p-3" style="z-index: 9999;">
+  <div
+    class="toast shadow-lg border-0"
+    role="alert"
+    aria-live="assertive"
+    aria-atomic="true"
+    [ngClass]="{ show: showSuccessToast }"
+    style="min-width: 400px;"
+  >
+    <!-- Header semplice -->
+    <div class="toast-header bg-gradient text-white justify-content-between p-2" style="background: linear-gradient(135deg, #28a745, #20c997);">
+      <strong class="fs-5 text-dark">Ordine Inviato!</strong>
+      <button
+        type="button"
+        class="btn-close btn-close-white"
+        (click)="hideSuccessToast()"
+        aria-label="Close"
+      ></button>
+    </div>
+
+    <!-- Body con fila di sushi -->
+    <div class="toast-body bg-white p-4 text-center">
+      <!-- FILA DI PICCOLI SUSHI -->
+      <div class="mb-4 d-flex justify-content-center align-items-center flex-wrap gap-2">
+        <img
+          src="../../../assets/image/sushi icon.svg"
+          alt="Sushi"
+          style="width: 40px; height: 40px;"
+          class="sushi-float-1"
+        />
+        <img
+          src="../../../assets/image/sushi icon.svg"
+          alt="Sushi"
+          style="width: 40px; height: 40px;"
+          class="sushi-float-2"
+        />
+        <img
+          src="../../../assets/image/sushi icon.svg"
+          alt="Sushi"
+          style="width: 40px; height: 40px;"
+          class="sushi-float-3"
+        />
+        <img
+          src="../../../assets/image/sushi icon.svg"
+          alt="Sushi"
+          style="width: 40px; height: 40px;"
+          class="sushi-float-4"
+        />
+        <img
+          src="../../../assets/image/sushi icon.svg"
+          alt="Sushi"
+          style="width: 40px; height: 40px;"
+          class="sushi-float-5"
+        />
+        <img
+          src="../../../assets/image/sushi icon.svg"
+          alt="Sushi"
+          style="width: 40px; height: 40px;"
+          class="sushi-float-6"
+        />
+      </div>
+
+      <div class="mb-3">
+        <i class="bi bi-check-circle-fill text-success fs-1"></i>
+      </div>
+
+      <h5 class="mb-2 text-dark">Il tuo ordine è stato inviato alla cucina!</h5>
+      <p class="text-muted mb-3">
+        <i class="bi bi-clock me-1"></i>
+        Sarà pronto tra pochi minuti.
+      </p>
+
+      <div class="d-flex justify-content-center align-items-center">
+        <span class="badge bg-success-subtle text-success px-4 py-2 fs-6">
+          <i class="bi bi-chef-hat me-2"></i>
+          In preparazione...
+        </span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- 🆕 NUOVO: Toast di errore ordine - CARINO -->
+<div class="toast-container position-fixed top-50 start-50 translate-middle p-3" style="z-index: 9999;">
+  <div
+    class="toast shadow-lg border-0"
+    role="alert"
+    aria-live="assertive"
+    aria-atomic="true"
+    [ngClass]="{ show: showErrorToast }"
+    style="min-width: 350px;"
+  >
+    <!-- Header errore -->
+    <div class="toast-header bg-gradient text-white p-3" style="background: linear-gradient(135deg, #dc3545, #e74c3c);">
+      <i class="bi bi-exclamation-triangle-fill me-3 fs-4"></i>
+      <strong class="me-auto fs-5">Errore Ordine</strong>
+      <button
+        type="button"
+        class="btn-close btn-close-white"
+        (click)="hideErrorToast()"
+        aria-label="Close"
+      ></button>
+    </div>
+
+    <!-- Body errore -->
+    <div class="toast-body bg-white p-4 text-center">
+      <div class="mb-3">
+        <i class="bi bi-x-circle-fill text-danger display-4"></i>
+      </div>
+      <h6 class="mb-2 text-dark">Ops! Qualcosa è andato storto</h6>
+      <p class="text-muted small mb-3">
+        Non siamo riusciti a inviare il tuo ordine alla cucina.
+      </p>
+      <div class="d-flex justify-content-center align-items-center">
+        <span class="badge bg-danger-subtle text-danger px-3 py-2">
+          <i class="bi bi-arrow-repeat me-1"></i>
+          Riprova tra poco
+        </span>
+      </div>
+    </div>
   </div>
 </div>
 
@@ -104,64 +228,109 @@
       <span aria-hidden="true">&times;</span>
     </button>
   </div>
+
   <div class="modal-body">
-    <div *ngIf="cartItems.length === 0">
-      <p>Il carrello è vuoto.</p>
+    <!-- Carrello vuoto -->
+    <div *ngIf="cartItems.length === 0" class="text-center py-4">
+      <i class="bi bi-cart-x display-1 text-muted"></i>
+      <p class="mt-3 text-muted">Il carrello è vuoto.</p>
     </div>
+
+    <!-- Carrello con items -->
     <div *ngIf="cartItems.length > 0">
-      <div id="sistemo" class="row" *ngFor="let item of cartItems">
-        <div class="col-md-6">{{ item.titolo }}</div>
-        <button
-          id="piumeno"
-          type="button"
-          class="btn text-white"
-          (click)="decrementQuantity(item)"
-        >
-          -
-        </button>
-        <div class="col-md-2" id="quantita">{{ item.quantity }}</div>
-        <button
-          id="piumeno"
-          type="button"
-          class="btn text-white"
-          (click)="incrementQuantity(item)"
-        >
-          +
-        </button>
-        <div id="prezzo" class="col-md-2">
-          {{ item.prezzo | currency : "EUR" }}
+      <!-- Header tabella -->
+      <div class="row fw-bold border-bottom pb-2 mb-3">
+        <div class="col-5">Piatto</div>
+        <div class="col-3 text-center">Quantità</div>
+        <div class="col-2 text-center">Prezzo</div>
+        <div class="col-2 text-center">Azioni</div>
+      </div>
+
+      <!-- Items del carrello -->
+      <div class="row align-items-center py-2 border-bottom" *ngFor="let item of cartItems">
+        <!-- Nome piatto -->
+        <div class="col-5">
+          <strong>{{ item.titolo }}</strong>
+          <br>
+          <small class="text-muted">{{ item.prezzo | currency : "EUR" }} cad.</small>
         </div>
-        <div class="col-md-2">
+
+        <!-- Controlli quantità -->
+        <div class="col-3">
+          <div class="d-flex align-items-center justify-content-center">
+            <button
+              type="button"
+              class="btn btn-secondary btn-sm me-2"
+              (click)="decrementCartQuantity(item)"
+              [disabled]="item.quantity <= 1"
+            >
+              <i class="bi bi-dash"></i>
+            </button>
+
+            <span class="mx-2 fw-bold">{{ item.quantity }}</span>
+
+            <button
+              type="button"
+              class="btn btn-secondary btn-sm ms-2"
+              (click)="incrementCartQuantity(item)"
+            >
+              <i class="bi bi-plus"></i>
+            </button>
+          </div>
+        </div>
+
+        <!-- Prezzo totale item -->
+        <div class="col-2 text-center">
+          <strong>{{ (item.prezzo * item.quantity) | currency : "EUR" }}</strong>
+        </div>
+
+        <!-- Pulsante elimina -->
+        <div class="col-2 text-center">
           <button
-            id="elimina"
             type="button"
-            class="btn btn-sm text-white"
+            class="btn btn-secondary btn-sm"
             (click)="removeFromCart(item)"
+            title="Rimuovi dal carrello"
           >
             <i class="bi bi-trash"></i>
           </button>
         </div>
       </div>
-      <div class="row mt-4">
-        <div class="col-md-8"><strong>Totale:</strong></div>
-        <div class="col-md-2">
-          <strong>{{ getTotalCost() | currency : "EUR" }}</strong>
+
+      <!-- Totale finale -->
+      <div class="row mt-4 pt-3 border-top">
+        <div class="col-8 text-end">
+          <h5 class="mb-0">Totale:</h5>
+        </div>
+        <div class="col-4 text-center">
+          <h5 class="mb-0 text-primary">
+            <strong>{{ getTotalCost() | currency : "EUR" }}</strong>
+          </h5>
         </div>
       </div>
     </div>
   </div>
-  <div class="modal-footer">
+
+  <!-- Footer con pulsanti azione -->
+  <div class="modal-footer d-flex justify-content-between">
     <button
-      id="cancella"
       type="button"
-      class="btn btn-danger"
+      class="btn btn-secondary"
       (click)="clearCart(); modal.close()"
+      [disabled]="cartItems.length === 0"
     >
+      <i class="bi bi-trash3"></i>
       Svuota carrello
     </button>
-    <button type="button" class="btn text-white" (click)="sendOrder()">
+
+    <button
+      type="button"
+      class="btn btn-secondary"
+      (click)="sendOrder(); modal.close()"
+      [disabled]="cartItems.length === 0"
+    >
       <i class="bi bi-send"></i>
-      Invia
+      Invia Ordine
     </button>
   </div>
 </ng-template>

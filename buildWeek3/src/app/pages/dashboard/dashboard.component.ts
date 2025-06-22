@@ -1,6 +1,7 @@
 import { Component, OnInit, ViewChild, TemplateRef } from '@angular/core';
 import { iMenu } from '../../Models/i-menu';
 import { MenuService } from '../../menu.service';
+import { UploadService } from '../../upload.service'; // 🆕 AGGIUNGI IMPORT
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import Swal from 'sweetalert2';
 
@@ -39,7 +40,14 @@ export class DashboardComponent implements OnInit {
   // Riferimento al modal per la creazione di un nuovo prodotto
   @ViewChild('createProductModal') createProductModal!: TemplateRef<any>;
 
-  constructor(private menuSvc: MenuService, private modalService: NgbModal) {}
+  // 🆕 AGGIUNGI per gestire preview immagini
+  imagePreview: string | null = null;
+
+  constructor(
+    private menuSvc: MenuService, 
+    private modalService: NgbModal,
+    private uploadService: UploadService // 🆕 AGGIUNGI UPLOAD SERVICE
+  ) {}
 
   ngOnInit() {
     this.getAll();
@@ -60,8 +68,6 @@ export class DashboardComponent implements OnInit {
       this.selectedMenuItem = data;
     });
   }
-
-
 
   // 🔧 SISTEMATO: Aggiorna un elemento del menu mantenendo ordine
   update(item: iMenu) {
@@ -153,70 +159,127 @@ export class DashboardComponent implements OnInit {
     this.filteredMenu = [...this.menu];
   }
 
-  
-  // Aggiungi questo metodo nel dashboard.component.ts
-onImageSelect(event: any, item: iMenu) {
-  const file = event.target.files[0];
-  if (file) {
-    // Per ora salva solo il nome del file
-    // In futuro potresti implementare l'upload su server
-    item.img = file.name;
-    
-    // Opzionale: Preview dell'immagine
-    const reader = new FileReader();
-    reader.onload = (e: any) => {
-      // Potresti salvare il base64 per preview
-      console.log('Image loaded:', e.target.result);
-    };
-    reader.readAsDataURL(file);
-  }
-}
-
-
-// Aggiungi queste proprietà
-imagePreview: string | null = null;
-
-// Metodo per gestire l'upload dell'immagine nel modal
-onModalImageSelect(event: any) {
-  const file = event.target.files[0];
-  if (file) {
-    // Validazione file
-    if (file.size > 5 * 1024 * 1024) { // 5MB max
-      alert('File troppo grande! Massimo 5MB');
-      return;
+  // 🔄 UPLOAD VERO: immagine per prodotti esistenti (modalità edit)
+  onImageSelect(event: any, item: iMenu) {
+    const file = event.target.files[0];
+    if (file) {
+      // Validazione file
+      if (file.size > 5 * 1024 * 1024) {
+        Swal.fire('Errore', 'File troppo grande! Massimo 5MB', 'error');
+        return;
+      }
+      
+      if (!file.type.startsWith('image/')) {
+        Swal.fire('Errore', 'Seleziona solo file immagine!', 'error');
+        return;
+      }
+      
+      // Mostra loading
+      Swal.fire({
+        title: 'Upload in corso...',
+        text: 'Caricamento immagine sul server...',
+        allowOutsideClick: false,
+        didOpen: () => {
+          Swal.showLoading();
+        }
+      });
+      
+      // Upload VERO al server
+      this.uploadService.uploadImage(file).subscribe({
+        next: (response: any) => {
+          // Aggiorna il filename dell'item con quello generato dal server
+          item.img = response.filename;
+          Swal.close();
+          Swal.fire({
+            icon: 'success',
+            title: 'Successo!', 
+            text: 'Immagine caricata sul server!',
+            timer: 2000
+          });
+        },
+        error: (error: any) => {
+          console.error('Errore upload:', error);
+          Swal.close();
+          Swal.fire('Errore', 'Errore durante il caricamento sul server', 'error');
+        }
+      });
     }
-    
-    if (!file.type.startsWith('image/')) {
-      alert('Seleziona solo file immagine!');
-      return;
-    }
-    
-    // Salva il nome del file nel newProduct
-    this.newProduct.img = file.name;
-    
-    // Crea preview
-    const reader = new FileReader();
-    reader.onload = (e: any) => {
-      this.imagePreview = e.target.result;
-    };
-    reader.readAsDataURL(file);
   }
-}
 
-// Modifica il metodo createProduct per resettare la preview
-createProduct(modal: any) {
-  this.menuSvc.create(this.newProduct).subscribe((data: iMenu) => {
-    this.menu.push(data);
-    this.menu.sort((a, b) => a.id - b.id);
-    this.applyFilters();
-    Swal.fire({
-      icon: 'success',
-      title: 'Successo',
-      text: 'Prodotto creato con successo!',
+  // 🔄 UPLOAD VERO: immagine per nuovo prodotto (modal)
+  onModalImageSelect(event: any) {
+    const file = event.target.files[0];
+    if (file) {
+      // Validazione file
+      if (file.size > 5 * 1024 * 1024) { // 5MB max
+        Swal.fire('Errore', 'File troppo grande! Massimo 5MB', 'error');
+        return;
+      }
+      
+      if (!file.type.startsWith('image/')) {
+        Swal.fire('Errore', 'Seleziona solo file immagine!', 'error');
+        return;
+      }
+      
+      // Mostra loading
+      Swal.fire({
+        title: 'Upload in corso...',
+        text: 'Caricamento immagine sul server...',
+        allowOutsideClick: false,
+        didOpen: () => {
+          Swal.showLoading();
+        }
+      });
+      
+      // Upload VERO al server
+      this.uploadService.uploadImage(file).subscribe({
+        next: (response: any) => {
+          // Salva il filename generato dal server nel newProduct
+          this.newProduct.img = response.filename;
+          
+          // Crea preview locale per l'anteprima
+          const reader = new FileReader();
+          reader.onload = (e: any) => {
+            this.imagePreview = e.target.result;
+          };
+          reader.readAsDataURL(file);
+          
+          Swal.close();
+          Swal.fire({
+            icon: 'success',
+            title: 'Successo!',
+            text: 'Immagine caricata sul server!',
+            timer: 2000
+          });
+        },
+        error: (error: any) => {
+          console.error('Errore upload:', error);
+          Swal.close();
+          Swal.fire('Errore', 'Errore durante il caricamento sul server', 'error');
+        }
+      });
+    }
+  }
+
+  // 🆕 METODO per ottenere URL immagini
+  getImageUrl(filename: string): string {
+    return this.uploadService.getImageUrl(filename);
+  }
+
+  // Modifica il metodo createProduct per resettare la preview
+  createProduct(modal: any) {
+    this.menuSvc.create(this.newProduct).subscribe((data: iMenu) => {
+      this.menu.push(data);
+      this.menu.sort((a, b) => a.id - b.id);
+      this.applyFilters();
+      Swal.fire({
+        icon: 'success',
+        title: 'Successo',
+        text: 'Prodotto creato con successo!',
+      });
+      modal.close();
+      this.newProduct = {}; // Reset form
+      this.imagePreview = null; // Reset preview
     });
-    modal.close();
-    this.newProduct = {}; // Reset form
-    this.imagePreview = null; // Reset preview
-  });
-}
+  }
 }

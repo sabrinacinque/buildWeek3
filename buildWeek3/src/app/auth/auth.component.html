@@ -1,53 +1,84 @@
-<div id="container" class="d-flex flex-column">
-  <img src="../../assets/image/sfondo_per_area_riservata.webp" alt="img area sfondo_per_area_riservata">
-  <div class="card border-0 text-center">
-    <div class="card-body">
-      <form [formGroup]="userForm">
-        <div class="form-group mb-3">
-          <label for="loginEmail">EMAIL:</label>
-          <input
-            formControlName="email"
-            type="email"
-            class="form-control text-center"
-            name="email"
-          />
-        </div>
-        <div class="form-group mb-3">
-          <label for="loginPassword">PASSWORD:</label>
-          <input
-            formControlName="password"
-            type="password"
-            class="form-control text-center"
-            name="password"
-          />
-        </div>
-        <button (click)="login()" type="submit" class="btn btn-color1">
-          Login
-        </button>
-      </form>
+<!-- Login Luxury Page -->
+<div id="container" class="login-luxury-container d-flex flex-column min-vh-100">
+  <!-- Background Image con overlay -->
+  <div class="background-overlay">
+    <img src="../../assets/image/sfondo_per_area_riservata.webp" alt="Background" class="background-image">
+  </div>
+
+  <!-- Main Content -->
+  <div class="login-content d-flex align-items-center justify-content-center flex-grow-1">
+    <div class="login-card">
+      <!-- Logo/Brand Section -->
+      <div class="brand-section text-center mb-4">
+        <h1 class="brand-title">
+          <span class="brand-epi">EPI</span><span class="brand-sushi">SUSHI</span>
+        </h1>
+        <p class="brand-subtitle">Area Riservata</p>
+        <div class="brand-divider" ></div>
+      </div>
+
+      <!-- Login Form -->
+      <div class="form-section">
+        <form [formGroup]="userForm" class="luxury-form">
+          <div class="form-group-luxury mb-4">
+            <label for="loginEmail" class="form-label-luxury text-white">
+              <i class="bi bi-envelope-fill me-2 text-white"></i>EMAIL
+            </label>
+            <div class="input-wrapper-luxury">
+              <input
+                formControlName="email"
+                type="email"
+                class="form-control-luxury"
+                name="email"
+                placeholder="Inserisci la tua email"
+              />
+              <div class="input-focus-line"></div>
+            </div>
+          </div>
+
+          <div class="form-group-luxury mb-4">
+            <label for="loginPassword" class="form-label-luxury text-white">
+              <i class="bi bi-lock-fill me-2 text-white"></i>PASSWORD
+            </label>
+            <div class="input-wrapper-luxury">
+              <input
+                formControlName="password"
+                type="password"
+                class="form-control-luxury"
+                name="password"
+                placeholder="Inserisci la tua password"
+              />
+              <div class="input-focus-line"></div>
+            </div>
+          </div>
+
+          <!-- Login Button -->
+          <div class="button-section text-center">
+            <button (click)="login()" type="submit" class="btn-luxury-login">
+              <span class="btn-text text-white">
+                <i class="bi bi-box-arrow-in-right me-2 text-white"></i>
+                ACCEDI
+              </span>
+              <div class="btn-glow"></div>
+            </button>
+          </div>
+        </form>
+      </div>
+
+      <!-- Footer Info -->
+      <div class="login-footer text-center mt-4">
+        <small class="footer-text">
+          <i class="bi bi-shield-check me-1"></i>
+          Accesso sicuro e protetto
+        </small>
+      </div>
     </div>
   </div>
 
-  <!-- <div class="card border-0 text-center">
-    <h2 class="card-title">Registrazione</h2>
-    <form>
-      <div class="form-group">
-        <label for="regName">Nome:</label>
-        <input type="text" class="form-control text-center" id="regName" name="regName" required [(ngModel)]="newUser.name" />
-      </div>
-      <div class="form-group">
-        <label for="regEmail">Email:</label>
-        <input type="email" class="form-control text-center" id="regEmail" name="regEmail" required [(ngModel)]="newUser.email" />
-      </div>
-      <div class="form-group">
-        <label for="regPassword">Password:</label>
-        <input type="password" class="form-control text-center" id="regPassword" name="regPassword" required
-          [(ngModel)]="newUser.password" />
-      </div>
-      <button (click)="register()" type="submit" class="btn btn-primary">
-        Registrati
-      </button>
-    </form>
+  <!-- Decorative Elements -->
+  <div class="floating-elements">
+    <div class="floating-element floating-element-1"></div>
+    <div class="floating-element floating-element-2"></div>
+    <div class="floating-element floating-element-3"></div>
   </div>
-</div> -->
 </div>

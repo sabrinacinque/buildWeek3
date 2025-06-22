@@ -795,3 +795,154 @@ img {
 tr {
   vertical-align: middle;
 }
+
+/* 🔧 TABELLA DESKTOP SISTEMATA */
+.table-fixed {
+  table-layout: fixed;
+  width: 100%;
+  
+  .col-id { width: 60px; }
+  .col-image { width: 120px; }
+  .col-title { width: 200px; }
+  .col-ingredients { width: 250px; }
+  .col-price { width: 100px; }
+  .col-category { width: 130px; }
+  .col-available { width: 120px; }
+  .col-actions { width: 140px; }
+}
+
+/* Immagini desktop sistemate */
+.product-image-desktop {
+  width: 60px;
+  height: 60px;
+  object-fit: cover;
+  border-radius: 8px;
+  border: 2px solid var(--luxury-gold);
+}
+
+.product-image-desktop-small {
+  width: 40px;
+  height: 40px;
+  object-fit: cover;
+  border-radius: 6px;
+  border: 1px solid var(--luxury-gold);
+}
+
+/* Desktop image edit */
+.desktop-image-edit {
+  min-height: 80px;
+  
+  .btn-xs {
+    padding: 0.2rem 0.4rem;
+    font-size: 0.75rem;
+  }
+}
+
+/* Bottoni tabella più compatti */
+.col-actions {
+  .btn-sm {
+    padding: 0.375rem 0.5rem;
+    font-size: 0.8rem;
+  }
+}
+
+/* Text truncate per ingredienti lunghi */
+.text-truncate {
+  max-width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* Preview immagine in mobile edit */
+.current-image-preview {
+  .img-thumbnail {
+    border: 2px solid var(--luxury-gold);
+    border-radius: 8px;
+    background: transparent;
+  }
+}
+
+/* Responsive tabella */
+@media (max-width: 1200px) {
+  .table-fixed {
+    .col-ingredients { width: 200px; }
+    .col-title { width: 150px; }
+  }
+}
+
+@media (max-width: 992px) {
+  .table-fixed {
+    .col-ingredients { width: 180px; }
+    .col-title { width: 130px; }
+    .col-actions { width: 120px; }
+  }
+}
+/* 🔧 BOTTONI TABELLA DESKTOP - VISIBILITÀ MIGLIORATA */
+.table-luxury {
+  .btn-danger-gold {
+    background: #dc3545 !important; // Rosso chiaro per cestino
+    color: white !important;
+    border: 1px solid #dc3545 !important;
+    
+    &:hover {
+      background: #c82333 !important;
+      border-color: #bd2130 !important;
+    }
+  }
+  
+  .btn-luxury-edit {
+    background: #ffffff !important; // Bianco per modifica
+    color: #000000 !important;
+    border: 1px solid #cccccc !important;
+    
+    &:hover {
+      background: #f8f9fa !important;
+      color: #000000 !important;
+      border-color: #adb5bd !important;
+    }
+  }
+}
+
+/* 🔧 GESTIONE TESTO LUNGO IN TABELLA */
+.table-luxury {
+  .col-ingredients,
+  .col-title {
+    position: relative;
+    
+    span {
+      display: block;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      max-width: 100%;
+      cursor: help; // Indica che c'è un tooltip
+    }
+    
+    // Tooltip al hover per vedere il testo completo
+    span:hover::after {
+      content: attr(title);
+      position: absolute;
+      top: 100%;
+      left: 0;
+      z-index: 1000;
+      background: rgba(0, 0, 0, 0.9);
+      color: white;
+      padding: 0.5rem;
+      border-radius: 6px;
+      font-size: 0.85rem;
+      white-space: normal;
+      word-wrap: break-word;
+      max-width: 300px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+      border: 1px solid var(--luxury-gold);
+    }
+  }
+  
+  // In modalità edit, textarea per testi lunghi
+  .col-ingredients input {
+    height: auto;
+    min-height: 38px;
+    resize: vertical;
+  }
+}

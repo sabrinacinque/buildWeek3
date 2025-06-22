@@ -76,79 +76,88 @@
   </div>
 
   <!-- MOBILE: Cards Layout (≤768px) -->
-  <div class="d-md-none">
+  <div class="d-md-none pb-5 mb-5">
     <div class="row g-3">
       <div class="col-12" *ngFor="let item of filteredMenu">
         <div class="card card-luxury-mobile">
           <div class="card-body p-3">
-            <!-- Header card con immagine e titolo - LAYOUT SISTEMATO -->
-            <div class="d-flex align-items-start gap-3 mb-3">
+            <!-- 🔧 LAYOUT MOBILE NORMALE -->
+            <div *ngIf="!editMode[item.id]" class="d-flex align-items-start gap-3 mb-3">
               <div class="image-container product-image-mobile">
                 <img
-                  *ngIf="!editMode[item.id]"
                   [src]="getImageUrl(item.img)"
                   alt="{{ item.titolo }}"
                   class="product-image-mobile"
                 />
-                <!-- FILE INPUT per immagini -->
-                <div *ngIf="editMode[item.id]" class="file-upload-container">
-                  <input
-                    type="file"
-                    accept="image/*"
-                    (change)="onImageSelect($event, item)"
-                    class="file-input"
-                    [id]="'file-' + item.id"
-                  />
-                  <label [for]="'file-' + item.id" class="file-label">
-                    <i class="bi bi-camera-fill"></i>
-                    <span class="d-block small">Carica</span>
-                  </label>
-                </div>
               </div>
 
               <div class="flex-grow-1 min-width-0">
-                <div
-                  class="d-flex flex-column flex-sm-row justify-content-between align-items-start gap-2"
-                >
+                <div class="d-flex flex-column flex-sm-row justify-content-between align-items-start gap-2">
                   <div class="flex-grow-1 min-width-0">
-                    <input
-                      *ngIf="editMode[item.id]"
-                      [(ngModel)]="item.titolo"
-                      class="form-control form-control-sm form-control-luxury mb-2"
-                      placeholder="Titolo"
-                    />
-                    <h6
-                      *ngIf="!editMode[item.id]"
-                      class="card-title text-light mb-1"
-                    >
-                      {{ item.titolo }}
-                    </h6>
-                    <!-- CATEGORIA: solo in modalità normale, non in edit -->
-                    <span
-                      *ngIf="!editMode[item.id]"
-                      class="badge badge-luxury-category"
-                      >{{ item.categoria }}</span
-                    >
+                    <h6 class="card-title text-light mb-1">{{ item.titolo }}</h6>
+                    <span class="badge badge-luxury-category">{{ item.categoria }}</span>
                   </div>
-
-                  <!-- PREZZO - LAYOUT SISTEMATO CON SIMBOLO € -->
                   <div class="price-container flex-shrink-0">
-                    <div *ngIf="editMode[item.id]" class="price-input-wrapper">
-                      <div class="input-group input-group-sm">
-                        <input
-                          [(ngModel)]="item.prezzo"
-                          type="number"
-                          step="0.01"
-                          class="form-control form-control-luxury price-input"
-                          placeholder="0.00"
-                        />
-                        <span class="input-group-text price-euro">€</span>
-                      </div>
-                    </div>
-                    <span *ngIf="!editMode[item.id]" class="price-badge">
-                      {{ item.prezzo | currency : "EUR" }}
-                    </span>
+                    <span class="price-badge">{{ item.prezzo | currency : "EUR" }}</span>
                   </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- 🔧 LAYOUT MOBILE EDIT MODE - CON PREVIEW IMMAGINE -->
+            <div *ngIf="editMode[item.id]" class="edit-mode-mobile mb-3">
+              <!-- Immagine Attuale + Upload -->
+              <div class="mb-3">
+                <label class="form-label text-luxury-muted small">Immagine:</label>
+                <div class="d-flex align-items-center gap-3">
+                  <!-- Preview immagine attuale -->
+                  <div class="current-image-preview">
+                    <img
+                      [src]="getImageUrl(item.img)"
+                      alt="{{ item.titolo }}"
+                      class="img-thumbnail"
+                      style="width: 60px; height: 60px; object-fit: cover;"
+                    />
+                  </div>
+                  <!-- Bottone per cambiare immagine -->
+                  <div class="file-upload-container-mobile">
+                    <input
+                      type="file"
+                      accept="image/*"
+                      (change)="onImageSelect($event, item)"
+                      class="file-input"
+                      [id]="'file-' + item.id"
+                      style="display: none;"
+                    />
+                    <label [for]="'file-' + item.id" class="btn btn-outline-gold btn-sm text-white">
+                      <i class="bi bi-camera-fill me-1 text-white"></i>Cambia
+                    </label>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Titolo -->
+              <div class="mb-3">
+                <label class="form-label text-luxury-muted small">Titolo:</label>
+                <input
+                  [(ngModel)]="item.titolo"
+                  class="form-control form-control-sm form-control-luxury"
+                  placeholder="Titolo"
+                />
+              </div>
+
+              <!-- Prezzo -->
+              <div class="mb-3">
+                <label class="form-label text-luxury-muted small">Prezzo:</label>
+                <div class="input-group input-group-sm">
+                  <input
+                    [(ngModel)]="item.prezzo"
+                    type="number"
+                    step="0.01"
+                    class="form-control form-control-luxury"
+                    placeholder="0.00"
+                  />
+                  <span class="input-group-text price-euro">€</span>
                 </div>
               </div>
             </div>
@@ -159,7 +168,7 @@
               <input
                 *ngIf="editMode[item.id]"
                 [(ngModel)]="item.ingredienti"
-                class="form-control form-control-sm"
+                class="form-control form-control-sm form-control-luxury"
                 placeholder="Ingredienti"
               />
               <p *ngIf="!editMode[item.id]" class="text-light small mb-0">
@@ -167,43 +176,47 @@
               </p>
             </div>
 
-            <!-- Status e categoria IN EDIT MODE -->
-            <div class="d-flex justify-content-between align-items-center mb-3">
-              <div class="d-flex align-items-center gap-2">
-                <input
-                  *ngIf="editMode[item.id]"
-                  [(ngModel)]="item.disponibile"
-                  type="checkbox"
-                  class="form-check-input form-check-luxury"
-                />
-                <span *ngIf="!editMode[item.id]" class="availability-status">
-                  <i
-                    class="bi {{
-                      item.disponibile
-                        ? 'bi-check-circle-fill text-success'
-                        : 'bi-x-circle-fill text-danger'
-                    }}"
-                  ></i>
-                  <span class="ms-1 text-light">{{
-                    item.disponibile ? "Disponibile" : "Non disponibile"
-                  }}</span>
-                </span>
-              </div>
+            <!-- Status e categoria -->
+            <div *ngIf="!editMode[item.id]" class="d-flex justify-content-between align-items-center mb-3">
+              <span class="availability-status">
+                <i
+                  class="bi {{
+                    item.disponibile
+                      ? 'bi-check-circle-fill text-success'
+                      : 'bi-x-circle-fill text-danger'
+                  }}"
+                ></i>
+                <span class="ms-1 text-light">{{
+                  item.disponibile ? "Disponibile" : "Non disponibile"
+                }}</span>
+              </span>
+            </div>
 
-              <!-- SELECT CATEGORIA: solo in modalità edit -->
-              <div *ngIf="editMode[item.id]">
+            <!-- EDIT MODE: Categoria e Disponibilità -->
+            <div *ngIf="editMode[item.id]" class="row g-2 mb-3">
+              <div class="col-7">
+                <label class="form-label text-luxury-muted small">Categoria:</label>
                 <select
                   [(ngModel)]="item.categoria"
                   class="form-select form-select-sm form-select-luxury"
-                  style="width: auto; min-width: 120px"
                 >
-                  <option
-                    *ngFor="let category of categories"
-                    [value]="category"
-                  >
+                  <option *ngFor="let category of categories" [value]="category">
                     {{ category }}
                   </option>
                 </select>
+              </div>
+              <div class="col-5 d-flex align-items-end">
+                <div class="form-check">
+                  <input
+                    [(ngModel)]="item.disponibile"
+                    type="checkbox"
+                    class="form-check-input form-check-luxury"
+                    [id]="'available-' + item.id"
+                  />
+                  <label [for]="'available-' + item.id" class="form-check-label text-light small">
+                    Disponibile
+                  </label>
+                </div>
               </div>
             </div>
 
@@ -236,76 +249,93 @@
     </div>
   </div>
 
-  <!-- DESKTOP: Table Layout (≥768px) -->
+  <!-- DESKTOP: Table Layout SISTEMATA (≥768px) -->
   <div class="d-none d-md-block">
     <div class="table-responsive table-luxury-container">
-      <table class="table table-bordered table-luxury">
+      <table class="table table-bordered table-luxury table-fixed">
         <thead>
           <tr>
-            <th class="border-luxury">#</th>
-            <th class="text-center border-luxury">Immagine</th>
-            <th class="border-luxury">Titolo</th>
-            <th class="border-luxury">Ingredienti</th>
-            <th class="text-center border-luxury">Prezzo</th>
-            <th class="text-center border-luxury">Categoria</th>
-            <th class="text-center border-luxury">Disponibile</th>
-            <th class="text-center">Azioni</th>
+            <th class="border-luxury col-id">#</th>
+            <th class="text-center border-luxury col-image">Immagine</th>
+            <th class="border-luxury col-title">Titolo</th>
+            <th class="border-luxury col-ingredients">Ingredienti</th>
+            <th class="text-center border-luxury col-price">Prezzo</th>
+            <th class="text-center border-luxury col-category">Categoria</th>
+            <th class="text-center border-luxury col-available">Disponibile</th>
+            <th class="text-center col-actions">Azioni</th>
           </tr>
         </thead>
         <tbody>
           <tr *ngFor="let item of filteredMenu">
-            <td class="table-bg-luxury border-luxury">{{ item.id }}</td>
-            <td class="text-center table-bg-luxury border-luxury">
+            <td class="table-bg-luxury border-luxury col-id">{{ item.id }}</td>
+            <td class="text-center table-bg-luxury border-luxury col-image">
               <img
                 *ngIf="!editMode[item.id]"
                 [src]="getImageUrl(item.img)"
                 alt="{{ item.titolo }}"
                 class="product-image-desktop"
               />
-              <input
-                *ngIf="editMode[item.id]"
-                [(ngModel)]="item.img"
-                placeholder="URL Immagine"
-                class="form-control"
-              />
+              <!-- Preview + Upload in edit mode -->
+              <div *ngIf="editMode[item.id]" class="desktop-image-edit d-flex flex-column align-items-center gap-2">
+                <!-- Preview immagine attuale -->
+                <img
+                  [src]="getImageUrl(item.img)"
+                  alt="{{ item.titolo }}"
+                  class="product-image-desktop-small"
+                />
+                <!-- Bottone upload -->
+                <input
+                  type="file"
+                  accept="image/*"
+                  (change)="onImageSelect($event, item)"
+                  class="file-input"
+                  [id]="'file-desktop-' + item.id"
+                  style="display: none;"
+                />
+                <label [for]="'file-desktop-' + item.id" class="btn btn-outline-light btn-xs">
+                  <i class="bi bi-camera-fill"></i>
+                </label>
+              </div>
             </td>
-            <td class="table-bg-luxury border-luxury">
+            <td class="table-bg-luxury border-luxury col-title">
               <input
                 *ngIf="editMode[item.id]"
                 [(ngModel)]="item.titolo"
-                class="form-control"
+                class="form-control form-control-sm"
               />
               <span *ngIf="!editMode[item.id]" class="text-light">{{
                 item.titolo
               }}</span>
             </td>
-            <td class="table-bg-luxury border-luxury">
+            <td class="table-bg-luxury border-luxury col-ingredients">
               <input
                 *ngIf="editMode[item.id]"
                 [(ngModel)]="item.ingredienti"
-                class="form-control"
+                class="form-control form-control-sm"
               />
-              <span *ngIf="!editMode[item.id]" class="text-light">{{
+              <span *ngIf="!editMode[item.id]" class="text-light text-truncate">{{
                 item.ingredienti
               }}</span>
             </td>
-            <td class="text-center table-bg-luxury border-luxury">
+            <td class="text-center table-bg-luxury border-luxury col-price">
               <input
                 *ngIf="editMode[item.id]"
                 [(ngModel)]="item.prezzo"
                 type="number"
                 step="0.01"
-                class="form-control"
+                class="form-control form-control-sm"
+                style="width: 80px;"
               />
               <span *ngIf="!editMode[item.id]" class="text-warning fw-bold">
                 {{ item.prezzo | currency : "EUR" }}
               </span>
             </td>
-            <td class="text-center table-bg-luxury border-luxury">
+            <td class="text-center table-bg-luxury border-luxury col-category">
               <select
                 *ngIf="editMode[item.id]"
                 [(ngModel)]="item.categoria"
-                class="form-select"
+                class="form-select form-select-sm"
+                style="width: 120px;"
               >
                 <option *ngFor="let category of categories" [value]="category">
                   {{ category }}
@@ -315,7 +345,7 @@
                 item.categoria
               }}</span>
             </td>
-            <td class="text-center table-bg-luxury border-luxury">
+            <td class="text-center table-bg-luxury border-luxury col-available">
               <input
                 *ngIf="editMode[item.id]"
                 [(ngModel)]="item.disponibile"
@@ -330,29 +360,35 @@
                       : 'bi-x-circle-fill text-danger'
                   }}"
                 ></i>
-                <span class="text-light ms-1">{{
+                <span class="text-light ms-1 d-none d-lg-inline">{{
                   item.disponibile ? "Sì" : "No"
                 }}</span>
               </span>
             </td>
-            <td class="text-center table-bg-luxury border-luxury">
-              <button
-                class="btn btn-danger-gold me-2 mb-2"
-                (click)="delete(item.id)"
-              >
-                <i class="bi bi-trash3"></i>
-              </button>
-              <button
-                class="btn btn-luxury-edit"
-                (click)="toggleEditMode(item.id)"
-              >
-                <i
-                  class="bi {{
-                    editMode[item.id] ? 'bi-check-lg' : 'bi-pencil'
-                  }}"
-                ></i>
-                {{ editMode[item.id] ? "Conferma" : "Modifica" }}
-              </button>
+            <td class="text-center table-bg-luxury border-luxury col-actions">
+              <div class="d-flex gap-1 justify-content-center">
+                <button
+                  class="btn btn-danger-gold btn-sm"
+                  (click)="delete(item.id)"
+                  title="Elimina"
+                >
+                  <i class="bi bi-trash3"></i>
+                </button>
+                <button
+                  class="btn btn-luxury-edit btn-sm"
+                  (click)="toggleEditMode(item.id)"
+                  title="{{ editMode[item.id] ? 'Conferma' : 'Modifica' }}"
+                >
+                  <i
+                    class="bi {{
+                      editMode[item.id] ? 'bi-check-lg' : 'bi-pencil'
+                    }}"
+                  ></i>
+                  <span class="d-none d-xl-inline ms-1">
+                    {{ editMode[item.id] ? "Conferma" : "Modifica" }}
+                  </span>
+                </button>
+              </div>
             </td>
           </tr>
         </tbody>

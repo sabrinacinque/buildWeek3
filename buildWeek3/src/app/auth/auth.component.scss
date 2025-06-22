@@ -1,14 +1,424 @@
-#container{
-  background-color: white;
- }
+/* Login Luxury Styling */
+@import url("https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css");
 
- .card {
-  margin: auto;
-  width: 50%;
- }
-
- .btn-color1 {
-  background-color: #99735e;
-  color: white;
+/* Variabili luxury */
+:root {
+  --luxury-gold: #d4af37;
+  --luxury-gold-dark: #b8941f;
+  --luxury-brown: #99735e;
+  --luxury-brown-light: #ae9b8d;
+  --luxury-dark: rgba(0, 0, 0, 0.9);
+  --luxury-dark-light: rgba(0, 0, 0, 0.7);
 }
 
+/* Container principale */
+.login-luxury-container {
+  position: relative;
+  overflow: hidden;
+  background: linear-gradient(135deg, #1a1a1a, #2d2d2d);
+  font-family: 'GothamPro', sans-serif;
+}
+
+/* Background con overlay */
+.background-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 1;
+  
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(
+      135deg, 
+      rgba(0, 0, 0, 0.8), 
+      rgba(212, 175, 55, 0.1), 
+      rgba(0, 0, 0, 0.9)
+    );
+    z-index: 2;
+  }
+}
+
+.background-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0.3;
+}
+
+/* Content principale */
+.login-content {
+  position: relative;
+  z-index: 10;
+  padding: 2rem;
+}
+
+/* Card di login luxury */
+.login-card {
+  background: linear-gradient(
+    135deg,
+    rgba(0, 0, 0, 0.95),
+    rgba(25, 25, 25, 0.9)
+  );
+  backdrop-filter: blur(20px);
+  border: 3px solid var(--luxury-gold);
+  border-radius: 25px;
+  padding: 3rem 2.5rem;
+  box-shadow: 
+    0 20px 60px rgba(0, 0, 0, 0.5),
+    0 0 40px rgba(212, 175, 55, 0.3),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1);
+  max-width: 450px;
+  width: 100%;
+  position: relative;
+  
+  &::before {
+    content: '';
+    position: absolute;
+    top: -2px;
+    left: -2px;
+    right: -2px;
+    bottom: -2px;
+    background: linear-gradient(45deg, var(--luxury-gold), transparent, var(--luxury-gold));
+    border-radius: 25px;
+    z-index: -1;
+    opacity: 0.5;
+  }
+}
+
+/* Brand Section */
+.brand-section {
+  margin-bottom: 2.5rem;
+}
+
+.brand-title {
+  font-size: 2.5rem;
+  font-weight: 900;
+  margin-bottom: 0.5rem;
+  text-shadow: 0 0 20px rgba(212, 175, 55, 0.5);
+  
+  .brand-epi {
+    color: white;
+  }
+  
+  .brand-sushi {
+    color: var(--luxury-gold);
+    filter: drop-shadow(0 0 10px rgba(212, 175, 55, 0.7));
+  }
+}
+
+.brand-subtitle {
+  color: rgba(255, 255, 255, 0.8);
+  font-size: 1.1rem;
+  font-weight: 300;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  margin-bottom: 1rem;
+}
+
+.brand-divider {
+  width: 80px;
+  height: 3px;
+  background: linear-gradient(90deg, transparent, var(--luxury-gold), transparent);
+  margin: 0 auto;
+  border-radius: 2px;
+  box-shadow: 0 0 10px rgba(212, 175, 55, 0.5);
+}
+
+/* Form Styling */
+.luxury-form {
+  .form-group-luxury {
+    position: relative;
+  }
+  
+  .form-label-luxury {
+    display: block;
+    color: var(--luxury-gold);
+    font-weight: 600;
+    font-size: 0.9rem;
+    letter-spacing: 1px;
+    margin-bottom: 0.75rem;
+    text-transform: uppercase;
+    
+    i {
+      color: var(--luxury-gold);
+      filter: drop-shadow(0 0 5px rgba(212, 175, 55, 0.5));
+    }
+  }
+  
+  .input-wrapper-luxury {
+    position: relative;
+  }
+  
+  .form-control-luxury {
+    width: 100%;
+    padding: 1rem 1.25rem;
+    background: rgba(255, 255, 255, 0.05);
+    border: 2px solid rgba(212, 175, 55, 0.3);
+    border-radius: 15px;
+    color: white;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+    backdrop-filter: blur(10px);
+    
+    &::placeholder {
+      color: rgba(255, 255, 255, 0.5);
+      font-style: italic;
+    }
+    
+    &:focus {
+      outline: none;
+      border-color: var(--luxury-gold);
+      background: rgba(255, 255, 255, 0.1);
+      box-shadow: 
+        0 0 0 4px rgba(212, 175, 55, 0.2),
+        0 0 20px rgba(212, 175, 55, 0.3);
+      transform: translateY(-2px);
+    }
+  }
+  
+  .input-focus-line {
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    width: 0;
+    height: 2px;
+    background: linear-gradient(90deg, var(--luxury-gold), var(--luxury-gold-dark));
+    transition: all 0.3s ease;
+    transform: translateX(-50%);
+    border-radius: 1px;
+  }
+  
+  .form-control-luxury:focus + .input-focus-line {
+    width: 100%;
+  }
+}
+
+/* Button Luxury */
+.btn-luxury-login {
+  position: relative;
+  background: linear-gradient(135deg, var(--luxury-gold), var(--luxury-gold-dark));
+  color: #000;
+  border: none;
+  padding: 1rem 3rem;
+  border-radius: 50px;
+  font-weight: 700;
+  font-size: 1.1rem;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  overflow: hidden;
+  box-shadow: 0 8px 25px rgba(212, 175, 55, 0.4);
+  
+  .btn-text {
+    position: relative;
+    z-index: 2;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .btn-glow {
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+    transition: all 0.5s ease;
+  }
+  
+  &:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 15px 35px rgba(212, 175, 55, 0.6);
+    
+    .btn-glow {
+      left: 100%;
+    }
+  }
+  
+  &:active {
+    transform: translateY(-1px);
+  }
+}
+
+/* Footer */
+.login-footer {
+  .footer-text {
+    color: rgba(255, 255, 255, 0.6);
+    font-size: 0.85rem;
+    
+    i {
+      color: var(--luxury-gold);
+    }
+  }
+}
+
+/* Elementi decorativi fluttuanti */
+.floating-elements {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 2;
+  pointer-events: none;
+}
+
+.floating-element {
+  position: absolute;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(212, 175, 55, 0.1), transparent);
+  animation: float 6s ease-in-out infinite;
+  
+  &.floating-element-1 {
+    width: 100px;
+    height: 100px;
+    top: 10%;
+    right: 15%;
+    animation-delay: 0s;
+  }
+  
+  &.floating-element-2 {
+    width: 60px;
+    height: 60px;
+    bottom: 20%;
+    left: 10%;
+    animation-delay: 2s;
+  }
+  
+  &.floating-element-3 {
+    width: 80px;
+    height: 80px;
+    top: 60%;
+    right: 25%;
+    animation-delay: 4s;
+  }
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0px) rotate(0deg);
+    opacity: 0.3;
+  }
+  50% {
+    transform: translateY(-20px) rotate(180deg);
+    opacity: 0.6;
+  }
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .login-content {
+    padding: 1rem;
+  }
+  
+  .login-card {
+    padding: 2rem 1.5rem;
+    margin: 1rem;
+  }
+  
+  .brand-title {
+    font-size: 2rem;
+  }
+  
+  .form-control-luxury {
+    padding: 0.875rem 1rem;
+    font-size: 0.95rem;
+  }
+  
+  .btn-luxury-login {
+    padding: 0.875rem 2.5rem;
+    font-size: 1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .brand-title {
+    font-size: 1.75rem;
+  }
+  
+  .login-card {
+    padding: 1.5rem 1rem;
+  }
+  
+  .form-control-luxury {
+    padding: 0.75rem;
+  }
+  
+  .btn-luxury-login {
+    padding: 0.75rem 2rem;
+    font-size: 0.95rem;
+  }
+}
+
+/* Animazioni di entrata */
+.login-card {
+  animation: slideInUp 0.8s ease-out;
+}
+
+@keyframes slideInUp {
+  from {
+    opacity: 0;
+    transform: translateY(50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.brand-title {
+  animation: fadeInDown 1s ease-out 0.3s both;
+}
+
+@keyframes fadeInDown {
+  from {
+    opacity: 0;
+    transform: translateY(-30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.form-group-luxury {
+  animation: fadeInLeft 0.6s ease-out both;
+  
+  &:nth-child(1) { animation-delay: 0.6s; }
+  &:nth-child(2) { animation-delay: 0.8s; }
+}
+
+@keyframes fadeInLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.btn-luxury-login {
+  animation: fadeInUp 0.6s ease-out 1.2s both;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

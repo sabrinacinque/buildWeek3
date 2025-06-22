@@ -9,13 +9,15 @@ import { Component } from '@angular/core';
 })
 export class NavbarComponent {
   isLogged: boolean = false;
-  public router!: Router;
 
-  constructor(private AuthService: AuthService, private Router: Router) {}
+  constructor(
+    private AuthService: AuthService, 
+    public router: Router // ✅ CORRETTO: router minuscolo e public
+  ) {}
 
   logout() {
     this.AuthService.logout();
-    this.Router.navigate(['']);
+    this.router.navigate(['']); // ✅ CORRETTO: router minuscolo
   }
 
   ngOnInit() {

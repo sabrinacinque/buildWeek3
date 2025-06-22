@@ -158,6 +158,19 @@
         <div class="nav-glow"></div>
       </a>
 
+      <!-- Cucina (Admin only) -->
+      <a *ngIf="isLogged" 
+         routerLink="/dashboard/cucina" 
+         routerLinkActive="active"
+         class="nav-item-luxury nav-item-special">
+        <div class="nav-content">
+          <i class="bi bi-house-gear-fill nav-icon"></i>
+          <span class="nav-text">Cucina</span>
+          <span class="admin-badge">ADMIN</span>
+        </div>
+        <div class="nav-glow"></div>
+      </a>
+
       <!-- Area Riservata -->
       <a routerLink="/auth" 
          routerLinkActive="active" 

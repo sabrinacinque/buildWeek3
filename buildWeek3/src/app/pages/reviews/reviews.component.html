@@ -1,59 +1,82 @@
-<div class="container text-center color mx-auto">
-    <div class="row">
-      <div class="col">
-        <h1 class="mt-3">Reviews</h1>
-        <p class="text-start text-white p-3">
-          La tua opinione conta molto per noi! Dopo aver gustato la nostra cucina giapponese, ti invitiamo a condividere la tua esperienza lasciando una recensione. Le tue recensioni non solo ci aiutano a migliorare continuamente i nostri servizi, ma guidano anche altri amanti del sushi nella loro scelta. Che tu abbia apprezzato un particolare piatto, il nostro servizio attento o l'atmosfera del ristorante, le tue parole possono fare la differenza. Raccontaci cosa ti è piaciuto di più e suggerisci eventuali miglioramenti: il tuo feedback è prezioso per noi e per tutta la nostra comunità di clienti!
-        </p>
-      </div>
+<div class="reviews-luxury-container">
+  <div class="reviews-header">
+    <h1 class="reviews-title">
+      <span class="title-reviews">REVIEWS</span>
+      <div class="title-divider"></div>
+    </h1>
+    
+    <div class="reviews-description">
+      <p class="description-text">
+        La tua opinione conta molto per noi! Dopo aver gustato la nostra cucina giapponese, ti invitiamo a condividere la tua esperienza lasciando una recensione. Le tue recensioni non solo ci aiutano a migliorare continuamente i nostri servizi, ma guidano anche altri amanti del sushi nella loro scelta. Che tu abbia apprezzato un particolare piatto, il nostro servizio attento o l'atmosfera del ristorante, le tue parole possono fare la differenza. Raccontaci cosa ti è piaciuto di più e suggerisci eventuali miglioramenti: il tuo feedback è prezioso per noi e per tutta la nostra comunità di clienti!
+      </p>
     </div>
-  
-    <div class="row text-start mx-5">
-      <div class="col-6">
-        <div class="y-3 p-2">
-          <h3>Qualità del cibo</h3>
+  </div>
+
+  <div class="reviews-content">
+    <div class="ratings-section">
+      <div class="rating-category">
+        <h3 class="category-title">Qualità del cibo</h3>
+        <div class="rating-container">
           <app-sushi-icon categoryId="food" (ratingSelected)="onRatingSelected($event)"></app-sushi-icon>
         </div>
-  
-        <div class="my-3 p-2">
-          <h3>Servizio</h3>
+      </div>
+
+      <div class="rating-category">
+        <h3 class="category-title">Servizio</h3>
+        <div class="rating-container">
           <app-sushi-icon categoryId="service" (ratingSelected)="onRatingSelected($event)"></app-sushi-icon>
         </div>
-  
-        <div class="my-3 p-2">
-          <h3>Atmosfera</h3>
+      </div>
+
+      <div class="rating-category">
+        <h3 class="category-title">Atmosfera</h3>
+        <div class="rating-container">
           <app-sushi-icon categoryId="atmosphere" (ratingSelected)="onRatingSelected($event)"></app-sushi-icon>
         </div>
-  
-        <div class="my-3 p-2">
-          <h3>Tempi di attesa</h3>
+      </div>
+
+      <div class="rating-category">
+        <h3 class="category-title">Tempi di attesa</h3>
+        <div class="rating-container">
           <app-sushi-icon categoryId="waitTime" (ratingSelected)="onRatingSelected($event)"></app-sushi-icon>
         </div>
-  
-        <div class="my-3 p-2">
-          <h3>Pulizia</h3>
+      </div>
+
+      <div class="rating-category">
+        <h3 class="category-title">Pulizia</h3>
+        <div class="rating-container">
           <app-sushi-icon categoryId="cleanliness" (ratingSelected)="onRatingSelected($event)"></app-sushi-icon>
         </div>
       </div>
-  
-      <div class="col-sm-12 col-md-6 text-start">
-        <form class="d-flex flex-column">
-          <div>
-            <h3 class="text-center">Condividi la tua esperienza con noi!</h3>
-            <textarea placeholder="Scrivi qui la tua recensione..."></textarea>
+    </div>
+
+    <div class="review-form-section">
+      <div class="form-container">
+        <h3 class="form-title">Condividi la tua esperienza con noi!</h3>
+        
+        <form class="luxury-form">
+          <div class="textarea-container">
+            <textarea 
+              class="luxury-textarea" 
+              placeholder="Scrivi qui la tua recensione..."
+              rows="8">
+            </textarea>
+            <div class="textarea-glow"></div>
           </div>
-          <div class="mt-3 mx-auto position-relative">
-            <button type="button" (click)="submitReview()">
-              <img src="./../../../assets/image/sushi icon.svg" alt="sushi-icon">
+          
+          <div class="submit-container">
+            <button type="button" class="luxury-submit-btn" (click)="submitReview()">
+              <div class="btn-content">
+                <img src="./../../../assets/image/sushi icon.svg" alt="sushi-icon" class="btn-icon">
+              </div>
+              <div class="btn-glow"></div>
             </button>
           </div>
         </form>
       </div>
+
+      
+      
     </div>
   </div>
-
-
-
-
-
-
+</div>

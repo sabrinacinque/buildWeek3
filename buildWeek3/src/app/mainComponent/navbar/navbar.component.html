@@ -1,44 +1,184 @@
-<div class="sidebar bg-dark vh-100" id="sidebar-wrapper">
-  <div class="d-flex justify-content-between align-items-center flex-wrap">
+<div class="sidebar-luxury vh-100" id="sidebar-wrapper">
+  <!-- Header Logo Section -->
+  <div class="sidebar-header-luxury">
+    <div class="logo-section-luxury" routerLink="">
+      <h2 class="brand-title-sidebar">
+        <span class="brand-epi">EPI</span><span class="brand-sushi">SUSHI</span>
+      </h2>
+      <div class="logo-divider-sidebar"></div>
+    </div>
 
-    <img routerLink="" src="../../../assets/image/logo episushi bianco.svg" alt="Episushi Logo" class="p-2" />
-
-    <div class="d-flex align-items-center ms-3 mb-3">
-      <div *ngIf="isLogged" class="container_logout me-3" (click)="logout()">
-        <img id="logout_img" src="../../../assets/image/switch.svg" alt="Logout" />
+    <!-- Logout Button -->
+    <div *ngIf="isLogged" class="logout-section-luxury" (click)="logout()">
+      <div class="logout-button-luxury" title="Logout">
+        <i class="bi bi-box-arrow-right"></i>
       </div>
     </div>
   </div>
-  <div class="list-group list-group-flush">
-    <a routerLink="" class="list-group-item list-group-item-action bg-dark text-light">Homepage</a>
-    <a routerLink="/menu/antipasti" routerLinkActive="active"
-      class="list-group-item list-group-item-action bg-dark text-light">Antipasti</a>
-    <a routerLink="/menu/zuppe" routerLinkActive="active"
-      class="list-group-item list-group-item-action bg-dark text-light">Zuppe</a>
-    <a routerLink="/menu/primi" routerLinkActive="active"
-      class="list-group-item list-group-item-action bg-dark text-light">Primi</a>
-    <a routerLink="/menu/hosomaki" routerLinkActive="active"
-      class="list-group-item list-group-item-action bg-dark text-light">Hosomaki</a>
-    <a routerLink="/menu/uramaki" routerLinkActive="active"
-      class="list-group-item list-group-item-action bg-dark text-light">Uramaki</a>
-    <a routerLink="/menu/temaki" routerLinkActive="active"
-      class="list-group-item list-group-item-action bg-dark text-light">Temaki</a>
-    <a routerLink="/menu/sushi" routerLinkActive="active"
-      class="list-group-item list-group-item-action bg-dark text-light">Sushi</a>
-    <a routerLink="/menu/secondi" routerLinkActive="active"
-      class="list-group-item list-group-item-action bg-dark text-light">Secondi</a>
-    <a routerLink="/menu/dolci" routerLinkActive="active"
-      class="list-group-item list-group-item-action bg-dark text-light">Dolci</a>
-    <a routerLink="/menu/bibite" routerLinkActive="active"
-      class="list-group-item list-group-item-action bg-dark text-light">Bibite</a>
-    <a routerLink="/reviews" routerLinkActive="active"
-      class="list-group-item list-group-item-action bg-dark text-light">Recensioni</a>
-    <a *ngIf="isLogged" routerLink="/dashboard" routerLinkActive="active"
-      class="list-group-item list-group-item-action bg-dark text-light">Dashboard</a>
-    <a routerLink="/auth" routerLinkActive="active" [ngClass]="{ 'd-none': isLogged }"
-      class="list-group-item list-group-item-action bg-dark text-light">Area Riservata
-      <i *ngIf="!isLogged" class="bi bi-lock"></i>
-      <i *ngIf="isLogged" class="bi bi-unlock"></i>
-    </a>
+
+  <!-- Navigation Menu -->
+  <div class="navigation-luxury">
+    <nav class="nav-list-luxury">
+      <!-- Homepage -->
+      <a routerLink="" 
+         class="nav-item-luxury" 
+         [class.active]="router.url === '/'">
+        <div class="nav-content">
+          <i class="bi bi-house-fill nav-icon"></i>
+          <span class="nav-text">Homepage</span>
+        </div>
+        <div class="nav-glow"></div>
+      </a>
+
+      <!-- Menu Categories -->
+      <a routerLink="/menu/antipasti" 
+         routerLinkActive="active"
+         class="nav-item-luxury">
+        <div class="nav-content">
+          <span class="nav-emoji">🥟</span>
+          <span class="nav-text">Antipasti</span>
+        </div>
+        <div class="nav-glow"></div>
+      </a>
+
+      <a routerLink="/menu/zuppe" 
+         routerLinkActive="active"
+         class="nav-item-luxury">
+        <div class="nav-content">
+          <span class="nav-emoji">🍜</span>
+          <span class="nav-text">Zuppe</span>
+        </div>
+        <div class="nav-glow"></div>
+      </a>
+
+      <a routerLink="/menu/primi" 
+         routerLinkActive="active"
+         class="nav-item-luxury">
+        <div class="nav-content">
+          <span class="nav-emoji">🍝</span>
+          <span class="nav-text">Primi</span>
+        </div>
+        <div class="nav-glow"></div>
+      </a>
+
+      <a routerLink="/menu/hosomaki" 
+         routerLinkActive="active"
+         class="nav-item-luxury">
+        <div class="nav-content">
+          <span class="nav-emoji">🍣</span>
+          <span class="nav-text">Hosomaki</span>
+        </div>
+        <div class="nav-glow"></div>
+      </a>
+
+      <a routerLink="/menu/uramaki" 
+         routerLinkActive="active"
+         class="nav-item-luxury">
+        <div class="nav-content">
+          <span class="nav-emoji">🍱</span>
+          <span class="nav-text">Uramaki</span>
+        </div>
+        <div class="nav-glow"></div>
+      </a>
+
+      <a routerLink="/menu/temaki" 
+         routerLinkActive="active"
+         class="nav-item-luxury">
+        <div class="nav-content">
+          <span class="nav-emoji">🍙</span>
+          <span class="nav-text">Temaki</span>
+        </div>
+        <div class="nav-glow"></div>
+      </a>
+
+      <a routerLink="/menu/sushi" 
+         routerLinkActive="active"
+         class="nav-item-luxury">
+        <div class="nav-content">
+          <span class="nav-emoji">🍚</span>
+          <span class="nav-text">Sushi</span>
+        </div>
+        <div class="nav-glow"></div>
+      </a>
+
+      <a routerLink="/menu/secondi" 
+         routerLinkActive="active"
+         class="nav-item-luxury">
+        <div class="nav-content">
+          <span class="nav-emoji">🐟</span>
+          <span class="nav-text">Secondi</span>
+        </div>
+        <div class="nav-glow"></div>
+      </a>
+
+      <a routerLink="/menu/dolci" 
+         routerLinkActive="active"
+         class="nav-item-luxury">
+        <div class="nav-content">
+          <span class="nav-emoji">🍡</span>
+          <span class="nav-text">Dolci</span>
+        </div>
+        <div class="nav-glow"></div>
+      </a>
+
+      <a routerLink="/menu/bibite" 
+         routerLinkActive="active"
+         class="nav-item-luxury">
+        <div class="nav-content">
+          <span class="nav-emoji">🍵</span>
+          <span class="nav-text">Bibite</span>
+        </div>
+        <div class="nav-glow"></div>
+      </a>
+
+      <!-- Divider -->
+      <div class="nav-divider-luxury"></div>
+
+      <!-- Special Sections -->
+      <a routerLink="/reviews" 
+         routerLinkActive="active"
+         class="nav-item-luxury">
+        <div class="nav-content">
+          <i class="bi bi-star-fill nav-icon"></i>
+          <span class="nav-text">Recensioni</span>
+        </div>
+        <div class="nav-glow"></div>
+      </a>
+
+      <!-- Dashboard (Admin only) -->
+      <a *ngIf="isLogged" 
+         routerLink="/dashboard" 
+         routerLinkActive="active"
+         class="nav-item-luxury nav-item-special">
+        <div class="nav-content">
+          <i class="bi bi-speedometer2 nav-icon"></i>
+          <span class="nav-text">Dashboard</span>
+          <span class="admin-badge">ADMIN</span>
+        </div>
+        <div class="nav-glow"></div>
+      </a>
+
+      <!-- Area Riservata -->
+      <a routerLink="/auth" 
+         routerLinkActive="active" 
+         [ngClass]="{ 'd-none': isLogged }"
+         class="nav-item-luxury nav-item-login">
+        <div class="nav-content">
+          <i class="bi bi-shield-lock nav-icon"></i>
+          <span class="nav-text">Area Riservata</span>
+          <i class="bi bi-lock login-status"></i>
+        </div>
+        <div class="nav-glow"></div>
+      </a>
+    </nav>
+  </div>
+
+  <!-- Footer with decorative elements -->
+  <div class="sidebar-footer-luxury">
+    <div class="footer-decoration">
+      <div class="decoration-line"></div>
+      <div class="decoration-center">✨</div>
+      <div class="decoration-line"></div>
+    </div>
   </div>
 </div>

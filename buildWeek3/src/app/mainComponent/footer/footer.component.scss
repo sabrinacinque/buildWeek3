@@ -1,33 +1,210 @@
-p {
+/* Footer Luxury Styling - SOTTILE E PULITO */
+
+/* 🎨 FOOTER LUXURY CONTAINER */
+.footer-luxury {
+  background: linear-gradient(
+    180deg,
+    #000000 0%,
+    #1a1a1a 50%,
+    #99735e 100%
+  );
   color: white;
+  padding: 1.5rem 0 0.5rem 0; /* Ridotto il padding */
+  position: relative;
+  overflow: hidden;
+  font-family: 'GothamPro', sans-serif;
+  
+  /* Overlay decorativo più leggero */
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: radial-gradient(circle at 50% 50%, rgba(212, 175, 55, 0.05) 0%, transparent 50%);
+    pointer-events: none;
+    z-index: 1;
+  }
 }
 
-img {
-  width: 18em;
-    padding-top: 1em;
+/* 🏆 FOOTER HEADER - RIDOTTO */
+.footer-header {
+  position: relative;
+  z-index: 2;
+  text-align: center;
+  margin-bottom: 1rem; /* Ridotto da 2rem */
 }
-.star-rating {
+
+/* 🎯 BRAND TITLE - PIÙ PICCOLO */
+.brand-container {
+  margin: 0;
+}
+
+.footer-brand-title {
+  font-family: 'GothamPro', sans-serif;
+  font-size: 1.5rem; /* Ridotto da 2rem */
+  font-weight: 900;
+  margin: 0;
+  
+  .brand-epi {
+    color: white;
+    text-shadow: 0 0 10px rgba(212, 175, 55, 0.5);
+  }
+  
+  .brand-sushi {
+    color: #d4af37;
+    text-shadow: 0 0 8px rgba(212, 175, 55, 0.7);
+  }
+}
+
+.brand-divider {
+  width: 60px; /* Ridotto da 80px */
+  height: 1px; /* Ridotto da 2px */
+  background: linear-gradient(90deg, transparent, #d4af37, transparent);
+  margin: 0.3rem auto; /* Ridotto da 0.5rem */
+  border-radius: 1px;
+  box-shadow: 0 0 6px rgba(212, 175, 55, 0.5);
+}
+
+/* 📱 SOCIAL MEDIA SECTION - PIÙ COMPATTA */
+.social-section {
+  position: relative;
+  z-index: 2;
+  text-align: center;
+  margin-bottom: 1rem; /* Ridotto da 2rem */
+}
+
+.social-container {
   display: flex;
-  justify-content: center; /* Centra le stelle orizzontalmente */
-  align-items: center; /* Centra le stelle verticalmente */
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
 }
 
-.star {
-  cursor: pointer;
-  width: 40px; /* Regola la dimensione dell'immagine */
-  height: 40px;
-  opacity: 0.5; /* Immagine trasparente inizialmente */
-  transition: opacity 0.3s ease; /* Transizione per un effetto di cambiamento graduale */
-  margin: 0 5px; /* Aggiungi spaziatura tra le immagini */
+/* 🌟 SOCIAL BUTTONS LUXURY - PIÙ PICCOLI */
+.social-btn {
+  position: relative;
+  width: 40px; /* Ridotto da 50px */
+  height: 40px; /* Ridotto da 50px */
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  overflow: hidden;
+  border: 1px solid transparent; /* Ridotto da 2px */
+  
+  &:hover {
+    transform: translateY(-3px) scale(1.05); /* Ridotto movimento */
+    border-color: rgba(212, 175, 55, 0.5);
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3); /* Ridotto shadow */
+  }
 }
 
-.star.selected {
-  opacity: 1; /* Immagine completamente opaca quando selezionata */
+.social-icon {
+  font-size: 1rem; /* Ridotto da 1.2rem */
+  color: white;
+  position: relative;
+  z-index: 2;
+  transition: all 0.3s ease;
 }
 
-.star:hover,
-.star.selected:hover {
-  opacity: 1; /* Immagine completamente opaca al passaggio del mouse */
+.social-glow {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  border-radius: 50%;
+  background: linear-gradient(45deg, transparent, rgba(212, 175, 55, 0.2), transparent);
+  opacity: 0;
+  transition: opacity 0.3s ease;
 }
 
+.social-btn:hover .social-glow {
+  opacity: 1;
+}
 
+/* 🎨 SOCIAL COLORS LUXURY - SOLO LINKEDIN E GITHUB */
+.linkedin-btn {
+  background: linear-gradient(135deg, #0082ca, #006ba1);
+  
+  &:hover {
+    background: linear-gradient(135deg, #0094e6, #0082ca);
+  }
+}
+
+.github-btn {
+  background: linear-gradient(135deg, #333333, #1a1a1a);
+  
+  &:hover {
+    background: linear-gradient(135deg, #404040, #333333);
+  }
+}
+
+/* 📄 COPYRIGHT SECTION - PIÙ SOTTILE */
+.copyright-section {
+  position: relative;
+  z-index: 2;
+  text-align: center;
+  padding: 0.5rem 0; /* Ridotto da 1rem */
+  border-top: 1px solid rgba(212, 175, 55, 0.2); /* Più leggero */
+  background: rgba(0, 0, 0, 0.2); /* Più leggero */
+}
+
+.copyright-text {
+  font-size: 0.8rem; /* Ridotto da 0.9rem */
+  color: rgba(255, 255, 255, 0.7); /* Più trasparente */
+  margin: 0;
+  letter-spacing: 0.03rem;
+}
+
+/* 📱 RESPONSIVE DESIGN - AGGIORNATO */
+@media (max-width: 768px) {
+  .footer-luxury {
+    padding: 1rem 1rem 0.5rem 1rem;
+  }
+  
+  .footer-brand-title {
+    font-size: 1.3rem;
+  }
+  
+  .social-container {
+    gap: 0.8rem;
+  }
+  
+  .social-btn {
+    width: 35px;
+    height: 35px;
+  }
+  
+  .social-icon {
+    font-size: 0.9rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .footer-brand-title {
+    font-size: 1.1rem;
+  }
+  
+  .social-container {
+    gap: 0.6rem;
+  }
+  
+  .social-btn {
+    width: 32px;
+    height: 32px;
+  }
+  
+  .social-icon {
+    font-size: 0.8rem;
+  }
+  
+  .copyright-text {
+    font-size: 0.7rem;
+    padding: 0 1rem;
+  }
+}

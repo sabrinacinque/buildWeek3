@@ -9,6 +9,7 @@ import { Component } from '@angular/core';
 })
 export class NavbarComponent {
   isLogged: boolean = false;
+  public router!: Router;
 
   constructor(private AuthService: AuthService, private Router: Router) {}
 

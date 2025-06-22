@@ -1,33 +1,20 @@
-/* Login Luxury Styling */
+/* Login Luxury Styling - GRADIENT COORDINATO */
 @import url("https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css");
 
-/* Variabili luxury */
-:root {
-  --luxury-gold: #d4af37;
-  --luxury-gold-dark: #b8941f;
-  --luxury-brown: #99735e;
-  --luxury-brown-light: #ae9b8d;
-  --luxury-dark: rgba(0, 0, 0, 0.9);
-  --luxury-dark-light: rgba(0, 0, 0, 0.7);
-}
-
-/* Container principale */
+/* 🎨 CONTAINER PRINCIPALE CON GRADIENT LUXURY */
 .login-luxury-container {
   position: relative;
   overflow: hidden;
-  background: linear-gradient(135deg, #1a1a1a, #2d2d2d);
+  background: linear-gradient(
+    180deg,
+    #000000 0%,
+    #1a1a1a 30%,
+    #99735e 70%,
+    #ae9b8d 100%
+  ) !important;
   font-family: 'GothamPro', sans-serif;
-}
-
-/* Background con overlay */
-.background-overlay {
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  z-index: 1;
   
+  /* Overlay decorativo coordinato */
   &::before {
     content: '';
     position: absolute;
@@ -35,43 +22,34 @@
     left: 0;
     right: 0;
     bottom: 0;
-    background: linear-gradient(
-      135deg, 
-      rgba(0, 0, 0, 0.8), 
-      rgba(212, 175, 55, 0.1), 
-      rgba(0, 0, 0, 0.9)
-    );
-    z-index: 2;
+    background: 
+      radial-gradient(circle at 25% 25%, rgba(212, 175, 55, 0.1) 0%, transparent 50%),
+      radial-gradient(circle at 75% 75%, rgba(212, 175, 55, 0.05) 0%, transparent 50%);
+    pointer-events: none;
+    z-index: 1;
   }
 }
 
-.background-image {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  opacity: 0.3;
-}
-
-/* Content principale */
+/* 📄 CONTENT PRINCIPALE */
 .login-content {
   position: relative;
   z-index: 10;
   padding: 2rem;
 }
 
-/* Card di login luxury */
+/* 🏆 CARD DI LOGIN LUXURY */
 .login-card {
   background: linear-gradient(
     135deg,
-    rgba(0, 0, 0, 0.95),
-    rgba(25, 25, 25, 0.9)
+    rgba(0, 0, 0, 0.85),
+    rgba(25, 25, 25, 0.8)
   );
   backdrop-filter: blur(20px);
-  border: 3px solid var(--luxury-gold);
+  border: 3px solid #d4af37;
   border-radius: 25px;
   padding: 3rem 2.5rem;
   box-shadow: 
-    0 20px 60px rgba(0, 0, 0, 0.5),
+    0 20px 60px rgba(0, 0, 0, 0.4),
     0 0 40px rgba(212, 175, 55, 0.3),
     inset 0 1px 0 rgba(255, 255, 255, 0.1);
   max-width: 450px;
@@ -85,14 +63,14 @@
     left: -2px;
     right: -2px;
     bottom: -2px;
-    background: linear-gradient(45deg, var(--luxury-gold), transparent, var(--luxury-gold));
+    background: linear-gradient(45deg, #d4af37, transparent, #d4af37);
     border-radius: 25px;
     z-index: -1;
     opacity: 0.5;
   }
 }
 
-/* Brand Section */
+/* 🎯 BRAND SECTION */
 .brand-section {
   margin-bottom: 2.5rem;
 }
@@ -108,7 +86,7 @@
   }
   
   .brand-sushi {
-    color: var(--luxury-gold);
+    color: #d4af37;
     filter: drop-shadow(0 0 10px rgba(212, 175, 55, 0.7));
   }
 }
@@ -120,18 +98,19 @@
   letter-spacing: 2px;
   text-transform: uppercase;
   margin-bottom: 1rem;
+  text-shadow: 0 0 8px rgba(212, 175, 55, 0.3);
 }
 
 .brand-divider {
   width: 80px;
   height: 3px;
-  background: linear-gradient(90deg, transparent, var(--luxury-gold), transparent);
+  background: linear-gradient(90deg, transparent, #d4af37, transparent);
   margin: 0 auto;
   border-radius: 2px;
   box-shadow: 0 0 10px rgba(212, 175, 55, 0.5);
 }
 
-/* Form Styling */
+/* 📝 FORM STYLING */
 .luxury-form {
   .form-group-luxury {
     position: relative;
@@ -139,15 +118,16 @@
   
   .form-label-luxury {
     display: block;
-    color: var(--luxury-gold);
+    color: #d4af37;
     font-weight: 600;
     font-size: 0.9rem;
     letter-spacing: 1px;
     margin-bottom: 0.75rem;
     text-transform: uppercase;
+    text-shadow: 0 0 8px rgba(212, 175, 55, 0.4);
     
     i {
-      color: var(--luxury-gold);
+      color: #d4af37;
       filter: drop-shadow(0 0 5px rgba(212, 175, 55, 0.5));
     }
   }
@@ -174,7 +154,7 @@
     
     &:focus {
       outline: none;
-      border-color: var(--luxury-gold);
+      border-color: #d4af37;
       background: rgba(255, 255, 255, 0.1);
       box-shadow: 
         0 0 0 4px rgba(212, 175, 55, 0.2),
@@ -189,7 +169,7 @@
     left: 50%;
     width: 0;
     height: 2px;
-    background: linear-gradient(90deg, var(--luxury-gold), var(--luxury-gold-dark));
+    background: linear-gradient(90deg, #d4af37, #b8941f);
     transition: all 0.3s ease;
     transform: translateX(-50%);
     border-radius: 1px;
@@ -200,10 +180,10 @@
   }
 }
 
-/* Button Luxury */
+/* 🎯 BUTTON LUXURY */
 .btn-luxury-login {
   position: relative;
-  background: linear-gradient(135deg, var(--luxury-gold), var(--luxury-gold-dark));
+  background: linear-gradient(135deg, #d4af37, #b8941f);
   color: #000;
   border: none;
   padding: 1rem 3rem;
@@ -223,6 +203,11 @@
     display: flex;
     align-items: center;
     justify-content: center;
+    color: #000 !important;
+    
+    i {
+      color: #000 !important;
+    }
   }
   
   .btn-glow {
@@ -238,6 +223,7 @@
   &:hover {
     transform: translateY(-3px);
     box-shadow: 0 15px 35px rgba(212, 175, 55, 0.6);
+    background: linear-gradient(135deg, #b8941f, #d4af37);
     
     .btn-glow {
       left: 100%;
@@ -249,19 +235,20 @@
   }
 }
 
-/* Footer */
+/* 🦶 FOOTER */
 .login-footer {
   .footer-text {
     color: rgba(255, 255, 255, 0.6);
     font-size: 0.85rem;
     
     i {
-      color: var(--luxury-gold);
+      color: #d4af37;
+      filter: drop-shadow(0 0 5px rgba(212, 175, 55, 0.5));
     }
   }
 }
 
-/* Elementi decorativi fluttuanti */
+/* ✨ ELEMENTI DECORATIVI FLUTTUANTI */
 .floating-elements {
   position: absolute;
   top: 0;
@@ -314,7 +301,7 @@
   }
 }
 
-/* Responsive */
+/* 📱 RESPONSIVE */
 @media (max-width: 768px) {
   .login-content {
     padding: 1rem;
@@ -359,7 +346,7 @@
   }
 }
 
-/* Animazioni di entrata */
+/* 🎬 ANIMAZIONI DI ENTRATA */
 .login-card {
   animation: slideInUp 0.8s ease-out;
 }

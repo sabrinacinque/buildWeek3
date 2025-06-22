@@ -3,134 +3,38 @@
   href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
 />
 
-<footer class="bg-dark text-center">
-  <!-- Grid container -->
-  <div>
-    <img
-      class="p-0"
-      src="../../../assets/image/logo episushi bianco.svg"
-      alt="logo episushi"
-    />
-  </div>
-
-  <div class="container p-4 py-0">
-    <!-- Section: Form -->
-    <div class="container p-4 pb-0">
-      <!-- Section: Social media -->
-      <section>
-        <!-- Facebook -->
-        <a
-          data-mdb-ripple-init
-          class="btn text-white btn-floating m-1"
-          style="background-color: #3b5998"
-          href="#!"
-          role="button"
-          ><i class="fab fa-facebook-f"></i
-        ></a>
-
-        <!-- Twitter -->
-        <a
-          data-mdb-ripple-init
-          class="btn text-white btn-floating m-1"
-          style="background-color: #55acee"
-          href="#!"
-          role="button"
-          ><i class="fab fa-twitter"></i
-        ></a>
-
-        <!-- Google -->
-        <a
-          data-mdb-ripple-init
-          class="btn text-white btn-floating m-1"
-          style="background-color: #dd4b39"
-          href="#!"
-          role="button"
-          ><i class="fab fa-google"></i
-        ></a>
-
-        <!-- Instagram -->
-        <a
-          data-mdb-ripple-init
-          class="btn text-white btn-floating m-1"
-          style="background-color: #ac2bac"
-          href="#!"
-          role="button"
-          ><i class="fab fa-instagram"></i
-        ></a>
-
-        <!-- Linkedin -->
-        <a
-          data-mdb-ripple-init
-          class="btn text-white btn-floating m-1"
-          style="background-color: #0082ca"
-          href="#!"
-          role="button"
-          ><i class="fab fa-linkedin-in"></i
-        ></a>
-        <!-- Github -->
-        <a
-          data-mdb-ripple-init
-          class="btn text-white btn-floating m-1"
-          style="background-color: #333333"
-          href="#!"
-          role="button"
-          ><i class="fab fa-github"></i
-        ></a>
-      </section>
-      <!-- Section: Social media -->
+<footer class="footer-luxury">
+  <!-- Brand Title Only -->
+  <div class="footer-header">
+    <div class="brand-container">
+      <h2 class="footer-brand-title">
+        <span class="brand-epi">EPI</span><span class="brand-sushi">SUSHI</span>
+      </h2>
+      <div class="brand-divider"></div>
     </div>
-    <section>
-      <form (ngSubmit)="onSubmit()">
-        <!-- Flex row -->
-        <div
-          class="d-flex justify-content-center align-items-center flex-wrap flex-column-reverse"
-        >
-          <!-- Feedback column
-          <div class="col-auto text-center">
-            <p class="pt-2">
-              <strong>Lascia il tuo feedback</strong>
-            </p>
-            <div class="star-rating">
-              <img
-                *ngFor="let star of [1, 2, 3, 4, 5]"
-                [src]="starIcon"
-                [alt]="star"
-                class="star"
-                [class.selected]="star <= rating || star <= hoverRating"
-                (click)="setRating(star)"
-                (mouseover)="setTemporaryRating(star)"
-                (mouseleave)="clearTemporaryRating()"
-              />
-            </div>
-          </div>-->
-
-          <!-- Submit button column -->
-          <div class="col-auto">
-            <!-- Submit button
-            <button
-              type="submit"
-              class="btn mb-4"
-              style="background-color: #99735e; color: white"
-            >
-              Subscribe
-            </button>-->
-          </div>
-        </div>
-      </form>
-    </section>
-
-    <!-- Section: Form -->
   </div>
-  <!-- Grid container -->
 
-  <!-- Copyright -->
-  <div class="text-center p-3" style="color: white">
-    © 2024 Copyright:
-    <a
-      class="text-white"
-      href="https://www.youtube.com/watch?v=dQw4w9WgXcQ&ab_channel=RickAstley"
-      >EpiSushi</a
-    >
+  <!-- Social Media Section -->
+  <div class="social-section">
+    <div class="social-container">
+      <!-- LinkedIn -->
+      <a class="social-btn linkedin-btn" href="#!" role="button">
+        <i class="fab fa-linkedin-in social-icon"></i>
+        <div class="social-glow"></div>
+      </a>
+
+      <!-- GitHub -->
+      <a class="social-btn github-btn" href="#!" role="button">
+        <i class="fab fa-github social-icon"></i>
+        <div class="social-glow"></div>
+      </a>
+    </div>
   </div>
-  <!-- Copyright -->
+
+  <!-- Copyright Section -->
+  <div class="copyright-section">
+    <p class="copyright-text">
+      © 2025 EpiSushi
+    </p>
+  </div>
 </footer>

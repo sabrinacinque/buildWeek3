@@ -1103,3 +1103,39 @@
 #sistemo { align-items: center; }
 #elimina { position: relative; left: 24em; bottom: 34px; }
 #prezzo { position: relative; left: -12em; }
+
+/* 📱 MOBILE CART FIX - Larghezze fisse */
+@media (max-width: 768px) {
+  .cart-item-luxury {
+    display: grid;
+    grid-template-columns: 1fr 80px 60px 40px; /* Larghezze fisse */
+    gap: 0.5rem;
+    align-items: center;
+    padding: 0.75rem;
+  }
+
+  .item-quantity {
+    justify-self: center;
+  }
+
+  .qty-display-cart {
+    min-width: 24px; /* Larghezza minima fissa per doppia cifra */
+    text-align: center;
+    display: inline-block;
+  }
+
+  .item-total-price {
+    justify-self: end;
+    font-size: 0.9rem;
+  }
+
+  .item-actions {
+    justify-self: center;
+  }
+
+  .remove-btn-luxury {
+    width: 32px;
+    height: 32px;
+    min-width: 32px; /* Impedisce restringimento */
+  }
+}

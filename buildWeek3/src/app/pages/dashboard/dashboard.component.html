@@ -86,7 +86,7 @@
               <div class="image-container product-image-mobile">
                 <img
                   *ngIf="!editMode[item.id]"
-                  [src]="'../../../assets/image/png/' + item.img"
+                  [src]="getImageUrl(item.img)"
                   alt="{{ item.titolo }}"
                   class="product-image-mobile"
                 />
@@ -258,7 +258,7 @@
             <td class="text-center table-bg-luxury border-luxury">
               <img
                 *ngIf="!editMode[item.id]"
-                [src]="'../../../assets/image/png/' + item.img"
+                [src]="getImageUrl(item.img)"
                 alt="{{ item.titolo }}"
                 class="product-image-desktop"
               />

@@ -61,22 +61,7 @@ export class DashboardComponent implements OnInit {
     });
   }
 
-  // Crea un nuovo prodotto nel menu
-  createProduct(modal: any) {
-    this.menuSvc.create(this.newProduct).subscribe((data: iMenu) => {
-      this.menu.push(data);
-      // 🔧 SISTEMATO: Riordina dopo aggiunta
-      this.menu.sort((a, b) => a.id - b.id);
-      this.applyFilters(); // Applica filtri invece di copiare tutto
-      Swal.fire({
-        icon: 'success',
-        title: 'Successo',
-        text: 'Prodotto creato con successo!',
-      });
-      modal.close();
-      this.newProduct = {};
-    });
-  }
+
 
   // 🔧 SISTEMATO: Aggiorna un elemento del menu mantenendo ordine
   update(item: iMenu) {
@@ -167,4 +152,71 @@ export class DashboardComponent implements OnInit {
     this.searchCategory = '';
     this.filteredMenu = [...this.menu];
   }
+
+  
+  // Aggiungi questo metodo nel dashboard.component.ts
+onImageSelect(event: any, item: iMenu) {
+  const file = event.target.files[0];
+  if (file) {
+    // Per ora salva solo il nome del file
+    // In futuro potresti implementare l'upload su server
+    item.img = file.name;
+    
+    // Opzionale: Preview dell'immagine
+    const reader = new FileReader();
+    reader.onload = (e: any) => {
+      // Potresti salvare il base64 per preview
+      console.log('Image loaded:', e.target.result);
+    };
+    reader.readAsDataURL(file);
+  }
+}
+
+
+// Aggiungi queste proprietà
+imagePreview: string | null = null;
+
+// Metodo per gestire l'upload dell'immagine nel modal
+onModalImageSelect(event: any) {
+  const file = event.target.files[0];
+  if (file) {
+    // Validazione file
+    if (file.size > 5 * 1024 * 1024) { // 5MB max
+      alert('File troppo grande! Massimo 5MB');
+      return;
+    }
+    
+    if (!file.type.startsWith('image/')) {
+      alert('Seleziona solo file immagine!');
+      return;
+    }
+    
+    // Salva il nome del file nel newProduct
+    this.newProduct.img = file.name;
+    
+    // Crea preview
+    const reader = new FileReader();
+    reader.onload = (e: any) => {
+      this.imagePreview = e.target.result;
+    };
+    reader.readAsDataURL(file);
+  }
+}
+
+// Modifica il metodo createProduct per resettare la preview
+createProduct(modal: any) {
+  this.menuSvc.create(this.newProduct).subscribe((data: iMenu) => {
+    this.menu.push(data);
+    this.menu.sort((a, b) => a.id - b.id);
+    this.applyFilters();
+    Swal.fire({
+      icon: 'success',
+      title: 'Successo',
+      text: 'Prodotto creato con successo!',
+    });
+    modal.close();
+    this.newProduct = {}; // Reset form
+    this.imagePreview = null; // Reset preview
+  });
+}
 }

@@ -28,7 +28,7 @@
       <div class="card-image-container">
         <img
           [src]="'../../../assets/image/png/' + item.img"
-          class="card-img-luxury"
+          class="card-img-luxury p-1 pt-3"
           alt="{{ item.titolo }}"
         />
 
@@ -141,19 +141,8 @@
     [ngClass]="{ show: showSuccessToast }"
   >
     <!-- Header success luxury -->
-    <div class="success-header-luxury">
-      <div class="success-icon-header">
-        <i class="bi bi-check-circle-fill"></i>
-      </div>
-      <strong class="success-title">Ordine Inviato!</strong>
-      <button
-        type="button"
-        class="success-close-btn"
-        (click)="hideSuccessToast()"
-        aria-label="Close"
-      >
-        <i class="bi bi-x"></i>
-      </button>
+    <div class="success-header-luxury text-center pt-2">
+      <strong class="success-title text-white">Ordine Inviato!</strong>
     </div>
 
     <!-- Body success luxury con sushi animati -->
@@ -180,10 +169,6 @@
           alt="Sushi"
           class="sushi-icon sushi-float-4"
         />
-      </div>
-
-      <div class="success-check-icon">
-        <i class="bi bi-check-circle-fill"></i>
       </div>
 
       <h5 class="success-message">Il tuo ordine è in cucina!</h5>
@@ -243,7 +228,7 @@
 </div>
 
 <!-- Modal carrello luxury -->
-<ng-template #cartModal let-modal>
+<ng-template #cartModal let-modal class="bg-black">
   <div class="modal-content-luxury">
     <!-- Header dorato -->
     <div class="modal-header-luxury">

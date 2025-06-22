@@ -137,9 +137,9 @@ export class CucinaComponent implements OnInit {
       case 'completati':
         return 'bg-success';
       case 'tutti':
-        return 'bg-primary';
+        return 'bg-warning';
       default:
-        return 'bg-primary';
+        return 'bg-warning';
     }
   }
 

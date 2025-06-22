@@ -150,7 +150,7 @@ export class CardComponent implements OnInit {
     this.showToast = true;
     setTimeout(() => {
       this.showToast = false;
-    }, 3000);
+    }, 1500);
   }
 
   hideToast(): void {

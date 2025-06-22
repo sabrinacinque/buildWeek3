@@ -1,48 +1,52 @@
-<div class="container-fluid">
-  <!-- Header con controlli -->
-  <div class="d-flex justify-content-between align-items-center mb-4">
-    <h1 class="text-start ms-4 text-light">
+<div class="container-fluid px-2">
+  <!-- Header con controlli - MOBILE RESPONSIVE -->
+  <div class="d-flex flex-column flex-md-row justify-content-between align-items-start align-items-md-center mb-4 gap-3">
+    <!-- Titolo -->
+    <h1 class="text-start text-light mb-2 mb-md-0">
       <i class="bi bi-house-gear me-2"></i>{{ getPageTitle() }}
     </h1>
 
-    <div class="d-flex align-items-center me-4 gap-3">
-      <!-- Filtro ordini -->
-      <div class="form-group">
+    <!-- Controlli superiori - Stack su mobile -->
+    <div class="d-flex flex-column flex-sm-row align-items-start align-items-sm-center gap-3 w-100 w-md-auto">
+      <!-- Filtro ordini - Con contenitore per posizionamento corretto -->
+      <div class="form-group w-100 w-sm-auto position-relative">
         <select
           id="filtroOrdini"
-          class="form-select form-select-sm"
+          class="form-select form-select-sm mobile-select"
           [(ngModel)]="filtroOrdini"
-          (change)="onFiltroChange()"
-          style="min-width: 150px;">
+          (change)="onFiltroChange()">
           <option value="da_evadere">Da Evadere</option>
           <option value="completati">Completati</option>
           <option value="tutti">Tutti</option>
         </select>
       </div>
 
-      <!-- Indicatore di caricamento -->
-      <div *ngIf="loading" class="spinner-border text-light" role="status">
-        <span class="visually-hidden">Caricamento...</span>
+      <!-- Gruppo indicatori e bottone -->
+      <div class="d-flex align-items-center gap-2 gap-sm-3 flex-wrap">
+        <!-- Indicatore di caricamento -->
+        <div *ngIf="loading" class="spinner-border text-light spinner-border-sm" role="status">
+          <span class="visually-hidden">Caricamento...</span>
+        </div>
+
+        <!-- Contatore ordini -->
+        <span class="badge fs-6 text-nowrap" [ngClass]="getBadgeClass()">
+          <i class="bi bi-list-ul me-1"></i>{{ orders.length }} ordini
+        </span>
+
+        <!-- Pulsante refresh manuale -->
+        <button
+          class="btn btn-outline-light btn-sm"
+          (click)="refreshOrders()"
+          [disabled]="loading"
+          title="Aggiorna ordini">
+          <i class="bi bi-arrow-clockwise"></i>
+        </button>
       </div>
-
-      <!-- Contatore ordini -->
-      <span class="badge fs-6" [ngClass]="getBadgeClass()">
-        <i class="bi bi-list-ul me-1"></i>{{ orders.length }} ordini
-      </span>
-
-      <!-- Pulsante refresh manuale -->
-      <button
-        class="btn btn-outline-light"
-        (click)="refreshOrders()"
-        [disabled]="loading"
-        title="Aggiorna ordini">
-        <i class="bi bi-arrow-clockwise"></i>
-      </button>
     </div>
   </div>
 
   <!-- Messaggio di errore -->
-  <div *ngIf="error" class="alert alert-danger mx-4" role="alert">
+  <div *ngIf="error" class="alert alert-danger mx-2" role="alert">
     <i class="bi bi-exclamation-triangle-fill me-2"></i>{{ error }}
     <button type="button" class="btn-close float-end" (click)="error = ''"></button>
   </div>
@@ -51,123 +55,197 @@
   <div *ngIf="!loading && orders.length === 0 && !error" class="text-center py-5">
     <div [ngSwitch]="filtroOrdini">
       <div *ngSwitchCase="'da_evadere'">
-        <i class="bi bi-check-circle-fill text-success" style="font-size: 4rem;"></i>
-        <h3 class="text-light mt-3">Nessun ordine da evadere!</h3>
-        <p class="text-light-50">Tutti gli ordini sono stati completati. Ottimo lavoro! 🍣</p>
+        <i class="bi bi-check-circle-fill text-success" style="font-size: 3rem;"></i>
+        <h4 class="text-light mt-3">Nessun ordine da evadere!</h4>
+        <p class="text-light-50 px-3">Tutti gli ordini sono stati completati. Ottimo lavoro! 🍣</p>
       </div>
       <div *ngSwitchCase="'completati'">
-        <i class="bi bi-inbox text-info" style="font-size: 4rem;"></i>
-        <h3 class="text-light mt-3">Nessun ordine completato</h3>
-        <p class="text-light-50">Non ci sono ancora ordini completati oggi.</p>
+        <i class="bi bi-inbox text-info" style="font-size: 3rem;"></i>
+        <h4 class="text-light mt-3">Nessun ordine completato</h4>
+        <p class="text-light-50 px-3">Non ci sono ancora ordini completati oggi.</p>
       </div>
       <div *ngSwitchDefault>
-        <i class="bi bi-inbox text-info" style="font-size: 4rem;"></i>
-        <h3 class="text-light mt-3">Nessun ordine presente</h3>
-        <p class="text-light-50">Non ci sono ordini nel sistema.</p>
+        <i class="bi bi-inbox text-info" style="font-size: 3rem;"></i>
+        <h4 class="text-light mt-3">Nessun ordine presente</h4>
+        <p class="text-light-50 px-3">Non ci sono ordini nel sistema.</p>
       </div>
     </div>
   </div>
 
-  <!-- Lista ordini -->
-  <div ngbAccordion *ngIf="orders.length > 0">
+  <!-- Lista ordini - MOBILE OPTIMIZED -->
+  <div ngbAccordion *ngIf="orders.length > 0" class="px-1">
     <div
       ngbAccordionItem
       *ngFor="let order of orders; trackBy: trackByOrderId"
       [ngStyle]="dynamicStyles"
       [ngClass]="getOrderUrgencyClass(order.orderDate)"
-      class="mb-3 border rounded">
+      class="mb-3 border rounded order-card-mobile">
 
       <h2 ngbAccordionHeader>
-        <div class="d-flex justify-content-between align-items-center w-100 pe-3">
-          <!-- Contenuto principale header -->
-          <div class="d-flex align-items-center flex-grow-1">
-            <button ngbAccordionButton class="text-bg-dark border-0 flex-grow-1 text-start">
-              <div class="d-flex justify-content-between align-items-center">
-                <div>
-                  <span class="fw-bold">Ordine #{{ order.id }}</span>
-                  <span class="ms-2 text-light-50">{{ formatPrice(order.totalCost) }}</span>
-                  <span class="ms-2 badge bg-secondary">{{ order.items.length }} piatti</span>
+        <!-- LAYOUT RESPONSIVE - DIVERSO PER MOBILE E DESKTOP -->
+        <div class="w-100">
+          <button ngbAccordionButton class="text-bg-dark border-0 w-100 text-start p-3 position-relative">
+            
+            <!-- MOBILE LAYOUT (≤768px) -->
+            <div class="d-md-none">
+              <!-- Header ordine - Layout mobile -->
+              <div class="d-flex flex-column gap-2">
+                
+                <!-- Prima riga: Numero ordine e prezzo -->
+                <div class="d-flex justify-content-between align-items-center">
+                  <div class="d-flex align-items-center gap-2">
+                    <span class="fw-bold fs-5">Ordine #{{ order.id }}</span>
+                    <span class="badge bg-secondary">{{ order.items.length }} piatti</span>
+                  </div>
+                  <span class="fw-bold text-warning fs-5">{{ formatPrice(order.totalCost) }}</span>
                 </div>
-                <div class="text-end">
-                  <small class="text-light-50 d-block">{{ formatDate(order.orderDate) }}</small>
-                  <small class="text-warning">⏱️ {{ getTimeElapsed(order.orderDate) }}</small>
+
+                <!-- Seconda riga: Data e tempo di attesa -->
+                <div class="d-flex justify-content-between align-items-center text-sm">
+                  <small class="text-light-50">{{ formatDate(order.orderDate) }}</small>
+                  <small class="text-warning fw-bold">⏱️ {{ getTimeElapsed(order.orderDate) }}</small>
                 </div>
               </div>
-            </button>
-          </div>
+            </div>
 
-          <!-- Toggle switch e icona di completamento -->
-          <div class="d-flex align-items-center ms-3">
-            <!-- Icona di verifica -->
-            <span
-              *ngIf="verificatoProperty[order.id]"
-              class="me-3 text-success fs-3 animate__animated animate__bounceIn">
-              <i class="bi bi-patch-check-fill"></i>
-            </span>
+            <!-- DESKTOP LAYOUT (≥768px) -->
+            <div class="d-none d-md-flex justify-content-between align-items-center w-100">
+              <!-- Contenuto principale -->
+              <div class="d-flex align-items-center flex-grow-1">
+                <div class="d-flex justify-content-between align-items-center w-100">
+                  <div>
+                    <span class="fw-bold fs-4">Ordine #{{ order.id }}</span>
+                    <span class="ms-3 text-light-50 fs-5">{{ formatPrice(order.totalCost) }}</span>
+                    <span class="ms-3 badge bg-secondary">{{ order.items.length }} piatti</span>
+                  </div>
+                  <div class="text-end me-5">
+                    <small class="text-light-50 d-block">{{ formatDate(order.orderDate) }}</small>
+                    <small class="text-warning">⏱️ {{ getTimeElapsed(order.orderDate) }}</small>
+                  </div>
+                </div>
+              </div>
 
-            <!-- Switch per completare l'ordine -->
-            <div class="form-check form-switch fs-5" *ngIf="shouldShowToggle(order)">
+              <!-- Toggle desktop - inline con il contenuto -->
+              <div class="d-flex align-items-center gap-3 ms-4">
+                
+                <!-- Switch per completare l'ordine - DESKTOP -->
+                <div class="form-check form-switch d-flex align-items-center" *ngIf="shouldShowToggle(order) && !verificatoProperty[order.id]">
+                  <input
+                    class="form-check-input me-2"
+                    type="checkbox"
+                    role="switch"
+                    [id]="'switch-desktop-' + order.id"
+                    [checked]="verificatoProperty[order.id]"
+                    [disabled]="verificatoProperty[order.id]"
+                    (change)="verificatoMethod(order.id)"
+                    title="Marca come completato" />
+                  <label
+                    class="form-check-label text-light"
+                    [for]="'switch-desktop-' + order.id">
+                    Completa
+                  </label>
+                </div>
+
+                <!-- Stato completato - DESKTOP -->
+                <div *ngIf="verificatoProperty[order.id]" class="d-flex align-items-center gap-2">
+                  <span class="text-success fs-3 animate__animated animate__bounceIn">
+                    <i class="bi bi-patch-check-fill"></i>
+                  </span>
+                  <span class="text-success fw-bold">Completato</span>
+                </div>
+
+                <!-- Badge per ordini già completati dal backend - DESKTOP -->
+                <div *ngIf="order.evaso && !shouldShowToggle(order)" class="badge bg-success fs-6 px-3 py-2">
+                  <i class="bi bi-check-circle-fill me-2"></i>Completato
+                </div>
+              </div>
+            </div>
+          </button>
+
+          <!-- MOBILE TOGGLE - Posizionato esternamente solo su mobile -->
+          <div class="d-md-none position-absolute top-50 end-0 translate-middle-y me-3 d-flex align-items-center gap-2">
+            
+            <!-- Switch per completare l'ordine - MOBILE -->
+            <div class="form-check form-switch d-flex flex-column align-items-center text-center" *ngIf="shouldShowToggle(order) && !verificatoProperty[order.id]">
               <input
-                class="form-check-input"
+                class="form-check-input mb-1"
                 type="checkbox"
                 role="switch"
-                [id]="'switch-' + order.id"
+                [id]="'switch-mobile-' + order.id"
                 [checked]="verificatoProperty[order.id]"
                 [disabled]="verificatoProperty[order.id]"
                 (change)="verificatoMethod(order.id)"
                 title="Marca come completato" />
               <label
-                class="form-check-label text-light ms-2"
-                [for]="'switch-' + order.id">
-                {{ verificatoProperty[order.id] ? 'Completato' : 'Completa' }}
+                class="form-check-label text-light"
+                [for]="'switch-mobile-' + order.id"
+                style="font-size: 0.7rem; line-height: 1; white-space: nowrap;">
+                Completa
               </label>
             </div>
 
-            <!-- Badge per ordini già completati -->
-            <div *ngIf="order.evaso && !shouldShowToggle(order)" class="badge bg-success fs-6">
-              <i class="bi bi-check-circle-fill me-1"></i>Completato
+            <!-- Stato completato - MOBILE -->
+            <div *ngIf="verificatoProperty[order.id]" class="d-flex flex-column align-items-center text-center">
+              <span class="text-success fs-4 animate__animated animate__bounceIn mb-1">
+                <i class="bi bi-patch-check-fill"></i>
+              </span>
+              <span class="text-success" style="font-size: 0.7rem; line-height: 1; white-space: nowrap; font-weight: 600;">
+                Completato
+              </span>
+            </div>
+
+            <!-- Badge per ordini già completati dal backend - MOBILE -->
+            <div *ngIf="order.evaso && !shouldShowToggle(order)" class="badge bg-success d-flex flex-column align-items-center text-center py-2 px-2">
+              <i class="bi bi-check-circle-fill mb-1"></i>
+              <span style="font-size: 0.7rem; line-height: 1;">Completato</span>
             </div>
           </div>
         </div>
       </h2>
 
-      <!-- Dettagli ordine -->
+      <!-- Dettagli ordine - MOBILE OPTIMIZED -->
       <div ngbAccordionCollapse>
-        <div ngbAccordionBody>
+        <div ngbAccordionBody class="p-3">
           <ng-template>
             <div class="row">
               <div class="col-12">
-                <h4 class="text-light mb-3">
+                <h5 class="text-light mb-3 d-flex align-items-center">
                   <i class="bi bi-receipt me-2"></i>Dettagli Ordine
-                </h4>
+                </h5>
 
-                <!-- Lista piatti -->
-                <div class="list-group">
+                <!-- Lista piatti - MOBILE STACK -->
+                <div class="list-group mb-3">
                   <div
                     *ngFor="let item of order.items"
-                    class="list-group-item d-flex justify-content-between align-items-center"
+                    class="list-group-item p-3"
                     style="background-color: rgba(255,255,255,0.1); border-color: rgba(255,255,255,0.2);">
 
-                    <div class="d-flex align-items-center">
-                      <span class="badge bg-primary rounded-pill me-3">{{ item.quantity }}</span>
-                      <div>
-                        <h6 class="mb-1 text-light">{{ item.titolo }}</h6>
-                        <small class="text-light-50">{{ formatPrice(item.prezzo) }} cad.</small>
+                    <!-- Layout mobile per singolo piatto -->
+                    <div class="d-flex flex-column flex-sm-row justify-content-between align-items-start align-items-sm-center gap-2">
+                      
+                      <!-- Info piatto -->
+                      <div class="d-flex align-items-center gap-3 flex-grow-1">
+                        <span class="badge bg-primary rounded-pill fs-6 px-3">{{ item.quantity }}</span>
+                        <div>
+                          <h6 class="mb-1 text-light">{{ item.titolo }}</h6>
+                          <small class="text-light-50">{{ formatPrice(item.prezzo) }} cad.</small>
+                        </div>
                       </div>
-                    </div>
 
-                    <div class="text-end">
-                      <span class="fw-bold text-light">
-                        {{ formatPrice(item.prezzo * item.quantity) }}
-                      </span>
+                      <!-- Prezzo totale -->
+                      <div class="text-end mt-2 mt-sm-0">
+                        <span class="fw-bold text-warning fs-5">
+                          {{ formatPrice(item.prezzo * item.quantity) }}
+                        </span>
+                      </div>
                     </div>
                   </div>
                 </div>
 
-                <!-- Totale ordine -->
+                <!-- Totale ordine - MOBILE ENHANCED -->
                 <div class="mt-3 p-3 bg-dark rounded">
-                  <div class="d-flex justify-content-between align-items-center">
-                    <span class="text-light fs-5">
+                  <div class="d-flex flex-column flex-sm-row justify-content-between align-items-center gap-2">
+                    <span class="text-light fs-6 d-flex align-items-center">
                       <i class="bi bi-calculator me-2"></i>Totale Ordine:
                     </span>
                     <span class="text-warning fs-3 fw-bold">
@@ -176,17 +254,17 @@
                   </div>
                 </div>
 
-                <!-- Informazioni aggiuntive -->
-                <div class="mt-3 row">
-                  <div class="col-md-6">
-                    <small class="text-light-50">
-                      <i class="bi bi-clock me-1"></i>
+                <!-- Informazioni aggiuntive - MOBILE STACK -->
+                <div class="mt-3 row g-2">
+                  <div class="col-12 col-sm-6">
+                    <small class="text-light-50 d-flex align-items-center">
+                      <i class="bi bi-clock me-2"></i>
                       Ricevuto: {{ formatDate(order.orderDate) }}
                     </small>
                   </div>
-                  <div class="col-md-6 text-end">
-                    <small class="text-light-50">
-                      <i class="bi bi-hourglass-split me-1"></i>
+                  <div class="col-12 col-sm-6 text-start text-sm-end">
+                    <small class="text-light-50 d-flex align-items-center justify-content-start justify-content-sm-end">
+                      <i class="bi bi-hourglass-split me-2"></i>
                       Tempo di attesa: {{ getTimeElapsed(order.orderDate) }}
                     </small>
                   </div>

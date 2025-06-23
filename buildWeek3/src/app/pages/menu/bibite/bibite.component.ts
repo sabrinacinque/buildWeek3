@@ -7,6 +7,9 @@ import { iMenu } from '../../../Models/i-menu';
   templateUrl: './bibite.component.html',
   styleUrl: './bibite.component.scss'
 })
-export class BibiteComponent {
 
+export class BibiteComponent implements OnInit {
+   ngOnInit() {
+    window.scrollTo(0, 0); // Forza scroll in cima
+  }
 }

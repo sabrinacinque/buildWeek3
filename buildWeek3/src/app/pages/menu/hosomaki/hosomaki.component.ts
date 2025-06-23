@@ -7,5 +7,8 @@ import { MenuService } from '../../../menu.service';
   templateUrl: './hosomaki.component.html',
   styleUrl: './hosomaki.component.scss'
 })
-export class HosomakiComponent {
+export class HosomakiComponent implements OnInit {
+  ngOnInit() {
+    window.scrollTo(0, 0); // Forza scroll in cima
+  }
 }

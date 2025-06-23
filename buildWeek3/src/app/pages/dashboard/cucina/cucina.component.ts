@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { iOrder } from '../../../Models/iorder';
+import { environment } from '../../../../environments/environment';
 
 @Component({
   selector: 'app-cucina',
@@ -24,7 +25,7 @@ export class CucinaComponent implements OnInit {
   loading: boolean = false;
   error: string = '';
 
-  private readonly API_URL = 'http://localhost:8080/api/orders';
+  private readonly API_URL = `${environment.apiUrl}/orders`;
 
   constructor(private http: HttpClient) {}
 

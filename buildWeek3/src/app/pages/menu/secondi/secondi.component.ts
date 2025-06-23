@@ -7,6 +7,9 @@ import { iMenu } from '../../../Models/i-menu';
   templateUrl: './secondi.component.html',
   styleUrl: './secondi.component.scss'
 })
-export class SecondiComponent {
+export class SecondiComponent implements OnInit{
+  ngOnInit() {
+    window.scrollTo(0, 0); // Forza scroll in cima
+  }
 
 }

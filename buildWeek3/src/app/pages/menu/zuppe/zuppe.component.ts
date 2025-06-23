@@ -1,4 +1,4 @@
-import { Component} from '@angular/core';
+import { Component,OnInit} from '@angular/core';
 
 
 @Component({
@@ -6,6 +6,9 @@ import { Component} from '@angular/core';
   templateUrl: './zuppe.component.html',
   styleUrl: './zuppe.component.scss'
 })
-export class ZuppeComponent{
+export class ZuppeComponent implements OnInit{
 
+  ngOnInit() {
+    window.scrollTo(0, 0); // Forza scroll in cima
+  }
 }

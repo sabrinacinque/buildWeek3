@@ -4,6 +4,7 @@ import { iMenu } from './Models/i-menu';
 import { iCartItem } from './Models/i-cart-item';
 import { HttpClient } from '@angular/common/http';
 import { iOrder } from './Models/iorder';
+import { environment } from '../environments/environment';
 
 @Injectable({
   providedIn: 'root',
@@ -72,7 +73,7 @@ export class CartService {
   }
 
   // 🚀 AGGIORNATO: URL per Spring Boot
-  orderUrl: string = 'http://localhost:8080/api/orders';
+  orderUrl = `${environment.apiUrl}/orders`;
 
   constructor(private http: HttpClient) {}
 

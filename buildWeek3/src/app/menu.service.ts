@@ -2,13 +2,14 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { iMenu } from './Models/i-menu';
 import { Observable } from 'rxjs';
+import { environment } from '../environments/environment';
 
 @Injectable({
   providedIn: 'root',
 })
 export class MenuService {
-  // 🚀 CAMBIATO: Da localhost:3000 a localhost:8080 (Spring Boot)
-  apiUrl: string = 'http://localhost:8080/api/menu';
+
+  apiUrl: string = `${environment.apiUrl}/menu`;
 
   constructor(private http: HttpClient) {}
 

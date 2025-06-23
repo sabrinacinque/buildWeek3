@@ -33,9 +33,12 @@ export class CardComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
+      console.log('🔍 API URL usato:', this.menuSvc.apiUrl); // AGGIUNGI QUESTA
+
     // Carica il menu dal backend Spring Boot
     this.menuSvc.getAll().subscribe({
       next: (data) => {
+         console.log('✅ Dati ricevuti:', data);
         // 🔧 FILTRO: Applica filtri per categoria e disponibilità se presenti
         this.menu = data.filter(item => {
           let match = true;

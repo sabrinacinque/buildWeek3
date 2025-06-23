@@ -8,6 +8,7 @@ import { Router } from '@angular/router';
 import { iAuth } from '../Models/iauth';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { iLogin } from '../Models/ilogin';
+import { environment } from '../../environments/environment';
 
 @Injectable({
   providedIn: 'root',
@@ -23,8 +24,8 @@ export class AuthService {
     tap((user) => (this.isLogged = user))
   );
 
-  loginUrl = 'http://localhost:8080/api/auth/login';
-  registerUrl = 'http://localhost:8080/api/auth/register';
+  loginUrl = `${environment.apiUrl}/auth/login`;
+  registerUrl = `${environment.apiUrl}/auth/register`;
 
   constructor(
     private http: HttpClient,

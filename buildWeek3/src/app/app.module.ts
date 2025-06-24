@@ -13,6 +13,7 @@ import { CucinaComponent } from './pages/dashboard/cucina/cucina.component';
 import { NavbarSmallComponent } from './mainComponent/navbar-small/navbar-small.component';
 import { FormsModule } from '@angular/forms';
 import { BottomNavComponent } from './shared/bottom-nav/bottom-nav.component';
+import { MenuChoiceComponent } from './pages/menu-choice/menu-choice.component';
 
 
 @NgModule({
@@ -24,6 +25,7 @@ import { BottomNavComponent } from './shared/bottom-nav/bottom-nav.component';
     HomepageComponent,
     CucinaComponent,
     NavbarSmallComponent,
+    MenuChoiceComponent,
   ],
   imports: [BrowserModule, AppRoutingModule, HttpClientModule, NgbModule, FormsModule],
   providers: [],

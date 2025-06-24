@@ -3,9 +3,10 @@ import { RouterModule, Routes } from '@angular/router';
 import { HomepageComponent } from './pages/homepage/homepage.component';
 import { GuestGuard } from './auth/guest.guard';
 import { AuthGuard } from './auth/auth.guard';
+import { MenuChoiceComponent } from './pages/menu-choice/menu-choice.component';
 
 const routes: Routes = [
-  { path: '', pathMatch: 'full', redirectTo: 'homepage' },
+  { path: '', component: MenuChoiceComponent },
   { path: 'homepage', component: HomepageComponent },
   {
     path: 'menu',

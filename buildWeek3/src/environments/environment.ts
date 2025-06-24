@@ -1,4 +1,5 @@
 export const environment = {
   production: false,
-  apiUrl: 'http://localhost:8080/api'
+  apiUrl: 'https://episushi-backend-production.up.railway.app/api'
+  //apiUrl: 'http://localhost:8080/api'
 };

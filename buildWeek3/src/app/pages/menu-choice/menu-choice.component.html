@@ -1,0 +1,67 @@
+<!-- menu-choice.component.html -->
+<div class="menu-choice-container">
+  <div class="choice-wrapper">
+
+    <!-- Header con logo -->
+    <div class="header-section">
+      <h1 class="welcome-title">Scegli la tua esperienza culinaria</h1>
+    </div>
+
+    <!-- Scelta menu -->
+    <div class="choices-container">
+
+      <!-- All You Can Eat -->
+      <div class="choice-card ayce-card">
+        <div class="card-icon">
+          <i class="material-icons">restaurant</i>
+        </div>
+        <h2 class="card-title">All You Can Eat</h2>
+        <p class="card-description">
+          Gustati tutto il nostro sushi senza limiti!<br>
+          <small>*Bibite e dolci esclusi</small>
+        </p>
+
+        <!-- Selettore persone -->
+        <div class="persone-selector">
+          <label>Per quante persone?</label>
+          <div class="persone-controls">
+            <button type="button" class="btn-persone" (click)="decrementPersone()" [disabled]="aycePersone <= 1">
+              <i class="material-icons">remove</i>
+            </button>
+            <span class="persone-count">{{ aycePersone }}</span>
+            <button type="button" class="btn-persone" (click)="incrementPersone()" [disabled]="aycePersone >= 10">
+              <i class="material-icons">add</i>
+            </button>
+          </div>
+        </div>
+
+        <div class="card-price">{{ getTotalAyce() | number:'1.2-2' }}€</div>
+        <div class="price-detail">{{ aycePrezzo }}€ a persona</div>
+
+        <div class="card-button" (click)="selectMenuType('ayce')">
+          <span>Scegli AYCE</span>
+          <i class="material-icons">arrow_forward</i>
+        </div>
+      </div>
+
+      <!-- Alla Carta -->
+      <div class="choice-card carta-card" (click)="selectMenuType('carta')">
+        <div class="card-icon">
+          <i class="material-icons">menu_book</i>
+        </div>
+        <h2 class="card-title">Alla Carta</h2>
+        <p class="card-description">
+          Scegli esattamente quello che desideri<br>
+          <small>*Ogni piatto al suo prezzo</small>
+        </p>
+        <div class="card-price">A partire da €3.00</div>
+        <div class="card-button">
+          <span>Scegli Carta</span>
+          <i class="material-icons">arrow_forward</i>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+</div>

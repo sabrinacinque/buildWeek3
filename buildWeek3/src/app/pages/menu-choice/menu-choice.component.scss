@@ -1,0 +1,309 @@
+/* menu-choice.component.scss */
+.menu-choice-container {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #0f0f0f 0%, #1a1a1a 50%, #2d1810 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  font-family: 'Roboto', sans-serif;
+}
+
+.choice-wrapper {
+  max-width: 1200px;
+  width: 100%;
+  text-align: center;
+}
+
+/* Header */
+.header-section {
+  margin-bottom: 60px;
+
+  .logo {
+    height: 80px;
+    margin-bottom: 30px;
+    filter: drop-shadow(0 4px 8px rgba(255, 255, 255, 0.1));
+  }
+
+  .welcome-title {
+    font-size: 1.5rem;
+    font-weight: 300;
+    color: #e8c574;
+    margin-bottom: 20px;
+    font-family: 'Permanent Marker', cursive;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+
+    @media (max-width: 768px) {
+      font-size: 2.5rem;
+    }
+  }
+
+  .subtitle {
+    font-size: 1.3rem;
+    color: #ffffff;
+    opacity: 0.9;
+    font-weight: 300;
+
+    @media (max-width: 768px) {
+      font-size: 1.1rem;
+    }
+  }
+}
+
+/* Choices Container */
+.choices-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+  gap: 40px;
+  margin-bottom: 60px;
+
+  @media (max-width: 768px) {
+    grid-template-columns: 1fr;
+    gap: 30px;
+  }
+}
+
+/* Choice Cards */
+.choice-card {
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(10px);
+  border: 2px solid rgba(232, 197, 116, 0.3);
+  border-radius: 20px;
+  padding: 40px 30px;
+  cursor: pointer;
+  transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+  position: relative;
+  overflow: hidden;
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(232, 197, 116, 0.1), transparent);
+    transition: left 0.6s;
+  }
+
+  &:hover {
+    transform: translateY(-10px);
+    border-color: #e8c574;
+    box-shadow: 0 20px 40px rgba(232, 197, 116, 0.2);
+
+    &::before {
+      left: 100%;
+    }
+
+    .card-icon i {
+      transform: scale(1.2) rotateY(360deg);
+    }
+
+    .card-button {
+      background: #e8c574;
+      color: #1a1a1a;
+
+      i {
+        transform: translateX(5px);
+      }
+    }
+  }
+
+  .card-icon {
+    margin-bottom: 30px;
+
+    i {
+      font-size: 4rem;
+      color: #e8c574;
+      transition: all 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+    }
+  }
+
+  .card-title {
+    font-size: 2rem;
+    color: #e8c574;
+    margin-bottom: 20px;
+    font-weight: 400;
+    font-family: 'Permanent Marker', cursive;
+  }
+
+  .card-description {
+    color: #ffffff;
+    font-size: 1.1rem;
+    line-height: 1.6;
+    margin-bottom: 30px;
+    opacity: 0.9;
+
+    small {
+      color: #e8c574;
+      opacity: 0.8;
+      font-size: 0.9rem;
+    }
+  }
+
+  .card-price {
+    font-size: 1.8rem;
+    color: #e8c574;
+    font-weight: 600;
+    margin-bottom: 10px;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+  }
+
+  .price-detail {
+    font-size: 1rem;
+    color: #ffffff;
+    opacity: 0.7;
+    margin-bottom: 30px;
+  }
+
+  .card-button {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    background: rgba(232, 197, 116, 0.2);
+    color: #e8c574;
+    padding: 15px 30px;
+    border-radius: 50px;
+    font-weight: 500;
+    font-size: 1.1rem;
+    transition: all 0.3s ease;
+    border: 2px solid transparent;
+
+    i {
+      transition: transform 0.3s ease;
+    }
+  }
+}
+
+/* 🆕 SELETTORE PERSONE */
+.persone-selector {
+  margin: 30px 0;
+
+  label {
+    display: block;
+    color: #e8c574;
+    font-size: 1.1rem;
+    margin-bottom: 15px;
+    font-weight: 500;
+  }
+
+  .persone-controls {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+
+    .btn-persone {
+      background: rgba(232, 197, 116, 0.2);
+      border: 2px solid #e8c574;
+      color: #e8c574;
+      width: 45px;
+      height: 45px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: all 0.3s ease;
+
+      &:hover:not(:disabled) {
+        background: #e8c574;
+        color: #1a1a1a;
+        transform: scale(1.1);
+      }
+
+      &:disabled {
+        opacity: 0.4;
+        cursor: not-allowed;
+        transform: none;
+      }
+
+      i {
+        font-size: 1.2rem;
+      }
+    }
+
+    .persone-count {
+      font-size: 2rem;
+      color: #e8c574;
+      font-weight: 600;
+      min-width: 60px;
+      text-align: center;
+      background: rgba(232, 197, 116, 0.1);
+      padding: 10px 20px;
+      border-radius: 15px;
+      border: 2px solid rgba(232, 197, 116, 0.3);
+    }
+  }
+}
+
+/* Card AYCE - senza click globale */
+.ayce-card {
+  cursor: default;
+
+  .card-button {
+    cursor: pointer;
+  }
+}
+
+/* Specific card styles */
+.ayce-card {
+  &:hover {
+    background: rgba(232, 197, 116, 0.1);
+  }
+}
+
+.carta-card {
+  &:hover {
+    background: rgba(232, 197, 116, 0.1);
+  }
+}
+
+/* Footer */
+.footer-info {
+  margin-top: 40px;
+
+  p {
+    color: #ffffff;
+    opacity: 0.7;
+    font-size: 1.1rem;
+    font-style: italic;
+  }
+}
+
+/* Responsive */
+@media (max-width: 480px) {
+  .choice-card {
+    padding: 30px 20px;
+
+    .card-title {
+      font-size: 1.7rem;
+    }
+
+    .card-price {
+      font-size: 1.5rem;
+    }
+
+    .card-icon i {
+      font-size: 3rem;
+    }
+  }
+
+  .choices-container {
+    grid-template-columns: 1fr;
+  }
+
+  .persone-controls {
+    gap: 15px;
+
+    .btn-persone {
+      width: 40px;
+      height: 40px;
+    }
+
+    .persone-count {
+      font-size: 1.8rem;
+      padding: 8px 15px;
+    }
+  }
+}

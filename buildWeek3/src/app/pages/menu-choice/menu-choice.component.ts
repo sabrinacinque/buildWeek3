@@ -50,4 +50,9 @@ export class MenuChoiceComponent {
   getTotalAyce(): number {
     return this.aycePersone * this.aycePrezzo;
   }
+
+  // 🆕 NUOVO METODO - Naviga all'area riservata
+  navigateToLogin(): void {
+    this.router.navigate(['/auth']);
+  }
 }

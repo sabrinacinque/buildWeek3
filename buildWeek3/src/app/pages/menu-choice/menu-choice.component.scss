@@ -7,6 +7,72 @@
   justify-content: center;
   padding: 20px;
   font-family: 'Roboto', sans-serif;
+  position: relative; /* 🆕 Per posizionare l'icona */
+}
+
+/* 🆕 ICONA AREA RISERVATA */
+.login-icon {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  z-index: 1000;
+  width: 60px;
+  height: 60px;
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  border: 2px solid rgba(232, 197, 116, 0.6);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+  animation: fadeInScale 0.6s cubic-bezier(0.25, 0.8, 0.25, 1);
+
+  i {
+    font-size: 28px;
+    color: #e8c574;
+    transition: all 0.3s ease;
+  }
+
+  &:hover {
+    transform: translateY(-3px) scale(1.05);
+    background: rgba(232, 197, 116, 0.2);
+    border-color: #e8c574;
+    box-shadow: 0 8px 25px rgba(232, 197, 116, 0.3);
+
+    i {
+      color: #fff;
+      transform: scale(1.1);
+    }
+  }
+
+  &:active {
+    transform: translateY(-1px) scale(1.02);
+  }
+
+  @media (max-width: 768px) {
+    top: 15px;
+    right: 15px;
+    width: 50px;
+    height: 50px;
+
+    i {
+      font-size: 24px;
+    }
+  }
+}
+
+@keyframes fadeInScale {
+  0% {
+    opacity: 0;
+    transform: scale(0.5) translateY(-20px);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
 }
 
 .choice-wrapper {
@@ -175,7 +241,7 @@
   }
 }
 
-/* 🆕 SELETTORE PERSONE */
+/* SELETTORE PERSONE */
 .persone-selector {
   margin: 30px 0;
 

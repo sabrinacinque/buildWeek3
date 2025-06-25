@@ -1,13 +1,13 @@
 <div class="d-flex flex-column min-vh-100">
   <!-- Contenuto principale -->
   <div class="row flex-grow-1 g-0">
-    <!-- Sidebar Desktop -->
-    <div class="col-md-2 d-none d-md-block mx-0">
+    <!-- Sidebar Desktop - 🆕 AGGIUNGI SOLO *ngIf -->
+    <div class="col-md-2 d-none d-md-block mx-0" *ngIf="!isMenuChoicePage()">
       <app-navbar class="h-100 mx-0"></app-navbar>
     </div>
 
-    <!-- Area contenuto -->
-    <div class="col-12 col-md-10 bg-color">
+    <!-- Area contenuto - 🆕 CAMBIA SOLO LE CLASSI COL -->
+    <div class="col-12 bg-color" [ngClass]="!isMenuChoicePage() ? 'col-md-10' : 'col-md-12'">
       <!-- Navbar mobile classica (manteniamo per ora come fallback) -->
       <app-navbar-small class="d-md-none d-none"></app-navbar-small>
 
@@ -18,9 +18,9 @@
     </div>
   </div>
 
-  <!-- Footer (nascosto su mobile) -->
-  <app-footer class="d-none d-md-block"></app-footer>
+  <!-- Footer - 🆕 AGGIUNGI SOLO *ngIf -->
+  <app-footer class="d-none d-md-block" *ngIf="!isMenuChoicePage()"></app-footer>
 
-  <!-- Bottom Navigation (solo mobile) -->
-  <app-bottom-nav></app-bottom-nav>
+  <!-- Bottom Navigation - 🆕 AGGIUNGI SOLO *ngIf -->
+  <app-bottom-nav *ngIf="!isMenuChoicePage()"></app-bottom-nav>
 </div>

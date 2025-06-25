@@ -21,4 +21,10 @@ export class AppComponent {
     }, 100);
   });
 }
+
+
+ // 🆕 AGGIUNGI SOLO QUESTO METODO
+  isMenuChoicePage(): boolean {
+    return this.router.url === '/';
+  }
 }

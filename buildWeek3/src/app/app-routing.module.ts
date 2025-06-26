@@ -4,10 +4,12 @@ import { HomepageComponent } from './pages/homepage/homepage.component';
 import { GuestGuard } from './auth/guest.guard';
 import { AuthGuard } from './auth/auth.guard';
 import { MenuChoiceComponent } from './pages/menu-choice/menu-choice.component';
+import { StoricoOrdiniComponent } from './shared/storico-ordini/storico-ordini.component';
 
 const routes: Routes = [
   { path: '', component: MenuChoiceComponent },
   { path: 'homepage', component: HomepageComponent },
+  { path: 'storico-ordini', component: StoricoOrdiniComponent }, // 🆕 AGGIUNGI QUESTA RIGA
   {
     path: 'menu',
     loadChildren: () =>
@@ -37,7 +39,7 @@ const routes: Routes = [
     path: '**',
     loadChildren: () =>
       import('./pages/page404/page404.module').then((m) => m.Page404Module),
-  },
+  }
 ];
 
 @NgModule({

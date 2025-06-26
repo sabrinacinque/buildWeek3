@@ -1,0 +1,335 @@
+/* conto-finale-modal.component.scss */
+
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.8);
+  backdrop-filter: blur(15px);
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  animation: fadeIn 0.4s ease;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.conto-modal-container {
+  background: linear-gradient(135deg,
+    rgba(15, 15, 15, 0.95) 0%,
+    rgba(26, 26, 26, 0.95) 50%,
+    rgba(45, 24, 16, 0.95) 100%);
+  backdrop-filter: blur(20px);
+  border: 2px solid rgba(232, 197, 116, 0.4);
+  border-radius: 25px;
+  max-width: 500px;
+  width: 100%;
+  overflow: hidden;
+  box-shadow:
+    0 25px 50px rgba(0, 0, 0, 0.8),
+    0 0 0 1px rgba(232, 197, 116, 0.2) inset;
+  animation: slideInScale 0.5s cubic-bezier(0.25, 0.8, 0.25, 1);
+  position: relative;
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(232, 197, 116, 0.1), transparent);
+    animation: shimmer 3s infinite;
+  }
+}
+
+@keyframes slideInScale {
+  0% {
+    opacity: 0;
+    transform: scale(0.8) translateY(30px);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+@keyframes shimmer {
+  0% { left: -100%; }
+  100% { left: 100%; }
+}
+
+/* Header */
+.conto-header {
+  background: linear-gradient(135deg, #d4af37, #f4d03f);
+  color: #1a1a1a;
+  text-align: center;
+  padding: 25px 20px;
+  position: relative;
+  z-index: 2;
+}
+
+.conto-icon {
+  margin-bottom: 10px;
+
+  i {
+    font-size: 2.5rem;
+    animation: pulse-receipt 2s infinite;
+  }
+}
+
+@keyframes pulse-receipt {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.1); }
+}
+
+.conto-title {
+  font-size: 1.8rem;
+  font-weight: 700;
+  margin: 0;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+/* Corpo */
+.conto-body {
+  padding: 30px 25px;
+  text-align: center;
+  position: relative;
+  z-index: 2;
+}
+
+/* Sushi animati */
+.sushi-parade {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+  margin-bottom: 25px;
+}
+
+.sushi-icon {
+  width: 30px;
+  height: 30px;
+  filter: drop-shadow(0 0 8px rgba(232, 197, 116, 0.8));
+}
+
+.sushi-float-1 { animation: float 2s ease-in-out infinite; animation-delay: 0s; }
+.sushi-float-2 { animation: float 2s ease-in-out infinite; animation-delay: 0.3s; }
+.sushi-float-3 { animation: float 2s ease-in-out infinite; animation-delay: 0.6s; }
+.sushi-float-4 { animation: float 2s ease-in-out infinite; animation-delay: 0.9s; }
+
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-8px); }
+}
+
+/* Messaggio */
+.conto-message {
+  margin-bottom: 25px;
+
+  h3 {
+    color: #ffffff;
+    font-size: 1.6rem;
+    font-weight: 600;
+    margin-bottom: 8px;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+  }
+}
+
+.conto-subtitle {
+  color: rgba(255, 255, 255, 0.8);
+  font-size: 1rem;
+  margin: 0;
+}
+
+/* Totale */
+.conto-totale {
+  background: rgba(232, 197, 116, 0.1);
+  border: 2px solid rgba(232, 197, 116, 0.4);
+  border-radius: 20px;
+  padding: 25px 20px;
+  margin: 25px 0;
+  backdrop-filter: blur(5px);
+}
+
+.totale-label {
+  color: rgba(255, 255, 255, 0.8);
+  font-size: 1rem;
+  margin-bottom: 10px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.totale-amount {
+  color: #d4af37;
+  font-size: 2.8rem;
+  font-weight: bold;
+  text-shadow: 0 0 20px rgba(212, 175, 55, 0.6);
+  margin-bottom: 8px;
+  animation: pulse-gold 3s infinite;
+}
+
+@keyframes pulse-gold {
+  0%, 100% { text-shadow: 0 0 20px rgba(212, 175, 55, 0.6); }
+  50% { text-shadow: 0 0 30px rgba(212, 175, 55, 0.9); }
+}
+
+.totale-details {
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 0.9rem;
+  margin-top: 5px;
+}
+
+/* Messaggio ringraziamento */
+.grazie-message {
+  margin: 25px 0;
+}
+
+.grazie-text {
+  color: #d4af37;
+  font-size: 1.3rem;
+  font-weight: 600;
+  margin-bottom: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  i {
+    color: #ff6b6b;
+    animation: heartBeat 2s infinite;
+  }
+}
+
+@keyframes heartBeat {
+  0%, 100% { transform: scale(1); }
+  25% { transform: scale(1.1); }
+  50% { transform: scale(1); }
+  75% { transform: scale(1.05); }
+}
+
+.torna-text {
+  color: rgba(255, 255, 255, 0.9);
+  font-size: 1.1rem;
+  margin: 0;
+  font-style: italic;
+}
+
+/* Countdown */
+.countdown-section {
+  margin: 25px 0;
+}
+
+.countdown-text {
+  color: rgba(255, 255, 255, 0.8);
+  font-size: 0.95rem;
+  margin-bottom: 15px;
+}
+
+.countdown-number {
+  color: #d4af37;
+  font-weight: bold;
+  font-size: 1.2rem;
+  text-shadow: 0 0 10px rgba(212, 175, 55, 0.6);
+}
+
+.countdown-bar {
+  width: 100%;
+  height: 4px;
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 2px;
+  overflow: hidden;
+}
+
+.countdown-progress {
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, #d4af37, #f4d03f);
+  border-radius: 2px;
+  animation: countdown-shrink 3s linear;
+  transform-origin: left;
+}
+
+@keyframes countdown-shrink {
+  from { transform: scaleX(1); }
+  to { transform: scaleX(0); }
+}
+
+/* Footer */
+.conto-footer {
+  padding: 20px 25px;
+  text-align: center;
+  background: rgba(0, 0, 0, 0.3);
+  border-top: 1px solid rgba(232, 197, 116, 0.3);
+}
+
+.btn-chiudi {
+  background: linear-gradient(135deg, #d4af37, #f4d03f);
+  color: #1a1a1a;
+  border: none;
+  padding: 12px 30px;
+  border-radius: 25px;
+  font-weight: 600;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: inline-flex;
+  align-items: center;
+  box-shadow: 0 4px 15px rgba(212, 175, 55, 0.4);
+
+  &:hover {
+    background: linear-gradient(135deg, #f4d03f, #d4af37);
+    transform: translateY(-2px) scale(1.05);
+    box-shadow: 0 6px 20px rgba(212, 175, 55, 0.6);
+  }
+
+  &:active {
+    transform: translateY(0) scale(1);
+  }
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .modal-overlay {
+    padding: 15px;
+  }
+
+  .conto-modal-container {
+    border-radius: 20px;
+  }
+
+  .conto-header {
+    padding: 20px 15px;
+  }
+
+  .conto-title {
+    font-size: 1.5rem;
+  }
+
+  .conto-body {
+    padding: 25px 20px;
+  }
+
+  .totale-amount {
+    font-size: 2.2rem;
+  }
+
+  .sushi-icon {
+    width: 25px;
+    height: 25px;
+  }
+
+  .grazie-text {
+    font-size: 1.1rem;
+  }
+
+  .btn-chiudi {
+    padding: 10px 25px;
+    font-size: 0.9rem;
+  }
+}

@@ -1,0 +1,69 @@
+<!-- conto-finale-modal.component.html -->
+<div class="modal-overlay" *ngIf="isVisible" (click)="closeManually()">
+  <div class="conto-modal-container" (click)="$event.stopPropagation()">
+
+    <!-- Header con icona -->
+    <div class="conto-header">
+      <div class="conto-icon">
+        <i class="bi bi-receipt-cutoff"></i>
+      </div>
+      <h2 class="conto-title">Conto Richiesto</h2>
+    </div>
+
+    <!-- Corpo del modal -->
+    <div class="conto-body">
+
+      <!-- Sushi animati -->
+      <div class="sushi-parade">
+        <img src="../../../assets/image/sushi icon.svg" alt="Sushi" class="sushi-icon sushi-float-1" />
+        <img src="../../../assets/image/sushi icon.svg" alt="Sushi" class="sushi-icon sushi-float-2" />
+        <img src="../../../assets/image/sushi icon.svg" alt="Sushi" class="sushi-icon sushi-float-3" />
+        <img src="../../../assets/image/sushi icon.svg" alt="Sushi" class="sushi-icon sushi-float-4" />
+      </div>
+
+      <!-- Messaggio principale -->
+      <div class="conto-message">
+        <h3>Ti aspettiamo in cassa</h3>
+        <p class="conto-subtitle">Il tuo ordine è pronto per il pagamento</p>
+      </div>
+
+      <!-- Totale prominente -->
+      <div class="conto-totale">
+        <div class="totale-label">Totale da pagare</div>
+        <div class="totale-amount">{{ totaleFinale | currency:'EUR' }}</div>
+        <div class="totale-details" *ngIf="menuType === 'ayce'">
+          <small>Menu All You Can Eat per {{ aycePersone }} persone</small>
+        </div>
+      </div>
+
+      <!-- Messaggio di ringraziamento -->
+      <div class="grazie-message">
+        <p class="grazie-text">
+          <i class="bi bi-heart-fill me-2"></i>
+          Grazie per averci scelto
+        </p>
+        <p class="torna-text">Torna presto a trovarci!</p>
+      </div>
+
+      <!-- Countdown -->
+      <div class="countdown-section">
+        <div class="countdown-text">
+          Redirect automatico in <span class="countdown-number">{{ countdown }}</span> secondi
+        </div>
+        <div class="countdown-bar">
+          <div class="countdown-progress" [style.animation-duration.s]="3"></div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Footer con pulsante opzionale -->
+    <div class="conto-footer">
+      <button class="btn-chiudi" (click)="closeManually()">
+        <i class="bi bi-check-lg me-2"></i>
+        Ho capito
+      </button>
+    </div>
+
+  </div>
+</div>

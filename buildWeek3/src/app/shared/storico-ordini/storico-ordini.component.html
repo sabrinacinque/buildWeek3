@@ -1,0 +1,131 @@
+<!-- storico-ordini.component.html -->
+<div class="storico-container" *ngIf="tavoloState$ | async as tavoloState">
+
+  <!-- Header Elegante -->
+  <div class="storico-header">
+    <div class="header-content">
+      <div class="header-icon">
+        <i class="bi bi-receipt"></i>
+      </div>
+      <div class="header-text">
+        <h2 class="storico-title">Storico Ordini</h2>
+        <p class="storico-subtitle">
+          <span *ngIf="tavoloState.numeroTavolo">Tavolo {{ tavoloState.numeroTavolo }} • </span>
+          <span class="menu-type-badge" [class.menu-ayce]="tavoloState.menuType === 'ayce'">
+            {{ tavoloState.menuType === 'ayce' ? 'All You Can Eat' : 'Alla Carta' }}
+          </span>
+        </p>
+      </div>
+    </div>
+
+    <!-- Totale Tavolo Prominente -->
+    <div class="totale-prominente">
+      <div class="totale-label">Totale Tavolo</div>
+      <div class="totale-amount">{{ tavoloState.totaleComplessivo | currency:'EUR' }}</div>
+    </div>
+  </div>
+
+  <!-- Nessun Ordine -->
+  <div *ngIf="tavoloState.ordiniStorico.length === 0" class="no-orders">
+    <div class="no-orders-icon">
+      <i class="bi bi-clipboard-x"></i>
+    </div>
+    <h4>Nessun ordine ancora</h4>
+    <p>Inizia a ordinare per vedere qui lo storico!</p>
+  </div>
+
+  <!-- Lista Ordini -->
+  <div *ngIf="tavoloState.ordiniStorico.length > 0" class="ordini-lista">
+
+    <!-- Info AYCE (se applicabile) -->
+    <div *ngIf="tavoloState.menuType === 'ayce'" class="ayce-info-card">
+      <div class="ayce-header">
+        <i class="bi bi-infinity"></i>
+        <span>Menu All You Can Eat</span>
+      </div>
+      <div class="ayce-details">
+        <div class="ayce-detail">
+          <strong>{{ tavoloState.ayceSettings?.persone }} persone</strong>
+        </div>
+        <div class="ayce-detail">
+          <strong>{{ tavoloState.ayceSettings?.costoTotale | currency:'EUR' }}</strong> costo base
+        </div>
+      </div>
+    </div>
+
+    <!-- Singolo Ordine -->
+    <div class="ordine-card" *ngFor="let ordine of tavoloState.ordiniStorico; trackBy: trackByOrderId">
+
+      <!-- Header Ordine -->
+      <div class="ordine-header">
+        <div class="ordine-info">
+          <span class="ordine-numero">#{{ ordine.id.split('_')[1] | slice:0:6 }}</span>
+          <span class="ordine-time">{{ formatTime(ordine.timestamp) }}</span>
+        </div>
+        <div class="ordine-totale">{{ ordine.totaleOrdine | currency:'EUR' }}</div>
+      </div>
+
+      <!-- Items Ordine -->
+      <div class="ordine-items">
+        <div class="item-row" *ngFor="let item of ordine.items">
+          <div class="item-info">
+            <span class="item-name">{{ item.titolo }}</span>
+            <span class="item-qty">x{{ item.quantity }}</span>
+          </div>
+          <div class="item-price">
+            <span *ngIf="tavoloState.menuType === 'carta' || item.categoria === 'Bibite' || item.categoria === 'Dolci'">
+              {{ (item.prezzo * item.quantity) | currency:'EUR' }}
+            </span>
+            <span *ngIf="tavoloState.menuType === 'ayce' && item.categoria !== 'Bibite' && item.categoria !== 'Dolci'"
+                  class="ayce-included">
+              <i class="bi bi-gift"></i> Incluso
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Riepilogo per Categoria -->
+    <div class="riepilogo-card">
+      <h4 class="riepilogo-title">
+        <i class="bi bi-pie-chart"></i>
+        Riepilogo per Categoria
+      </h4>
+      <div class="categoria-grid">
+        <div class="categoria-item" *ngFor="let categoria of riepilogoCategorie | keyvalue">
+          <div class="categoria-header" [style.border-left-color]="getCategoryColor(categoria.key)">
+            <span class="categoria-emoji">{{ getCategoryEmoji(categoria.key) }}</span>
+            <span class="categoria-nome">{{ categoria.key }}</span>
+          </div>
+          <div class="categoria-stats">
+            <div class="stat-item">
+              <span class="stat-number">{{ categoria.value.quantita }}</span>
+              <span class="stat-label">pz</span>
+            </div>
+            <div class="stat-item" *ngIf="categoria.value.totale > 0">
+              <span class="stat-number">{{ categoria.value.totale | currency:'EUR' }}</span>
+              <span class="stat-label">tot</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Azioni Footer -->
+  <div class="storico-actions" *ngIf="tavoloState.ordiniStorico.length > 0">
+    <button
+      class="btn-chiedi-conto"
+      (click)="richiediConto()"
+      [disabled]="tavoloState.statoTavolo === 'conto_richiesto'">
+      <i class="bi bi-receipt-cutoff"></i>
+      <span>{{ tavoloState.statoTavolo === 'conto_richiesto' ? 'Conto Richiesto' : 'Chiedi il Conto' }}</span>
+    </button>
+  </div>
+
+</div>
+
+<!-- TrackBy function per performance -->
+<ng-container>
+  <!-- Questo sarà nel component.ts -->
+</ng-container>

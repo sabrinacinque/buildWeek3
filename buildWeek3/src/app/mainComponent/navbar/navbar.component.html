@@ -6,6 +6,20 @@
         <span class="brand-epi">EPI</span><span class="brand-sushi">SUSHI</span>
       </h2>
       <div class="logo-divider-sidebar"></div>
+
+      <!-- 🆕 BADGE STATO TAVOLO -->
+      <div *ngIf="tavoloState$ | async as tavolo" class="tavolo-status-badge">
+        <div *ngIf="tavolo.statoTavolo === 'attivo'" class="status-active">
+          <i class="bi bi-calculator"></i>
+          <span>Totale</span>
+          <div class="total-badge">{{ tavolo.totaleComplessivo | currency:'EUR' }}</div>
+        </div>
+        <div *ngIf="tavolo.statoTavolo === 'conto_richiesto'" class="status-conto">
+          <i class="bi bi-receipt-cutoff"></i>
+          <span>Conto Finale</span>
+          <div class="total-badge">{{ tavolo.totaleComplessivo | currency:'EUR' }}</div>
+        </div>
+      </div>
     </div>
 
     <!-- Logout Button -->
@@ -20,8 +34,8 @@
   <div class="navigation-luxury">
     <nav class="nav-list-luxury">
       <!-- Homepage -->
-      <a routerLink="" 
-         class="nav-item-luxury" 
+      <a routerLink=""
+         class="nav-item-luxury"
          [class.active]="router.url === '/'">
         <div class="nav-content">
           <i class="bi bi-house-fill nav-icon"></i>
@@ -30,8 +44,47 @@
         <div class="nav-glow"></div>
       </a>
 
+      <!-- 🆕 STORICO ORDINI (solo se tavolo attivo) -->
+      <a *ngIf="isTavoloAttivo()"
+         routerLink="/storico-ordini"
+         routerLinkActive="active"
+         class="nav-item-luxury nav-item-tavolo">
+        <div class="nav-content">
+          <i class="bi bi-journal-text nav-icon"></i>
+          <span class="nav-text">Storico Ordini</span>
+          <span class="ordini-badge">{{ getNumeroOrdini() }}</span>
+        </div>
+        <div class="nav-glow"></div>
+      </a>
+
+      <!-- 🆕 CHIEDI IL CONTO (solo se tavolo attivo) -->
+      <a *ngIf="isTavoloAttivo() && !isContoRichiesto()"
+         (click)="richiediConto()"
+         class="nav-item-luxury nav-item-conto">
+        <div class="nav-content">
+          <i class="bi bi-receipt-cutoff nav-icon"></i>
+          <span class="nav-text">Chiedi il Conto</span>
+          <div class="conto-total">{{ getTotaleComplessivo() | currency:'EUR' }}</div>
+        </div>
+        <div class="nav-glow"></div>
+      </a>
+
+      <!-- 🆕 CONTO RICHIESTO (quando stato = conto_richiesto) -->
+      <div *ngIf="isContoRichiesto()"
+           class="nav-item-luxury nav-item-conto-richiesto">
+        <div class="nav-content">
+          <i class="bi bi-check-circle-fill nav-icon"></i>
+          <span class="nav-text">Conto Richiesto</span>
+          <div class="conto-total">{{ getTotaleComplessivo() | currency:'EUR' }}</div>
+        </div>
+        <div class="nav-glow"></div>
+      </div>
+
+      <!-- Divider (solo se tavolo attivo) -->
+      <div *ngIf="isTavoloAttivo()" class="nav-divider-luxury"></div>
+
       <!-- Menu Categories -->
-      <a routerLink="/menu/antipasti" 
+      <a routerLink="/menu/antipasti"
          routerLinkActive="active"
          class="nav-item-luxury">
         <div class="nav-content">
@@ -41,7 +94,7 @@
         <div class="nav-glow"></div>
       </a>
 
-      <a routerLink="/menu/zuppe" 
+      <a routerLink="/menu/zuppe"
          routerLinkActive="active"
          class="nav-item-luxury">
         <div class="nav-content">
@@ -51,7 +104,7 @@
         <div class="nav-glow"></div>
       </a>
 
-      <a routerLink="/menu/primi" 
+      <a routerLink="/menu/primi"
          routerLinkActive="active"
          class="nav-item-luxury">
         <div class="nav-content">
@@ -61,7 +114,7 @@
         <div class="nav-glow"></div>
       </a>
 
-      <a routerLink="/menu/hosomaki" 
+      <a routerLink="/menu/hosomaki"
          routerLinkActive="active"
          class="nav-item-luxury">
         <div class="nav-content">
@@ -71,7 +124,7 @@
         <div class="nav-glow"></div>
       </a>
 
-      <a routerLink="/menu/uramaki" 
+      <a routerLink="/menu/uramaki"
          routerLinkActive="active"
          class="nav-item-luxury">
         <div class="nav-content">
@@ -81,7 +134,7 @@
         <div class="nav-glow"></div>
       </a>
 
-      <a routerLink="/menu/temaki" 
+      <a routerLink="/menu/temaki"
          routerLinkActive="active"
          class="nav-item-luxury">
         <div class="nav-content">
@@ -91,7 +144,7 @@
         <div class="nav-glow"></div>
       </a>
 
-      <a routerLink="/menu/sushi" 
+      <a routerLink="/menu/sushi"
          routerLinkActive="active"
          class="nav-item-luxury">
         <div class="nav-content">
@@ -101,7 +154,7 @@
         <div class="nav-glow"></div>
       </a>
 
-      <a routerLink="/menu/secondi" 
+      <a routerLink="/menu/secondi"
          routerLinkActive="active"
          class="nav-item-luxury">
         <div class="nav-content">
@@ -111,7 +164,7 @@
         <div class="nav-glow"></div>
       </a>
 
-      <a routerLink="/menu/dolci" 
+      <a routerLink="/menu/dolci"
          routerLinkActive="active"
          class="nav-item-luxury">
         <div class="nav-content">
@@ -121,7 +174,7 @@
         <div class="nav-glow"></div>
       </a>
 
-      <a routerLink="/menu/bibite" 
+      <a routerLink="/menu/bibite"
          routerLinkActive="active"
          class="nav-item-luxury">
         <div class="nav-content">
@@ -135,7 +188,7 @@
       <div class="nav-divider-luxury"></div>
 
       <!-- Special Sections -->
-      <a routerLink="/reviews" 
+      <a routerLink="/reviews"
          routerLinkActive="active"
          class="nav-item-luxury">
         <div class="nav-content">
@@ -146,8 +199,8 @@
       </a>
 
       <!-- Dashboard (Admin only) -->
-      <a *ngIf="isLogged" 
-         routerLink="/dashboard" 
+      <a *ngIf="isLogged"
+         routerLink="/dashboard"
          routerLinkActive="active"
          class="nav-item-luxury nav-item-special">
         <div class="nav-content">
@@ -159,8 +212,8 @@
       </a>
 
       <!-- Cucina (Admin only) -->
-      <a *ngIf="isLogged" 
-         routerLink="/dashboard/cucina" 
+      <a *ngIf="isLogged"
+         routerLink="/dashboard/cucina"
          routerLinkActive="active"
          class="nav-item-luxury nav-item-special">
         <div class="nav-content">
@@ -172,8 +225,8 @@
       </a>
 
       <!-- Area Riservata -->
-      <a routerLink="/auth" 
-         routerLinkActive="active" 
+      <a routerLink="/auth"
+         routerLinkActive="active"
          [ngClass]="{ 'd-none': isLogged }"
          class="nav-item-luxury nav-item-login">
         <div class="nav-content">
@@ -188,6 +241,14 @@
 
   <!-- Footer with decorative elements -->
   <div class="sidebar-footer-luxury">
+    <!-- 🆕 RESET TAVOLO (solo se conto richiesto) -->
+    <div *ngIf="isContoRichiesto()" class="reset-tavolo-section">
+      <button class="btn-reset-tavolo" (click)="resetTavolo()">
+        <i class="bi bi-arrow-clockwise"></i>
+        <span>Nuovo Tavolo</span>
+      </button>
+    </div>
+
     <div class="footer-decoration">
       <div class="decoration-line"></div>
       <div class="decoration-center">✨</div>

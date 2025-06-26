@@ -1139,3 +1139,180 @@
     min-width: 32px; /* Impedisce restringimento */
   }
 }
+/* ===== STILI AYCE AGGIUNTIVI ===== */
+
+/* Badge prezzo AYCE gratuito */
+.price-badge-luxury.price-free-ayce {
+  background: linear-gradient(135deg, #28a745, #20c997);
+  color: white;
+
+  .free-text {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    font-weight: bold;
+    font-size: 0.9rem;
+
+    i {
+      font-size: 1.1rem;
+      animation: pulse-infinity 2s infinite;
+    }
+  }
+}
+
+@keyframes pulse-infinity {
+  0%, 100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  50% {
+    transform: scale(1.1);
+    opacity: 0.8;
+  }
+}
+
+/* Header info AYCE nel carrello */
+.ayce-info-header {
+  background: linear-gradient(135deg,
+    rgba(40, 167, 69, 0.2),
+    rgba(32, 201, 151, 0.2));
+  border: 1px solid rgba(40, 167, 69, 0.4);
+  border-radius: 15px;
+  padding: 20px;
+  margin-bottom: 25px;
+  text-align: center;
+  backdrop-filter: blur(5px);
+}
+
+.ayce-badge {
+  color: #28a745;
+  font-size: 1.2rem;
+  font-weight: bold;
+  margin-bottom: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  i {
+    animation: pulse-infinity 2s infinite;
+  }
+}
+
+.ayce-base-cost {
+  color: #ffffff;
+  font-size: 1.1rem;
+  font-weight: 600;
+
+  small {
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 0.9rem;
+    margin-left: 8px;
+  }
+}
+
+/* Stili per elementi gratuiti nel carrello */
+.item-unit-price.item-free-ayce,
+.item-total-price.item-free-ayce {
+  .free-label,
+  .free-total {
+    color: #28a745;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+
+    i {
+      animation: pulse-infinity 2s infinite;
+    }
+  }
+}
+
+/* ===== STILI AYCE AGGIUNTIVI ===== */
+
+/* Badge prezzo AYCE gratuito */
+.price-badge-luxury.price-free-ayce {
+  background: linear-gradient(135deg, #28a745, #20c997);
+  color: white;
+
+  .free-text {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    font-weight: bold;
+    font-size: 0.9rem;
+
+    i {
+      font-size: 1.1rem;
+      animation: pulse-infinity 2s infinite;
+    }
+  }
+}
+
+@keyframes pulse-infinity {
+  0%, 100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  50% {
+    transform: scale(1.1);
+    opacity: 0.8;
+  }
+}
+
+/* Header info AYCE nel carrello */
+.ayce-info-header {
+  background: linear-gradient(135deg,
+    rgba(40, 167, 69, 0.2),
+    rgba(32, 201, 151, 0.2));
+  border: 1px solid rgba(40, 167, 69, 0.4);
+  border-radius: 15px;
+  padding: 20px;
+  margin-bottom: 25px;
+  text-align: center;
+  backdrop-filter: blur(5px);
+}
+
+.ayce-badge {
+  color: #28a745;
+  font-size: 1.2rem;
+  font-weight: bold;
+  margin-bottom: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  i {
+    animation: pulse-infinity 2s infinite;
+  }
+}
+
+.ayce-base-cost {
+  color: #ffffff;
+  font-size: 1.1rem;
+  font-weight: 600;
+
+  small {
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 0.9rem;
+    margin-left: 8px;
+  }
+}
+
+/* Stili per elementi gratuiti nel carrello */
+.item-unit-price.item-free-ayce,
+.item-total-price.item-free-ayce {
+  .free-label,
+  .free-total {
+    color: #28a745;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+
+    i {
+      animation: pulse-infinity 2s infinite;
+    }
+  }
+}
+
+/* Aggiungi questi stili al file SCSS esistente */

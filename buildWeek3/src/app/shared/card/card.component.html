@@ -32,9 +32,15 @@
           alt="{{ item.titolo }}"
         />
 
-        <!-- Badge prezzo dorato -->
-        <div class="price-badge-luxury">
-          {{ item.prezzo | currency : "EUR" }}
+        <!-- 🆕 BADGE PREZZO DINAMICO AYCE -->
+        <div class="price-badge-luxury"
+             [class.price-free-ayce]="isItemFreeInAyce(item)">
+          <span *ngIf="!isItemFreeInAyce(item)">
+            {{ getDisplayPrice(item) | currency : "EUR" }}
+          </span>
+          <span *ngIf="isItemFreeInAyce(item)" class="free-text">
+            <i class="bi bi-infinity"></i> AYCE
+          </span>
         </div>
 
         <!-- Badge disponibilità -->
@@ -260,6 +266,15 @@
 
       <!-- Carrello con items -->
       <div *ngIf="cartItems.length > 0" class="cart-items-container">
+
+        <!-- 🆕 HEADER AYCE INFO (solo se menu AYCE) - SEMPLIFICATO -->
+        <div *ngIf="currentMenuType === 'ayce'" class="ayce-info-header">
+          <div class="ayce-badge">
+            <i class="bi bi-infinity me-2"></i>
+            Menu All You Can Eat Attivo
+          </div>
+        </div>
+
         <!-- Header tabella elegante -->
         <div class="cart-header-luxury">
           <div class="header-item">Piatto</div>
@@ -273,7 +288,15 @@
           <!-- Info piatto -->
           <div class="item-info">
             <div class="item-name">{{ item.titolo }}</div>
-            <div class="item-unit-price">{{ item.prezzo | currency : "EUR" }} cad.</div>
+            <div class="item-unit-price"
+                 [class.item-free-ayce]="isItemFreeInAyce(item)">
+              <span *ngIf="!isItemFreeInAyce(item)">
+                {{ getDisplayPrice(item) | currency : "EUR" }} cad.
+              </span>
+              <span *ngIf="isItemFreeInAyce(item)" class="free-label">
+                <i class="bi bi-infinity"></i> AYCE
+              </span>
+            </div>
           </div>
 
           <!-- Controlli quantità luxury -->
@@ -301,8 +324,14 @@
           </div>
 
           <!-- Prezzo totale item -->
-          <div class="item-total-price">
-            {{ (item.prezzo * item.quantity) | currency : "EUR" }}
+          <div class="item-total-price"
+               [class.item-free-ayce]="isItemFreeInAyce(item)">
+            <span *ngIf="!isItemFreeInAyce(item)">
+              {{ (getDisplayPrice(item) * item.quantity) | currency : "EUR" }}
+            </span>
+            <span *ngIf="isItemFreeInAyce(item)" class="free-total">
+              <i class="bi bi-gift"></i> Incluso
+            </span>
           </div>
 
           <!-- Pulsante elimina luxury -->

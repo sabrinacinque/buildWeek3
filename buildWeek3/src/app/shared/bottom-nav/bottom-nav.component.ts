@@ -1,7 +1,9 @@
-// bottom-nav.component.ts - VERSIONE AGGIORNATA
+// bottom-nav.component.ts - CON LOGICA TAVOLO
 import { Component, OnInit } from '@angular/core';
 import { Router, NavigationEnd } from '@angular/router';
 import { AuthService } from '../../auth/auth-service.service';
+import { TavoloService, TavoloState } from '../../tavolo-service.service';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-bottom-nav',
@@ -12,10 +14,17 @@ export class BottomNavComponent implements OnInit {
   isLogged: boolean = false;
   showMenuDropdown: boolean = false;
 
+  // 🆕 NUOVO: Observable dello stato tavolo
+  tavoloState$: Observable<TavoloState>;
+
   constructor(
     private router: Router,
-    private AuthService: AuthService
-  ) {}
+    private AuthService: AuthService,
+    public tavoloService: TavoloService // 🆕 NUOVO: Inietta TavoloService
+  ) {
+    // Inizializza l'observable dello stato tavolo
+    this.tavoloState$ = this.tavoloService.getTavoloState();
+  }
 
   ngOnInit() {
     // Sottoscrivi ai cambiamenti di autenticazione
@@ -32,10 +41,10 @@ export class BottomNavComponent implements OnInit {
   }
 
   navigateTo(route: string) {
-    this.closeMenuDropdown(); // Chiudi PRIMA della navigazione
+    this.closeMenuDropdown();
     setTimeout(() => {
       this.router.navigate([route]);
-    }, 150); // Piccolo delay per animazione
+    }, 150);
   }
 
   getCurrentRoute(): string {
@@ -57,27 +66,80 @@ export class BottomNavComponent implements OnInit {
     this.showMenuDropdown = false;
   }
 
-  // Chiudi dropdown quando si clicca fuori
   onBackdropClick() {
     this.closeMenuDropdown();
   }
 
-  // METODO LOGOUT - NUOVO!
   logout() {
-    this.closeMenuDropdown(); // Chiudi dropdown se aperto
+    this.closeMenuDropdown();
     this.AuthService.logout();
-    this.router.navigate(['']); // Vai alla home dopo logout
+    this.router.navigate(['']);
   }
 
+  // ===== 🆕 METODI TAVOLO =====
+
+  /**
+   * Verifica se il tavolo è attivo
+   */
+  isTavoloAttivo(): boolean {
+    return this.tavoloService.isTavoloAttivo();
+  }
+
+  /**
+   * Verifica se il conto è stato richiesto
+   */
+  isContoRichiesto(): boolean {
+    return this.tavoloService.isContoRichiesto();
+  }
+
+  /**
+   * Ottieni il numero di ordini
+   */
+  getNumeroOrdini(): number {
+    return this.tavoloService.getNumeroOrdini();
+  }
+
+  /**
+   * Ottieni il totale complessivo
+   */
+  getTotaleComplessivo(): number {
+    return this.tavoloService.getTotaleComplessivo();
+  }
+
+  /**
+   * Richiedi il conto
+   */
+  richiediConto(): void {
+    this.tavoloService.richiediConto();
+    console.log('🧾 Conto richiesto dalla bottom nav');
+
+    // Opzionale: Naviga allo storico ordini per vedere il riepilogo
+    this.navigateTo('/storico-ordini');
+  }
+
+  /**
+   * Reset del tavolo per il prossimo cliente
+   */
+  resetTavolo(): void {
+    // Conferma prima del reset
+    const conferma = confirm('Nuovo tavolo? Tutti i dati attuali verranno cancellati.');
+
+    if (conferma) {
+      this.tavoloService.resetTavolo();
+      this.router.navigate(['/']); // Torna alla scelta menu
+      console.log('🔄 Tavolo resettato dalla bottom nav');
+    }
+  }
+
+  // ===== METODI CARRELLO (per compatibilità futura) =====
+
   showCartBadge(): boolean {
-    // TODO: Implementa logica per mostrare badge carrello
-    // Esempio: return this.cartService.getItemsCount() > 0;
-    return false; // Per ora false, poi aggiungi la logica del carrello
+    // TODO: Implementa logica per mostrare badge carrello se necessario
+    return false;
   }
 
   getCartItemsCount(): number {
-    // TODO: Implementa conteggio items carrello
-    // Esempio: return this.cartService.getItemsCount();
-    return 0; // Per ora 0, poi aggiungi la logica del carrello
+    // TODO: Implementa conteggio items carrello se necessario
+    return 0;
   }
 }

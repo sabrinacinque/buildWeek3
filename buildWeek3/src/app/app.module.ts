@@ -14,6 +14,8 @@ import { NavbarSmallComponent } from './mainComponent/navbar-small/navbar-small.
 import { FormsModule } from '@angular/forms';
 import { BottomNavComponent } from './shared/bottom-nav/bottom-nav.component';
 import { MenuChoiceComponent } from './pages/menu-choice/menu-choice.component';
+import { SharedModule } from './shared/shared.module';
+
 
 
 @NgModule({
@@ -25,9 +27,9 @@ import { MenuChoiceComponent } from './pages/menu-choice/menu-choice.component';
     HomepageComponent,
     CucinaComponent,
     NavbarSmallComponent,
-    MenuChoiceComponent,
+    MenuChoiceComponent
   ],
-  imports: [BrowserModule, AppRoutingModule, HttpClientModule, NgbModule, FormsModule],
+  imports: [BrowserModule, AppRoutingModule, HttpClientModule, NgbModule, FormsModule,SharedModule],
   providers: [],
   bootstrap: [AppComponent],
 })

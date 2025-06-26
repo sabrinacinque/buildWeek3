@@ -62,7 +62,6 @@
           <span class="ordine-numero">#{{ ordine.id.split('_')[1] | slice:0:6 }}</span>
           <span class="ordine-time">{{ formatTime(ordine.timestamp) }}</span>
         </div>
-        <div class="ordine-totale">{{ ordine.totaleOrdine | currency:'EUR' }}</div>
       </div>
 
       <!-- Items Ordine -->

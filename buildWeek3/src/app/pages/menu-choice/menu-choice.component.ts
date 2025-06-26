@@ -62,7 +62,7 @@ export class MenuChoiceComponent implements OnInit {
     console.log('🏁 Tavolo inizializzato:', this.tavoloService.getCurrentTavoloState());
 
     // Naviga alla homepage
-    this.router.navigate(['/homepage']);
+    this.router.navigate(['/menu/antipasti']);
 }
 
   // Metodi per gestire il numero di persone

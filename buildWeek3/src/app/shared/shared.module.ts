@@ -18,7 +18,8 @@ import { ContoFinaleModalComponent } from './conto-finale-modal/conto-finale-mod
     CommonModule
   ],
   exports: [
-    CardComponent
+    CardComponent,
+    ContoFinaleModalComponent  
   ]
 })
 export class SharedModule { }

@@ -373,3 +373,16 @@
     }
   }
 }
+.carta-card-flex {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.carta-content {
+  flex-grow: 1;
+}
+
+.carta-footer {
+  margin-top: auto;
+}

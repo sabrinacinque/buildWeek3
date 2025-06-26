@@ -4,8 +4,8 @@ import {
   ElementRef,
   QueryList,
   ViewChildren,
-  viewChild,
 } from '@angular/core';
+import { Router } from '@angular/router'; // 👈 Import separato
 
 @Component({
   selector: 'app-homepage',
@@ -21,6 +21,9 @@ export class HomepageComponent implements AfterViewInit {
   @ViewChildren('animatedElementRotate')
   animatedElementsRotate!: QueryList<ElementRef>;
 
+  // 👈 CONSTRUCTOR DENTRO LA CLASSE
+  constructor(private router: Router) {}
+
   ngAfterViewInit() {
     // Per ogni elemento nella QueryList, osservare l'elemento e aggiungere la classe di animazione
     this.animatedElementsRight.forEach((elementRef) => {
@@ -34,6 +37,7 @@ export class HomepageComponent implements AfterViewInit {
       this.observeElement(elementRef.nativeElement, 'img-sushilight');
     });
   }
+
   // Funzione per osservare un elemento e aggiungere una classe di animazione
   observeElement(element: Element, animationClass: string) {
     const observer = new IntersectionObserver((entries) => {
@@ -47,5 +51,14 @@ export class HomepageComponent implements AfterViewInit {
     });
 
     observer.observe(element);
+  }
+
+  // 👈 METODI AGGIUNTI DENTRO LA CLASSE
+  navigateToMenuChoice() {
+    this.router.navigate(['/menu-choice']);
+  }
+
+  navigateToLogin() {
+    this.router.navigate(['/auth']);
   }
 }

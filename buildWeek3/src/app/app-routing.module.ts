@@ -7,9 +7,9 @@ import { MenuChoiceComponent } from './pages/menu-choice/menu-choice.component';
 import { StoricoOrdiniComponent } from './shared/storico-ordini/storico-ordini.component';
 
 const routes: Routes = [
-  { path: '', component: MenuChoiceComponent },
-  { path: 'homepage', component: HomepageComponent },
-  { path: 'storico-ordini', component: StoricoOrdiniComponent }, // 🆕 AGGIUNGI QUESTA RIGA
+  { path: '', component: HomepageComponent }, // 👈 Homepage come principale
+  { path: 'menu-choice', component: MenuChoiceComponent }, // 👈 MenuChoice su rotta dedicata
+  { path: 'storico-ordini', component: StoricoOrdiniComponent },
   {
     path: 'menu',
     loadChildren: () =>

@@ -35,14 +35,14 @@
       </span>
     </div>
 
-    <!-- Home (solo se NO tavolo attivo o sempre visibile) -->
+    <!-- Home (solo se NO tavolo attivo o sempre visibile)
     <div class="nav-item"
          *ngIf="!isTavoloAttivo()"
          [class.active]="isActiveRoute('') && getCurrentRoute() === '/'"
          (click)="navigateTo('')">
       <i class="bi bi-house-fill nav-icon"></i>
       <span class="nav-label">Home</span>
-    </div>
+    </div>-->
 
     <!-- Menu con Dropdown (sempre visibile) -->
     <div class="nav-item nav-dropdown"

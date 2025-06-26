@@ -11,7 +11,7 @@ import { TavoloService } from '../../tavolo-service.service';
 export class ContoFinaleModalComponent implements OnInit {
 
   isVisible = false;
-  countdown = 3;
+  countdown = 10;
   totaleFinale = 0;
   menuType: 'carta' | 'ayce' = 'carta';
   aycePersone = 0;
@@ -58,7 +58,7 @@ export class ContoFinaleModalComponent implements OnInit {
     setTimeout(() => {
       this.tavoloService.resetTavolo();
       this.router.navigate(['/']);
-    }, 300);
+    }, 1000);
   }
 
   // Metodo per chiusura manuale (se vogliamo un pulsante)

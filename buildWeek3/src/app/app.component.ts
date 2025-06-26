@@ -24,7 +24,8 @@ export class AppComponent {
 
 
  // 🆕 AGGIUNGI SOLO QUESTO METODO
-  isMenuChoicePage(): boolean {
-    return this.router.url === '/';
-  }
+ isMenuChoicePage(): boolean {
+  const url = this.router.url;
+  return url === '/' || url === '/menu-choice' || url.includes('/auth');
+}
 }

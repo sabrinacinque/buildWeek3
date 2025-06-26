@@ -22,7 +22,7 @@
   );
   position: relative;
   overflow: hidden;
-  
+
   &::before {
     content: '';
     position: absolute;
@@ -30,7 +30,7 @@
     left: 0;
     right: 0;
     bottom: 0;
-    background: 
+    background:
       radial-gradient(circle at 20% 20%, rgba(212, 175, 55, 0.1) 0%, transparent 50%),
       radial-gradient(circle at 80% 80%, rgba(212, 175, 55, 0.05) 0%, transparent 50%);
     pointer-events: none;
@@ -68,20 +68,20 @@
   position: relative;
   border: 2px solid var(--luxury-gold);
   transition: all 0.3s ease;
-  
+
   @media(min-width:1024px) {
     height: 500px;
   }
-  
+
   &:hover {
     border-color: var(--luxury-gold-dark);
     transform: translateY(-5px);
     box-shadow: 0 15px 30px rgba(212, 175, 55, 0.3);
-    
+
     .image-overlay-luxury {
       opacity: 0.3;
     }
-    
+
     .sushi-image-animated {
       transform: scale(1.05);
     }
@@ -125,7 +125,7 @@
   text-shadow: 0 0 20px rgba(212, 175, 55, 0.5);
   letter-spacing: 2px;
   margin-bottom: 2rem;
-  
+
   .welcome-sparkle {
     color: white;
     animation: sparkle 2s ease-in-out infinite;
@@ -134,11 +134,11 @@
 }
 
 @keyframes sparkle {
-  0%, 100% { 
+  0%, 100% {
     transform: scale(1) rotate(0deg);
     opacity: 0.8;
   }
-  50% { 
+  50% {
     transform: scale(1.2) rotate(180deg);
     opacity: 1;
   }
@@ -161,11 +161,11 @@
   margin-bottom: 1rem;
   text-shadow: 0 0 20px rgba(212, 175, 55, 0.5);
   font-family: 'GothamPro', sans-serif;
-  
+
   .brand-epi {
     color: white;
   }
-  
+
   .brand-sushi {
     color: var(--luxury-gold);
     filter: drop-shadow(0 0 10px rgba(212, 175, 55, 0.7));
@@ -209,25 +209,25 @@
   border-radius: 50%;
   box-shadow: 0 0 10px var(--luxury-gold);
   animation: floatParticle 4s ease-in-out infinite;
-  
+
   &.particle-1 {
     top: 20%;
     left: 10%;
     animation-delay: 0s;
   }
-  
+
   &.particle-2 {
     top: 60%;
     right: 15%;
     animation-delay: 1s;
   }
-  
+
   &.particle-3 {
     bottom: 30%;
     left: 20%;
     animation-delay: 2s;
   }
-  
+
   &.particle-4 {
     top: 40%;
     right: 25%;
@@ -265,7 +265,7 @@
   padding: 2.5rem;
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
   transition: all 0.3s ease;
-  
+
   &:hover {
     border-color: var(--luxury-gold);
     box-shadow: 0 15px 40px rgba(212, 175, 55, 0.2);
@@ -281,13 +281,13 @@
   font-size: 1.8rem;
   color: white;
   margin-bottom: 1rem;
-  
+
   .luxury-icon {
     color: var(--luxury-gold);
     margin-right: 0.5rem;
     filter: drop-shadow(0 0 8px rgba(212, 175, 55, 0.5));
   }
-  
+
   .highlight-gold {
     color: var(--luxury-gold);
     text-shadow: 0 0 10px rgba(212, 175, 55, 0.5);
@@ -309,12 +309,12 @@
   text-align: justify;
   color: rgba(255, 255, 255, 0.9);
   margin-bottom: 1.5rem;
-  
+
   .highlight-gold {
     color: var(--luxury-gold);
     font-weight: 600;
   }
-  
+
   strong.highlight-gold {
     text-shadow: 0 0 5px rgba(212, 175, 55, 0.3);
   }
@@ -328,11 +328,11 @@
   border: 3px solid var(--luxury-gold);
   box-shadow: 0 10px 30px rgba(212, 175, 55, 0.3);
   transition: all 0.3s ease;
-  
+
   &:hover {
     transform: scale(1.03);
     box-shadow: 0 15px 40px rgba(212, 175, 55, 0.4);
-    
+
     .frame-glow {
       opacity: 1;
     }
@@ -359,16 +359,17 @@
   z-index: -1;
 }
 
-/* 🍱 ALL YOU CAN EAT SECTION LUXURY */
-.img-gradient-luxury {
+/* 🍱🚀 SEZIONE UNIFICATA LUXURY */
+.unified-cta-luxury {
   background: linear-gradient(
-    to bottom,
+    135deg,
     var(--luxury-brown) 0%,
+    #1a1a1a 50%,
     #000000 100%
   );
   position: relative;
   padding: 4rem 2rem;
-  
+
   &::before {
     content: '';
     position: absolute;
@@ -376,26 +377,53 @@
     left: 0;
     right: 0;
     bottom: 0;
-    background: 
-      radial-gradient(circle at 50% 50%, rgba(212, 175, 55, 0.1) 0%, transparent 70%);
+    background:
+      radial-gradient(circle at 30% 30%, rgba(212, 175, 55, 0.15) 0%, transparent 60%),
+      radial-gradient(circle at 70% 70%, rgba(212, 175, 55, 0.1) 0%, transparent 60%);
     pointer-events: none;
   }
 }
 
-.all-you-can-eat-card {
+/* 🔐 LOGIN ICON HOMEPAGE */
+.login-icon-homepage {
+ /* 👈 CAMBIA da 0rem a 2rem */
+  font-size: 3rem;
+  color: rgba(212, 175, 55, 0.8);
+  cursor: pointer;
+  z-index: 10;
+  transition: all 0.3s ease;
+  filter: drop-shadow(0 0 10px rgba(212, 175, 55, 0.5));
+  transform: none !important; /* 👈 AGGIUNGI per ignorare text-center */
+
+  &:hover {
+    color: white;
+    transform: scale(1.1) !important; /* 👈 AGGIUNGI !important */
+    filter: drop-shadow(0 0 15px rgba(212, 175, 55, 0.8));
+  }
+
+
+  @media (max-width: 768px) {
+    font-size: 2.5rem;
+    top: 1.5rem;
+    right: 1.5rem;
+  }
+}
+
+/* 🍱 ALL YOU CAN EAT CARD UNIFICATA */
+.all-you-can-eat-card-unified {
   background: linear-gradient(
     135deg,
-    rgba(0, 0, 0, 0.9),
-    rgba(25, 25, 25, 0.7)
+    rgba(0, 0, 0, 0.85),
+    rgba(25, 25, 25, 0.6)
   );
   backdrop-filter: blur(20px);
-  border: 3px solid var(--luxury-gold);
+  border: 2px solid rgba(212, 175, 55, 0.4);
   border-radius: 25px;
-  padding: 3rem 2rem;
-  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.4);
+  padding: 2.5rem 2rem;
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
   position: relative;
   overflow: hidden;
-  
+
   &::before {
     content: '';
     position: absolute;
@@ -403,8 +431,8 @@
     left: -50%;
     width: 200%;
     height: 200%;
-    background: linear-gradient(45deg, transparent, rgba(212, 175, 55, 0.05), transparent);
-    animation: shimmer 3s ease-in-out infinite;
+    background: linear-gradient(45deg, transparent, rgba(212, 175, 55, 0.03), transparent);
+    animation: shimmer 4s ease-in-out infinite;
   }
 }
 
@@ -415,49 +443,50 @@
 
 .card-header-luxury {
   text-align: center;
-  margin-bottom: 2rem;
+  margin-bottom: 1.5rem;
 }
 
 .all-you-can-eat-title {
-  font-size: 2.5rem;
+  font-size: 2.2rem;
   color: var(--luxury-gold);
   text-shadow: 0 0 20px rgba(212, 175, 55, 0.6);
-  letter-spacing: 3px;
+  letter-spacing: 2px;
   margin-bottom: 1rem;
-  
+
   .luxury-icon-large {
-    font-size: 2rem;
-    margin: 0 1rem;
+    font-size: 1.8rem;
+    margin: 0 0.8rem;
     animation: pulse 2s ease-in-out infinite;
   }
 }
 
 @keyframes pulse {
-  0%, 100% { 
+  0%, 100% {
     transform: scale(1);
     opacity: 0.8;
   }
-  50% { 
+  50% {
     transform: scale(1.1);
     opacity: 1;
   }
 }
 
 .title-underline-luxury {
-  width: 200px;
-  height: 4px;
+  width: 150px;
+  height: 3px;
   background: linear-gradient(90deg, transparent, var(--luxury-gold), transparent);
   margin: 0 auto;
   border-radius: 2px;
-  box-shadow: 0 0 10px rgba(212, 175, 55, 0.5);
+  box-shadow: 0 0 8px rgba(212, 175, 55, 0.5);
 }
 
 .content-text-luxury-special {
-  font-size: 1.2rem;
-  line-height: 1.9;
+  font-size: 1.1rem;
+  line-height: 1.8;
   text-align: center;
   color: rgba(255, 255, 255, 0.95);
-  
+  margin-bottom: 1.5rem;
+
   .highlight-gold {
     color: var(--luxury-gold);
     font-weight: 700;
@@ -465,61 +494,65 @@
   }
 }
 
-.cta-section-luxury {
+/* 📝 MENZIONE CARTA */
+.carta-mention {
+  background: linear-gradient(135deg, rgba(212, 175, 55, 0.1), rgba(212, 175, 55, 0.05));
+  border: 1px solid rgba(212, 175, 55, 0.3);
+  border-radius: 15px;
+  padding: 1rem;
+  margin-top: 1rem;
   text-align: center;
-  margin-top: 2rem;
 }
 
-.price-highlight-luxury {
-  background: linear-gradient(135deg, var(--luxury-gold), var(--luxury-gold-dark));
-  color: #000;
-  padding: 1rem 2rem;
-  border-radius: 50px;
-  font-weight: 700;
-  font-size: 1.1rem;
-  display: inline-block;
-  box-shadow: 0 10px 25px rgba(212, 175, 55, 0.4);
-  transition: all 0.3s ease;
-  
-  &:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 15px 35px rgba(212, 175, 55, 0.6);
+.carta-text {
+  font-size: 1rem;
+  color: rgba(255, 255, 255, 0.9);
+  margin: 0;
+
+  .luxury-icon-small {
+    color: var(--luxury-gold);
+    margin-right: 0.5rem;
+  }
+
+  .highlight-gold {
+    color: var(--luxury-gold);
+    font-weight: 600;
   }
 }
 
-/* 🍣 SUSHI FLUTTUANTE - RESPONSIVE */
-.floating-sushi-container {
+/* 🍣 SUSHI FLUTTUANTE UNIFICATO */
+.floating-sushi-container-unified {
   position: relative;
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 2rem 1rem;
+  padding: 1.5rem 1rem;
+  margin-bottom: 2rem;
 }
 
-.floating-sushi-image {
+.floating-sushi-image-unified {
   animation: floatSushi 3s ease-in-out infinite;
-  filter: drop-shadow(0 10px 20px rgba(212, 175, 55, 0.3));
+  filter: drop-shadow(0 10px 20px rgba(212, 175, 55, 0.4));
   transition: all 0.3s ease;
   max-width: 100%;
   height: auto;
-  
-  /* Dimensioni responsive */
+
   @media (max-width: 767px) {
-    width: 250px;
-    max-width: 90vw;
+    width: 200px;
+    max-width: 80vw;
   }
-  
+
   @media (min-width: 768px) {
-    width: 300px;
+    width: 250px;
   }
-  
+
   @media (min-width: 992px) {
-    width: 350px;
+    width: 280px;
   }
-  
+
   &:hover {
     transform: scale(1.05);
-    filter: drop-shadow(0 15px 30px rgba(212, 175, 55, 0.5));
+    filter: drop-shadow(0 15px 30px rgba(212, 175, 55, 0.6));
   }
 }
 
@@ -528,8 +561,246 @@
     transform: translateY(0px) rotate(-2deg);
   }
   50% {
-    transform: translateY(-15px) rotate(2deg);
+    transform: translateY(-12px) rotate(2deg);
   }
+}
+
+/* 🚀 SUPER GLASS BUTTON */
+.super-cta-container {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+
+.glass-card-luxury-super {
+  background: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.1),
+    rgba(255, 255, 255, 0.05)
+  );
+  backdrop-filter: blur(25px);
+  border: 2px solid rgba(212, 175, 55, 0.6);
+  border-radius: 30px;
+  padding: 2.5rem 2rem;
+  box-shadow:
+    0 20px 50px rgba(0, 0, 0, 0.4),
+    0 0 30px rgba(212, 175, 55, 0.3);
+  position: relative;
+  overflow: hidden;
+  cursor: pointer;
+  transition: all 0.4s ease;
+  max-width: 400px;
+  width: 100%;
+
+  &:hover {
+    transform: translateY(-8px) scale(1.02);
+    border-color: var(--luxury-gold);
+    box-shadow:
+      0 25px 60px rgba(0, 0, 0, 0.5),
+      0 0 50px rgba(212, 175, 55, 0.6);
+
+    .glass-hover-effect-super {
+      opacity: 1;
+    }
+
+    .glass-border-animation {
+      opacity: 1;
+    }
+
+    .particle-glow-super {
+      animation-duration: 2s;
+    }
+
+    .glass-arrow-super {
+      transform: translateX(10px) scale(1.2);
+    }
+  }
+}
+
+/* 🌟 PARTICELLE SUPER */
+.glass-particles-super {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.particle-glow-super {
+  position: absolute;
+  width: 8px;
+  height: 8px;
+  background: var(--luxury-gold);
+  border-radius: 50%;
+  box-shadow: 0 0 15px var(--luxury-gold);
+  animation: floatParticleSuper 5s ease-in-out infinite;
+
+  &.particle-1 {
+    top: 15%;
+    left: 10%;
+    animation-delay: 0s;
+  }
+
+  &.particle-2 {
+    top: 25%;
+    right: 15%;
+    animation-delay: 1s;
+  }
+
+  &.particle-3 {
+    bottom: 20%;
+    left: 20%;
+    animation-delay: 2s;
+  }
+
+  &.particle-4 {
+    top: 60%;
+    right: 25%;
+    animation-delay: 3s;
+  }
+
+  &.particle-5 {
+    top: 80%;
+    left: 60%;
+    animation-delay: 4s;
+  }
+
+  &.particle-6 {
+    top: 40%;
+    left: 80%;
+    animation-delay: 2.5s;
+  }
+}
+
+@keyframes floatParticleSuper {
+  0%, 100% {
+    transform: translateY(0px) scale(1);
+    opacity: 0.6;
+  }
+  50% {
+    transform: translateY(-25px) scale(1.3);
+    opacity: 1;
+  }
+}
+
+/* 📄 CONTENUTO GLASS BUTTON */
+.glass-content-super {
+  position: relative;
+  z-index: 3;
+  text-align: center;
+}
+
+.glass-icon-super {
+  font-size: 3rem;
+  color: var(--luxury-gold);
+  margin-bottom: 1rem;
+  filter: drop-shadow(0 0 15px rgba(212, 175, 55, 0.7));
+  animation: iconPulse 3s ease-in-out infinite;
+}
+
+@keyframes iconPulse {
+  0%, 100% {
+    transform: scale(1);
+    filter: drop-shadow(0 0 15px rgba(212, 175, 55, 0.7));
+  }
+  50% {
+    transform: scale(1.1);
+    filter: drop-shadow(0 0 25px rgba(212, 175, 55, 0.9));
+  }
+}
+
+.glass-title-super {
+  font-size: 1.8rem;
+  color: white;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+  text-shadow: 0 0 20px rgba(255, 255, 255, 0.5);
+  font-family: 'GothamPro', sans-serif;
+}
+
+.glass-subtitle-super {
+  font-size: 1.3rem;
+  color: var(--luxury-gold);
+  font-weight: 600;
+  margin-bottom: 1rem;
+  text-shadow: 0 0 15px rgba(212, 175, 55, 0.6);
+  font-family: 'GothamPro', sans-serif;
+}
+
+.glass-description {
+  margin-bottom: 1.5rem;
+
+  p {
+    margin-bottom: 0.3rem;
+    font-size: 1rem;
+    color: rgba(255, 255, 255, 0.9);
+
+    &.glass-call {
+      font-weight: 600;
+      color: var(--luxury-gold);
+      font-size: 1.1rem;
+      text-shadow: 0 0 10px rgba(212, 175, 55, 0.5);
+    }
+  }
+}
+
+.glass-arrow-super {
+  font-size: 2.5rem;
+  color: var(--luxury-gold);
+  transition: all 0.3s ease;
+  filter: drop-shadow(0 0 10px rgba(212, 175, 55, 0.6));
+}
+
+/* 🌟 EFFETTI HOVER */
+.glass-hover-effect-super {
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: linear-gradient(
+    45deg,
+    transparent,
+    rgba(212, 175, 55, 0.1),
+    transparent
+  );
+  opacity: 0;
+  transition: opacity 0.4s ease;
+  animation: glassShimmer 3s ease-in-out infinite;
+}
+
+@keyframes glassShimmer {
+  0% { transform: translateX(-100%) translateY(-100%) rotate(45deg); }
+  100% { transform: translateX(100%) translateY(100%) rotate(45deg); }
+}
+
+.glass-border-animation {
+  position: absolute;
+  top: -2px;
+  left: -2px;
+  right: -2px;
+  bottom: -2px;
+  background: linear-gradient(
+    45deg,
+    var(--luxury-gold),
+    transparent,
+    var(--luxury-gold),
+    transparent,
+    var(--luxury-gold)
+  );
+  border-radius: 30px;
+  opacity: 0;
+  transition: opacity 0.4s ease;
+  animation: borderRotate 4s linear infinite;
+  z-index: -1;
+}
+
+@keyframes borderRotate {
+  0% { background-position: 0% 0%; }
+  100% { background-position: 200% 200%; }
 }
 
 /* 🎯 ANIMAZIONI ORIGINALI MANTENUTE */
@@ -568,39 +839,64 @@
   .welcome-text-luxury {
     font-size: 2rem;
   }
-  
+
   .brand-title-homepage {
     font-size: 3rem;
   }
-  
+
   .brand-subtitle-homepage {
     font-size: 1rem;
   }
-  
+
   .content-card-luxury {
     padding: 2rem 1.5rem;
     margin: 1rem;
   }
-  
+
   .section-title-luxury {
     font-size: 1.5rem;
   }
-  
+
   .content-text-luxury {
     font-size: 1rem;
   }
-  
+
   .all-you-can-eat-title {
-    font-size: 2rem;
-    
+    font-size: 1.8rem;
+
     .luxury-icon-large {
-      font-size: 1.5rem;
+      font-size: 1.4rem;
       margin: 0 0.5rem;
     }
   }
-  
+
   .img-Home-luxury {
     width: 300px;
+  }
+
+  .unified-cta-luxury {
+    padding: 3rem 1rem;
+  }
+
+  .all-you-can-eat-card-unified {
+    padding: 2rem 1.5rem;
+  }
+
+  .glass-card-luxury-super {
+    padding: 2rem 1.5rem;
+    max-width: 350px;
+  }
+
+  .glass-title-super {
+    font-size: 1.5rem;
+  }
+
+  .glass-subtitle-super {
+    font-size: 1.1rem;
+  }
+
+  .glass-icon-super {
+    font-size: 2.5rem;
   }
 }
 
@@ -608,25 +904,46 @@
   .welcome-text-luxury {
     font-size: 1.5rem;
   }
-  
+
   .brand-title-homepage {
     font-size: 2.5rem;
   }
-  
+
   .brand-subtitle-homepage {
     font-size: 0.9rem;
   }
-  
+
   .content-card-luxury {
     padding: 1.5rem 1rem;
   }
-  
+
   .all-you-can-eat-title {
     font-size: 1.5rem;
   }
-  
+
   .img-Home-luxury {
     width: 250px;
+  }
+
+  .unified-cta-luxury {
+    padding: 2rem 0.5rem;
+  }
+
+  .glass-card-luxury-super {
+    padding: 1.5rem 1rem;
+    max-width: 300px;
+  }
+
+  .glass-title-super {
+    font-size: 1.3rem;
+  }
+
+  .glass-subtitle-super {
+    font-size: 1rem;
+  }
+
+  .glass-description p {
+    font-size: 0.9rem;
   }
 }
 

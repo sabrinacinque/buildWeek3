@@ -1,4 +1,4 @@
-// bottom-nav.component.ts - PULITO E CORRETTO
+// bottom-nav.component.ts - CON LOGICA MODAL HOME UGUALE A SIDEBAR
 import { Component, OnInit } from '@angular/core';
 import { Router, NavigationEnd } from '@angular/router';
 import { AuthService } from '../../auth/auth-service.service';
@@ -17,7 +17,8 @@ export class BottomNavComponent implements OnInit {
   // Observable dello stato tavolo
   tavoloState$: Observable<TavoloState>;
 
-
+  // 🎯 NUOVO: Modal Home Confirmation (stesso della sidebar)
+  showHomeConfirmModal: boolean = false;
 
   constructor(
     private router: Router,
@@ -38,17 +39,55 @@ export class BottomNavComponent implements OnInit {
     this.router.events.subscribe(event => {
       if (event instanceof NavigationEnd) {
         this.closeMenuDropdown();
-
-        // 🆕 NUOVO: Controlla modalità menu dopo navigazione
         this.checkMenuMode();
       }
     });
 
-    // 🆕 NUOVO: Controlla modalità menu all'avvio
     this.checkMenuMode();
   }
 
-  // ===== 🆕 GESTIONE MODALITÀ MENU =====
+  // ===== 🎯 GESTIONE HOME MODAL (IDENTICA A SIDEBAR) =====
+
+  /**
+   * Gestisce il click sul logo home
+   */
+  onHomeClick(): void {
+    // Se non è loggato E ha un tavolo attivo o modalità menu
+    if (!this.isLogged && (this.isTavoloAttivo() || this.isInMenuMode())) {
+      console.log('🏠 Bottom Nav: Richiesta conferma home - tavolo attivo');
+      this.showHomeConfirmModal = true;
+    } else {
+      // Vai direttamente alla home
+      this.navigateToHome();
+    }
+  }
+
+  /**
+   * Conferma: vai alla home
+   */
+  onConfirmHome(): void {
+    this.showHomeConfirmModal = false;
+    this.navigateToHome();
+    console.log('✅ Bottom Nav: Confermato - navigazione alla home');
+  }
+
+  /**
+   * Cancella: rimani qui
+   */
+  onCancelHome(): void {
+    this.showHomeConfirmModal = false;
+    console.log('❌ Bottom Nav: Annullato - rimango nella pagina corrente');
+  }
+
+  /**
+   * Naviga effettivamente alla home
+   */
+  private navigateToHome(): void {
+    this.closeMenuDropdown();
+    this.router.navigate(['']);
+  }
+
+  // ===== GESTIONE MODALITÀ MENU =====
 
   /**
    * Controlla se siamo in modalità menu e attiva automaticamente
@@ -119,7 +158,7 @@ export class BottomNavComponent implements OnInit {
     this.router.navigate(['']);
   }
 
-  // ===== METODI TAVOLO (AGGIORNATI PER TUO SERVICE) =====
+  // ===== METODI TAVOLO =====
 
   /**
    * Verifica se il tavolo è attivo
@@ -149,43 +188,14 @@ export class BottomNavComponent implements OnInit {
     return this.tavoloService.getTotaleComplessivo();
   }
 
-  // ===== 🆕 CONFERMA RICHIESTA CONTO =====
+  // ===== CONFERMA RICHIESTA CONTO =====
 
   /**
-   * Richiedi il conto con conferma personalizzata
+   * Richiedi il conto - versione semplificata per bottom nav
    */
-  /**
- * Richiedi il conto - versione semplificata per bottom nav
- */
-confermaRichiestaConto() {
-  this.tavoloService.openContoModal(); // 🎯 Apre modal luxury
-}
-  /**
-   * 🆕 GESTIONE CONFERMA MODAL
-   */
-
-  /**
-   * Mostra notifica conto richiesto
-   */
- /*private showContoRichiestoNotification(): void {
-    // Notifica immediata
-    setTimeout(() => {
-      const totale = this.getTotaleComplessivo();
-      const numeroOrdini = this.getNumeroOrdini();
-
-      let message = '✅ Conto richiesto con successo!\n\n';
-
-      if (numeroOrdini > 0) {
-        message += `💰 Totale: €${totale.toFixed(2)}\n`;
-        message += `📝 Ordini: ${numeroOrdini}\n\n`;
-      }
-
-      message += '👨‍💼 Il personale verrà al vostro tavolo a breve per il pagamento.\n\n';
-      message += '⏱️ Tempo stimato: 2-5 minuti';
-
-      alert(message);
-    }, 500);
-  }*/ 
+  confermaRichiestaConto() {
+    this.tavoloService.openContoModal(); // 🎯 Apre modal luxury
+  }
 
   /**
    * Reset del tavolo per il prossimo cliente
@@ -206,20 +216,6 @@ confermaRichiestaConto() {
   }
 
   // ===== METODI AGGIUNTIVI MOBILI =====
-
-  /**
-   * Navigazione al logo home con controllo tavolo
-   */
-  navigateToHome() {
-    // 🏠 CONTROLLO SPECIFICO PER LOGO HOME
-    if (this.isTavoloAttivo() || this.isInMenuMode()) {
-      const conferma = confirm('Sei sicuro di voler tornare alla home?\n\nGli ordini del tavolo attuale rimarranno salvati ma dovrai riattivare il tavolo per continuare.');
-      if (!conferma) return;
-    }
-
-    this.closeMenuDropdown();
-    this.router.navigate(['']);
-  }
 
   /**
    * Verifica se mostrare il badge carrello

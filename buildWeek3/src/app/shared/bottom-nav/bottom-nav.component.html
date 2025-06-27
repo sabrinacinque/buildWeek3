@@ -1,14 +1,13 @@
-<!-- bottom-nav.component.html - CON ICONE FISSE E LOGICA MENU -->
+<!-- bottom-nav.component.html - CON ICONA HOME E MODAL CONFERMA -->
 <nav class="bottom-nav d-md-none">
   <div class="nav-container" [class.container-extended]="!isLogged && (isTavoloAttivo() || isInMenuMode())">
 
-    <!-- 🏠 LOGO HOME EPISUSHI (SEMPRE VISIBILE) -->
+    <!-- 🏠 ICONA HOME DORATA (AGGIORNATA) -->
     <div class="nav-item nav-item-home"
          [class.active]="isActiveRoute('')"
-         (click)="navigateToHome()">
-      <div class="home-logo">
-        <span class="logo-epi">EPI</span>
-        <span class="logo-sushi">SUSHI</span>
+         (click)="onHomeClick()">
+      <div class="home-icon-container">
+        <i class="bi bi-house-fill nav-icon home-icon"></i>
       </div>
       <span class="nav-label">Home</span>
     </div>
@@ -142,26 +141,73 @@
 
   </div>
 
-  <!-- Badge Stato Tavolo Flottante (solo per clienti con tavolo attivo)
-  <div *ngIf="!isLogged && isTavoloAttivo()" class="tavolo-status-floating">
-    <div class="status-content">
-      <div class="status-icon">
-        <i class="bi"
-           [class.bi-calculator]="!isContoRichiesto()"
-           [class.bi-check-circle-fill]="isContoRichiesto()"></i>
-      </div>
-      <div class="status-text">
-        <div class="status-label">{{ isContoRichiesto() ? 'Conto Finale' : 'Totale Tavolo' }}</div>
-        <div class="status-total">{{ getTotaleComplessivo() | currency:'EUR':'symbol':'1.2-2' }}</div>
-      </div>
-    </div>
-  </div> -->
-
   <!-- Overlay per chiudere dropdown -->
   <div class="dropdown-overlay"
        *ngIf="showMenuDropdown"
        (click)="onBackdropClick()"></div>
 
-  <!-- 🆕 MODAL CONFIRM SEMPLICE -->
-  
 </nav>
+
+<!-- 🎯 MODAL HOME CONFIRMATION LUXURY (IDENTICO A SIDEBAR) -->
+<div class="modal-backdrop-luxury"
+     *ngIf="showHomeConfirmModal"
+     [class.show]="showHomeConfirmModal">
+  <div class="modal-dialog-luxury">
+    <div class="modal-content-home-luxury">
+
+      <!-- Header -->
+      <div class="modal-header-home-luxury">
+        <div class="header-icon-home">
+          <i class="bi bi-house-exclamation-fill"></i>
+        </div>
+        <h4 class="modal-title-home">Tornare alla Home?</h4>
+        <button type="button" class="btn-close-luxury" (click)="onCancelHome()">
+          <i class="bi bi-x"></i>
+        </button>
+      </div>
+
+      <!-- Body -->
+      <div class="modal-body-home-luxury">
+        <div class="confirm-icon-home">
+          <i class="bi bi-exclamation-triangle-fill"></i>
+        </div>
+        <p class="confirm-message-home">Sicuro di voler abbandonare la selezione corrente?
+
+Perderai il menu scelto e dovrai rifare l'accesso.</p>
+
+        <!-- Info Warning -->
+        <div class="warning-summary">
+          <div class="warning-item" *ngIf="getNumeroOrdini() > 0">
+            <span class="warning-label">Ordini effettuati:</span>
+            <span class="warning-value">{{ getNumeroOrdini() }}</span>
+          </div>
+          <div class="warning-item" *ngIf="getTotaleComplessivo() > 0">
+            <span class="warning-label">Totale speso:</span>
+            <span class="warning-value">{{ getTotaleComplessivo() | currency:'EUR' }}</span>
+          </div>
+          <div class="warning-item">
+            <span class="warning-label">Stato:</span>
+            <span class="warning-value" *ngIf="!isContoRichiesto()">Menu attivo</span>
+            <span class="warning-value" *ngIf="isContoRichiesto()">Conto richiesto</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Footer -->
+      <div class="modal-footer-home-luxury">
+        <button type="button"
+                class="btn-stay-luxury"
+                (click)="onCancelHome()">
+          <i class="bi bi-arrow-left me-2"></i>
+          Rimani qui
+        </button>
+        <button type="button"
+                class="btn-home-luxury"
+                (click)="onConfirmHome()">
+          <i class="bi bi-house-fill me-2"></i>
+          Vai alla Home
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

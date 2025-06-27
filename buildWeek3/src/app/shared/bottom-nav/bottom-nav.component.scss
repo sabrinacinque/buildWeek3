@@ -321,7 +321,7 @@
     .nav-dropdown .menu-dropdown {
       width: 280px;
       padding: 16px;
-      
+
 
       .dropdown-grid {
         gap: 10px;
@@ -350,5 +350,208 @@
   }
   to {
     text-shadow: 0 0 15px rgba(212, 175, 55, 0.9), 0 0 25px rgba(212, 175, 55, 0.4);
+  }
+}
+/* ===== 🏠 STILI LOGO HOME BOTTOM NAV ===== */
+
+/* Logo Home Container */
+.nav-item-home {
+  position: relative;
+  border: 2px solid rgba(212, 175, 55, 0.4) !important;
+  background: rgba(212, 175, 55, 0.1) !important;
+
+  &:hover {
+    border-color: #d4af37 !important;
+    background: rgba(212, 175, 55, 0.2) !important;
+    transform: translateY(-5px) scale(1.05);
+    box-shadow: 0 10px 30px rgba(212, 175, 55, 0.3);
+  }
+
+  &.active {
+    border-color: #d4af37 !important;
+    background: rgba(212, 175, 55, 0.25) !important;
+    box-shadow: 0 8px 25px rgba(212, 175, 55, 0.4);
+  }
+}
+
+/* Logo Circle */
+.home-logo {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 42px;
+  height: 42px;
+  background: linear-gradient(135deg, #d4af37, #b8941f);
+  border-radius: 50%;
+  margin-bottom: 6px;
+  box-shadow:
+    0 4px 15px rgba(212, 175, 55, 0.4),
+    inset 0 2px 5px rgba(255, 255, 255, 0.2);
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  overflow: hidden;
+
+  /* Effetto glossy */
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 50%;
+    background: linear-gradient(180deg,
+      rgba(255, 255, 255, 0.3) 0%,
+      rgba(255, 255, 255, 0.1) 50%,
+      transparent 100%);
+    border-radius: 50% 50% 80% 80%;
+    pointer-events: none;
+  }
+}
+
+/* Lettere Logo */
+.logo-epi, .logo-sushi {
+  font-family: 'GothamPro', 'Arial Black', sans-serif;
+  font-size: 0.9rem;
+  font-weight: 900;
+  line-height: 1;
+  text-shadow:
+    0 1px 2px rgba(0, 0, 0, 0.5),
+    0 0 4px rgba(0, 0, 0, 0.3);
+  transition: all 0.3s ease;
+}
+
+.logo-epi {
+  color: #1a1a1a;
+  margin-right: 1px;
+}
+
+.logo-sushi {
+  color: #000000;
+  margin-left: 1px;
+}
+
+/* Hover Effects */
+.nav-item-home:hover .home-logo {
+  transform: scale(1.15) rotate(5deg);
+  box-shadow:
+    0 8px 25px rgba(212, 175, 55, 0.6),
+    inset 0 2px 8px rgba(255, 255, 255, 0.3);
+  background: linear-gradient(135deg, #b8941f, #d4af37);
+}
+
+.nav-item-home:hover .logo-epi,
+.nav-item-home:hover .logo-sushi {
+  transform: scale(1.1);
+  text-shadow:
+    0 2px 4px rgba(0, 0, 0, 0.7),
+    0 0 8px rgba(0, 0, 0, 0.5);
+}
+
+/* Active State */
+.nav-item-home.active .home-logo {
+  background: linear-gradient(135deg, #d4af37, #b8941f);
+  box-shadow:
+    0 6px 20px rgba(212, 175, 55, 0.5),
+    inset 0 2px 6px rgba(255, 255, 255, 0.25);
+  animation: logo-pulse 3s ease-in-out infinite;
+}
+
+.nav-item-home.active .nav-label {
+  color: #d4af37 !important;
+  font-weight: 700;
+  text-shadow: 0 0 8px rgba(212, 175, 55, 0.6);
+}
+
+/* Animazione Pulse per Logo Attivo */
+@keyframes logo-pulse {
+  0%, 100% {
+    box-shadow:
+      0 6px 20px rgba(212, 175, 55, 0.5),
+      inset 0 2px 6px rgba(255, 255, 255, 0.25);
+  }
+  50% {
+    box-shadow:
+      0 8px 30px rgba(212, 175, 55, 0.7),
+      inset 0 3px 8px rgba(255, 255, 255, 0.3);
+  }
+}
+
+/* Shine Effect per Logo */
+.home-logo {
+  position: relative;
+  overflow: hidden;
+
+  &::after {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: linear-gradient(
+      45deg,
+      transparent 40%,
+      rgba(255, 255, 255, 0.4) 50%,
+      transparent 60%
+    );
+    transform: translateX(-100%) translateY(-100%) rotate(45deg);
+    transition: all 0.6s ease;
+    pointer-events: none;
+  }
+}
+
+.nav-item-home:hover .home-logo::after {
+  transform: translateX(100%) translateY(100%) rotate(45deg);
+}
+
+/* Label Home */
+.nav-item-home .nav-label {
+  font-weight: 600;
+  font-size: 0.75rem;
+  color: #d4af37 !important;
+  text-shadow: 0 0 6px rgba(212, 175, 55, 0.5);
+  transition: all 0.3s ease;
+}
+
+/* Responsive per Logo */
+@media (max-width: 480px) {
+  .home-logo {
+    width: 38px;
+    height: 38px;
+  }
+
+  .logo-epi, .logo-sushi {
+    font-size: 0.8rem;
+  }
+
+  .nav-item-home .nav-label {
+    font-size: 0.7rem;
+  }
+}
+
+@media (max-width: 360px) {
+  .home-logo {
+    width: 35px;
+    height: 35px;
+  }
+
+  .logo-epi, .logo-sushi {
+    font-size: 0.75rem;
+  }
+
+  .nav-item-home .nav-label {
+    font-size: 0.65rem;
+  }
+}
+
+/* Effetto Special per Container Extended */
+.nav-container.container-extended .nav-item-home {
+  border-color: rgba(212, 175, 55, 0.6) !important;
+  background: rgba(212, 175, 55, 0.15) !important;
+
+  .home-logo {
+    box-shadow:
+      0 5px 18px rgba(212, 175, 55, 0.5),
+      inset 0 2px 6px rgba(255, 255, 255, 0.2);
   }
 }

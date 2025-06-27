@@ -86,4 +86,8 @@ export class MenuChoiceComponent implements OnInit {
   navigateToLogin(): void {
     this.router.navigate(['/auth']);
   }
+
+  navigateToHomepage(): void {
+    this.router.navigate(['/']);
+  }
 }

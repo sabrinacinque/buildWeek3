@@ -7,13 +7,8 @@
       </h2>
       <div class="logo-divider-sidebar"></div>
 
-      <!-- 🆕 BADGE STATO TAVOLO -->
-      <div *ngIf="tavoloState$ | async as tavolo" class="tavolo-status-badge">
-        <div *ngIf="tavolo.statoTavolo === 'attivo'" class="status-active">
-          <i class="bi bi-calculator"></i>
-          <span>Totale</span>
-          <div class="total-badge">{{ tavolo.totaleComplessivo | currency:'EUR' }}</div>
-        </div>
+      <!-- 🆕 BADGE STATO TAVOLO - SOLO SE NON LOGGATA -->
+      <div *ngIf="!isLogged && (tavoloState$ | async) as tavolo" class="tavolo-status-badge">
         <div *ngIf="tavolo.statoTavolo === 'conto_richiesto'" class="status-conto">
           <i class="bi bi-receipt-cutoff"></i>
           <span>Conto Finale</span>
@@ -22,7 +17,7 @@
       </div>
     </div>
 
-    <!-- Logout Button -->
+    <!-- Logout Button - SOLO SE LOGGATA -->
     <div *ngIf="isLogged" class="logout-section-luxury" (click)="logout()">
       <div class="logout-button-luxury" title="Logout">
         <i class="bi bi-box-arrow-right"></i>
@@ -33,216 +28,198 @@
   <!-- Navigation Menu -->
   <div class="navigation-luxury">
     <nav class="nav-list-luxury">
-      <!-- Homepage
-      <a routerLink=""
-         class="nav-item-luxury"
-         [class.active]="router.url === '/'">
-        <div class="nav-content">
-          <i class="bi bi-house-fill nav-icon"></i>
-          <span class="nav-text">Homepage</span>
+
+      <!-- ===== 🔐 SEZIONE ADMIN (SOLO SE LOGGATA) ===== -->
+      <ng-container *ngIf="isLogged">
+        <!-- Dashboard Admin -->
+        <a routerLink="/dashboard"
+           routerLinkActive="active"
+           class="nav-item-luxury nav-item-special">
+          <div class="nav-content">
+            <i class="bi bi-speedometer2 nav-icon"></i>
+            <span class="nav-text">Dashboard</span>
+            <span class="admin-badge">ADMIN</span>
+          </div>
+          <div class="nav-glow"></div>
+        </a>
+
+        <!-- Cucina Admin -->
+        <a routerLink="/dashboard/cucina"
+           routerLinkActive="active"
+           class="nav-item-luxury nav-item-special">
+          <div class="nav-content">
+            <i class="bi bi-house-gear-fill nav-icon"></i>
+            <span class="nav-text">Cucina</span>
+            <span class="admin-badge">ADMIN</span>
+          </div>
+          <div class="nav-glow"></div>
+        </a>
+      </ng-container>
+
+      <!-- ===== 👤 SEZIONE CLIENTE (SOLO SE NON LOGGATA) ===== -->
+      <ng-container *ngIf="!isLogged">
+        <!-- Storico Ordini (solo se tavolo attivo) -->
+        <a *ngIf="isTavoloAttivo()"
+           routerLink="/storico-ordini"
+           routerLinkActive="active"
+           class="nav-item-luxury nav-item-tavolo">
+          <div class="nav-content">
+            <i class="bi bi-journal-text nav-icon"></i>
+            <span class="nav-text">Storico Ordini</span>
+            <span class="ordini-badge">{{ getNumeroOrdini() }}</span>
+          </div>
+          <div class="nav-glow"></div>
+        </a>
+
+        <!-- Chiedi il Conto (solo se tavolo attivo) -->
+        <a *ngIf="isTavoloAttivo() && !isContoRichiesto()"
+           (click)="richiediConto()"
+           class="nav-item-luxury nav-item-conto">
+          <div class="nav-content">
+            <i class="bi bi-receipt-cutoff nav-icon"></i>
+            <span class="nav-text">Chiedi il Conto</span>
+            <div class="conto-total">{{ getTotaleComplessivo() | currency:'EUR' }}</div>
+          </div>
+          <div class="nav-glow"></div>
+        </a>
+
+        <!-- Conto Richiesto (quando stato = conto_richiesto) -->
+        <div *ngIf="isContoRichiesto()"
+             class="nav-item-luxury nav-item-conto-richiesto">
+          <div class="nav-content">
+            <i class="bi bi-check-circle-fill nav-icon"></i>
+            <span class="nav-text">Conto Richiesto</span>
+            <div class="conto-total">{{ getTotaleComplessivo() | currency:'EUR' }}</div>
+          </div>
+          <div class="nav-glow"></div>
         </div>
-        <div class="nav-glow"></div>
-      </a>-->
 
-      <!-- 🆕 STORICO ORDINI (solo se tavolo attivo) -->
-      <a *ngIf="isTavoloAttivo()"
-         routerLink="/storico-ordini"
-         routerLinkActive="active"
-         class="nav-item-luxury nav-item-tavolo">
-        <div class="nav-content">
-          <i class="bi bi-journal-text nav-icon"></i>
-          <span class="nav-text">Storico Ordini</span>
-          <span class="ordini-badge">{{ getNumeroOrdini() }}</span>
-        </div>
-        <div class="nav-glow"></div>
-      </a>
+        <!-- Divider (solo se tavolo attivo) -->
+        <div *ngIf="isTavoloAttivo()" class="nav-divider-luxury"></div>
 
-      <!-- 🆕 CHIEDI IL CONTO (solo se tavolo attivo) -->
-      <a *ngIf="isTavoloAttivo() && !isContoRichiesto()"
-         (click)="richiediConto()"
-         class="nav-item-luxury nav-item-conto">
-        <div class="nav-content">
-          <i class="bi bi-receipt-cutoff nav-icon"></i>
-          <span class="nav-text">Chiedi il Conto</span>
-          <div class="conto-total">{{ getTotaleComplessivo() | currency:'EUR' }}</div>
-        </div>
-        <div class="nav-glow"></div>
-      </a>
+        <!-- Menu Categories -->
+        <a routerLink="/menu/antipasti"
+           routerLinkActive="active"
+           class="nav-item-luxury">
+          <div class="nav-content">
+            <span class="nav-emoji">🥟</span>
+            <span class="nav-text">Antipasti</span>
+          </div>
+          <div class="nav-glow"></div>
+        </a>
 
-      <!-- 🆕 CONTO RICHIESTO (quando stato = conto_richiesto) -->
-      <div *ngIf="isContoRichiesto()"
-           class="nav-item-luxury nav-item-conto-richiesto">
-        <div class="nav-content">
-          <i class="bi bi-check-circle-fill nav-icon"></i>
-          <span class="nav-text">Conto Richiesto</span>
-          <div class="conto-total">{{ getTotaleComplessivo() | currency:'EUR' }}</div>
-        </div>
-        <div class="nav-glow"></div>
-      </div>
+        <a routerLink="/menu/zuppe"
+           routerLinkActive="active"
+           class="nav-item-luxury">
+          <div class="nav-content">
+            <span class="nav-emoji">🍜</span>
+            <span class="nav-text">Zuppe</span>
+          </div>
+          <div class="nav-glow"></div>
+        </a>
 
-      <!-- Divider (solo se tavolo attivo) -->
-      <div *ngIf="isTavoloAttivo()" class="nav-divider-luxury"></div>
+        <a routerLink="/menu/primi"
+           routerLinkActive="active"
+           class="nav-item-luxury">
+          <div class="nav-content">
+            <span class="nav-emoji">🍝</span>
+            <span class="nav-text">Primi</span>
+          </div>
+          <div class="nav-glow"></div>
+        </a>
 
-      <!-- Menu Categories -->
-      <a routerLink="/menu/antipasti"
-         routerLinkActive="active"
-         class="nav-item-luxury">
-        <div class="nav-content">
-          <span class="nav-emoji">🥟</span>
-          <span class="nav-text">Antipasti</span>
-        </div>
-        <div class="nav-glow"></div>
-      </a>
+        <a routerLink="/menu/hosomaki"
+           routerLinkActive="active"
+           class="nav-item-luxury">
+          <div class="nav-content">
+            <span class="nav-emoji">🍣</span>
+            <span class="nav-text">Hosomaki</span>
+          </div>
+          <div class="nav-glow"></div>
+        </a>
 
-      <a routerLink="/menu/zuppe"
-         routerLinkActive="active"
-         class="nav-item-luxury">
-        <div class="nav-content">
-          <span class="nav-emoji">🍜</span>
-          <span class="nav-text">Zuppe</span>
-        </div>
-        <div class="nav-glow"></div>
-      </a>
+        <a routerLink="/menu/uramaki"
+           routerLinkActive="active"
+           class="nav-item-luxury">
+          <div class="nav-content">
+            <span class="nav-emoji">🍱</span>
+            <span class="nav-text">Uramaki</span>
+          </div>
+          <div class="nav-glow"></div>
+        </a>
 
-      <a routerLink="/menu/primi"
-         routerLinkActive="active"
-         class="nav-item-luxury">
-        <div class="nav-content">
-          <span class="nav-emoji">🍝</span>
-          <span class="nav-text">Primi</span>
-        </div>
-        <div class="nav-glow"></div>
-      </a>
+        <a routerLink="/menu/temaki"
+           routerLinkActive="active"
+           class="nav-item-luxury">
+          <div class="nav-content">
+            <span class="nav-emoji">🍙</span>
+            <span class="nav-text">Temaki</span>
+          </div>
+          <div class="nav-glow"></div>
+        </a>
 
-      <a routerLink="/menu/hosomaki"
-         routerLinkActive="active"
-         class="nav-item-luxury">
-        <div class="nav-content">
-          <span class="nav-emoji">🍣</span>
-          <span class="nav-text">Hosomaki</span>
-        </div>
-        <div class="nav-glow"></div>
-      </a>
+        <a routerLink="/menu/sushi"
+           routerLinkActive="active"
+           class="nav-item-luxury">
+          <div class="nav-content">
+            <span class="nav-emoji">🍚</span>
+            <span class="nav-text">Sushi</span>
+          </div>
+          <div class="nav-glow"></div>
+        </a>
 
-      <a routerLink="/menu/uramaki"
-         routerLinkActive="active"
-         class="nav-item-luxury">
-        <div class="nav-content">
-          <span class="nav-emoji">🍱</span>
-          <span class="nav-text">Uramaki</span>
-        </div>
-        <div class="nav-glow"></div>
-      </a>
+        <a routerLink="/menu/secondi"
+           routerLinkActive="active"
+           class="nav-item-luxury">
+          <div class="nav-content">
+            <span class="nav-emoji">🐟</span>
+            <span class="nav-text">Secondi</span>
+          </div>
+          <div class="nav-glow"></div>
+        </a>
 
-      <a routerLink="/menu/temaki"
-         routerLinkActive="active"
-         class="nav-item-luxury">
-        <div class="nav-content">
-          <span class="nav-emoji">🍙</span>
-          <span class="nav-text">Temaki</span>
-        </div>
-        <div class="nav-glow"></div>
-      </a>
+        <a routerLink="/menu/dolci"
+           routerLinkActive="active"
+           class="nav-item-luxury">
+          <div class="nav-content">
+            <span class="nav-emoji">🍡</span>
+            <span class="nav-text">Dolci</span>
+          </div>
+          <div class="nav-glow"></div>
+        </a>
 
-      <a routerLink="/menu/sushi"
-         routerLinkActive="active"
-         class="nav-item-luxury">
-        <div class="nav-content">
-          <span class="nav-emoji">🍚</span>
-          <span class="nav-text">Sushi</span>
-        </div>
-        <div class="nav-glow"></div>
-      </a>
+        <a routerLink="/menu/bibite"
+           routerLinkActive="active"
+           class="nav-item-luxury">
+          <div class="nav-content">
+            <span class="nav-emoji">🍵</span>
+            <span class="nav-text">Bibite</span>
+          </div>
+          <div class="nav-glow"></div>
+        </a>
 
-      <a routerLink="/menu/secondi"
-         routerLinkActive="active"
-         class="nav-item-luxury">
-        <div class="nav-content">
-          <span class="nav-emoji">🐟</span>
-          <span class="nav-text">Secondi</span>
-        </div>
-        <div class="nav-glow"></div>
-      </a>
+        <!-- Divider -->
+        <div class="nav-divider-luxury"></div>
 
-      <a routerLink="/menu/dolci"
-         routerLinkActive="active"
-         class="nav-item-luxury">
-        <div class="nav-content">
-          <span class="nav-emoji">🍡</span>
-          <span class="nav-text">Dolci</span>
-        </div>
-        <div class="nav-glow"></div>
-      </a>
+        <!-- Recensioni -->
+        <a routerLink="/reviews"
+           routerLinkActive="active"
+           class="nav-item-luxury">
+          <div class="nav-content">
+            <i class="bi bi-star-fill nav-icon"></i>
+            <span class="nav-text">Recensioni</span>
+          </div>
+          <div class="nav-glow"></div>
+        </a>
+      </ng-container>
 
-      <a routerLink="/menu/bibite"
-         routerLinkActive="active"
-         class="nav-item-luxury">
-        <div class="nav-content">
-          <span class="nav-emoji">🍵</span>
-          <span class="nav-text">Bibite</span>
-        </div>
-        <div class="nav-glow"></div>
-      </a>
-
-      <!-- Divider -->
-      <div class="nav-divider-luxury"></div>
-
-      <!-- Special Sections -->
-      <a routerLink="/reviews"
-         routerLinkActive="active"
-         class="nav-item-luxury">
-        <div class="nav-content">
-          <i class="bi bi-star-fill nav-icon"></i>
-          <span class="nav-text">Recensioni</span>
-        </div>
-        <div class="nav-glow"></div>
-      </a>
-
-      <!-- Dashboard (Admin only) -->
-      <a *ngIf="isLogged"
-         routerLink="/dashboard"
-         routerLinkActive="active"
-         class="nav-item-luxury nav-item-special">
-        <div class="nav-content">
-          <i class="bi bi-speedometer2 nav-icon"></i>
-          <span class="nav-text">Dashboard</span>
-          <span class="admin-badge">ADMIN</span>
-        </div>
-        <div class="nav-glow"></div>
-      </a>
-
-      <!-- Cucina (Admin only) -->
-      <a *ngIf="isLogged"
-         routerLink="/dashboard/cucina"
-         routerLinkActive="active"
-         class="nav-item-luxury nav-item-special">
-        <div class="nav-content">
-          <i class="bi bi-house-gear-fill nav-icon"></i>
-          <span class="nav-text">Cucina</span>
-          <span class="admin-badge">ADMIN</span>
-        </div>
-        <div class="nav-glow"></div>
-      </a>
-
-      <!-- Area Riservata -->
-      <a routerLink="/auth"
-         routerLinkActive="active"
-         [ngClass]="{ 'd-none': isLogged }"
-         class="nav-item-luxury nav-item-login">
-        <div class="nav-content">
-          <i class="bi bi-shield-lock nav-icon"></i>
-          <span class="nav-text">Area Riservata</span>
-          <i class="bi bi-lock login-status"></i>
-        </div>
-        <div class="nav-glow"></div>
-      </a>
     </nav>
   </div>
 
   <!-- Footer with decorative elements -->
   <div class="sidebar-footer-luxury">
-    <!-- 🆕 RESET TAVOLO (solo se conto richiesto) -->
-    <div *ngIf="isContoRichiesto()" class="reset-tavolo-section">
+    <!-- Reset Tavolo (solo se conto richiesto E non loggata) -->
+    <div *ngIf="!isLogged && isContoRichiesto()" class="reset-tavolo-section">
       <button class="btn-reset-tavolo" (click)="resetTavolo()">
         <i class="bi bi-arrow-clockwise"></i>
         <span>Nuovo Tavolo</span>

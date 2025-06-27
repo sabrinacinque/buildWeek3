@@ -1,3 +1,9 @@
+<!-- 📱 TITOLO MOBILE (solo su dispositivi con bottom nav) -->
+<div class="mobile-category-header d-md-none">
+  <h2 class="mobile-category-title">{{ getCategoryDisplayName() }}</h2>
+  <div class="category-divider"></div>
+</div>
+
 <!-- Badge carrello fisso - sempre uguale su tutti i dispositivi -->
 <div class="row me-3 position-fixed position-absolute top-0 end-0 z-1">
   <div
@@ -232,6 +238,17 @@
     </div>
   </div>
 </div>
+
+<!-- 🆕 MODAL CONFIRM CONTO - SPOSTATO QUI -->
+<app-confirm-modal
+  [isVisible]="showConfirmModal"
+  [title]="confirmModalData.title"
+  [message]="confirmModalData.message"
+  [confirmText]="confirmModalData.confirmText"
+  [cancelText]="confirmModalData.cancelText"
+  (confirmed)="onConfirmConto()"
+  (cancelled)="onCancelConto()">
+</app-confirm-modal>
 
 <!-- Modal carrello luxury -->
 <ng-template #cartModal let-modal class="bg-black">

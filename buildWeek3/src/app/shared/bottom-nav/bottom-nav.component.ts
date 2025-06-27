@@ -1,4 +1,4 @@
-// bottom-nav.component.ts - CON LOGICA TAVOLO
+// bottom-nav.component.ts - PULITO E CORRETTO
 import { Component, OnInit } from '@angular/core';
 import { Router, NavigationEnd } from '@angular/router';
 import { AuthService } from '../../auth/auth-service.service';
@@ -14,13 +14,15 @@ export class BottomNavComponent implements OnInit {
   isLogged: boolean = false;
   showMenuDropdown: boolean = false;
 
-  // 🆕 NUOVO: Observable dello stato tavolo
+  // Observable dello stato tavolo
   tavoloState$: Observable<TavoloState>;
+
+
 
   constructor(
     private router: Router,
     private AuthService: AuthService,
-    public tavoloService: TavoloService // 🆕 NUOVO: Inietta TavoloService
+    public tavoloService: TavoloService
   ) {
     // Inizializza l'observable dello stato tavolo
     this.tavoloState$ = this.tavoloService.getTavoloState();
@@ -36,12 +38,49 @@ export class BottomNavComponent implements OnInit {
     this.router.events.subscribe(event => {
       if (event instanceof NavigationEnd) {
         this.closeMenuDropdown();
+
+        // 🆕 NUOVO: Controlla modalità menu dopo navigazione
+        this.checkMenuMode();
       }
     });
+
+    // 🆕 NUOVO: Controlla modalità menu all'avvio
+    this.checkMenuMode();
   }
+
+  // ===== 🆕 GESTIONE MODALITÀ MENU =====
+
+  /**
+   * Controlla se siamo in modalità menu e attiva automaticamente
+   */
+  checkMenuMode(): void {
+    const currentRoute = this.getCurrentRoute();
+
+    // Se siamo in una pagina menu, attiva modalità automaticamente
+    if (currentRoute.includes('/menu/')) {
+      this.tavoloService.checkAndActivateMenuMode(currentRoute);
+    }
+  }
+
+  /**
+   * Verifica se siamo in modalità menu (per icone sempre visibili)
+   */
+  isInMenuMode(): boolean {
+    const currentRoute = this.getCurrentRoute();
+    return currentRoute.includes('/menu/') || this.tavoloService.isModalitaMenuAttiva();
+  }
+
+  // ===== NAVIGAZIONE E ROUTING =====
 
   navigateTo(route: string) {
     this.closeMenuDropdown();
+
+    // 🆕 CONTROLLO SPECIFICO PER NAVIGAZIONE HOME
+    if (route === '' && (this.isTavoloAttivo() || this.isInMenuMode())) {
+      const conferma = confirm('Sei sicuro di voler tornare alla home? Gli ordini del tavolo attuale rimarranno salvati ma dovrai riattivare il tavolo per continuare.');
+      if (!conferma) return;
+    }
+
     setTimeout(() => {
       this.router.navigate([route]);
     }, 150);
@@ -58,6 +97,8 @@ export class BottomNavComponent implements OnInit {
     return this.getCurrentRoute().includes(route);
   }
 
+  // ===== MENU DROPDOWN =====
+
   toggleMenuDropdown() {
     this.showMenuDropdown = !this.showMenuDropdown;
   }
@@ -70,13 +111,15 @@ export class BottomNavComponent implements OnInit {
     this.closeMenuDropdown();
   }
 
+  // ===== AUTH =====
+
   logout() {
     this.closeMenuDropdown();
     this.AuthService.logout();
     this.router.navigate(['']);
   }
 
-  // ===== 🆕 METODI TAVOLO =====
+  // ===== METODI TAVOLO (AGGIORNATI PER TUO SERVICE) =====
 
   /**
    * Verifica se il tavolo è attivo
@@ -106,40 +149,105 @@ export class BottomNavComponent implements OnInit {
     return this.tavoloService.getTotaleComplessivo();
   }
 
-  /**
-   * Richiedi il conto
-   */
-  richiediConto(): void {
-    this.tavoloService.richiediConto();
-    console.log('🧾 Conto richiesto dalla bottom nav');
+  // ===== 🆕 CONFERMA RICHIESTA CONTO =====
 
-    // Opzionale: Naviga allo storico ordini per vedere il riepilogo
-    this.navigateTo('/storico-ordini');
-  }
+  /**
+   * Richiedi il conto con conferma personalizzata
+   */
+  /**
+ * Richiedi il conto - versione semplificata per bottom nav
+ */
+confermaRichiestaConto() {
+  this.tavoloService.openContoModal(); // 🎯 Apre modal luxury
+}
+  /**
+   * 🆕 GESTIONE CONFERMA MODAL
+   */
+
+  /**
+   * Mostra notifica conto richiesto
+   */
+ /*private showContoRichiestoNotification(): void {
+    // Notifica immediata
+    setTimeout(() => {
+      const totale = this.getTotaleComplessivo();
+      const numeroOrdini = this.getNumeroOrdini();
+
+      let message = '✅ Conto richiesto con successo!\n\n';
+
+      if (numeroOrdini > 0) {
+        message += `💰 Totale: €${totale.toFixed(2)}\n`;
+        message += `📝 Ordini: ${numeroOrdini}\n\n`;
+      }
+
+      message += '👨‍💼 Il personale verrà al vostro tavolo a breve per il pagamento.\n\n';
+      message += '⏱️ Tempo stimato: 2-5 minuti';
+
+      alert(message);
+    }, 500);
+  }*/ 
 
   /**
    * Reset del tavolo per il prossimo cliente
    */
   resetTavolo(): void {
-    // Conferma prima del reset
-    const conferma = confirm('Nuovo tavolo? Tutti i dati attuali verranno cancellati.');
+    const conferma = confirm('Nuovo tavolo? Tutti i dati attuali verranno cancellati definitivamente.');
 
     if (conferma) {
       this.tavoloService.resetTavolo();
       this.router.navigate(['/']); // Torna alla scelta menu
       console.log('🔄 Tavolo resettato dalla bottom nav');
+
+      // Notifica reset
+      setTimeout(() => {
+        alert('🆕 Tavolo resettato!\n\nPuoi iniziare un nuovo ordine.');
+      }, 300);
     }
   }
 
-  // ===== METODI CARRELLO (per compatibilità futura) =====
+  // ===== METODI AGGIUNTIVI MOBILI =====
 
-  showCartBadge(): boolean {
-    // TODO: Implementa logica per mostrare badge carrello se necessario
-    return false;
+  /**
+   * Navigazione al logo home con controllo tavolo
+   */
+  navigateToHome() {
+    // 🏠 CONTROLLO SPECIFICO PER LOGO HOME
+    if (this.isTavoloAttivo() || this.isInMenuMode()) {
+      const conferma = confirm('Sei sicuro di voler tornare alla home?\n\nGli ordini del tavolo attuale rimarranno salvati ma dovrai riattivare il tavolo per continuare.');
+      if (!conferma) return;
+    }
+
+    this.closeMenuDropdown();
+    this.router.navigate(['']);
   }
 
+  /**
+   * Verifica se mostrare il badge carrello
+   */
+  showCartBadge(): boolean {
+    return (this.isTavoloAttivo() || this.isInMenuMode()) && this.getNumeroOrdini() > 0;
+  }
+
+  /**
+   * Ottieni conteggio items carrello per badge
+   */
   getCartItemsCount(): number {
-    // TODO: Implementa conteggio items carrello se necessario
-    return 0;
+    return this.getNumeroOrdini();
+  }
+
+  // ===== DEBUG METHODS =====
+
+  /**
+   * Log stato tavolo per debug
+   */
+  debugTavoloState(): void {
+    this.tavoloService.debugCurrentState();
+  }
+
+  /**
+   * Forza salvataggio (per debug)
+   */
+  forceSaveState(): void {
+    this.tavoloService.forceSave();
   }
 }

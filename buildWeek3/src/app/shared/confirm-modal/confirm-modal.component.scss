@@ -1,0 +1,167 @@
+/* confirm-modal.component.scss - SEMPLICE E COMPATTO */
+
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.8);
+  backdrop-filter: blur(10px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+  padding: 20px;
+  animation: fadeIn 0.3s ease;
+}
+
+.modal-container {
+  background: linear-gradient(145deg, rgba(26, 26, 26, 0.95), rgba(0, 0, 0, 0.98));
+  backdrop-filter: blur(20px);
+  border: 2px solid rgba(212, 175, 55, 0.4);
+  border-radius: 20px;
+  padding: 24px;
+  max-width: 350px;
+  width: 100%;
+  text-align: center;
+  box-shadow:
+    0 20px 40px rgba(0, 0, 0, 0.8),
+    0 0 20px rgba(212, 175, 55, 0.2);
+  animation: slideUp 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+/* Icona */
+.modal-icon {
+  margin-bottom: 16px;
+
+  i {
+    font-size: 3rem;
+    color: #d4af37;
+    filter: drop-shadow(0 0 10px rgba(212, 175, 55, 0.6));
+    animation: pulse 2s ease-in-out infinite;
+  }
+}
+
+/* Titolo */
+.modal-title {
+  color: #d4af37;
+  font-size: 1.3rem;
+  font-weight: 700;
+  margin: 0 0 12px;
+  text-shadow: 0 0 10px rgba(212, 175, 55, 0.4);
+}
+
+/* Messaggio */
+.modal-message {
+  color: rgba(255, 255, 255, 0.9);
+  font-size: 1rem;
+  margin: 0 0 16px;
+  line-height: 1.4;
+}
+
+/* Warning */
+.modal-warning {
+  background: rgba(212, 175, 55, 0.1);
+  border: 1px solid rgba(212, 175, 55, 0.3);
+  border-radius: 12px;
+  padding: 12px;
+  margin-bottom: 20px;
+
+  p {
+    color: rgba(255, 255, 255, 0.8);
+    font-size: 0.9rem;
+    margin: 0;
+    font-weight: 500;
+  }
+}
+
+/* Bottoni */
+.modal-actions {
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+}
+
+.btn-cancel,
+.btn-confirm {
+  padding: 12px 20px;
+  border-radius: 12px;
+  font-weight: 600;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  border: none;
+  min-width: 100px;
+}
+
+.btn-cancel {
+  background: rgba(108, 117, 125, 0.3);
+  color: rgba(255, 255, 255, 0.8);
+  border: 1px solid rgba(108, 117, 125, 0.5);
+
+  &:hover {
+    background: rgba(108, 117, 125, 0.4);
+    transform: translateY(-2px);
+  }
+}
+
+.btn-confirm {
+  background: linear-gradient(135deg, #d4af37, #b8941f);
+  color: #1a1a1a;
+  border: 1px solid rgba(212, 175, 55, 0.5);
+  font-weight: 700;
+
+  &:hover {
+    background: linear-gradient(135deg, #b8941f, #d4af37);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(212, 175, 55, 0.4);
+  }
+}
+
+/* Animazioni */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px) scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes pulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.05); }
+}
+
+/* Mobile */
+@media (max-width: 480px) {
+  .modal-container {
+    max-width: 90%;
+    padding: 20px;
+  }
+
+  .modal-actions {
+    flex-direction: column;
+
+    .btn-cancel,
+    .btn-confirm {
+      width: 100%;
+    }
+  }
+
+  .modal-icon i {
+    font-size: 2.5rem;
+  }
+
+  .modal-title {
+    font-size: 1.2rem;
+  }
+}

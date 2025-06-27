@@ -1315,4 +1315,70 @@
   }
 }
 
-/* Aggiungi questi stili al file SCSS esistente */
+/* 📱 MOBILE CATEGORY HEADER */
+.mobile-category-header {
+  background: linear-gradient(135deg,
+    rgba(0, 0, 0, 0.9),
+    rgba(26, 26, 26, 0.8)
+  );
+  backdrop-filter: blur(15px);
+  border-bottom: 2px solid rgba(212, 175, 55, 0.3);
+  padding: 1.5rem 2rem 1rem 2rem;
+  margin-bottom: 1rem;
+  position: sticky;
+  top: 0;
+  z-index: 1;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+}
+
+.mobile-category-title {
+  font-size: 2rem;
+  color: #e8c574;
+  margin: 0;
+  font-weight: 400;
+  font-family: 'Permanent Marker', cursive;
+  text-align: center;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+  filter: drop-shadow(0 0 10px rgba(212, 175, 55, 0.5));
+}
+
+.category-divider {
+  width: 80px;
+  height: 3px;
+  background: linear-gradient(90deg, transparent, #e8c574, transparent);
+  margin: 0.8rem auto 0;
+  border-radius: 2px;
+  box-shadow: 0 0 8px rgba(212, 175, 55, 0.6);
+}
+
+/* Responsive adjustments */
+@media (max-width: 480px) {
+  .mobile-category-header {
+    padding: 1.2rem 1rem 0.8rem 1rem;
+  }
+
+  .mobile-category-title {
+    font-size: 1.7rem;
+  }
+
+  .category-divider {
+    width: 60px;
+    height: 2px;
+  }
+}
+
+/* Animazione di entrata */
+.mobile-category-header {
+  animation: slideInHeader 0.5s ease-out;
+}
+
+@keyframes slideInHeader {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

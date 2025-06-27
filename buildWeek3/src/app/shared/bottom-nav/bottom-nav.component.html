@@ -1,148 +1,167 @@
-<!-- bottom-nav.component.html - CON LOGICA TAVOLO -->
+<!-- bottom-nav.component.html - CON ICONE FISSE E LOGICA MENU -->
 <nav class="bottom-nav d-md-none">
-  <div class="nav-container" [class.container-extended]="isTavoloAttivo()">
+  <div class="nav-container" [class.container-extended]="!isLogged && (isTavoloAttivo() || isInMenuMode())">
 
-    <!-- 🆕 STORICO ORDINI (priorità se tavolo attivo) -->
-    <div class="nav-item nav-item-tavolo"
-         *ngIf="isTavoloAttivo()"
-         [class.active]="isActiveRoute('/storico-ordini')"
-         (click)="navigateTo('/storico-ordini')">
-      <div class="cart-icon-container">
-        <i class="bi bi-journal-text nav-icon"></i>
-        <div class="cart-badge">{{ getNumeroOrdini() }}</div>
+    <!-- 🏠 LOGO HOME EPISUSHI (SEMPRE VISIBILE) -->
+    <div class="nav-item nav-item-home"
+         [class.active]="isActiveRoute('')"
+         (click)="navigateToHome()">
+      <div class="home-logo">
+        <span class="logo-epi">EPI</span>
+        <span class="logo-sushi">SUSHI</span>
       </div>
-      <span class="nav-label">Storico</span>
-    </div>
-
-    <!-- 🆕 CHIEDI CONTO (se tavolo attivo e conto non richiesto) -->
-    <div class="nav-item nav-item-conto"
-         *ngIf="isTavoloAttivo() && !isContoRichiesto()"
-         (click)="richiediConto()">
-      <i class="bi bi-receipt-cutoff nav-icon"></i>
-      <span class="nav-label">
-        <div class="conto-label">Conto</div>
-        <div class="conto-amount">{{ getTotaleComplessivo() | currency:'EUR':'symbol':'1.0-0' }}</div>
-      </span>
-    </div>
-
-    <!-- 🆕 CONTO RICHIESTO -->
-    <div class="nav-item nav-item-conto-richiesto"
-         *ngIf="isContoRichiesto()">
-      <i class="bi bi-check-circle-fill nav-icon"></i>
-      <span class="nav-label">
-        <div class="conto-label">Richiesto</div>
-        <div class="conto-amount">{{ getTotaleComplessivo() | currency:'EUR':'symbol':'1.0-0' }}</div>
-      </span>
-    </div>
-
-    <!-- Home (solo se NO tavolo attivo o sempre visibile)
-    <div class="nav-item"
-         *ngIf="!isTavoloAttivo()"
-         [class.active]="isActiveRoute('') && getCurrentRoute() === '/'"
-         (click)="navigateTo('')">
-      <i class="bi bi-house-fill nav-icon"></i>
       <span class="nav-label">Home</span>
-    </div>-->
+    </div>
 
-    <!-- Menu con Dropdown (sempre visibile) -->
-    <div class="nav-item nav-dropdown"
-         [class.active]="isActiveRoute('/menu')"
-         (click)="toggleMenuDropdown()">
-      <i class="bi bi-book-fill nav-icon"></i>
-      <span class="nav-label">Menu</span>
+    <!-- ===== 🔐 SEZIONE ADMIN (SOLO SE LOGGATA) ===== -->
+    <ng-container *ngIf="isLogged">
+      <!-- Dashboard Admin -->
+      <div class="nav-item nav-item-admin"
+           [class.active]="isActiveRoute('/dashboard')"
+           (click)="navigateTo('/dashboard')">
+        <i class="bi bi-speedometer2 nav-icon"></i>
+        <span class="nav-label">Dashboard</span>
+      </div>
 
-      <!-- Dropdown Menu Categories -->
-      <div class="menu-dropdown"
-           [class.show]="showMenuDropdown"
-           [class.ms-5]="isLogged">
-        <div class="dropdown-grid">
-          <a (click)="navigateTo('/menu/antipasti')" class="dropdown-item" style="border:1px solid #d4af37;">
-            <span class="category-emoji">🥟</span> Antipasti
-          </a>
-          <a (click)="navigateTo('/menu/zuppe')" class="dropdown-item" style="border:1px solid #d4af37;">
-            <span class="category-emoji">🍜</span> Zuppe
-          </a>
-          <a (click)="navigateTo('/menu/primi')" class="dropdown-item" style="border:1px solid #d4af37;">
-            <span class="category-emoji">🍝</span> Primi
-          </a>
-          <a (click)="navigateTo('/menu/hosomaki')" class="dropdown-item" style="border:1px solid #d4af37;">
-            <span class="category-emoji">🍣</span> Hosomaki
-          </a>
-          <a (click)="navigateTo('/menu/uramaki')" class="dropdown-item" style="border:1px solid #d4af37;">
-            <span class="category-emoji">🍱</span> Uramaki
-          </a>
-          <a (click)="navigateTo('/menu/temaki')" class="dropdown-item" style="border:1px solid #d4af37;">
-            <span class="category-emoji">🍙</span> Temaki
-          </a>
-          <a (click)="navigateTo('/menu/sushi')" class="dropdown-item" style="border:1px solid #d4af37;">
-            <span class="category-emoji">🍚</span> Sushi
-          </a>
-          <a (click)="navigateTo('/menu/secondi')" class="dropdown-item" style="border:1px solid #d4af37;">
-            <span class="category-emoji">🐟</span> Secondi
-          </a>
-          <a (click)="navigateTo('/menu/dolci')" class="dropdown-item" style="border:1px solid #d4af37;">
-            <span class="category-emoji">🍡</span> Dolci
-          </a>
-          <a (click)="navigateTo('/menu/bibite')" class="dropdown-item" style="border:1px solid #d4af37;">
-            <span class="category-emoji">🍵</span> Bibite
-          </a>
+      <!-- Cucina Admin -->
+      <div class="nav-item nav-item-admin"
+           [class.active]="isActiveRoute('/dashboard/cucina')"
+           (click)="navigateTo('/dashboard/cucina')">
+        <i class="bi bi-house-gear-fill nav-icon"></i>
+        <span class="nav-label">Cucina</span>
+      </div>
+
+      <!-- Logout Admin -->
+      <div class="nav-item nav-item-logout"
+           (click)="logout()">
+        <i class="bi bi-box-arrow-right nav-icon"></i>
+        <span class="nav-label">Logout</span>
+      </div>
+    </ng-container>
+
+    <!-- ===== 👤 SEZIONE CLIENTE (SOLO SE NON LOGGATA) ===== -->
+    <ng-container *ngIf="!isLogged">
+
+      <!-- Storico Ordini (SEMPRE VISIBILE quando in modalità menu o tavolo attivo) -->
+      <div class="nav-item nav-item-tavolo"
+           *ngIf="isTavoloAttivo() || isInMenuMode()"
+           [class.active]="isActiveRoute('/storico-ordini')"
+           (click)="navigateTo('/storico-ordini')">
+        <div class="cart-icon-container">
+          <i class="bi bi-journal-text nav-icon"></i>
+          <div class="cart-badge" *ngIf="getNumeroOrdini() > 0">{{ getNumeroOrdini() }}</div>
+          <div class="cart-badge cart-badge-empty" *ngIf="getNumeroOrdini() === 0">0</div>
+        </div>
+        <span class="nav-label">Storico</span>
+      </div>
+
+      <!-- Chiedi Conto (SEMPRE VISIBILE quando in modalità menu, ma solo se conto non richiesto) -->
+      <div class="nav-item nav-item-conto"
+           *ngIf="(isTavoloAttivo() || isInMenuMode()) && !isContoRichiesto()"
+           (click)="confermaRichiestaConto()">
+        <i class="bi bi-receipt-cutoff nav-icon"></i>
+        <span class="nav-label">
+          <div class="conto-label">Chiedi Conto</div>
+          <div class="conto-amount" *ngIf="getTotaleComplessivo() > 0">{{ getTotaleComplessivo() | currency:'EUR':'symbol':'1.2-2' }}</div>
+          <div class="conto-amount conto-zero" *ngIf="getTotaleComplessivo() === 0">€0.00</div>
+        </span>
+      </div>
+
+      <!-- Conto Richiesto (quando stato = conto_richiesto) -->
+      <div class="nav-item nav-item-conto-richiesto"
+           *ngIf="isContoRichiesto()">
+        <i class="bi bi-check-circle-fill nav-icon"></i>
+        <span class="nav-label">
+          <div class="conto-label">Richiesto</div>
+          <div class="conto-amount">{{ getTotaleComplessivo() | currency:'EUR':'symbol':'1.2-2' }}</div>
+        </span>
+      </div>
+
+      <!-- Menu con Dropdown (sempre visibile per clienti) -->
+      <div class="nav-item nav-dropdown"
+           [class.active]="isActiveRoute('/menu')"
+           (click)="toggleMenuDropdown()">
+        <i class="bi bi-book-fill nav-icon"></i>
+        <span class="nav-label">Menu</span>
+
+        <!-- Dropdown Menu Categories -->
+        <div class="menu-dropdown"
+             [class.show]="showMenuDropdown">
+          <div class="dropdown-grid">
+            <a (click)="navigateTo('/menu/antipasti')" class="dropdown-item">
+              <span class="category-emoji">🥟</span> Antipasti
+            </a>
+            <a (click)="navigateTo('/menu/zuppe')" class="dropdown-item">
+              <span class="category-emoji">🍜</span> Zuppe
+            </a>
+            <a (click)="navigateTo('/menu/primi')" class="dropdown-item">
+              <span class="category-emoji">🍝</span> Primi
+            </a>
+            <a (click)="navigateTo('/menu/hosomaki')" class="dropdown-item">
+              <span class="category-emoji">🍣</span> Hosomaki
+            </a>
+            <a (click)="navigateTo('/menu/uramaki')" class="dropdown-item">
+              <span class="category-emoji">🍱</span> Uramaki
+            </a>
+            <a (click)="navigateTo('/menu/temaki')" class="dropdown-item">
+              <span class="category-emoji">🍙</span> Temaki
+            </a>
+            <a (click)="navigateTo('/menu/sushi')" class="dropdown-item">
+              <span class="category-emoji">🍚</span> Sushi
+            </a>
+            <a (click)="navigateTo('/menu/secondi')" class="dropdown-item">
+              <span class="category-emoji">🐟</span> Secondi
+            </a>
+            <a (click)="navigateTo('/menu/dolci')" class="dropdown-item">
+              <span class="category-emoji">🍡</span> Dolci
+            </a>
+            <a (click)="navigateTo('/menu/bibite')" class="dropdown-item">
+              <span class="category-emoji">🍵</span> Bibite
+            </a>
+          </div>
         </div>
       </div>
-    </div>
 
-    <!-- Cucina (solo se loggato e NO tavolo attivo) -->
-    <div class="nav-item"
-         *ngIf="isLogged && !isTavoloAttivo()"
-         [class.active]="isActiveRoute('/dashboard/cucina')"
-         (click)="navigateTo('/dashboard/cucina')">
-      <i class="bi bi-house-gear-fill nav-icon"></i>
-      <span class="nav-label">Cucina</span>
-    </div>
+      <!-- Recensioni (sempre visibile per clienti) -->
+      <div class="nav-item"
+           [class.active]="isActiveRoute('/reviews')"
+           (click)="navigateTo('/reviews')">
+        <i class="bi bi-star-fill nav-icon"></i>
+        <span class="nav-label">Recensioni</span>
+      </div>
 
-    <!-- Account/Dashboard (solo se NO tavolo attivo) -->
-    <div class="nav-item"
-         *ngIf="!isTavoloAttivo()"
-         [class.active]="isActiveRoute('/dashboard') || isActiveRoute('/auth')"
-         (click)="navigateTo(isLogged ? '/dashboard' : '/auth')">
-      <i class="bi nav-icon"
-         [class.bi-person-gear]="isLogged"
-         [class.bi-person-fill]="!isLogged"></i>
-      <span class="nav-label">{{ isLogged ? 'Dashboard' : 'Accedi' }}</span>
-    </div>
+      <!-- Reset Tavolo (solo se conto richiesto) -->
+      <div class="nav-item nav-item-reset"
+           *ngIf="isContoRichiesto()"
+           (click)="resetTavolo()">
+        <i class="bi bi-arrow-clockwise nav-icon"></i>
+        <span class="nav-label">Reset</span>
+      </div>
 
-    <!-- 🆕 RESET TAVOLO (solo se conto richiesto) -->
-    <div class="nav-item nav-item-reset"
-         *ngIf="isContoRichiesto()"
-         (click)="resetTavolo()">
-      <i class="bi bi-arrow-clockwise nav-icon"></i>
-      <span class="nav-label">Reset</span>
-    </div>
-
-    <!-- LOGOUT (solo se loggato e NO tavolo attivo) -->
-    <div class="nav-item logout-item"
-         *ngIf="isLogged && !isTavoloAttivo()"
-         (click)="logout()">
-      <i class="bi bi-box-arrow-right nav-icon"></i>
-      <span class="nav-label">Logout</span>
-    </div>
+    </ng-container>
 
   </div>
 
-  <!-- 🆕 BADGE STATO TAVOLO FLOTTANTE -->
-  <div *ngIf="isTavoloAttivo()" class="tavolo-status-floating">
+  <!-- Badge Stato Tavolo Flottante (solo per clienti con tavolo attivo)
+  <div *ngIf="!isLogged && isTavoloAttivo()" class="tavolo-status-floating">
     <div class="status-content">
       <div class="status-icon">
-        <i class="bi" [class.bi-reception-4]="!isContoRichiesto()" [class.bi-check-circle-fill]="isContoRichiesto()"></i>
+        <i class="bi"
+           [class.bi-calculator]="!isContoRichiesto()"
+           [class.bi-check-circle-fill]="isContoRichiesto()"></i>
       </div>
       <div class="status-text">
-        <div class="status-label">{{ isContoRichiesto() ? 'Conto Finale' : 'Totale' }}</div>
-        <div class="status-total">{{ getTotaleComplessivo() | currency:'EUR':'symbol':'1.0-0' }}</div>
+        <div class="status-label">{{ isContoRichiesto() ? 'Conto Finale' : 'Totale Tavolo' }}</div>
+        <div class="status-total">{{ getTotaleComplessivo() | currency:'EUR':'symbol':'1.2-2' }}</div>
       </div>
     </div>
-  </div>
+  </div> -->
 
   <!-- Overlay per chiudere dropdown -->
   <div class="dropdown-overlay"
        *ngIf="showMenuDropdown"
        (click)="onBackdropClick()"></div>
+
+  <!-- 🆕 MODAL CONFIRM SEMPLICE -->
+  
 </nav>

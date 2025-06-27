@@ -8,12 +8,12 @@
 
     <!-- Area contenuto - 🆕 CAMBIA SOLO LE CLASSI COL -->
     <div class="col-12 bg-color" [ngClass]="!isMenuChoicePage() ? 'col-md-10' : 'col-md-12'">
-      <!-- Navbar mobile classica (manteniamo per ora come fallback) -->
-      <app-navbar-small class="d-md-none d-none"></app-navbar-small>
+      <!-- Navbar mobile classica (manteniamo per ora come fallback)
+      <app-navbar-small class="d-md-none d-none"></app-navbar-small>-->
 
       <app-conto-finale-modal></app-conto-finale-modal>
       <!-- Contenuto principale con padding bottom per bottom nav -->
-      <div class="content-wrapper mx-0">
+      <div class="content-wrapper mx-0 pb-0">
         <router-outlet></router-outlet>
       </div>
     </div>

@@ -5,6 +5,7 @@ import { iMenu } from '../../Models/i-menu';
 import { iCartItem } from '../../Models/i-cart-item';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { TavoloService } from '../../tavolo-service.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-card',
@@ -29,11 +30,16 @@ export class CardComponent implements OnInit {
   showSuccessToast = false;
   showErrorToast = false;
 
+  // 🆕 NUOVO: Modal Confirm
+  showConfirmModal: boolean = false;
+  confirmModalData: any = {};
+
   constructor(
     public menuSvc: MenuService,  // ✅ PUBLIC come nel tuo
     private cartSvc: CartService,
     private modalService: NgbModal,
-    private tavoloService: TavoloService // ✅ AGGIUNTO
+    private tavoloService: TavoloService, // ✅ AGGIUNTO
+    private router: Router // ✅ AGGIUNTO per navigazione
   ) {}
 
   // 🆕 AGGIUNTO: Getter per accedere alle impostazioni AYCE nel template
@@ -48,6 +54,13 @@ export class CardComponent implements OnInit {
     this.menuSvc.getMenuType().subscribe(type => {
       this.currentMenuType = type;
       console.log('📋 Tipo menu cambiato a:', type);
+    });
+
+    // 🎯 NUOVO: Ascolta quando il TavoloService vuole aprire il modal
+    this.tavoloService.showContoModal$.subscribe(show => {
+      if (show) {
+        this.confermaRichiestaConto(); // Apre il modal esistente
+      }
     });
 
     // Carica il menu dal backend Spring Boot
@@ -197,6 +210,63 @@ export class CardComponent implements OnInit {
     }
   }
 
+  // ===== 🆕 GESTIONE MODAL CONFIRM CONTO =====
+
+  /**
+   * Metodo chiamato dalle navbar (desktop e mobile) per richiedere il conto
+   * 🔧 SISTEMATO: Ora può essere chiamato sia direttamente che dal TavoloService
+   */
+  confermaRichiestaConto(): void {
+    const totale = this.tavoloService.getTotaleComplessivo();
+    const numeroOrdini = this.tavoloService.getNumeroOrdini();
+
+    // Configura modal semplice
+    this.confirmModalData = {
+      title: 'Richiedi il Conto',
+      message: `Sicuro di voler richiedere il conto di €${totale.toFixed(2)}?`,
+      confirmText: 'Richiedi Conto',
+      cancelText: 'Annulla'
+    };
+
+    this.showConfirmModal = true;
+    console.log('🎯 Modal conto aperto dal card component');
+  }
+
+  /**
+   * Gestione conferma modal
+   * 🔧 SISTEMATO: Ora usa il nuovo metodo del TavoloService
+   */
+  onConfirmConto(): void {
+    this.showConfirmModal = false;
+
+    // 🎯 NUOVO: Usa il metodo del TavoloService che gestisce tutto
+    this.tavoloService.confermaRichiestaConto();
+
+    console.log('🧾 Conto richiesto tramite TavoloService');
+
+    // Naviga allo storico ordini
+    this.router.navigate(['/storico-ordini']);
+
+    
+  }
+
+  /**
+   * Gestione cancella modal
+   * 🔧 SISTEMATO: Ora chiude anche il modal nel TavoloService
+   */
+  onCancelConto(): void {
+    this.showConfirmModal = false;
+    this.tavoloService.closeContoModal(); // 🎯 NUOVO: Chiude anche nel service
+    console.log('❌ Richiesta conto annullata');
+  }
+
+  /**
+   * Notifica successo richiesta conto
+   */
+
+
+  // ===== GESTIONE TOAST =====
+
   // Gestione toast
   showToastMessage(): void {
     this.showToast = true;
@@ -241,5 +311,28 @@ export class CardComponent implements OnInit {
   // Helper: Ottieni quantità temporanea per l'UI
   getTempQuantity(item: iMenu): number {
     return this.tempQuantities[item.id] || 1;
+  }
+
+  // Aggiungi questo metodo al tuo component
+  getCategoryDisplayName(): string {
+    // Estrai la categoria dall'URL
+    const currentUrl = this.router.url;
+    const category = currentUrl.split('/').pop(); // Prende l'ultimo segmento dell'URL
+
+    // Mappa le categorie agli emoji e nomi puliti
+    const categoryMap: { [key: string]: string } = {
+      'antipasti': '🥟 Antipasti',
+      'zuppe': '🍜 Zuppe',
+      'primi': '🍝 Primi',
+      'hosomaki': '🍣 Hosomaki',
+      'uramaki': '🍱 Uramaki',
+      'temaki': '🍙 Temaki',
+      'sushi': '🍚 Sushi',
+      'secondi': '🐟 Secondi',
+      'dolci': '🍡 Dolci',
+      'bibite': '🍵 Bibite'
+    };
+
+    return categoryMap[category || ''] || '🍱 Menu';
   }
 }

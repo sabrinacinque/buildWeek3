@@ -69,10 +69,11 @@ export class NavbarComponent implements OnInit {
   /**
    * Richiedi il conto
    */
-  richiediConto(): void {
-    this.tavoloService.richiediConto();
-    console.log('🧾 Conto richiesto dalla sidebar');
-  }
+  // 🎯 DOPO (NUOVO - usa modal luxury):
+richiediConto(): void {
+  console.log('🎯 Sidebar: apertura modal conto luxury');
+  this.tavoloService.openContoModal(); // 🆕 NUOVO: Apre modal invece di confermare direttamente
+}
 
   /**
    * Reset del tavolo per il prossimo cliente

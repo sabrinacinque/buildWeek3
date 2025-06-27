@@ -1,0 +1,32 @@
+<!-- confirm-modal.component.html - SEMPLICE -->
+<div class="modal-overlay" *ngIf="isVisible" (click)="onBackdropClick()">
+  <div class="modal-container" (click)="$event.stopPropagation()">
+
+    <!-- Icona Warning -->
+    <div class="modal-icon">
+      <i class="bi bi-exclamation-triangle-fill"></i>
+    </div>
+
+    <!-- Titolo -->
+    <h3 class="modal-title">{{ title }}</h3>
+
+    <!-- Messaggio principale -->
+    <p class="modal-message">{{ message }}</p>
+
+    <!-- Sottotitolo warning -->
+    <div class="modal-warning">
+      <p>⚠️ Non potrai più aggiungere altri piatti</p>
+    </div>
+
+    <!-- Bottoni -->
+    <div class="modal-actions">
+      <button class="btn-cancel" (click)="onCancel()">
+        {{ cancelText }}
+      </button>
+      <button class="btn-confirm" (click)="onConfirm()">
+        {{ confirmText }}
+      </button>
+    </div>
+
+  </div>
+</div>

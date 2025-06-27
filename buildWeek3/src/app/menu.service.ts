@@ -1,4 +1,4 @@
-// menu.service.ts - VERSIONE ENHANCED
+// menu.service.ts - VERSIONE ENHANCED CON PERSISTENZA
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { iMenu } from './Models/i-menu';
@@ -20,7 +20,7 @@ export class MenuService {
 
   apiUrl: string = `${environment.apiUrl}/menu`;
 
-  // 🆕 NUOVO: Gestione tipo menu
+  // 🆕 GESTIONE TIPO MENU CON PERSISTENZA
   private menuType$ = new BehaviorSubject<MenuType>('carta');
   private ayceSettings$ = new BehaviorSubject<AyceSettings>({
     persone: 2,
@@ -28,10 +28,61 @@ export class MenuService {
     costoTotale: 49.80
   });
 
-  constructor(private http: HttpClient) {}
+  // 🔑 CHIAVE LOCALSTORAGE
+  private readonly MENU_STORAGE_KEY = 'episushi_menu_state';
+
+  constructor(private http: HttpClient) {
+    // 🆕 CARICA STATO MENU DA LOCALSTORAGE ALL'AVVIO
+    this.loadMenuStateFromStorage();
+  }
 
   // ========================================
-  // METODI ESISTENTI (invariati)
+  // 🆕 PERSISTENZA LOCALSTORAGE
+  // ========================================
+
+  /**
+   * Salva stato menu in localStorage
+   */
+  private saveMenuStateToStorage(): void {
+    try {
+      const menuState = {
+        menuType: this.menuType$.value,
+        ayceSettings: this.ayceSettings$.value
+      };
+      localStorage.setItem(this.MENU_STORAGE_KEY, JSON.stringify(menuState));
+      console.log('💾 Menu state salvato:', menuState);
+    } catch (error) {
+      console.error('❌ Errore nel salvare menu state:', error);
+    }
+  }
+
+  /**
+   * Carica stato menu da localStorage
+   */
+  private loadMenuStateFromStorage(): void {
+    try {
+      const savedState = localStorage.getItem(this.MENU_STORAGE_KEY);
+      if (savedState) {
+        const menuState = JSON.parse(savedState);
+        
+        // Imposta il tipo menu
+        const menuType = menuState.menuType || 'carta';
+        this.menuType$.next(menuType);
+        
+        // Imposta le impostazioni AYCE se presenti
+        if (menuState.ayceSettings) {
+          this.ayceSettings$.next(menuState.ayceSettings);
+        }
+        
+        console.log('📥 Menu state caricato:', menuState);
+      }
+    } catch (error) {
+      console.error('❌ Errore nel caricare menu state:', error);
+    }
+  }
+
+  // ========================================
+  // METODI API ESISTENTI (invariati)
   // ========================================
 
   getAll(): Observable<iMenu[]> {
@@ -70,18 +121,27 @@ export class MenuService {
   }
 
   // ========================================
-  // 🆕 NUOVI METODI PER AYCE
+  // 🆕 METODI PER GESTIONE MENU TYPE
   // ========================================
 
   /**
-   * Imposta il tipo di menu (carta o ayce)
+   * Imposta il tipo di menu (carta o ayce) con persistenza
    */
-  setMenuType(type: MenuType): void {
+  setMenuType(type: MenuType, ayceSettings?: AyceSettings): void {
     this.menuType$.next(type);
+    
+    if (ayceSettings) {
+      this.ayceSettings$.next(ayceSettings);
+    }
+    
+    // 🆕 SALVA STATO AUTOMATICAMENTE
+    this.saveMenuStateToStorage();
+    
+    console.log('🍱 Menu type impostato:', type, ayceSettings);
   }
 
   /**
-   * Ottiene il tipo di menu corrente
+   * Ottiene il tipo di menu corrente (Observable)
    */
   getMenuType(): Observable<MenuType> {
     return this.menuType$.asObservable();
@@ -101,15 +161,22 @@ export class MenuService {
     const prezzoPersona = 24.90;
     const costoTotale = persone * prezzoPersona;
 
-    this.ayceSettings$.next({
+    const newSettings: AyceSettings = {
       persone,
       prezzoPersona,
       costoTotale
-    });
+    };
+
+    this.ayceSettings$.next(newSettings);
+    
+    // 🆕 SALVA STATO AUTOMATICAMENTE
+    this.saveMenuStateToStorage();
+    
+    console.log('🍱 AYCE settings aggiornate:', newSettings);
   }
 
   /**
-   * Ottiene le impostazioni AYCE
+   * Ottiene le impostazioni AYCE (Observable)
    */
   getAyceSettings(): Observable<AyceSettings> {
     return this.ayceSettings$.asObservable();
@@ -122,10 +189,12 @@ export class MenuService {
     return this.ayceSettings$.value;
   }
 
+  // ========================================
+  // 🆕 METODI PER CALCOLI PREZZI
+  // ========================================
+
   /**
    * Calcola il prezzo di un prodotto in base al tipo menu
-   * @param item - Il prodotto del menu
-   * @returns Il prezzo da mostrare
    */
   getDisplayPrice(item: iMenu): number {
     const menuType = this.getCurrentMenuType();
@@ -153,7 +222,6 @@ export class MenuService {
 
   /**
    * Calcola il costo aggiuntivo per bibite/dolci in AYCE
-   * (da usare nel carrello)
    */
   calculateAyceExtras(cartItems: any[]): number {
     if (this.getCurrentMenuType() !== 'ayce') {
@@ -180,11 +248,40 @@ export class MenuService {
     }
   }
 
+  // ========================================
+  // 🆕 UTILITY METHODS
+  // ========================================
+
   /**
    * Reset delle impostazioni (utile per testing)
    */
   resetToDefaults(): void {
     this.setMenuType('carta');
     this.setAyceSettings(2);
+    console.log('🔄 Menu service resettato ai valori di default');
+  }
+
+  /**
+   * Cancella stato da localStorage
+   */
+  clearMenuState(): void {
+    try {
+      localStorage.removeItem(this.MENU_STORAGE_KEY);
+      this.resetToDefaults();
+      console.log('🗑️ Menu state cancellato da localStorage');
+    } catch (error) {
+      console.error('❌ Errore nel cancellare menu state:', error);
+    }
+  }
+
+  /**
+   * Debug: stampa stato corrente
+   */
+  debugCurrentState(): void {
+    console.log('🔍 DEBUG MENU STATE:', {
+      menuType: this.getCurrentMenuType(),
+      ayceSettings: this.getCurrentAyceSettings(),
+      localStorage: localStorage.getItem(this.MENU_STORAGE_KEY)
+    });
   }
 }

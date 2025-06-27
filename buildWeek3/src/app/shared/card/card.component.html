@@ -45,7 +45,7 @@
             {{ getDisplayPrice(item) | currency : "EUR" }}
           </span>
           <span *ngIf="isItemFreeInAyce(item)" class="free-text">
-            <i class="bi bi-infinity"></i> AYCE
+            €0.00
           </span>
         </div>
 
@@ -96,6 +96,63 @@
             <i class="bi bi-cart-plus"></i>
           </button>
         </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- 🎯 MODAL CONFIRM CONTO LUXURY - HTML DIRETTO -->
+<div class="modal-backdrop-luxury"
+     *ngIf="showConfirmModal"
+     [class.show]="showConfirmModal">
+  <div class="modal-dialog-luxury">
+    <div class="modal-content-conto-luxury">
+
+      <!-- Header -->
+      <div class="modal-header-conto-luxury">
+        <div class="header-icon">
+          <i class="bi bi-receipt-cutoff"></i>
+        </div>
+        <h4 class="modal-title-conto">{{ confirmModalData.title || 'Richiedi il Conto' }}</h4>
+        <button type="button" class="btn-close-luxury" (click)="onCancelConto()">
+          <i class="bi bi-x"></i>
+        </button>
+      </div>
+
+      <!-- Body -->
+      <div class="modal-body-conto-luxury">
+        <div class="confirm-icon">
+          <i class="bi bi-question-circle-fill"></i>
+        </div>
+        <p class="confirm-message">{{ confirmModalData.message || 'Sicuro di voler richiedere il conto  ?' }}</p>
+
+        <!-- Info Riepilogo -->
+        <div class="conto-summary">
+          <div class="summary-item" *ngIf="getNumeroOrdini() > 0">
+            <span class="summary-label">Ordini:</span>
+            <span class="summary-value">{{ getNumeroOrdini() }}</span>
+          </div>
+          <div class="summary-item">
+            <span class="summary-label">Totale:</span>
+            <span class="summary-value">{{ getTotaleComplessivo() | currency:'EUR' }}</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Footer -->
+      <div class="modal-footer-conto-luxury">
+        <button type="button"
+                class="btn-cancel-luxury"
+                (click)="onCancelConto()">
+          <i class="bi bi-x-circle me-2"></i>
+          {{ confirmModalData.cancelText || 'Annulla' }}
+        </button>
+        <button type="button"
+                class="btn-confirm-luxury"
+                (click)="onConfirmConto()">
+          <i class="bi bi-check-circle me-2"></i>
+          {{ confirmModalData.confirmText || 'Conferma' }}
+        </button>
       </div>
     </div>
   </div>
@@ -239,17 +296,6 @@
   </div>
 </div>
 
-<!-- 🆕 MODAL CONFIRM CONTO - SPOSTATO QUI -->
-<app-confirm-modal
-  [isVisible]="showConfirmModal"
-  [title]="confirmModalData.title"
-  [message]="confirmModalData.message"
-  [confirmText]="confirmModalData.confirmText"
-  [cancelText]="confirmModalData.cancelText"
-  (confirmed)="onConfirmConto()"
-  (cancelled)="onCancelConto()">
-</app-confirm-modal>
-
 <!-- Modal carrello luxury -->
 <ng-template #cartModal let-modal class="bg-black">
   <div class="modal-content-luxury">
@@ -284,7 +330,7 @@
       <!-- Carrello con items -->
       <div *ngIf="cartItems.length > 0" class="cart-items-container">
 
-        <!-- 🆕 HEADER AYCE INFO (solo se menu AYCE) - SEMPLIFICATO -->
+        <!-- 🆕 HEADER AYCE INFO (solo se menu AYCE) - LUXURY DORATO -->
         <div *ngIf="currentMenuType === 'ayce'" class="ayce-info-header">
           <div class="ayce-badge">
             <i class="bi bi-infinity me-2"></i>
@@ -305,13 +351,12 @@
           <!-- Info piatto -->
           <div class="item-info">
             <div class="item-name">{{ item.titolo }}</div>
-            <div class="item-unit-price"
-                 [class.item-free-ayce]="isItemFreeInAyce(item)">
+            <div class="item-unit-price">
               <span *ngIf="!isItemFreeInAyce(item)">
                 {{ getDisplayPrice(item) | currency : "EUR" }} cad.
               </span>
-              <span *ngIf="isItemFreeInAyce(item)" class="free-label">
-                <i class="bi bi-infinity"></i> AYCE
+              <span *ngIf="isItemFreeInAyce(item)" class="item-price-zero">
+                €0.00 cad.
               </span>
             </div>
           </div>
@@ -341,13 +386,12 @@
           </div>
 
           <!-- Prezzo totale item -->
-          <div class="item-total-price"
-               [class.item-free-ayce]="isItemFreeInAyce(item)">
+          <div class="item-total-price">
             <span *ngIf="!isItemFreeInAyce(item)">
               {{ (getDisplayPrice(item) * item.quantity) | currency : "EUR" }}
             </span>
-            <span *ngIf="isItemFreeInAyce(item)" class="free-total">
-              <i class="bi bi-gift"></i> Incluso
+            <span *ngIf="isItemFreeInAyce(item)" class="item-price-zero">
+              €0.00
             </span>
           </div>
 

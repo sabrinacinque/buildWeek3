@@ -223,7 +223,7 @@ export class CardComponent implements OnInit {
     // Configura modal semplice
     this.confirmModalData = {
       title: 'Richiedi il Conto',
-      message: `Sicuro di voler richiedere il conto di €${totale.toFixed(2)}?`,
+      message: `Sicuro di voler richiedere il conto di €${totale.toFixed(2)}?\nNon sarà possibile aggiungere altri ordini dopo.`,
       confirmText: 'Richiedi Conto',
       cancelText: 'Annulla'
     };
@@ -247,7 +247,7 @@ export class CardComponent implements OnInit {
     // Naviga allo storico ordini
     this.router.navigate(['/storico-ordini']);
 
-    
+
   }
 
   /**
@@ -262,8 +262,41 @@ export class CardComponent implements OnInit {
 
   /**
    * Notifica successo richiesta conto
-   */
 
+  private showContoRichiestoNotification(): void {
+    setTimeout(() => {
+      const totale = this.tavoloService.getTotaleComplessivo();
+      const numeroOrdini = this.tavoloService.getNumeroOrdini();
+
+      let message = '✅ Conto richiesto con successo!\n\n';
+
+      if (numeroOrdini > 0) {
+        message += `💰 Totale: €${totale.toFixed(2)}\n`;
+        message += `📝 Ordini: ${numeroOrdini}\n\n`;
+      }
+
+      message += '👨‍💼 Il personale verrà al vostro tavolo a breve per il pagamento.\n\n';
+      message += '⏱️ Tempo stimato: 2-5 minuti';
+
+      alert(message);
+    }, 500);
+  }*/
+
+  // ===== 🆕 METODI TAVOLO PER TEMPLATE =====
+
+  /**
+   * Ottieni il numero di ordini (per template HTML)
+   */
+  getNumeroOrdini(): number {
+    return this.tavoloService.getNumeroOrdini();
+  }
+
+  /**
+   * Ottieni il totale complessivo (per template HTML)
+   */
+  getTotaleComplessivo(): number {
+    return this.tavoloService.getTotaleComplessivo();
+  }
 
   // ===== GESTIONE TOAST =====
 
@@ -313,7 +346,7 @@ export class CardComponent implements OnInit {
     return this.tempQuantities[item.id] || 1;
   }
 
-  // Aggiungi questo metodo al tuo component
+  // Ottieni nome categoria per display
   getCategoryDisplayName(): string {
     // Estrai la categoria dall'URL
     const currentUrl = this.router.url;

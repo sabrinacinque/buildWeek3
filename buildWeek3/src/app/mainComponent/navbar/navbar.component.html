@@ -1,7 +1,7 @@
 <div class="sidebar-luxury vh-100" id="sidebar-wrapper">
   <!-- Header Logo Section -->
   <div class="sidebar-header-luxury">
-    <div class="logo-section-luxury" routerLink="">
+    <div class="logo-section-luxury" (click)="onHomeClick()">
       <h2 class="brand-title-sidebar">
         <span class="brand-epi">EPI</span><span class="brand-sushi">SUSHI</span>
       </h2>
@@ -230,6 +230,70 @@
       <div class="decoration-line"></div>
       <div class="decoration-center">✨</div>
       <div class="decoration-line"></div>
+    </div>
+  </div>
+</div>
+
+<!-- 🎯 MODAL HOME CONFIRMATION LUXURY -->
+<div class="modal-backdrop-luxury"
+     *ngIf="showHomeConfirmModal"
+     [class.show]="showHomeConfirmModal">
+  <div class="modal-dialog-luxury">
+    <div class="modal-content-home-luxury">
+
+      <!-- Header -->
+      <div class="modal-header-home-luxury">
+        <div class="header-icon-home">
+          <i class="bi bi-house-exclamation-fill"></i>
+        </div>
+        <h4 class="modal-title-home">Tornare alla Home?</h4>
+        <button type="button" class="btn-close-luxury" (click)="onCancelHome()">
+          <i class="bi bi-x"></i>
+        </button>
+      </div>
+
+      <!-- Body -->
+      <div class="modal-body-home-luxury">
+        <div class="confirm-icon-home">
+          <i class="bi bi-exclamation-triangle-fill"></i>
+        </div>
+        <p class="confirm-message-home">Sicuro di voler abbandonare la selezione corrente?
+
+Perderai il menu scelto e dovrai rifare l'accesso.</p>
+
+        <!-- Info Warning -->
+        <div class="warning-summary">
+          <div class="warning-item" *ngIf="getNumeroOrdini() > 0">
+            <span class="warning-label">Ordini effettuati:</span>
+            <span class="warning-value">{{ getNumeroOrdini() }}</span>
+          </div>
+          <div class="warning-item" *ngIf="getTotaleComplessivo() > 0">
+            <span class="warning-label">Totale speso:</span>
+            <span class="warning-value">{{ getTotaleComplessivo() | currency:'EUR' }}</span>
+          </div>
+          <div class="warning-item">
+            <span class="warning-label">Stato:</span>
+            <span class="warning-value" *ngIf="!isContoRichiesto()">Menu attivo</span>
+            <span class="warning-value" *ngIf="isContoRichiesto()">Conto richiesto</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Footer -->
+      <div class="modal-footer-home-luxury">
+        <button type="button"
+                class="btn-stay-luxury"
+                (click)="onCancelHome()">
+          <i class="bi bi-arrow-left me-2"></i>
+          Rimani qui
+        </button>
+        <button type="button"
+                class="btn-home-luxury"
+                (click)="onConfirmHome()">
+          <i class="bi bi-house-fill me-2"></i>
+          Vai alla Home
+        </button>
+      </div>
     </div>
   </div>
 </div>

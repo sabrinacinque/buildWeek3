@@ -47,8 +47,6 @@ export class ReviewsComponent {
         title: 'Grazie per la tua recensione!',
         showConfirmButton: false,
         timer: 1500
-      }).then(() => {
-        this.router.navigate(['/homepage']);
       });
     }
   }

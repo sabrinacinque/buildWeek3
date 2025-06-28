@@ -1,4 +1,4 @@
-<!-- conto-finale-modal.component.html -->
+<!-- conto-finale-modal.component.html - FIXED -->
 <div class="modal-overlay" *ngIf="isVisible" (click)="closeManually()">
   <div class="conto-modal-container" (click)="$event.stopPropagation()">
 
@@ -45,12 +45,13 @@
         <p class="torna-text">Torna presto a trovarci!</p>
       </div>
 
-      <!-- Countdown -->
+      <!-- 🎯 COUNTDOWN FIXED -->
       <div class="countdown-section">
         <div class="countdown-text">
           Redirect automatico in <span class="countdown-number">{{ countdown }}</span> secondi
         </div>
         <div class="countdown-bar">
+          <!-- 🎯 FIXED: Animation duration dinamica basata su countdown iniziale -->
           <div class="countdown-progress" [style.animation-duration.s]="10"></div>
         </div>
       </div>

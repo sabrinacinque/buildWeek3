@@ -194,7 +194,7 @@ export class BottomNavComponent implements OnInit {
    * Richiedi il conto - versione semplificata per bottom nav
    */
   confermaRichiestaConto() {
-    this.tavoloService.openContoModal(); // 🎯 Apre modal luxury
+    this.tavoloService.richiediConto(); // 🎯 Apre modal luxury
   }
 
   /**

@@ -1,4 +1,4 @@
-// sidebar.component.ts - CON LOGICA TAVOLO + HOME MODAL
+// sidebar.component.ts - CON LOGICA MODAL HOME + MODAL CONTO
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from '../../auth/auth-service.service';
@@ -16,13 +16,16 @@ export class NavbarComponent implements OnInit {
   // 🆕 NUOVO: Observable dello stato tavolo
   tavoloState$: Observable<TavoloState>;
 
-  // 🎯 NUOVO: Modal Home Confirmation
+  // 🎯 MODAL HOME CONFIRMATION
   showHomeConfirmModal: boolean = false;
+
+  // 🎯 NUOVO: MODAL CONTO CONFIRMATION
+  showContoConfirmModal: boolean = false;
 
   constructor(
     private AuthService: AuthService,
     public router: Router,
-    public tavoloService: TavoloService // 🆕 NUOVO: Inietta TavoloService
+    public tavoloService: TavoloService
   ) {
     // Inizializza l'observable dello stato tavolo
     this.tavoloState$ = this.tavoloService.getTavoloState();
@@ -87,6 +90,36 @@ export class NavbarComponent implements OnInit {
     return currentRoute.includes('/menu/');
   }
 
+  // ===== 🎯 GESTIONE CONTO MODAL =====
+
+  /**
+   * Mostra modal di conferma per richiesta conto
+   */
+  confermaRichiestaConto(): void {
+    console.log('🎯 Sidebar: apertura modal conferma conto');
+    this.showContoConfirmModal = true;
+  }
+
+  /**
+   * Conferma richiesta conto
+   */
+  onConfirmConto(): void {
+    this.showContoConfirmModal = false;
+    this.tavoloService.richiediConto();
+    console.log('✅ Conto richiesto dalla sidebar');
+
+    // Naviga allo storico ordini per vedere il risultato
+    this.router.navigate(['/storico-ordini']);
+  }
+
+  /**
+   * Cancella richiesta conto
+   */
+  onCancelConto(): void {
+    this.showContoConfirmModal = false;
+    console.log('❌ Richiesta conto annullata dalla sidebar');
+  }
+
   // ===== 🆕 METODI TAVOLO =====
 
   /**
@@ -115,14 +148,6 @@ export class NavbarComponent implements OnInit {
    */
   getTotaleComplessivo(): number {
     return this.tavoloService.getTotaleComplessivo();
-  }
-
-  /**
-   * Richiedi il conto tramite modal luxury
-   */
-  richiediConto(): void {
-    console.log('🎯 Sidebar: apertura modal conto luxury');
-    this.tavoloService.openContoModal();
   }
 
   /**

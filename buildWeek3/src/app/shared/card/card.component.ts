@@ -30,16 +30,12 @@ export class CardComponent implements OnInit {
   showSuccessToast = false;
   showErrorToast = false;
 
-  // 🆕 NUOVO: Modal Confirm
-  showConfirmModal: boolean = false;
-  confirmModalData: any = {};
-
   constructor(
-    public menuSvc: MenuService,  // ✅ PUBLIC come nel tuo
+    public menuSvc: MenuService,
     private cartSvc: CartService,
     private modalService: NgbModal,
-    private tavoloService: TavoloService, // ✅ AGGIUNTO
-    private router: Router // ✅ AGGIUNTO per navigazione
+    private tavoloService: TavoloService,
+    private router: Router
   ) {}
 
   // 🆕 AGGIUNTO: Getter per accedere alle impostazioni AYCE nel template
@@ -54,13 +50,6 @@ export class CardComponent implements OnInit {
     this.menuSvc.getMenuType().subscribe(type => {
       this.currentMenuType = type;
       console.log('📋 Tipo menu cambiato a:', type);
-    });
-
-    // 🎯 NUOVO: Ascolta quando il TavoloService vuole aprire il modal
-    this.tavoloService.showContoModal$.subscribe(show => {
-      if (show) {
-        this.confermaRichiestaConto(); // Apre il modal esistente
-      }
     });
 
     // Carica il menu dal backend Spring Boot
@@ -209,78 +198,6 @@ export class CardComponent implements OnInit {
       console.warn('⚠️ Carrello vuoto, nessun ordine da inviare');
     }
   }
-
-  // ===== 🆕 GESTIONE MODAL CONFIRM CONTO =====
-
-  /**
-   * Metodo chiamato dalle navbar (desktop e mobile) per richiedere il conto
-   * 🔧 SISTEMATO: Ora può essere chiamato sia direttamente che dal TavoloService
-   */
-  confermaRichiestaConto(): void {
-    const totale = this.tavoloService.getTotaleComplessivo();
-    const numeroOrdini = this.tavoloService.getNumeroOrdini();
-
-    // Configura modal semplice
-    this.confirmModalData = {
-      title: 'Richiedi il Conto',
-      message: `Sicuro di voler richiedere il conto di €${totale.toFixed(2)}?\nNon sarà possibile aggiungere altri ordini dopo.`,
-      confirmText: 'Richiedi Conto',
-      cancelText: 'Annulla'
-    };
-
-    this.showConfirmModal = true;
-    console.log('🎯 Modal conto aperto dal card component');
-  }
-
-  /**
-   * Gestione conferma modal
-   * 🔧 SISTEMATO: Ora usa il nuovo metodo del TavoloService
-   */
-  onConfirmConto(): void {
-    this.showConfirmModal = false;
-
-    // 🎯 NUOVO: Usa il metodo del TavoloService che gestisce tutto
-    this.tavoloService.confermaRichiestaConto();
-
-    console.log('🧾 Conto richiesto tramite TavoloService');
-
-    // Naviga allo storico ordini
-    this.router.navigate(['/storico-ordini']);
-
-
-  }
-
-  /**
-   * Gestione cancella modal
-   * 🔧 SISTEMATO: Ora chiude anche il modal nel TavoloService
-   */
-  onCancelConto(): void {
-    this.showConfirmModal = false;
-    this.tavoloService.closeContoModal(); // 🎯 NUOVO: Chiude anche nel service
-    console.log('❌ Richiesta conto annullata');
-  }
-
-  /**
-   * Notifica successo richiesta conto
-
-  private showContoRichiestoNotification(): void {
-    setTimeout(() => {
-      const totale = this.tavoloService.getTotaleComplessivo();
-      const numeroOrdini = this.tavoloService.getNumeroOrdini();
-
-      let message = '✅ Conto richiesto con successo!\n\n';
-
-      if (numeroOrdini > 0) {
-        message += `💰 Totale: €${totale.toFixed(2)}\n`;
-        message += `📝 Ordini: ${numeroOrdini}\n\n`;
-      }
-
-      message += '👨‍💼 Il personale verrà al vostro tavolo a breve per il pagamento.\n\n';
-      message += '⏱️ Tempo stimato: 2-5 minuti';
-
-      alert(message);
-    }, 500);
-  }*/
 
   // ===== 🆕 METODI TAVOLO PER TEMPLATE =====
 

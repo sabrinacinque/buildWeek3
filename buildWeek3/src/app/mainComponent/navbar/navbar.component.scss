@@ -1163,3 +1163,211 @@
     opacity: 0.8;
   }
 }
+/* ===== 🎯 MODAL CONTO CONFIRMATION LUXURY ===== */
+/* DA AGGIUNGERE ALLA FINE DEL FILE navbar.component.scss */
+
+.modal-content-conto-luxury {
+  background: linear-gradient(135deg,
+    rgba(26, 26, 26, 0.95) 0%,
+    rgba(212, 175, 55, 0.2) 30%,
+    rgba(26, 26, 26, 0.95) 100%);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(212, 175, 55, 0.4);
+  border-radius: 20px;
+  box-shadow:
+    0 20px 60px rgba(0, 0, 0, 0.7),
+    0 0 0 1px rgba(212, 175, 55, 0.2) inset,
+    0 0 30px rgba(212, 175, 55, 0.3);
+  overflow: hidden;
+  color: white;
+}
+
+/* Header Conto */
+.modal-header-conto-luxury {
+  display: flex;
+  align-items: center;
+  padding: 25px;
+  background: linear-gradient(135deg, #d4af37, #f4d03f);
+  color: #1a1a1a;
+  border-bottom: 1px solid rgba(212, 175, 55, 0.3);
+}
+
+.header-icon-conto {
+  width: 45px;
+  height: 45px;
+  background: rgba(26, 26, 26, 0.2);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 15px;
+
+  i {
+    font-size: 1.5rem;
+    color: #1a1a1a;
+  }
+}
+
+.modal-title-conto {
+  flex: 1;
+  font-size: 1.4rem;
+  font-weight: 700;
+  margin: 0;
+}
+
+/* Body Conto */
+.modal-body-conto-luxury {
+  padding: 30px 25px;
+  text-align: center;
+}
+
+.confirm-icon-conto {
+  margin-bottom: 20px;
+
+  i {
+    font-size: 4rem;
+    color: #d4af37;
+    text-shadow: 0 0 20px rgba(212, 175, 55, 0.6);
+    animation: pulse-question 2s infinite;
+  }
+}
+
+@keyframes pulse-question {
+  0%, 100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  50% {
+    transform: scale(1.05);
+    opacity: 0.8;
+  }
+}
+
+.confirm-message-conto {
+  white-space: pre-line;
+  font-size: 1.2rem;
+  margin-bottom: 25px;
+  color: rgba(255, 255, 255, 0.9);
+  line-height: 1.4;
+}
+
+.conto-summary {
+  background: rgba(212, 175, 55, 0.1);
+  border: 1px solid rgba(212, 175, 55, 0.3);
+  border-radius: 15px;
+  padding: 20px;
+  margin-bottom: 20px;
+}
+
+.summary-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+
+  &:last-child {
+    margin-bottom: 0;
+    padding-top: 10px;
+    border-top: 1px solid rgba(212, 175, 55, 0.3);
+    font-weight: bold;
+    font-size: 1.1rem;
+  }
+}
+
+.summary-label {
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.summary-value {
+  color: #d4af37;
+  font-weight: 600;
+}
+
+/* Footer Conto */
+.modal-footer-conto-luxury {
+  display: flex;
+  justify-content: space-between;
+  gap: 15px;
+  padding: 25px;
+  background: rgba(0, 0, 0, 0.2);
+  border-top: 1px solid rgba(212, 175, 55, 0.3);
+}
+
+.btn-cancel-luxury,
+.btn-confirm-luxury {
+  flex: 1;
+  padding: 15px 20px;
+  border-radius: 25px;
+  font-weight: 600;
+  font-size: 1rem;
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  backdrop-filter: blur(5px);
+
+  &:hover {
+    transform: translateY(-2px);
+  }
+
+  &:active {
+    transform: translateY(0);
+  }
+}
+
+.btn-cancel-luxury {
+  background: linear-gradient(135deg, #6c757d, #5a6268);
+  color: white;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+
+  &:hover {
+    background: linear-gradient(135deg, #5a6268, #495057);
+    box-shadow: 0 4px 15px rgba(108, 117, 125, 0.4);
+  }
+}
+
+.btn-confirm-luxury {
+  background: linear-gradient(135deg, #d4af37, #f4d03f);
+  color: #1a1a1a;
+  border: 1px solid rgba(212, 175, 55, 0.3);
+
+  &:hover {
+    background: linear-gradient(135deg, #f4d03f, #d4af37);
+    box-shadow: 0 6px 20px rgba(212, 175, 55, 0.5);
+  }
+}
+
+/* Responsive Modal Conto */
+@media (max-width: 576px) {
+  .modal-header-conto-luxury {
+    padding: 20px;
+  }
+
+  .modal-title-conto {
+    font-size: 1.2rem;
+  }
+
+  .modal-body-conto-luxury {
+    padding: 25px 20px;
+  }
+
+  .confirm-icon-conto i {
+    font-size: 3rem;
+  }
+
+  .confirm-message-conto {
+    font-size: 1.1rem;
+  }
+
+  .modal-footer-conto-luxury {
+    padding: 20px;
+    flex-direction: column;
+
+    .btn-cancel-luxury,
+    .btn-confirm-luxury {
+      width: 100%;
+    }
+  }
+}

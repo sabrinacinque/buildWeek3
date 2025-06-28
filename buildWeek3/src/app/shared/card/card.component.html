@@ -101,63 +101,6 @@
   </div>
 </div>
 
-<!-- 🎯 MODAL CONFIRM CONTO LUXURY - HTML DIRETTO -->
-<div class="modal-backdrop-luxury"
-     *ngIf="showConfirmModal"
-     [class.show]="showConfirmModal">
-  <div class="modal-dialog-luxury">
-    <div class="modal-content-conto-luxury">
-
-      <!-- Header -->
-      <div class="modal-header-conto-luxury">
-        <div class="header-icon">
-          <i class="bi bi-receipt-cutoff"></i>
-        </div>
-        <h4 class="modal-title-conto">{{ confirmModalData.title || 'Richiedi il Conto' }}</h4>
-        <button type="button" class="btn-close-luxury" (click)="onCancelConto()">
-          <i class="bi bi-x"></i>
-        </button>
-      </div>
-
-      <!-- Body -->
-      <div class="modal-body-conto-luxury">
-        <div class="confirm-icon">
-          <i class="bi bi-question-circle-fill"></i>
-        </div>
-        <p class="confirm-message">{{ confirmModalData.message || 'Sicuro di voler richiedere il conto  ?' }}</p>
-
-        <!-- Info Riepilogo -->
-        <div class="conto-summary">
-          <div class="summary-item" *ngIf="getNumeroOrdini() > 0">
-            <span class="summary-label">Ordini:</span>
-            <span class="summary-value">{{ getNumeroOrdini() }}</span>
-          </div>
-          <div class="summary-item">
-            <span class="summary-label">Totale:</span>
-            <span class="summary-value">{{ getTotaleComplessivo() | currency:'EUR' }}</span>
-          </div>
-        </div>
-      </div>
-
-      <!-- Footer -->
-      <div class="modal-footer-conto-luxury">
-        <button type="button"
-                class="btn-cancel-luxury"
-                (click)="onCancelConto()">
-          <i class="bi bi-x-circle me-2"></i>
-          {{ confirmModalData.cancelText || 'Annulla' }}
-        </button>
-        <button type="button"
-                class="btn-confirm-luxury"
-                (click)="onConfirmConto()">
-          <i class="bi bi-check-circle me-2"></i>
-          {{ confirmModalData.confirmText || 'Conferma' }}
-        </button>
-      </div>
-    </div>
-  </div>
-</div>
-
 <!-- Toast luxury per aggiunta al carrello -->
 <div class="toast-container position-fixed bottom-0 end-0 p-3">
   <div

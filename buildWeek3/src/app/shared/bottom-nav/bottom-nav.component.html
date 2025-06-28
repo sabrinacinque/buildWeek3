@@ -1,4 +1,4 @@
-<!-- bottom-nav.component.html - CON ICONA HOME E MODAL CONFERMA -->
+<!-- bottom-nav.component.html - CON MODAL HOME E MODAL CONTO -->
 <nav class="bottom-nav d-md-none">
   <div class="nav-container" [class.container-extended]="!isLogged && (isTavoloAttivo() || isInMenuMode())">
 
@@ -54,7 +54,7 @@
         <span class="nav-label">Storico</span>
       </div>
 
-      <!-- Chiedi Conto (SEMPRE VISIBILE quando in modalità menu, ma solo se conto non richiesto) -->
+      <!-- 🎯 CHIEDI CONTO CON MODAL CONFERMA (IDENTICO A SIDEBAR) -->
       <div class="nav-item nav-item-conto"
            *ngIf="(isTavoloAttivo() || isInMenuMode()) && !isContoRichiesto()"
            (click)="confermaRichiestaConto()">
@@ -148,7 +148,7 @@
 
 </nav>
 
-<!-- 🎯 MODAL HOME CONFIRMATION LUXURY (IDENTICO A SIDEBAR) -->
+<!-- 🎯 MODAL HOME CONFIRMATION LUXURY -->
 <div class="modal-backdrop-luxury"
      *ngIf="showHomeConfirmModal"
      [class.show]="showHomeConfirmModal">
@@ -206,6 +206,65 @@ Perderai il menu scelto e dovrai rifare l'accesso.</p>
                 (click)="onConfirmHome()">
           <i class="bi bi-house-fill me-2"></i>
           Vai alla Home
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- 🎯 MODAL CONFERMA CONTO LUXURY (IDENTICO A SIDEBAR) -->
+<div class="modal-backdrop-luxury"
+     *ngIf="showContoConfirmModal"
+     [class.show]="showContoConfirmModal">
+  <div class="modal-dialog-luxury">
+    <div class="modal-content-conto-luxury">
+
+      <!-- Header -->
+      <div class="modal-header-conto-luxury">
+        <div class="header-icon-conto">
+          <i class="bi bi-receipt-cutoff"></i>
+        </div>
+        <h4 class="modal-title-conto">Richiedi il Conto</h4>
+        <button type="button" class="btn-close-luxury" (click)="onCancelConto()">
+          <i class="bi bi-x"></i>
+        </button>
+      </div>
+
+      <!-- Body -->
+      <div class="modal-body-conto-luxury">
+        <div class="confirm-icon-conto">
+          <i class="bi bi-question-circle-fill"></i>
+        </div>
+        <p class="confirm-message-conto">Sicuro di voler richiedere il conto di {{ getTotaleComplessivo() | currency:'EUR' }}?
+
+Non sarà possibile aggiungere altri ordini dopo.</p>
+
+        <!-- Info Summary -->
+        <div class="conto-summary">
+          <div class="summary-item" *ngIf="getNumeroOrdini() > 0">
+            <span class="summary-label">Ordini:</span>
+            <span class="summary-value">{{ getNumeroOrdini() }}</span>
+          </div>
+          <div class="summary-item">
+            <span class="summary-label">Totale:</span>
+            <span class="summary-value">{{ getTotaleComplessivo() | currency:'EUR' }}</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Footer -->
+      <div class="modal-footer-conto-luxury">
+        <button type="button"
+                class="btn-cancel-luxury"
+                (click)="onCancelConto()">
+          <i class="bi bi-x-circle me-2"></i>
+          Annulla
+        </button>
+        <button type="button"
+                class="btn-confirm-luxury"
+                (click)="onConfirmConto()">
+          <i class="bi bi-check-circle me-2"></i>
+          Richiedi Conto
         </button>
       </div>
     </div>

@@ -1,4 +1,4 @@
-// bottom-nav.component.ts - CON LOGICA MODAL HOME UGUALE A SIDEBAR
+// bottom-nav.component.ts - CON MODAL HOME E MODAL CONTO
 import { Component, OnInit } from '@angular/core';
 import { Router, NavigationEnd } from '@angular/router';
 import { AuthService } from '../../auth/auth-service.service';
@@ -17,8 +17,11 @@ export class BottomNavComponent implements OnInit {
   // Observable dello stato tavolo
   tavoloState$: Observable<TavoloState>;
 
-  // 🎯 NUOVO: Modal Home Confirmation (stesso della sidebar)
+  // 🎯 MODAL HOME CONFIRMATION
   showHomeConfirmModal: boolean = false;
+
+  // 🎯 NUOVO: MODAL CONTO CONFIRMATION (IDENTICO A SIDEBAR)
+  showContoConfirmModal: boolean = false;
 
   constructor(
     private router: Router,
@@ -85,6 +88,36 @@ export class BottomNavComponent implements OnInit {
   private navigateToHome(): void {
     this.closeMenuDropdown();
     this.router.navigate(['']);
+  }
+
+  // ===== 🎯 GESTIONE CONTO MODAL (IDENTICA A SIDEBAR) =====
+
+  /**
+   * Mostra modal di conferma per richiesta conto
+   */
+  confermaRichiestaConto(): void {
+    console.log('🎯 Bottom Nav: apertura modal conferma conto');
+    this.showContoConfirmModal = true;
+  }
+
+  /**
+   * Conferma richiesta conto
+   */
+  onConfirmConto(): void {
+    this.showContoConfirmModal = false;
+    this.tavoloService.richiediConto();
+    console.log('✅ Conto richiesto dalla bottom nav');
+
+    // Naviga allo storico ordini per vedere il risultato
+    this.router.navigate(['/storico-ordini']);
+  }
+
+  /**
+   * Cancella richiesta conto
+   */
+  onCancelConto(): void {
+    this.showContoConfirmModal = false;
+    console.log('❌ Richiesta conto annullata dalla bottom nav');
   }
 
   // ===== GESTIONE MODALITÀ MENU =====
@@ -158,7 +191,7 @@ export class BottomNavComponent implements OnInit {
     this.router.navigate(['']);
   }
 
-  // ===== METODI TAVOLO =====
+  // ===== METODI TAVOLO (IDENTICI A SIDEBAR) =====
 
   /**
    * Verifica se il tavolo è attivo
@@ -186,15 +219,6 @@ export class BottomNavComponent implements OnInit {
    */
   getTotaleComplessivo(): number {
     return this.tavoloService.getTotaleComplessivo();
-  }
-
-  // ===== CONFERMA RICHIESTA CONTO =====
-
-  /**
-   * Richiedi il conto - versione semplificata per bottom nav
-   */
-  confermaRichiestaConto() {
-    this.tavoloService.richiediConto(); // 🎯 Apre modal luxury
   }
 
   /**

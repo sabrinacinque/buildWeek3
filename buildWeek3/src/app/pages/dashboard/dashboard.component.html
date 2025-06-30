@@ -76,8 +76,8 @@
   </div>
 
   <!-- MOBILE: Cards Layout (≤768px) -->
-  <div class="d-md-none pb-5 mb-5">
-    <div class="row g-3">
+  <div class="d-md-none pb-5 mb-5" >
+    <div class="row g-3 mb-5">
       <div class="col-12" *ngFor="let item of filteredMenu">
         <div class="card card-luxury-mobile">
           <div class="card-body p-3">
@@ -221,7 +221,7 @@
             </div>
 
             <!-- Azioni -->
-            
+
             <div class="d-flex gap-2 justify-content-end">
               <button
                 class="btn btn-danger-gold btn-sm"
@@ -446,7 +446,7 @@
         <label class="form-label text-light">
           <i class="bi bi-image me-2 text-gold"></i>Immagine Prodotto
         </label>
-        
+
         <!-- File Upload Area -->
         <div class="file-upload-modal-container">
           <input
@@ -466,7 +466,7 @@
                   <span>Cambia Immagine</span>
                 </div>
               </div>
-              
+
               <!-- Area upload vuota -->
               <div *ngIf="!imagePreview" class="upload-placeholder">
                 <i class="bi bi-cloud-upload-fill"></i>

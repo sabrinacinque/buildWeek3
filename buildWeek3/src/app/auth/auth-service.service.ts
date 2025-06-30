@@ -1,5 +1,5 @@
 import { User } from './../Models/user';
-import { Injectable } from '@angular/core';
+import { Injectable, Inject, PLATFORM_ID } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { BehaviorSubject, Observable, of } from 'rxjs';
 import { map, tap } from 'rxjs/operators';
@@ -9,6 +9,7 @@ import { iAuth } from '../Models/iauth';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { iLogin } from '../Models/ilogin';
 import { environment } from '../../environments/environment';
+import { isPlatformBrowser } from '@angular/common';
 
 @Injectable({
   providedIn: 'root',
@@ -30,12 +31,33 @@ export class AuthService {
   constructor(
     private http: HttpClient,
     private router: Router,
-    private fb: FormBuilder
+    private fb: FormBuilder,
+    @Inject(PLATFORM_ID) private platformId: Object  // 🔧 AGGIUNTO per SSR
   ) {
     this.restoreUser();
   }
 
   userForm!: FormGroup;
+
+  // 🔧 METODI SICURI PER STORAGE (SSR COMPATIBLE)
+  private setLocalStorage(key: string, value: string): void {
+    if (isPlatformBrowser(this.platformId)) {
+      localStorage.setItem(key, value);
+    }
+  }
+
+  private getLocalStorage(key: string): string | null {
+    if (isPlatformBrowser(this.platformId)) {
+      return localStorage.getItem(key);
+    }
+    return null;
+  }
+
+  private removeLocalStorage(key: string): void {
+    if (isPlatformBrowser(this.platformId)) {
+      localStorage.removeItem(key);
+    }
+  }
 
   getUserLogin(): FormGroup {
     this.userForm = this.fb.group({
@@ -49,13 +71,12 @@ export class AuthService {
     return this.http.post<iAuth>(this.registerUrl, newUser);
   }
 
-  // 🔧 SISTEMATO: Tipizzazione corretta per Spring Boot
+  // 🔧 SISTEMATO: Login con gestione corretta
   login(user: { email: string; password: string }): Observable<any> {
     return this.http.post<any>(this.loginUrl, user).pipe(
       tap((response) => {
-        console.log('Risposta Spring Boot:', response);
+        console.log('✅ Login successful:', response);
 
-        // 🔧 ADATTATO: Spring Boot restituisce direttamente l'oggetto user
         const userData: User = {
           id: response.id,
           name: response.name,
@@ -63,32 +84,72 @@ export class AuthService {
           password: '' // Non salviamo la password per sicurezza
         };
 
-        this.authSubject.next(userData);
+        // 🔧 AGGIUNTO: Timestamp per gestire scadenza
+        const loginData = {
+          user: userData,
+          timestamp: new Date().getTime(),
+          expiresIn: 24 * 60 * 60 * 1000 // 24 ore in millisecondi
+        };
 
-        // 🔧 SALVIAMO DATI SENZA JWT per ora
-        localStorage.setItem('user', JSON.stringify(userData));
-        localStorage.setItem('isLoggedIn', 'true');
+        this.authSubject.next(userData);
+        this.setLocalStorage('authData', JSON.stringify(loginData));
+        this.setLocalStorage('isLoggedIn', 'true');
+
+        console.log('💾 User data saved to localStorage');
       })
     );
   }
 
   logout() {
+    console.log('🚪 Logout triggered');
     this.authSubject.next(null);
-    localStorage.removeItem('user');
-    localStorage.removeItem('isLoggedIn');
+    this.removeLocalStorage('authData');
+    this.removeLocalStorage('isLoggedIn');
+    this.isLogged = false;
+    this.router.navigate(['/']); // 🔧 REDIRECT ALLA HOME
   }
 
-  // 🔧 SISTEMATO: Senza JWT per ora
+  // 🔧 NUOVO: Logout silenzioso (senza redirect)
+  logoutSilent() {
+    console.log('🤫 Silent logout triggered');
+    this.authSubject.next(null);
+    this.removeLocalStorage('authData');
+    this.removeLocalStorage('isLoggedIn');
+    this.isLogged = false;
+    // Non fa redirect - per passare da admin a cliente
+  }
+
+  // 🔧 SISTEMATO: Controllo token con scadenza
   getAccessToken() {
-    const user = localStorage.getItem('user');
-    const isLoggedIn = localStorage.getItem('isLoggedIn');
+    const authDataString = this.getLocalStorage('authData');
+    const isLoggedIn = this.getLocalStorage('isLoggedIn');
 
-    if (!user || !isLoggedIn || isLoggedIn !== 'true') return null;
+    if (!authDataString || !isLoggedIn || isLoggedIn !== 'true') {
+      console.log('❌ No auth data found');
+      return null;
+    }
 
-    return {
-      user: JSON.parse(user),
-      isLoggedIn: true
-    };
+    try {
+      const authData = JSON.parse(authDataString);
+      const now = new Date().getTime();
+
+      // 🔧 CONTROLLO SCADENZA
+      if (now > authData.timestamp + authData.expiresIn) {
+        console.log('⏰ Token expired, auto logout');
+        this.logout();
+        return null;
+      }
+
+      console.log('✅ Valid token found');
+      return {
+        user: authData.user,
+        isLoggedIn: true
+      };
+    } catch (error) {
+      console.error('❌ Error parsing auth data:', error);
+      this.logout();
+      return null;
+    }
   }
 
   getAllUsers(): Observable<User> {
@@ -100,17 +161,53 @@ export class AuthService {
     user.password = formData.value.password;
   }
 
-  // 🔧 SISTEMATO: Senza JWT per ora
+  // 🔧 SISTEMATO: Restore user con controlli
   restoreUser() {
-    const userData = this.getAccessToken();
-    if (!userData) return;
+    const authData = this.getAccessToken();
+    if (!authData) {
+      console.log('🔄 No user to restore');
+      return;
+    }
 
-    this.authSubject.next(userData.user);
+    console.log('🔄 Restoring user:', authData.user);
+    this.authSubject.next(authData.user);
+    this.isLogged = true;
   }
 
-  // 🔧 COMMENTATO: Non serve per ora senza JWT
+  // 🔧 NUOVO: Metodo per verificare se è veramente loggato
+  isAuthenticated(): boolean {
+    const token = this.getAccessToken();
+    const hasUser = !!this.authSubject.value;
+
+    console.log('🔍 Authentication check:', {
+      token: !!token,
+      hasUser,
+      isLoggedFlag: this.isLogged
+    });
+
+    return !!token && hasUser;
+  }
+
+  // 🔧 IMPLEMENTATO: Auto logout funzionante
   autoLogout() {
-    // Implementeremo quando aggiungeremo JWT
-    console.log('AutoLogout non implementato - per ora login persistente');
+    const authData = this.getAccessToken();
+    if (!authData) return;
+
+    const authDataString = this.getLocalStorage('authData');
+    if (!authDataString) return;
+
+    try {
+      const data = JSON.parse(authDataString);
+      const timeLeft = (data.timestamp + data.expiresIn) - new Date().getTime();
+
+      if (timeLeft > 0) {
+        setTimeout(() => {
+          console.log('⏰ Session expired - auto logout');
+          this.logout();
+        }, timeLeft);
+      }
+    } catch (error) {
+      console.error('❌ Error in autoLogout:', error);
+    }
   }
 }

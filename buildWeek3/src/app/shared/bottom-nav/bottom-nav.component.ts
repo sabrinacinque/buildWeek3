@@ -144,19 +144,43 @@ export class BottomNavComponent implements OnInit {
 
   // ===== NAVIGAZIONE E ROUTING =====
 
-  navigateTo(route: string) {
-    this.closeMenuDropdown();
+  // 🔧 METODO UNICO: Navigazione con forza
+  // 🔧 METODO AGGIORNATO: Navigazione con chiusura dropdown garantita
+navigateTo(route: string) {
+  console.log('🚀 Navigazione forzata verso:', route);
 
-    // 🆕 CONTROLLO SPECIFICO PER NAVIGAZIONE HOME
-    if (route === '' && (this.isTavoloAttivo() || this.isInMenuMode())) {
-      const conferma = confirm('Sei sicuro di voler tornare alla home? Gli ordini del tavolo attuale rimarranno salvati ma dovrai riattivare il tavolo per continuare.');
-      if (!conferma) return;
+  // 🆕 CONTROLLO SPECIFICO PER NAVIGAZIONE HOME
+  if (route === '' && (this.isTavoloAttivo() || this.isInMenuMode())) {
+    const conferma = confirm('Sei sicuro di voler tornare alla home? Gli ordini del tavolo attuale rimarranno salvati ma dovrai riattivare il tavolo per continuare.');
+    if (!conferma) {
+      this.closeMenuDropdown(); // Chiudi dropdown anche se annulli
+      return;
     }
-
-    setTimeout(() => {
-      this.router.navigate([route]);
-    }, 150);
   }
+
+  // 🔧 CHIUSURA DROPDOWN FORZATA (PRIMA E DOPO)
+  this.closeMenuDropdown();
+  this.showMenuDropdown = false; // Extra sicurezza
+
+  // 🔧 NAVIGAZIONE FORZATA: Prima vai alla home, poi alla destinazione
+  this.router.navigateByUrl('/', { skipLocationChange: true }).then(() => {
+    this.router.navigate([route]).then((success) => {
+      console.log('✅ Navigazione completata:', success, 'verso:', route);
+      
+      // 🔧 CHIUDI DROPDOWN ANCHE DOPO NAVIGAZIONE (per sicurezza)
+      setTimeout(() => {
+        this.closeMenuDropdown();
+        this.showMenuDropdown = false;
+      }, 50);
+      
+      // 🔧 FORZA SCROLL MANUALE DOPO NAVIGAZIONE
+      setTimeout(() => {
+        window.scrollTo({ top: 0, behavior: 'instant' });
+        console.log('📜 Scroll forzato dopo navigazione');
+      }, 100);
+    });
+  });
+}
 
   getCurrentRoute(): string {
     return this.router.url;
@@ -165,6 +189,10 @@ export class BottomNavComponent implements OnInit {
   isActiveRoute(route: string): boolean {
     if (route === '') {
       return this.getCurrentRoute() === '/';
+    }
+    if (route === '/menu') {
+      // 🔧 SISTEMATO: Solo per /menu esatto, non le sottopagine
+      return this.getCurrentRoute() === '/menu' || this.getCurrentRoute() === '/menu/';
     }
     return this.getCurrentRoute().includes(route);
   }

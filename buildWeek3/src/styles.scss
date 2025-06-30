@@ -15,7 +15,33 @@
   background: linear-gradient(to top, #99735e, #000000);
 }
 
-html, body { height: 100%; }
+html, body { height: 100%;height: -webkit-fill-available; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 
 
+
+// Fix per Chrome mobile
+@supports (-webkit-touch-callout: none) {
+  html {
+    height: -webkit-fill-available;
+  }
+}
+
+// Fix viewport mobile
+@media (max-width: 767px) {
+  html, body {
+    height: 100vh;
+    height: 100dvh; // Dynamic viewport height
+    overflow-x: hidden;
+  }
+  
+  // Padding per il contenuto per non andare sotto la bottom-nav
+  .content-wrapper {
+    padding-bottom: 80px !important;
+  }
+  
+  // Fix per le pagine del menu
+  .row.row-cols-1 {
+    margin-bottom: 90px !important;
+  }
+}

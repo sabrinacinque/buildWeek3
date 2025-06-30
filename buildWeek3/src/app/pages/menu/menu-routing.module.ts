@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { MenuComponent } from './menu.component';
 import { AntipastiComponent } from './antipasti/antipasti.component';
 import { ZuppeComponent } from './zuppe/zuppe.component';
 import { PrimiComponent } from './primi/primi.component';
@@ -12,8 +11,9 @@ import { SecondiComponent } from './secondi/secondi.component';
 import { BibiteComponent } from './bibite/bibite.component';
 import { DolciComponent } from './dolci/dolci.component';
 
+// 🔧 SEMPLIFICATO: Route dirette senza MenuComponent wrapper
 const routes: Routes = [
-  { path: '', component: MenuComponent },
+  { path: '', redirectTo: 'antipasti', pathMatch: 'full' },
   { path: 'antipasti', component: AntipastiComponent },
   { path: 'zuppe', component: ZuppeComponent },
   { path: 'primi', component: PrimiComponent },
@@ -30,5 +30,4 @@ const routes: Routes = [
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule]
 })
-
 export class MenuRoutingModule { }

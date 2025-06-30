@@ -5,7 +5,7 @@
     <!-- 🏠 ICONA HOME DORATA (AGGIORNATA) -->
     <div class="nav-item nav-item-home"
          [class.active]="isActiveRoute('')"
-         (click)="onHomeClick()">
+         (click)="onHomeClick()" *ngIf="!isLogged">
       <div class="home-icon-container">
         <i class="bi bi-house-fill nav-icon home-icon"></i>
       </div>

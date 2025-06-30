@@ -1,5 +1,5 @@
 .icon{
-    width: 2em;
+    width: 1.5em;
     color: #e6e6e6;
     cursor: pointer;
     filter: brightness(0.5);
@@ -7,14 +7,14 @@
     &.rated,
     &:hover,
     &:hover{
-         
+
          filter: brightness(1);
          transform: translateY(-5px);
          transition: all ease 0.3s
 
 
     };
-  
+
 }
 
 span{

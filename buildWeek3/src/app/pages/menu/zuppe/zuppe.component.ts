@@ -6,9 +6,6 @@ import { Component,OnInit} from '@angular/core';
   templateUrl: './zuppe.component.html',
   styleUrl: './zuppe.component.scss'
 })
-export class ZuppeComponent implements OnInit{
+export class ZuppeComponent {
 
-  ngOnInit() {
-    window.scrollTo(0, 0); // Forza scroll in cima
-  }
 }

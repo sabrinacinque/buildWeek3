@@ -6,9 +6,6 @@ import { Component, OnInit} from '@angular/core';
   templateUrl: './uramaki.component.html',
   styleUrl: './uramaki.component.scss'
 })
-export class UramakiComponent implements OnInit{
+export class UramakiComponent {
 
-  ngOnInit() {
-    window.scrollTo(0, 0); // Forza scroll in cima
-  }
 }

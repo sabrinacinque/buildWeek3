@@ -7,8 +7,5 @@ import { MenuService } from '../../../menu.service';
   templateUrl: './primi.component.html',
   styleUrl: './primi.component.scss'
 })
-export class PrimiComponent implements OnInit {
-  ngOnInit() {
-    window.scrollTo(0, 0); // Forza scroll in cima
-  }
+export class PrimiComponent{
 }

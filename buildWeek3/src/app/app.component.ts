@@ -20,15 +20,12 @@ export class AppComponent implements OnInit {
     this.router.events.pipe(
       filter(event => event instanceof NavigationEnd)
     ).subscribe((event) => {
-      // 🔧 SISTEMATO: Cast esplicito dopo il filter
       const navigationEnd = event as NavigationEnd;
-
-      // Scroll to top
-      setTimeout(() => {
-        window.scrollTo({ top: 0, behavior: 'smooth' });
-      }, 100);
-
-      // 🔧 NUOVO: Auto logout logic
+      
+      // 🔧 SISTEMATO: Scroll immediato senza setTimeout
+      window.scrollTo({ top: 0, behavior: 'instant' });
+      
+      // Auto logout logic
       this.handleAutoLogout(navigationEnd.url);
     });
   }
@@ -36,7 +33,7 @@ export class AppComponent implements OnInit {
   // 🔧 NUOVO: Gestisce il logout automatico
   private handleAutoLogout(url: string): void {
     const isAuthenticated = this.authService.isAuthenticated();
-
+    
     if (!isAuthenticated) {
       console.log('👤 Utente non loggato - nessun logout necessario');
       return;
